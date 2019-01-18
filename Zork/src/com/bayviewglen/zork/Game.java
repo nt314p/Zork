@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
+	// hey what's up it's Nick remember to put a space after ur //
+	//i'm a sinner rn
+
 /**
  * Class Game - the main class of the "Zork" game.
  *
