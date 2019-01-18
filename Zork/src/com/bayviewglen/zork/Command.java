@@ -21,17 +21,17 @@ package com.bayviewglen.zork;
  * should probably be changed to be an item rather than a String.
  */
 class Command {
-	private String commandWord;
-	private String secondWord;
+	private String mainCommandWord;
+	private String[] commandParameters;
 
 	/**
 	 * Create a command object. First and second word must be supplied, but either
 	 * one (or both) can be null. The command word should be null to indicate that
 	 * this was a command that is not recognised by this game.
 	 */
-	public Command(String firstWord, String secondWord) {
-		commandWord = firstWord;
-		this.secondWord = secondWord;
+	public Command(String mainCommand, String[] params) {
+		mainCommandWord = mainCommand;
+		commandParameters = params;
 	}
 
 	/**
@@ -39,28 +39,28 @@ class Command {
 	 * not understood, the result is null.
 	 */
 	public String getCommandWord() {
-		return commandWord;
+		return mainCommandWord;
 	}
 
-	/**
-	 * Return the second word of this command. Returns null if there was no second
-	 * word.
-	 */
-	public String getSecondWord() {
-		return secondWord;
-	}
+//	/**
+//	 * Return the second word of this command. Returns null if there was no second
+//	 * word.
+//	 */
+//	public String getSecondWord() {
+//		return secondWord;
+//	}
 
 	/**
 	 * Return true if this command was not understood.
 	 */
 	public boolean isUnknown() {
-		return (commandWord == null);
+		return (mainCommandWord == null);
 	}
 
 	/**
 	 * Return true if the command has a second word.
 	 */
-	public boolean hasSecondWord() {
-		return (secondWord != null);
+	public boolean hasParameters() {
+		return (commandParameters.length != 0);
 	}
 }

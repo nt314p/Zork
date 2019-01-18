@@ -1,7 +1,3 @@
 drop:dump,discard
 take:get
-north:n
-south:s
-east:e
-west:w
 move:go,travel
