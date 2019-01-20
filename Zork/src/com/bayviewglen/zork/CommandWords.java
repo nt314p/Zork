@@ -43,7 +43,7 @@ class CommandWords {
 	 * Check whether a given String is a valid command word. Return the main command
 	 * word if it is, or null if it is false
 	 **/
-	public String isCommand(String str) {
+	public static String isCommand(String str) {
 		for (int i = 0; i < validCommands.length; i++) {
 			for (int j = 0; j < validCommands[i].size(); j++) {
 				if (validCommands[i].get(j).equals(str)) {
@@ -60,7 +60,7 @@ class CommandWords {
 	/**
 	 * Print all valid commands to System.out.
 	 */
-	public void showAll() {
+	public static void showAll() {
 		for (int i = 0; i < validCommands.length; i++) {
 			System.out.print(validCommands[i].get(0) + "  "); // get main command word only
 		}
