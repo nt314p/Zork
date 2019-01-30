@@ -1,6 +1,6 @@
 package com.bayviewglen.zork;
 
-/*
+/**
  * Parser reads user input
  * Checks input to see if it is a command
  * Returns interpreted command as an instance of the class Command
@@ -11,17 +11,15 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 class Parser {
-	private CommandWords commands; // holds all valid command words
 	private final int maxWordCommandLen = 2; // longest multi word command. EX: pick up = 2
 	private final String prompt = ">>";
 
 	public Parser() {
-		commands = new CommandWords();
+
 	}
 
 	public Command getCommand() {
 		String input = ""; // holds input
-		String mainCommandWord; // main command
 		ArrayList<String> params = new ArrayList<String>(); // holds parameters for the main word
 		String[] words; // holds the words in the input
 		System.out.print(prompt);
@@ -37,23 +35,26 @@ class Parser {
 		words = input.split(" "); // splitting input on space, extracting words
 
 		String mainCommand = null;
-		int paramStartIndex = 0; // at what index in words do the parameters start?
+		int paramStartIndex = -1; // at what index in words do the parameters start?
 		String commandPhrase = "";
 
 		// outer loop - # of words to take as the main command
 		for (int i = 1; i <= Math.min(maxWordCommandLen, words.length); i++) {
 			// adding words to command phrase
-			for (int j = 0; j < i; j++) {
-				commandPhrase += words[j];
+			if (i != 1) { // if it's not the first word, add a space
+				commandPhrase += " ";
 			}
+			commandPhrase += words[i - 1]; // add the next word in the input
 
-			mainCommand = commands.isCommand(commandPhrase);
+			mainCommand = CommandWords.isCommand(commandPhrase);
 			if (mainCommand != null) {
 				paramStartIndex = i;
 				break; // if the command isn't null (it has found a match), break out of loop
-			} else { // command not found, no need to process parameters
-				return new Command(null, null);
 			}
+		}
+
+		if (paramStartIndex == -1) { // index not altered, command not found, no need to process parameters
+			return new Command(null, null);
 		}
 
 		for (int i = paramStartIndex; i < words.length; i++) {
@@ -68,6 +69,6 @@ class Parser {
 	 * Print out a list of valid command words.
 	 */
 	public void showCommands() {
-		commands.showAll();
+		CommandWords.showAll();
 	}
 }

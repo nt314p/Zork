@@ -5,6 +5,17 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * File Reader class
+ * 
+ * Takes a file path as a parameter
+ * 
+ * Returns all lines of a file as an array of strings
+ * 
+ * Only to be used with small files (less than 1000 lines)
+ *
+ */
+
 public class FileReader {
 	
 	private Scanner reader;
@@ -17,6 +28,10 @@ public class FileReader {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * This method reads the defined file and returns the lines as a string array
+	 * 
+	 */
 	
 	public String[] getLines() {
 		ArrayList<String> linesList = new ArrayList<String>();

@@ -18,9 +18,16 @@ class CommandWords {
 	private static FileReader fReader = new FileReader(commandFile);
 
 	/**
-	 * Constructor - initialize the command words.
+	 * Constructor - nothing to see here.
 	 */
 	public CommandWords() {
+		
+	}
+	
+	/**
+	 * initialize the command words
+	 */
+	public static void initialize() {
 		String[] lines = fReader.getLines();
 
 		// initializing valid commands arraylist array
@@ -42,7 +49,7 @@ class CommandWords {
 	/**
 	 * Check whether a given String is a valid command word. Return the main command
 	 * word if it is, or null if it is false
-	 **/
+	 */
 	public static String isCommand(String str) {
 		for (int i = 0; i < validCommands.length; i++) {
 			for (int j = 0; j < validCommands[i].size(); j++) {

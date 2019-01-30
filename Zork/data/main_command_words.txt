@@ -1,4 +1,4 @@
 drop:dump,discard
-take:get
 move:go,travel
-give:
+give:throw away
+pick up:take,grab

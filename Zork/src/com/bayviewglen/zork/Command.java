@@ -18,16 +18,24 @@ class Command {
 	public Command(String mainCommand, String[] params) {
 		mainCommandWord = mainCommand;
 		commandParameters = params;
-		System.out.println("Main: " + mainCommand);
-		System.out.print("Params: ");
+	}
+
+	/**
+	 * Returns all command info formatted in a nice string
+	 */
+	public String toString() {
+		String ret = "";
+
+		ret += "Main: " + mainCommandWord + " | Params: ";
 		try {
-			for (String s : params) {
-				System.out.print(s + ", ");
+			for (int i = 0; i < commandParameters.length; i++) {
+				ret += commandParameters[i] + ((i != commandParameters.length - 1) ? ", " : "");
 			}
-			System.out.println();
-		} catch (NullPointerException e) {
-			System.out.println("null");
+		} catch (NullPointerException e) { // catch null pointer exception, no parameters
+			ret += "null";
 		}
+
+		return ret;
 	}
 
 	/**

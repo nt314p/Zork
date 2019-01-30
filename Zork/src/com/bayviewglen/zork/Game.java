@@ -5,9 +5,9 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-	// hey what's up it's Nick remember to put a space after ur //
-	//i'm a sinner rn
-	// ben smells
+// hey what's up it's Nick remember to put a space after ur //
+//i'm a sinner rn
+// ben smells
 
 /**
  * Class Game - the main class of the "Zork" game.
@@ -102,6 +102,9 @@ class Game {
 			e.printStackTrace();
 		}
 		parser = new Parser();
+		CommandWords.initialize(); // initialize static class CommandWords
+		System.out.println(CommandWords.isCommand("pick up"));
+
 	}
 
 	/**
@@ -116,6 +119,7 @@ class Game {
 		while (!finished) {
 			Command command = parser.getCommand();
 			finished = processCommand(command);
+			System.out.println(command.toString());
 		}
 		System.out.println("Thank you for playing.  Good bye.");
 	}
@@ -159,8 +163,7 @@ class Game {
 	}
 
 // implementations of user commands:
-	
-	
+
 	/**
 	 * Print out some help information. Here we print some stupid, cryptic message
 	 * and a list of the command words.
