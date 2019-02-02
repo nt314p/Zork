@@ -1,5 +1,5 @@
 package com.bayviewglen.zork;
-
+								//HEY NICK, HOW CAN WE DIFFERENTIATE BETWEEN GIVE & GIVE UP??? THANKS
 import java.util.ArrayList;
 
 /* This class is used for command word recognition */
@@ -53,7 +53,7 @@ class CommandWords {
 	public static String isCommand(String str) {
 		for (int i = 0; i < validCommands.length; i++) {
 			for (int j = 0; j < validCommands[i].size(); j++) {
-				if (validCommands[i].get(j).equals(str)) {
+				if (validCommands[i].get(j).equalsIgnoreCase(str)) {
 					// main command resides at validCommands[anyindex].get(0)
 					// located at the first index (0)
 					return validCommands[i].get(0);
@@ -69,7 +69,10 @@ class CommandWords {
 	 */
 	public static void showAll() {
 		for (int i = 0; i < validCommands.length; i++) {
-			System.out.print(validCommands[i].get(0) + "  "); // get main command word only
+			if(validCommands[i].get(0).equals(""))
+				System.out.println();
+			else
+				System.out.print(validCommands[i].get(0) + "  "); // get main command word only
 		}
 		System.out.println();
 	}

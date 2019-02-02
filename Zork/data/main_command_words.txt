@@ -2,3 +2,22 @@ drop:dump,discard
 move:go,travel
 give:throw away
 pick up:take,grab
+
+help:assistance
+quit:stop,give up
+restart:redo
+look:see
+commandWords:words
+
+inventory:i,stuff,things
+north:n
+east:e
+south:s
+west:w
+up:u
+down:d
+
+enter:go in
+exit:leave,go away
+open
+close
