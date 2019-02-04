@@ -46,10 +46,13 @@ class Parser {
 			}
 			commandPhrase += words[i - 1]; // add the next word in the input
 
-			mainCommand = CommandWords.isCommand(commandPhrase);
-			if (mainCommand != null) {
+			
+			String tmpCommand = CommandWords.isCommand(commandPhrase);
+			if (tmpCommand != null) {
+				// a command match is found, set the main command to the match, but do not exit loop
+				// this allows the program to match as many words as possible ("give up" overrides "give")
 				paramStartIndex = i;
-				break; // if the command isn't null (it has found a match), break out of loop
+				mainCommand = tmpCommand;
 			}
 		}
 

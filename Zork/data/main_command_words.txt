@@ -7,7 +7,7 @@ help:assistance
 quit:stop,give up
 restart:redo
 look:see
-commandWords:words
+commands:words
 
 inventory:i,stuff,things
 north:n

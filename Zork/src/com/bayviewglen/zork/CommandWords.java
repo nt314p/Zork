@@ -1,5 +1,4 @@
 package com.bayviewglen.zork;
-								//HEY NICK, HOW CAN WE DIFFERENTIATE BETWEEN GIVE & GIVE UP??? THANKS
 import java.util.ArrayList;
 
 /* This class is used for command word recognition */
