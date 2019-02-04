@@ -12,8 +12,9 @@ class Command {
 	private String[] commandParameters;
 
 	/**
-	 * Create a command object. Params can be <null>, but if the main command is
-	 * <null>, it indicates the command is not defined
+	 * Create a command object
+	 * @param mainCommand the command to be created as an object
+	 * @param params all the parameters of each individual command (can be null - indicates not defined command)
 	 */
 	public Command(String mainCommand, String[] params) {
 		mainCommandWord = mainCommand;
@@ -21,7 +22,7 @@ class Command {
 	}
 
 	/**
-	 * Returns all command info formatted in a nice string
+	 * @return mainCommand info properly formatted as a string
 	 */
 	public String toString() {
 		String ret = "";
@@ -39,8 +40,7 @@ class Command {
 	}
 
 	/**
-	 * Return the command word (the first word) of this command. If the command was
-	 * not understood, the result is null.
+	 * @return the command word (first word) in the command, null if not understood
 	 */
 	public String getCommandWord() {
 		return mainCommandWord;
@@ -55,14 +55,14 @@ class Command {
 //	}
 
 	/**
-	 * Return true if this command was not understood.
+	 * @return true if command is not understood (not in list)
 	 */
 	public boolean isUnknown() {
 		return (mainCommandWord == null);
 	}
 
 	/**
-	 * Return true if the command has a second word.
+	 * @return true if command contains a second word
 	 */
 	public boolean hasParameters() {
 		return (commandParameters.length != 0);

@@ -18,6 +18,10 @@ class Parser {
 
 	}
 
+	/**
+	 * 
+	 * @return the valid command
+	 */
 	public Command getCommand() {
 		String input = ""; // holds input
 		ArrayList<String> params = new ArrayList<String>(); // holds parameters for the main word
@@ -46,6 +50,7 @@ class Parser {
 			}
 			commandPhrase += words[i - 1]; // add the next word in the input
 
+
 			
 			String tmpCommand = CommandWords.isCommand(commandPhrase);
 			if (tmpCommand != null) {
@@ -63,6 +68,7 @@ class Parser {
 		for (int i = paramStartIndex; i < words.length; i++) {
 			params.add(words[i]);
 		}
+		
 
 		// returning command object, casting params to an array of strings
 		return new Command(mainCommand, params.toArray(new String[params.size()]));
