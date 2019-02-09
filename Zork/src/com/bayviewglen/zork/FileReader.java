@@ -31,6 +31,8 @@ public class FileReader {
 	/**
 	 * This method reads the defined file and returns the lines as a string array
 	 * 
+	 * @return An array in which each index holds one line of the file
+	 * 
 	 */
 	
 	public String[] getLines() {

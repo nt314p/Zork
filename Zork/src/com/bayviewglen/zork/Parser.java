@@ -19,8 +19,9 @@ class Parser {
 	}
 
 	/**
+	 * Reads and processes input into a Command object
 	 * 
-	 * @return the valid command
+	 * @return a Command object
 	 */
 	public Command getCommand() {
 		String input = ""; // holds input

@@ -6,6 +6,8 @@ package com.bayviewglen.zork;
  * Has two parts, the main command and the parameters
  * 
  * 
+ * 
+ * 
  */
 class Command {
 	private String mainCommandWord;
@@ -22,7 +24,7 @@ class Command {
 	}
 
 	/**
-	 * @return mainCommand info properly formatted as a string
+	 * @return the command info properly formatted as a string
 	 */
 	public String toString() {
 		String ret = "";
@@ -45,14 +47,14 @@ class Command {
 	public String getCommandWord() {
 		return mainCommandWord;
 	}
-
-//	/**
-//	 * Return the second word of this command. Returns null if there was no second
-//	 * word.
-//	 */
-//	public String getSecondWord() {
-//		return secondWord;
-//	}
+	
+	/**
+	 * @return a string array of all the parameters
+	 */
+	
+	public String[] getParameters() {
+		return commandParameters;
+	}
 
 	/**
 	 * @return true if command is not understood (not in list)
@@ -62,7 +64,7 @@ class Command {
 	}
 
 	/**
-	 * @return true if command contains a second word
+	 * @return true if command contains parameters
 	 */
 	public boolean hasParameters() {
 		return (commandParameters.length != 0);
