@@ -110,7 +110,7 @@ class Game {
 	 */
 	public void play() {
 		printWelcome();
-// Enter the main command loop.  Here we repeatedly read commands and
+		// Enter the main command loop.  Here we repeatedly read commands and
 		// execute them until the game is over.
 
 		boolean finished = false;
@@ -120,23 +120,27 @@ class Game {
 			System.out.println(command.toString());
 		}
 		System.out.println("Thank you for playing.  Good bye.");
+		
 	}
 
 	/**
-	 * Print out the opening message for the player.
+	 * Print out the welcome mesage for the player
 	 */
 	private void printWelcome() {
 		System.out.println();
 		System.out.println("Welcome to Zork!");
 		System.out.println("Zork is a new, incredibly boring adventure game.");
 		System.out.println("Type \"help\" if you need help.");
-		// System.out.println("Type \"commandWords\" to view the valid command words."); // How do we do this? Hardcode?
+		System.out.println("Type \"commands\" to view the valid command words.");
 		System.out.println(currentRoom.longDescription());
 	}
-
+	
 	/**
 	 * Given a command, process (that is: execute) the command. If this command ends
 	 * the game, true is returned, otherwise false is returned.
+	 * 
+	 * @param command the command to be executed
+	 * @return true if the game is ended, false if game continues
 	 */
 	private boolean processCommand(Command command) {
 		if (command.isUnknown()) {

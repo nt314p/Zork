@@ -26,7 +26,7 @@ class CommandWords {
 	}
 	
 	/**
-	 * initialize the command words
+	 * initialize the command words into an arrayList
 	 */
 	public static void initialize() {
 		String[] lines = fReader.getLines();
@@ -55,6 +55,10 @@ class CommandWords {
 	/**
 	 * Check whether a given String is a valid command word. Return the main command
 	 * word if it is, or null if it is false
+	 * 
+	 * @param str The string name of the command to check
+	 * @return A string of the main command name if the command is found, else returns null
+	 * 
 	 */
 	public static String isCommand(String str) {
 		for (int i = 0; i < validCommands.length; i++) {

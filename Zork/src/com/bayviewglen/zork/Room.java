@@ -39,6 +39,13 @@ class Room {
 		exits = new HashMap<String, Room>();
 	}
 
+	/**
+	 * Places player room and direction wishing to go on the exits map to later confirm if move is possible.	 * 
+	 * 
+	 * @param direction the direction player wishes to go
+	 * @param r the room the player is in
+	 * @throws Exception
+	 */
 	public void setExit(char direction, Room r) throws Exception {
 		String dir = "";
 		switch (direction) {
@@ -69,8 +76,16 @@ class Room {
 	}
 
 	/**
-	 * Define the exits of this room. Every direction either leads to another room
-	 * or is null (no exit there).
+	 * Find the exits of this room, put them on the map.
+	 * All directions either lead to another room or contain null in that direction (no exits).
+	 * 
+	 * @param room the room you are in 
+	 * @param north the room to your north
+	 * @param east the room to your east
+	 * @param south the room to your south
+	 * @param west the room to your west
+	 * @param up the room above
+	 * @param down the room below
 	 */
 	public void setExits(Room north, Room east, Room south, Room west, Room up, Room down) {
 		if (north != null)
@@ -89,16 +104,19 @@ class Room {
 	}
 
 	/**
-	 * Return the description of the room (the one that was defined in the
-	 * constructor).
+	 * Gives the short description - defined in constructor
+	 * @return the short description of the room
 	 */
 	public String shortDescription() {
 		return "Room: " + roomName + "\n\n" + description;
 	}
 
 	/**
-	 * Return a long description of this room, on the form: You are in the kitchen.
+	 * Gives the long description of the room, on the form:
+	 * You are in the kitchen. You see stairs down, a ladder up, a closed window, and a pile of leaves.
 	 * Exits: north west
+	 * 
+	 * @return the long description of the room
 	 */
 	public String longDescription() {
 
@@ -106,37 +124,53 @@ class Room {
 	}
 
 	/**
-	 * Return a string describing the room's exits, for example "Exits: north west
-	 * ".
+	 * Write up the exits of the room - ex. "Exits: north, south, up"
+	 * @return string containing room's exits
 	 */
-	private String exitString() {
+	private String exitString() {//maybe a for loop would work best for this - control where you want a comma
 		String returnString = "Exits:";
 		Set keys = exits.keySet();
 		for (Iterator iter = keys.iterator(); iter.hasNext();)
-			returnString += " " + iter.next();
+			returnString += ", " + iter.next();
 		return returnString;
 	}
 
 	/**
-	 * Return the room that is reached if we go from this room in direction
-	 * "direction". If there is no room in that direction, return null.
+	 * @param direction the direction wishing to go
+	 * @return the room in that direction, or if no room return null
 	 */
 	public Room nextRoom(String direction) {
 		return (Room) exits.get(direction);
 	}
 
+	/**
+	 * Get the name of the room
+	 * @return the room name
+	 */
 	public String getRoomName() {
 		return roomName;
 	}
 
+	/**
+	 *Sets the current room to the room being passed in (parameter roomName)
+	 * @param roomName the name of the room you are currently in
+	 */
 	public void setRoomName(String roomName) {
 		this.roomName = roomName;
 	}
-
+	
+	/**
+	 * Get the description of the room
+	 * @return the string description of the room
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * Set your description being passed in as the current description
+	 * @param description the description to be set
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
