@@ -91,7 +91,7 @@ class Game {
 	}
 
 	/**
-	 * Create the game and initialise its internal map.
+	 * Create the game and initialize its internal map.
 	 */
 	public Game() {
 		try {
@@ -103,8 +103,6 @@ class Game {
 		}
 		parser = new Parser();
 		CommandWords.initialize(); // initialize static class CommandWords
-		System.out.println(CommandWords.isCommand("pick up"));
-
 	}
 
 	/**
@@ -132,7 +130,7 @@ class Game {
 		System.out.println("Welcome to Zork!");
 		System.out.println("Zork is a new, incredibly boring adventure game.");
 		System.out.println("Type \"help\" if you need help.");
-		System.out.println("Type \"commandWords\" to view the valid command words.");
+		// System.out.println("Type \"commandWords\" to view the valid command words."); // How do we do this? Hardcode?
 		System.out.println(currentRoom.longDescription());
 	}
 

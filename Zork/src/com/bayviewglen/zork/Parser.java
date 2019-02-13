@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 class Parser {
-	private final int maxWordCommandLen = 2; // longest multi word command. EX: pick up = 2
+	private int maxWordsInCommand = CommandWords.getMaxWordsInCommand();
 	private final String prompt = ">>";
 
 	public Parser() {
@@ -39,7 +39,7 @@ class Parser {
 		String commandPhrase = "";
 
 		// outer loop - # of words to take as the main command
-		for (int i = 1; i <= Math.min(maxWordCommandLen, words.length); i++) {
+		for (int i = 1; i <= Math.min(maxWordsInCommand, words.length); i++) {
 			// adding words to command phrase
 			if (i != 1) { // if it's not the first word, add a space
 				commandPhrase += " ";

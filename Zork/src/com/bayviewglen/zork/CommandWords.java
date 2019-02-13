@@ -15,6 +15,8 @@ class CommandWords {
 	// setting up file to read from
 	private static final String commandFile = "data/main_command_words.txt";
 	private static FileReader fReader = new FileReader(commandFile);
+	
+	private static int maxWordsInCommand = 0;
 
 	/**
 	 * Constructor - nothing to see here.
@@ -40,7 +42,12 @@ class CommandWords {
 
 			// loading split phrases into valid commands
 			for (int j = 0; j < phrases.length; j++) {
-				validCommands[i].add(phrases[j]);
+				String currentCommand = phrases[j];
+				int wordsInCommand = currentCommand.split(" ").length;
+				if (wordsInCommand > maxWordsInCommand) {
+					maxWordsInCommand = wordsInCommand; // setting max words in command
+				}
+				validCommands[i].add(currentCommand);
 			}
 		}
 	}
@@ -74,5 +81,12 @@ class CommandWords {
 				System.out.print(validCommands[i].get(0) + "  "); // get main command word only
 		}
 		System.out.println();
+	}
+	
+	/**
+	 * returns the maxWordsInCommand
+	 */
+	public static int getMaxWordsInCommand() {
+		return maxWordsInCommand;
 	}
 }
