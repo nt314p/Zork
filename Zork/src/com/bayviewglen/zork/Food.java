@@ -5,9 +5,35 @@ public class Food extends Item {
 	private static double foodMeter = 1;//listed as a decimal up to 1
 	private double foodValue = 0;
 	
-	public Food(String itemName, int foodValue) {
-		super(itemName, true);
+	public Food(String itemName, double itemWeight, int foodValue) {
+		super(itemName, itemWeight, true);
 		this.foodValue = foodValue;
+	}
+	
+	public Food(Food food) {
+		super(food.getItemName(), food.getItemWeight(), true);
+		this.foodValue = food.getFoodValue();
+	}
+	
+	/**
+	 * eat the food, update the foodMeter
+	 * @param food the food you would like to eat
+	 */
+	public void eat(Food food) {
+		foodMeter += food.getFoodValue();
+		
+		if(foodMeter>1)
+			foodMeter=1;
+		
+		//need to remove the food from inventory
+	}
+	
+	/**
+	 * sets the food value of a food to a different number
+	 * @param newFoodValue the updated food value
+	 */
+	public void setFoodValue(double newFoodValue) {
+		this.foodValue = newFoodValue;
 	}
 	
 	/**

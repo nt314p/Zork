@@ -9,16 +9,16 @@ public class Door extends Item{
 	/**
 	 * constructor for a door with no locks/keys
 	 */
-	public Door(String itemName, boolean open) {
-		super(itemName, false);
+	public Door(String itemName, double itemWeight, boolean open) {
+		super(itemName, itemWeight, false);
 		this.open = false;
 	}
 	
 	/**
 	 * constructor for a door if there is a lock, and you need a key to unlock it
 	 */
-	public Door(String itemName, boolean open, boolean unlocked, Item key) {
-		super(itemName, false);
+	public Door(String itemName, double itemWeight, boolean open, boolean unlocked, Item key) {
+		super(itemName, itemWeight, false);
 		this.unlocked = false;
 		this.key = key;
 	}

@@ -9,11 +9,27 @@ package com.bayviewglen.zork;
 public class Item {
 	
 	private String itemName = "";
+	private double itemWeight = 0;
 	private boolean moveable = false;
 	
-	public Item(String itemName, boolean moveable) {
+	public Item(String itemName, double itemWeight, boolean moveable) {
 		this.moveable = moveable;
+		this.itemWeight = itemWeight;
 		this.itemName = itemName;
+	}
+	
+	public Item(Item item) {
+		this.moveable = item.getMoveable();
+		this.itemWeight = item.getItemWeight();
+		this.itemName = item.getItemName();
+	}
+	
+	/**
+	 * 
+	 * @return the item weight
+	 */
+	public double getItemWeight() {
+		return itemWeight;
 	}
 	
 	/**
@@ -33,12 +49,12 @@ public class Item {
 	}
 	
 	/**
-	 * Compares 2 item's names to see if they are equal
+	 * Compares 2 item's names and weights to see if they are equal
 	 * @param item the item you want to compare
-	 * @return true if they have the same name
+	 * @return true if they have the same name and weight
 	 */
 	public boolean equals(Item item) {
-		return this.itemName.equals(item.getItemName());
+		return this.itemName.equals(item.getItemName()) && this.itemWeight == item.getItemWeight();
 	}
 
 }
