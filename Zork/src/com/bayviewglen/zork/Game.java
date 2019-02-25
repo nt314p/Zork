@@ -29,6 +29,7 @@ import java.util.Scanner;
 class Game {
 	private Parser parser;
 	private Room currentRoom;
+	private static Player player = new Player();
 	// This is a MASTER object that contains all of the rooms and is easily
 	// accessible.
 	// The key will be the name of the room -> no spaces (Use all caps and
