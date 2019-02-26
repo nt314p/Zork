@@ -5,9 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-// hey what's up it's Nick remember to put a space after ur //
-//i'm a sinner rn
-// ben smells
+
 
 /**
  * Class Game - the main class of the "Zork" game.
@@ -29,7 +27,7 @@ import java.util.Scanner;
 class Game {
 	private Parser parser;
 	private Room currentRoom;
-	private static Player player = new Player();
+	private Player player = new Player();
 	// This is a MASTER object that contains all of the rooms and is easily
 	// accessible.
 	// The key will be the name of the room -> no spaces (Use all caps and

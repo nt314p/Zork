@@ -38,6 +38,15 @@ class Room {
 		description = "DEFAULT DESCRIPTION";
 		exits = new HashMap<String, Room>();
 	}
+	
+	/**
+	 * a .equals method comparing 2 rooms - roomName and roomDescription
+	 * @param room the room to compare
+	 * @return if they are identical
+	 */
+	public boolean equals(Room room) {
+		return roomName.equals(room.roomName) && description.equals(room.description);
+	}
 
 	/**
 	 * Places player room and direction wishing to go on the exits map to later confirm if move is possible.	 * 

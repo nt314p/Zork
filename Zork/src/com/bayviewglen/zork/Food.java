@@ -1,7 +1,9 @@
 package com.bayviewglen.zork;
 
 public class Food extends Item {
-
+//work on - how water is implemented when you drink it (foodValue)
+	//how food value is affected by the item weight
+	
 	private double foodValue = 0;
 	
 	public Food(String itemName, double itemWeight, int foodValue) {
@@ -29,6 +31,7 @@ public class Food extends Item {
 	public double getFoodValue() {
 		return this.foodValue;
 	}
+	
 	
 	
 }

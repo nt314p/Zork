@@ -1,43 +1,71 @@
 package com.bayviewglen.zork;
 
-
-
 public class Player {
 	
+	static Room currentRoom;
+	static Phase currentPhase;
+	static int deaths = 0;
 	
-	static double health = 1;
-	static double foodMeter = 1;
-	static double waterMeter = 1;
+	static Monitor healthMonitor = new Monitor();
+	static Monitor foodMonitor = new Monitor();
+	static Monitor waterMonitor = new Monitor();
+	//*****IF THERE ARE TOO MANY OF THESE, COULD MAKE A LIST OF MONITORS
+
 
 	/**
-	 *
-	 * @return the player's foodMeter - how much food they have, listed from a scale of 0 to 1
+	 * die - update death count, reset statistics, reset current room to the checkpoint
 	 */
-	public static double getFoodMeter() {
-		return foodMeter;
+	public static void die() {
+		deaths++;
+		healthMonitor.reset();
+		foodMonitor.reset();
+		waterMonitor.reset();
+		currentRoom = currentPhase.getCheckpoint();
 	}
 	
 	/**
-	 * Set's the foodMeter (amount of food player has from 0 to 1) to the amount you want to set
-	 * @param newFoodMeter the new food meter
+	 * sets the current room
+	 * @param room the new currentRoom
 	 */
-	public static void setFoodMeter(double newFoodMeter) {
-		foodMeter = newFoodMeter;
+	public static void setCurrentRoom(Room room) {
+		currentRoom = room;
+	}
+	
+	/**
+	 * check if healthMonitor/foodMonitor/waterMonitor is 0
+	 * @return if you're dead
+	 */
+	public static boolean checkDeath() {
+		return healthMonitor.isDead() || foodMonitor.isDead() || waterMonitor.isDead();
 	}
 	
 	
 	/**
-	 * eat the food, update the foodMeter
+	 * eat the food
 	 * @param food the food you would like to eat
 	 */
 	public static void eat(Food food) {
-		foodMeter += food.getFoodValue();
-		
-		if(foodMeter>1)
-			foodMeter=1;
-		
-		//need to remove the food from inventory
+		foodMonitor.increase(food.getFoodValue());
 	}
+	
+	
+	/**
+	 * drink water if the food is water
+	 * @param water the water you would like to drink
+	 */
+	public static void drink(Food water) {
+		if(!water.getItemName().equalsIgnoreCase("water")) {
+			System.out.println("You can't eat food");
+			return;
+		}
+		
+		waterMonitor.increase(water.getFoodValue());
+	}
+	
+	//public static void heal(Healer healer) {	
+	//}
+
+	
 	
 	
 
