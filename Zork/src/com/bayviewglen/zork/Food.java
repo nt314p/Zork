@@ -13,7 +13,7 @@ public class Food extends Item {
 	
 	public Food(Food food) {
 		super(food.getItemName(), food.getItemWeight(), true);
-		this.foodValue = food.getFoodValue();
+		this.foodValue = food.foodValue;
 	}
 
 	/**

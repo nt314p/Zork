@@ -1,6 +1,8 @@
 package com.bayviewglen.zork;
 
-public class Player {
+import java.util.ArrayList;
+
+public class Player extends Monitor{
 	
 	static Room currentRoom;
 	static Phase currentPhase;
@@ -10,6 +12,8 @@ public class Player {
 	static Monitor foodMonitor = new Monitor();
 	static Monitor waterMonitor = new Monitor();
 	//*****IF THERE ARE TOO MANY OF THESE, COULD MAKE A LIST OF MONITORS
+	
+	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();
 
 
 	/**
@@ -21,6 +25,23 @@ public class Player {
 		foodMonitor.reset();
 		waterMonitor.reset();
 		currentRoom = currentPhase.getCheckpoint();
+	}
+	
+	public static void updateRoomsVisited() {
+		if(!hasVisited(currentRoom))
+			roomsVisited.add(currentRoom);
+	}
+	
+	public static boolean hasVisited(Room room) {
+		for(Room i:roomsVisited) {
+			if(i.equals(room))
+				return true;
+		}
+		return false;
+	}
+	
+	public static Room getCurrentRoom() {
+		return currentRoom;
 	}
 	
 	/**
