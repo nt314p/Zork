@@ -40,7 +40,12 @@ public class Inventory {
 	 * @return the first occurrence of the item
 	 */
 	public int getIndexOf(Item target) {
-		return items.indexOf(target);
+		for (int i = 0; i < items.size(); i++) {
+			if (items.get(i).equals(target)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	/**
@@ -97,11 +102,15 @@ public class Inventory {
 	 */
 	public String toString() {
 		String result = "";
+		Inventory usedItems = new Inventory();
 
 		for(int i = 0; i<items.size(); i++) {
 			Item j = items.get(i);
-			int num = getNumMultiples(j);
 			
+			if(usedItems.contains(j))
+				continue;
+			
+			int num = getNumMultiples(j);
 			String itemName = j.getItemName();
 			String multiples = num>1 ? "(" + getNumMultiples(j) + "x):" : ":";
 			String weight = String.format("%.2f kg", j.getItemWeight());
@@ -111,7 +120,7 @@ public class Inventory {
 			String part2 = weight + each;
 			
 			result += String.format("%-15s%s\n", part1, part2);
-			i+=num-1;
+			usedItems.add(j);
 		}
 		result+=String.format("%-15s%.2f%s", "Total Weight:", getTotalWeight(), " kg");
 		return result;

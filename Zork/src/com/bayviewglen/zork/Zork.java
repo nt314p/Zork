@@ -5,7 +5,7 @@ public class Zork {
 		
 		Inventory inventory = new Inventory();
 		inventory.add(new Item("hi", 5.5, true));
-		inventory.add(new Item("hello", 6.5, true));
+		inventory.add(new Item("hefello", 6.5, true));
 		inventory.add(new Item("hello", 6.5, true));
 		inventory.add(new Item("hi", 5.5, true));
 		inventory.add(new Item("hello", 7.5, true));

@@ -5,9 +5,9 @@ package com.bayviewglen.zork;
 
 public class Item implements Comparable<Item> {
 
-	private String itemName = "";
-	private double itemWeight = 0;
-	private boolean moveable = false;
+	private String itemName;
+	private double itemWeight;
+	private boolean moveable;
 
 	public Item(String itemName, double itemWeight, boolean moveable) {
 		this.moveable = moveable;
