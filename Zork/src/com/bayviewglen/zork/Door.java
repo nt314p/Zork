@@ -4,24 +4,24 @@ public abstract class Door extends Item{
 	
 	private boolean open;
 	private boolean unlocked;
-	private DoorOpenBehaviour doorOpenBehaviour;
+	private Item key; // unlocked door = null key
 
-	public Door(String itemName, double itemWeight, boolean open, boolean unlocked, DoorOpenBehaviour d) {
+	public Door(String itemName, double itemWeight, boolean open, boolean unlocked, Item key) {
 		super(itemName, itemWeight, false);
 		this.open = open;
 		this.unlocked = unlocked;
-		doorOpenBehaviour = d;
-	}	
-	
-	public void setDoorOpenBehaviour(DoorOpenBehaviour d) {
-		doorOpenBehaviour = d;
+		this.key = key;
+		
+		if(key == null && !unlocked) {
+			System.out.println("You cannot lock a door without a key");
+			unlocked = true;
+		}
 	}
 	
-	public void updateDoorOpenBehaviour() {
+	
+	public void open() {
 		if(unlocked)
-			doorOpenBehaviour = new UnlockedDoorBehaviour();
-		else
-			doorOpenBehaviour = new LockedDoorBehaviour();
+			open = true;
 	}
 
 	/**
@@ -47,18 +47,27 @@ public abstract class Door extends Item{
 		return unlocked;
 	}
 	
-	public void toggleOpen() {
-		if(open)
-			open = false;
-		else
-			open = true;
-	}
-	
-	public void toggleLock() {
-		if(unlocked)
+	public void lock() {
+		if(key != null)
 			unlocked = false;
 		else
-			unlocked = true;		
+			System.out.println("You cannot lock a door without a key");
+	}
+	
+	public boolean unlock(Item key) {
+		if(unlocked)
+			return true;
+		
+		if(this.key.equals(key)) {
+			unlocked = true;
+			return true;
+		}
+		
+		return false;		
+	}
+	
+	public Item getKey() {
+		return key;
 	}
 	
 

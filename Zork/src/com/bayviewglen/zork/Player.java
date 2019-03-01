@@ -69,22 +69,21 @@ public class Player extends Monitor{
 		foodMonitor.increase(food.getFoodValue());
 	}
 	
-	
 	/**
-	 * drink water if the food is water
-	 * @param water the water you would like to drink
+	 * drink the food
+	 * @param food the food you would like to drink
 	 */
-	public static void drink(Food water) {
-		if(!water.getItemName().equalsIgnoreCase("water")) {
-			System.out.println("You can't eat food");
-			return;
-		}
-		
-		waterMonitor.increase(water.getFoodValue());
+	public static void drink(Food food) {
+		waterMonitor.increase(food.getWaterValue());
 	}
 	
-	//public static void heal(Healer healer) {	
-	//}
+	/**
+	 * heal yourself
+	 * @param health the object you want to use to heal yourself
+	 */
+	public static void heal(Health health) {	
+		healthMonitor.increase(health.getHealthValue());
+	}
 
 	
 	
