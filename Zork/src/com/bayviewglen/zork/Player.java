@@ -1,6 +1,8 @@
 package com.bayviewglen.zork;
 
 import java.util.ArrayList;
+import com.bayviewglen.item.*;
+import com.bayviewglen.map.*;
 
 public class Player extends Monitor{
 	

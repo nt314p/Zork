@@ -1,4 +1,4 @@
-package com.bayviewglen.zork;
+package com.bayviewglen.item;
 
 public class Weapon extends Item{
 	

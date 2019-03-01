@@ -1,5 +1,7 @@
 package com.bayviewglen.zork;
 
+import com.bayviewglen.item.*;
+
 public class Zork {
 	public static void main(String[] args) {
 		

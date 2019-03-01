@@ -1,4 +1,4 @@
-package com.bayviewglen.zork;
+package com.bayviewglen.item;
 
 //The parent class for everything - all objects in the game, ones that can be picked up and ones
 //that are staionary, food, doorways, etc.

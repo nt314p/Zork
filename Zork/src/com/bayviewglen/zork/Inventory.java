@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.bayviewglen.item.Item;
+
 public class Inventory {
 
 	private List<Item> items;

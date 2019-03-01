@@ -10,7 +10,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-class Parser {
+public class Parser {
 	private int maxWordsInCommand = CommandWords.getMaxWordsInCommand();
 	private final String prompt = ">>";
 

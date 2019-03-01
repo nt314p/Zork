@@ -1,4 +1,4 @@
-package com.bayviewglen.zork;
+package com.bayviewglen.item;
 
 public class Food extends Item {
 //work on - how water is implemented when you drink it (foodValue)

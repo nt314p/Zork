@@ -1,13 +1,16 @@
-package com.bayviewglen.zork;
+package com.bayviewglen.map;
 
-public abstract class Door extends Item{
+import com.bayviewglen.item.Item;
+
+public abstract class Door extends Side{
 	
 	private boolean open;
 	private boolean unlocked;
 	private Item key; // unlocked door = null key
+	private String doorName;
 
-	public Door(String itemName, double itemWeight, boolean open, boolean unlocked, Item key) {
-		super(itemName, itemWeight, false);
+	public Door(String doorName, boolean open, boolean unlocked, Item key) {
+		this.doorName = doorName;
 		this.open = open;
 		this.unlocked = unlocked;
 		this.key = key;
@@ -68,6 +71,10 @@ public abstract class Door extends Item{
 	
 	public Item getKey() {
 		return key;
+	}
+	
+	public String getDoorName() {
+		return doorName;
 	}
 	
 
