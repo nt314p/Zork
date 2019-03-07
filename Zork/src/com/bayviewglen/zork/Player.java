@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import com.bayviewglen.item.*;
 import com.bayviewglen.map.*;
 
-public class Player extends Monitor{
+public class Player{
 	
-	static Room currentRoom;
-	static Phase currentPhase;
-	static int deaths = 0;
+	private static Room currentRoom;
+	private static Phase currentPhase;
+	private static int deaths = 0;
 	
-	static Monitor healthMonitor = new Monitor();
-	static Monitor foodMonitor = new Monitor();
-	static Monitor waterMonitor = new Monitor();
+	private static Monitor healthMonitor = new Monitor();
+	private static Monitor foodMonitor = new Monitor();
+	private static Monitor waterMonitor = new Monitor();
 	//*****IF THERE ARE TOO MANY OF THESE, COULD MAKE A LIST OF MONITORS
 	
 	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();
 
+	
 
 	/**
 	 * die - update death count, reset statistics, reset current room to the checkpoint
@@ -62,30 +63,17 @@ public class Player extends Monitor{
 		return healthMonitor.isDead() || foodMonitor.isDead() || waterMonitor.isDead();
 	}
 	
-	
-	/**
-	 * eat the food
-	 * @param food the food you would like to eat
-	 */
-	public static void eat(Food food) {
-		foodMonitor.increase(food.getFoodValue());
+	public static void increase(String monitor, double amount) {
+		if(monitor.equals("health"))
+			healthMonitor.increase(amount);
+		else if(monitor.equals("food"))
+			foodMonitor.increase(amount);
+		else if(monitor.equals("health"))
+			waterMonitor.increase(amount);
+		else
+			System.out.println(monitor + " is not a monitor.");
 	}
-	
-	/**
-	 * drink the food
-	 * @param food the food you would like to drink
-	 */
-	public static void drink(Food food) {
-		waterMonitor.increase(food.getWaterValue());
-	}
-	
-	/**
-	 * heal yourself
-	 * @param health the object you want to use to heal yourself
-	 */
-	public static void heal(Health health) {	
-		healthMonitor.increase(health.getHealthValue());
-	}
+
 
 	
 	

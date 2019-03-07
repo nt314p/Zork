@@ -1,5 +1,7 @@
 package com.bayviewglen.item;
 
+import com.bayviewglen.zork.*;
+
 public class Health extends Item{
 
 	private double healthValue;// ex. bandages, repairing, etc.
@@ -30,6 +32,15 @@ public class Health extends Item{
 	 */
 	public double getHealthValue() {
 		return this.healthValue;
+	}
+	
+	
+	/**
+	 * heal yourself
+	 * @param health the object you want to use to heal yourself
+	 */
+	public static void heal(Health health) {	
+		Player.increase("health", health.getHealthValue());
 	}
 }
 

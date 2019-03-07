@@ -1,5 +1,7 @@
 package com.bayviewglen.item;
 
+import com.bayviewglen.zork.*;
+
 public class Food extends Item {
 //work on - how water is implemented when you drink it (foodValue)
 	//how food value is affected by the item weight
@@ -49,6 +51,22 @@ public class Food extends Item {
 	 */
 	public double getWaterValue() {
 		return this.waterValue;
+	}
+	
+	/**
+	 * eat the food
+	 * @param food the food you would like to eat
+	 */
+	public static void eat(Food food) {
+		Player.increase("food", food.getFoodValue());
+	}	
+
+	/**
+	 * drink the food
+	 * @param food the food you would like to drink
+	 */
+	public static void drink(Food food) {
+		Player.increase("water", food.getWaterValue());
 	}
 	
 	
