@@ -18,7 +18,7 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class Room {
+public class Room extends Place{
 	private String roomName;
 	private String description;
 	private HashMap<String, Room> exits; // stores exits of this room.
@@ -27,12 +27,14 @@ public class Room {
 	 * Create a room described "description". Initially, it has no exits.
 	 * "description" is something like "a kitchen" or "an open court yard".
 	 */
-	public Room(String description) {
+	public Room(String description, double x, double y, double z) {
+		super(x, y, z, true);
 		this.description = description;
 		exits = new HashMap<String, Room>();
 	}
 
 	public Room() {
+		super(0,0,0,true);
 		// default constructor.
 		roomName = "DEFAULT ROOM";
 		description = "DEFAULT DESCRIPTION";

@@ -68,7 +68,7 @@ public class Player{
 			healthMonitor.increase(amount);
 		else if(monitor.equals("food"))
 			foodMonitor.increase(amount);
-		else if(monitor.equals("health"))
+		else if(monitor.equals("water"))
 			waterMonitor.increase(amount);
 		else
 			System.out.println(monitor + " is not a monitor.");

@@ -8,8 +8,10 @@ public abstract class Door extends Side{
 	private boolean unlocked;
 	private Item key; // unlocked door = null key
 	private String doorName;
+	
 
-	public Door(String doorName, boolean open, boolean unlocked, Item key) {
+	public Door(double x, double y, double z, String doorName, boolean open, boolean unlocked, Item key) {
+		super(x, y, z);
 		this.doorName = doorName;
 		this.open = open;
 		this.unlocked = unlocked;
