@@ -15,7 +15,7 @@ public class Zork {
 		//System.out.println(inventory);
 		
 		Map map = new Map(10,10,10);
-		map.set(0, 3.5, 6, new Room());
+		map.set(new Room("room name", "room description"), 3.5, 6, 0);
 		System.out.println(map.get(0,  3.5,  6).getClass().getSimpleName().equals("Room"));
 		System.out.println(map.get(0,  3.5,  6).getClass().getSimpleName().equals("Wall"));
 		

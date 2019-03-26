@@ -44,7 +44,7 @@ class Game {
 			HashMap<String, HashMap<String, String>> exits = new HashMap<String, HashMap<String, String>>();
 			roomScanner = new Scanner(new File(fileName));
 			while (roomScanner.hasNext()) {
-				Room room = new Room();
+				Room room = new Room("roomname", "roomDescription");
 				// Read the Name
 				String roomName = roomScanner.nextLine();
 				room.setRoomName(roomName.split(":")[1].trim());
@@ -68,7 +68,7 @@ class Game {
 				// Now we better set the exits.
 			}
 
-			for (String key : masterRoomMap.keySet()) {
+			/*for (String key : masterRoomMap.keySet()) {
 				Room roomTemp = masterRoomMap.get(key);
 				HashMap<String, String> tempExits = exits.get(key);
 				for (String s : tempExits.keySet()) {
@@ -81,7 +81,7 @@ class Game {
 
 				}
 
-			}
+			}*/
 
 			roomScanner.close();
 		} catch (FileNotFoundException e) {
@@ -131,7 +131,7 @@ class Game {
 		System.out.println("Zork is a new, incredibly boring adventure game.");
 		System.out.println("Type \"help\" if you need help.");
 		System.out.println("Type \"commands\" to view the valid command words.");
-		System.out.println(currentRoom.longDescription());
+		System.out.println(currentRoom);
 	}
 	
 	/**

@@ -1,24 +1,50 @@
 package com.bayviewglen.map;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
 public class Map {
 
-	// very important *** everything is doubled into the 2D array - a place's
-	// x-value is double in the array
-
 	private Place[][][] map;
+	private final char[] directions = {'n','e','s','w','u','d'};
 
+	/**
+	 * map constructor - stores places (rooms/sides)
+	 * *** very important ***everything is doubled into the 2D array
+	 * 				*** a place's x/y/z-value is double in the array
+	 * 
+	 * @param x x-axis (east-west)
+	 * @param y y-axis (north-south)
+	 * @param z z-axis (up-down)
+	 */
 	public Map(double x, double y, double z) {
 		map = new Place[(int) (x * 2)][(int) (y * 2)][(int) (z * 2)];
 	}
 
-	public void set(double x, double y, double z, Place p) {
+	/**
+	 * set's a place onto the map
+	 * ***remember that rooms are on the half (.5) and sides are on the whole number
+	 * 
+	 * @param p the new Place to be added
+	 * @param x the new x-value (east-west)
+	 * @param y the new y-value (north-south)
+	 * @param z the new z-value (up-down)
+	 */
+	public void set(Place p, double x, double y, double z) {
 		map[(int) (x * 2)][(int) (y * 2)][(int) (z * 2)] = p;
 	}
 
+	/**
+	 * get the place at the given x,y,z coordinates
+	 * if the coordinates are out of bounds, returns null - no room there
+	 * 
+	 * @param x the x-value (east-west)
+	 * @param y the y-value (north-south)
+	 * @param z the z-value (up-down)
+	 * @return the place at the coordinates
+	 */
 	public Place get(double x, double y, double z) {
 		try {
 			return map[(int) (x * 2)][(int) (y * 2)][(int) (z * 2)];
@@ -28,10 +54,25 @@ public class Map {
 
 	}
 
+	/**
+	 * checks if the room at the given coordinates is empty (null)
+	 * 
+	 * @param x the x-value (east-west)
+	 * @param y the y-value (north-south)
+	 * @param z the z-value (up-down)
+	 * @return true if null
+	 */
 	public boolean isEmpty(double x, double y, double z) {
-		return map[(int) (x * 2)][(int) (y * 2)][(int) (z * 2)].equals(null);
+		return map[(int) (x * 2)][(int) (y * 2)][(int) (z * 2)] == null;
 	}
 
+	/**
+	 * get the coordinates (x,y,z) of a room with a simple sequential search method
+	 *  traversing through the 3D array
+	 *  
+	 * @param r the room you are looking for
+	 * @return the rooms coordinates, displayed in a double array (if the room isn't there return null)
+	 */
 	public double[] getCoords(Room r) {
 
 		for (int i = 0; i < map.length; i++) {
@@ -46,12 +87,21 @@ public class Map {
 
 	}
 
+	/**
+	 * check if the room is in the map (if it has coords)
+	 * @param r the room you are looking for
+	 * @return true if it's there
+	 */
 	public boolean roomInMap(Room r) {
-		return this.getCoords(r).equals(null);
+		return this.getCoords(r) != null;
 	}
 
+	/**
+	 * get all the sides of a room
+	 * @param r the room that you want sides from
+	 * @return a HashMap&lt;Character,Side&gt; displaying the &lt;direction, side in that direction&gt;
+	 */
 	public HashMap<Character, Side> getRoomSides(Room r) {
-
 		HashMap<Character, Side> roomSides = new HashMap<Character, Side>();
 
 		double[] coords = this.getCoords(r);
@@ -70,6 +120,11 @@ public class Map {
 
 	}
 	
+	/**
+	 * get all the surrounding rooms
+	 * @param r the room you want to find surrounding rooms
+	 * @return a HashMap&lt;Character, Room&gt; displaying the &lt;direction, room in that direction&gt;
+	 */
 	public HashMap<Character, Room> getSurroundingRooms(Room r){
 		
 		HashMap<Character, Room> surroundingRooms = new HashMap<Character, Room>();
@@ -90,12 +145,51 @@ public class Map {
 		
 	}
 	
-	public Room getNextRoom(char c, Room r) {
-		
+	/**
+	 * get the room in a given direction
+	 * @param dir the direction you are searching
+	 * @param r the room from where you are searching from
+	 * @return the room in that direction
+	 */
+	public Room getNextRoom(char dir, Room r) {
 		HashMap<Character, Room> surroundingRooms = this.getSurroundingRooms(r);
-		return surroundingRooms.get(c);
+		return surroundingRooms.get(dir);
 	}
+	
+	/**
+	 * get the side in a given direction
+	 * @param dir the direction you are searching
+	 * @param r the room from where you are searching from
+	 * @return the side in that direction
+	 */
+	public Side getNextSide(char dir, Room r) {
+		HashMap<Character, Side> roomSides = this.getRoomSides(r);
+		return roomSides.get(dir);
+	}
+	
+	/**
+	 * make an arraylist of all the exits from a room
+	 * 	it's an exit if it 1) has a non-null neighboring room and
+	 * 2) if the side in that direction is an opening or a door
+	 * @param r the room
+	 * @return an arrayList of all exits
+	 */
+	public ArrayList<Character> getExits(Room r) {
+		ArrayList<Character> exits = new ArrayList<Character>();
+		
+		for (char dir : directions) {
+			String nextSide = this.getNextSide(dir, r).getClass().getSimpleName();
+			if (this.getNextRoom(dir, r) != null && nextSide.equals("Opening") || nextSide.equals("Door"))
+				exits.add(dir);
+		}
+		return exits;
 
+	}
+	
+	/**
+	 * traverses through 3D array of map
+	 * makes sure that rooms are on the .5 and sides are on the whole number
+	 */
 	public void checkMapBuildingErrors() {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {

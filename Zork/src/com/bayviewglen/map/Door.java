@@ -20,6 +20,7 @@ public abstract class Door extends Side{
 			System.out.println("You cannot lock a door without a key");
 			unlocked = true;
 		}
+		updateKey();
 	}
 	
 	
@@ -49,6 +50,15 @@ public abstract class Door extends Side{
 	 */
 	public boolean isUnlocked() {
 		return unlocked;
+	}
+	
+	public boolean needsKey() {
+		return key != null;
+	}
+	
+	public void updateKey() {
+		if(!needsKey())
+			unlocked = true;
 	}
 	
 	public void lock() {
