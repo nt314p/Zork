@@ -4,8 +4,5 @@ import com.bayviewglen.zork.*;
 
 public abstract class Side extends Place{
 
-	public Side(double x, double y, double z) {
-		super(x, y, z, false);
-	}
 	
 }

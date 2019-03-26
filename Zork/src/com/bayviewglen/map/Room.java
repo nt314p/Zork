@@ -27,14 +27,12 @@ public class Room extends Place{
 	 * Create a room described "description". Initially, it has no exits.
 	 * "description" is something like "a kitchen" or "an open court yard".
 	 */
-	public Room(String description, double x, double y, double z) {
-		super(x, y, z, true);
+	public Room(String description) {
 		this.description = description;
 		exits = new HashMap<String, Room>();
 	}
 
 	public Room() {
-		super(0,0,0,true);
 		// default constructor.
 		roomName = "DEFAULT ROOM";
 		description = "DEFAULT DESCRIPTION";
