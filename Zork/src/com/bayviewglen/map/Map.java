@@ -9,6 +9,12 @@ public class Map {
 
 	private Place[][][] map;
 	private final char[] directions = {'n','e','s','w','u','d'};
+	
+	private Room checkpoint;
+	private Room goal;
+	
+	private static Room currentRoom;
+	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();
 
 	/**
 	 * map constructor - stores places (rooms/sides)
@@ -18,9 +24,15 @@ public class Map {
 	 * @param x x-axis (east-west)
 	 * @param y y-axis (north-south)
 	 * @param z z-axis (up-down)
+	 * @param checkpoint your starting point in the map
+	 * @param goal your ending point in the map
 	 */
-	public Map(double x, double y, double z) {
+	public Map(double x, double y, double z, Room checkpoint, Room goal) {
 		map = new Place[(int) (x * 2)][(int) (y * 2)][(int) (z * 2)];
+		this.checkpoint = checkpoint;
+		this.goal = goal;
+		
+		currentRoom = checkpoint;
 	}
 
 	/**
@@ -53,6 +65,14 @@ public class Map {
 		}
 
 	}
+	
+	public Room getRoom(double x, double y, double z) {
+		try {
+			return (Room)this.get(x, y, z);
+		} catch (Exception InvalidCastException){
+			return null;			
+		}
+	}
 
 	/**
 	 * checks if the room at the given coordinates is empty (null)
@@ -75,11 +95,11 @@ public class Map {
 	 */
 	public double[] getCoords(Room r) {
 
-		for (int i = 0; i < map.length; i++) {
-			for (int j = 0; j < map[i].length; j++) {
-				for (int k = 0; k < map[j].length; k++) {
-					if (map[i][j][k].equals(r))
-						return new double[] { (double) (i / 2), (double) (j / 2), (double) (k / 2) };
+		for (double i = 0.5; i < map.length*2; i++) {
+			for (double j = 0.5; j < map[(int)(i*2)].length*2; j++) {
+				for (double k = 0.5; k < map[(int)(i*2)][(int)(j*2)].length*2; k++) {
+						if(this.getRoom(i, j, k).equals(r))
+							return new double[] {i,j,k};
 				}
 			}
 		}
@@ -187,13 +207,86 @@ public class Map {
 	}
 	
 	/**
+	 * check if you are at the map's goal
+	 * @return if your room equals the map goal
+	 */
+	public boolean atGoal() {
+		return currentRoom.equals(goal);
+	}
+	
+	/**
+	 * check if you are at the map's checkpoint
+	 * @return if your room equals the map checkpoint
+	 */
+	public boolean atCheckpoint() {
+		return currentRoom.equals(checkpoint);
+	}
+	
+
+	public Room getCheckpoint() {
+		return checkpoint;
+	}
+
+	public Room getGoal() {
+		return goal;
+	}
+
+	public void setCheckpoint(Room checkpoint) {
+		this.checkpoint = checkpoint;
+	}
+	
+	public void setGoal(Room goal) {
+		this.goal = goal;
+	}
+	
+	
+	
+	public static void updateRoomsVisited() {
+		if(!hasVisited(currentRoom))
+			roomsVisited.add(currentRoom);
+	}
+	
+	public static boolean hasVisited(Room room) {
+		for(Room i:roomsVisited) {
+			if(i.equals(room))
+				return true;
+		}
+		return false;
+	}
+	
+	public static Room getCurrentRoom() {
+		return currentRoom;
+	}
+
+	public static void setCurrentRoom(Room room) {
+		currentRoom = room;
+	}
+	
+	public int size() {
+		int count = 0;
+		
+		for (double i = 0.5; i < map.length*2; i++) {
+			for (double j = 0.5; j < map[(int)(i*2)].length*2; j++) {
+				for (double k = 0.5; k < map[(int)(i*2)][(int)(j*2)].length*2; k++) {
+						if(!isEmpty(i,j,k))
+							count++;
+				}
+			}
+		}
+		return count;
+	}
+	
+	
+	
+	
+	/**
 	 * traverses through 3D array of map
 	 * makes sure that rooms are on the .5 and sides are on the whole number
 	 */
 	public void checkMapBuildingErrors() {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
-				for (int k = 0; k < map[j].length; k++) {
+				for (int k = 0; k < map[i][j].length; k++) {
 
 					if (i % 2 == 1 && j % 2 == 1 && k % 2 == 1) {
 						if (!map[i][j][k].getClass().getSimpleName().equals("Room"))

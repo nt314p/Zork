@@ -2,6 +2,7 @@ package com.bayviewglen.zork;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -36,7 +37,73 @@ class Game {
 	// masterRoomMap.get("GREAT_ROOM") will return the Room Object that is the Great
 	// Room (assuming you have one).
 	private HashMap<String, Room> masterRoomMap;
+	
+	
+	
+	
+	
+	
+	private ArrayList<Phase> phases;
+	private int currentPhaseIndex;
 
+	
+	public Game(Phase phase) {
+		phases = new ArrayList<Phase>();
+		phases.add(phase);
+		this.currentPhaseIndex = 0;
+	}
+	
+	public boolean atGoal() {
+		return currentPhaseIndex + 1 >= phases.size();
+	}
+	
+	public void checkAndUpdatePhase() {
+		if(getCurrentPhase().atGoal())
+			nextPhase();
+	}
+	
+	public void nextPhase() {
+		currentPhaseIndex++;
+	}
+	
+	public Phase getCurrentPhase() {
+		return phases.get(currentPhaseIndex);
+	}
+	
+	public int getCurrentPhaseIndex() {
+		return currentPhaseIndex;
+	}
+	
+	public void setCurrentPhaseIndex(int index) {
+		if(index>=phases.size())
+			throw new IllegalArgumentException("There is no " + index + "th index.");
+		
+		this.currentPhaseIndex = index;
+	}
+	
+	public ArrayList<Phase> getPhases() {
+		return phases;
+	}
+	
+	public void add(Phase phase) {
+		phases.add(phase);
+	}	
+	
+	public void remove(int index) {
+		phases.remove(index);
+	}
+	
+	public int size() {
+		return phases.size();
+	}
+	
+
+	
+	
+	
+	
+	
+	
 	private void initRooms(String fileName) throws Exception {
 		masterRoomMap = new HashMap<String, Room>();
 		Scanner roomScanner;

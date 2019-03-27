@@ -24,7 +24,7 @@ public class MapLoader {
 		}
 		
 		// create new map with max coords
-		Map map = new Map(maxCoords[0], maxCoords[1], maxCoords[2]); 
+		Map map = new Map(maxCoords[0], maxCoords[1], maxCoords[2], new Room("start",""), new Room("end","")); 
 		
 		for (String line : lines) {
 			if (line.charAt(0) == '(') {

@@ -6,7 +6,6 @@ import com.bayviewglen.map.*;
 
 public class Player{
 	
-	private static Room currentRoom;
 	private static Phase currentPhase;
 	private static int deaths = 0;
 	
@@ -15,7 +14,6 @@ public class Player{
 	private static Monitor waterMonitor = new Monitor();
 	//*****IF THERE ARE TOO MANY OF THESE, COULD MAKE A LIST OF MONITORS
 	
-	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();
 
 	
 
@@ -27,34 +25,10 @@ public class Player{
 		healthMonitor.reset();
 		foodMonitor.reset();
 		waterMonitor.reset();
-		currentRoom = currentPhase.getCheckpoint();
+		//currentRoom = currentPhase.getCurrentMap().getCheckpoint();
+		//need to reset location
 	}
-	
-	public static void updateRoomsVisited() {
-		if(!hasVisited(currentRoom))
-			roomsVisited.add(currentRoom);
-	}
-	
-	public static boolean hasVisited(Room room) {
-		for(Room i:roomsVisited) {
-			if(i.equals(room))
-				return true;
-		}
-		return false;
-	}
-	
-	public static Room getCurrentRoom() {
-		return currentRoom;
-	}
-	
-	/**
-	 * sets the current room
-	 * @param room the new currentRoom
-	 */
-	public static void setCurrentRoom(Room room) {
-		currentRoom = room;
-	}
-	
+
 	/**
 	 * check if healthMonitor/foodMonitor/waterMonitor is 0
 	 * @return if you're dead

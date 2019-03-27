@@ -15,12 +15,16 @@ package com.bayviewglen.map;
  * to the neighbouring room, or null if there is no exit in that direction.
  */
 import java.util.Set;
+
+import com.bayviewglen.zork.*;
+
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class Room extends Place{
 	private String roomName;
 	private String description;
+	private Inventory roomItems;
 
 	/**
 	 * Create a room described "description". Initially, it has no exits.
@@ -80,5 +84,9 @@ public class Room extends Place{
 	 */
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public Inventory getRoomItems() {
+		return roomItems;
 	}
 }
