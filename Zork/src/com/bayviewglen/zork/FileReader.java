@@ -19,7 +19,11 @@ import java.util.Scanner;
 public class FileReader {
 	
 	private Scanner reader;
-	
+
+	/**
+	 * 
+	 * @param filePath The path to the file to read in
+	 */
 	public FileReader (String filePath) {
 		try {
 			reader = new Scanner(new File(filePath));
