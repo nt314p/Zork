@@ -6,7 +6,6 @@ import com.bayviewglen.map.*;
 
 public class Player{
 	
-	private static Phase currentPhase;
 	private static int deaths = 0;
 	
 	private static Monitor healthMonitor = new Monitor();

@@ -8,12 +8,13 @@ import java.util.Set;
 public class Map {
 
 	private Place[][][] map;
+	private String mapName;
 	private final char[] directions = {'n','e','s','w','u','d'};
 	
 	private Room checkpoint;
 	private Room goal;
 	
-	private static Room currentRoom;
+	private Room currentRoom;
 	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();
 
 	/**
@@ -27,12 +28,8 @@ public class Map {
 	 * @param checkpoint your starting point in the map
 	 * @param goal your ending point in the map
 	 */
-	public Map(double x, double y, double z, Room checkpoint, Room goal) {
+	public Map(String mapName, double x, double y, double z) {
 		map = new Place[(int) (x * 2)][(int) (y * 2)][(int) (z * 2)];
-		this.checkpoint = checkpoint;
-		this.goal = goal;
-		
-		currentRoom = checkpoint;
 	}
 
 	/**
@@ -210,7 +207,7 @@ public class Map {
 	 * check if you are at the map's goal
 	 * @return if your room equals the map goal
 	 */
-	public boolean atGoal() {
+	public boolean atMapGoal() {
 		return currentRoom.equals(goal);
 	}
 	
@@ -240,8 +237,7 @@ public class Map {
 	}
 	
 	
-	
-	public static void updateRoomsVisited() {
+	public void updateRoomsVisited() {
 		if(!hasVisited(currentRoom))
 			roomsVisited.add(currentRoom);
 	}
@@ -254,15 +250,19 @@ public class Map {
 		return false;
 	}
 	
-	public static Room getCurrentRoom() {
+	public Room getCurrentRoom() {
 		return currentRoom;
 	}
 
-	public static void setCurrentRoom(Room room) {
+	public void setCurrentRoom(Room room) {
 		currentRoom = room;
 	}
+
+	public void resetToCheckpoint() {
+		currentRoom = checkpoint;
+	}
 	
-	public int size() {
+	public int numRooms() {
 		int count = 0;
 		
 		for (double i = 0.5; i < map.length*2; i++) {
@@ -274,6 +274,14 @@ public class Map {
 			}
 		}
 		return count;
+	}
+	
+	public String getMapName() {
+		return mapName;
+	}
+	
+	public boolean equals(Map map) {
+		return this.mapName.equals(map.getMapName());
 	}
 	
 	

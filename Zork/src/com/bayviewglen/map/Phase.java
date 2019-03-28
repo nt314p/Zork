@@ -4,22 +4,24 @@ import java.util.ArrayList;
 
 public class Phase {
 	
+	private String phaseName;
 	private ArrayList<Map> maps;
 	private int currentMapIndex;
 
 	
-	public Phase(Map map) {
+	public Phase(String phaseName, Map map) {
+		this.phaseName = phaseName;
 		maps = new ArrayList<Map>();
 		maps.add(map);
 		this.currentMapIndex = 0;
 	}
 	
-	public boolean atGoal() {
+	public boolean atPhaseGoal() {
 		return currentMapIndex + 1 >= maps.size();
 	}
 	
 	public void checkAndUpdateMap() {
-		if(getCurrentMap().atGoal())
+		if(getCurrentMap().atMapGoal())
 			nextMap();
 	}
 	
@@ -47,16 +49,44 @@ public class Phase {
 		return maps;
 	}
 	
-	public void add(Map map) {
+	public void addMap(Map map) {
 		maps.add(map);
 	}
 	
-	public void remove(int index) {
+	public void addMap(Map map, int index) {
+		maps.add(index, map);
+	}
+	
+	public void removeMap(int index) {
 		maps.remove(index);
 	}
 	
-	public int size() {
+	public void removeMap(Map map) {
+		int temp = this.search(map);
+		if(temp == -1)
+			System.out.println(map.getMapName() + " was not found");
+		else
+			maps.remove(map);
+	}
+	
+	public int search(Map map) {
+		for(int i = 0; i<maps.size(); i++) {
+			if(maps.get(i).equals(map))
+				return i;
+		}
+		return -1;
+	}
+	
+	public int numMaps() {
 		return maps.size();
+	}
+	
+	public String getPhaseName() {
+		return phaseName;
+	}
+	
+	public boolean equals(Phase phase) {
+		return this.phaseName.equals(phase.getPhaseName());
 	}
 	
 	
