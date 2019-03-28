@@ -57,16 +57,20 @@ public class Phase {
 		maps.add(index, map);
 	}
 	
-	public void removeMap(int index) {
+	public boolean removeMap(int index) {
+		if(index>=maps.size())
+			return false;
 		maps.remove(index);
+		return true;
 	}
 	
-	public void removeMap(Map map) {
+	public boolean removeMap(Map map) {
 		int temp = this.search(map);
 		if(temp == -1)
-			System.out.println(map.getMapName() + " was not found");
-		else
-			maps.remove(map);
+			return false;
+		
+		maps.remove(map);
+		return true;
 	}
 	
 	public int search(Map map) {

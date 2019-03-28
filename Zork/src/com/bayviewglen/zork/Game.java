@@ -99,10 +99,23 @@ public class Game{
 		phases.add(index, phase);
 	}	
 	
-	public void removePhase(int index) {
+	public boolean removePhase(int index) {
+		if(index>=phases.size())
+			return false;
+		
 		phases.remove(index);
+		return true;
 	}
 	
+	public boolean removePhase(Phase phase) {
+		int temp = this.search(phase);
+		if(temp == -1)
+			return false;
+		
+		phases.remove(temp);
+		return true;
+	}
+		
 	
 	public int search(Phase phase) {
 		for(int i = 0; i<phases.size(); i++) {
@@ -112,14 +125,7 @@ public class Game{
 		return -1;
 	}
 	
-	public void removePhase(Phase phase) {
-		int temp = this.search(phase);
-		if(temp == -1)
-			System.out.println(phase + " was not found");
-		else
-			phases.remove(temp);
-	}
-	
+
 	public int numPhases() {
 		return phases.size();
 	}

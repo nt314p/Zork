@@ -6,13 +6,13 @@ public class Weapon extends Item{
 	private double range; // measured in rooms
 	
 	public Weapon(String itemName, double itemWeight, double damage, double range) {
-		super(itemName, itemWeight, true);
+		super(itemName, itemWeight, null);
 		this.damage = damage;
 		this.range = range;
 	}
 	
 	public Weapon(Weapon weapon) {
-		super(weapon.getItemName(), weapon.getItemWeight(), true);
+		super(weapon.getItemName(), weapon.getItemWeight(), null);
 		this.damage = weapon.damage;
 		this.range = weapon.range;
 	}

@@ -26,7 +26,7 @@ public class MapLoader {
 		}
 		
 		// create new map with max coords
-		Map map = new Map(maxCoords[0], maxCoords[1], maxCoords[2], new Room("start",""), new Room("end","")); 
+		Map map = new Map("map",maxCoords[0], maxCoords[1], maxCoords[2]); 
 		
 		int lineNum = 0;
 		for (int i = 0; i < numPlaces; i++) {
@@ -35,7 +35,7 @@ public class MapLoader {
 			String keyName;
 			String line = lines[lineNum];
 			if (line.charAt(0) == '(') {
-				int[] coords = readCoords(line);
+				coords = readCoords(line);
 			}
 		}
 

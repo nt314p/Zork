@@ -7,13 +7,13 @@ public class Health extends Item{
 	private double healthValue;// ex. bandages, repairing, etc.
 	
 	public Health(String itemName, double itemWeight, double healthValue) {
-		super(itemName, itemWeight, true);
+		super(itemName, itemWeight, null);
 		this.healthValue = healthValue;
 	}
 	
 	
 	public Health(Health health) {
-		super(health.getItemName(), health.getItemWeight(), true);
+		super(health.getItemName(), health.getItemWeight(), null);
 		this.healthValue = health.healthValue;
 	}
 

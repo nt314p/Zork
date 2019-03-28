@@ -10,12 +10,12 @@ public class Food extends Item {
 	private double waterValue;
 	
 	public Food(String itemName, double itemWeight, double foodValue, double waterValue) {
-		super(itemName, itemWeight, true);
+		super(itemName, itemWeight, null);
 		this.foodValue = foodValue;
 	}
 	
 	public Food(Food food) {
-		super(food.getItemName(), food.getItemWeight(), true);
+		super(food.getItemName(), food.getItemWeight(), null);
 		this.foodValue = food.foodValue;
 		this.waterValue = food.waterValue;
 	}
