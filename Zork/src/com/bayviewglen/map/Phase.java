@@ -1,48 +1,62 @@
 package com.bayviewglen.map;
 
+import java.util.ArrayList;
+
 public class Phase {
 	
-	private Map map;
-	private Room checkpoint;
-	private Room goal;
+	private ArrayList<Map> maps;
+	private int currentMapIndex;
+
 	
-	public Phase(Room checkpoint, Room goal, Map map) {
-		this.checkpoint = checkpoint;
-		this.goal = goal;
-		this.map = map;
+	public Phase(Map map) {
+		maps = new ArrayList<Map>();
+		maps.add(map);
+		this.currentMapIndex = 0;
 	}
 	
-	/**
-	 * check if you are at the phase goal
-	 * @param currentRoom your current location
-	 * @return if your room equals the phase goal
-	 */
-	public boolean goalReached(Room currentRoom) {
-		return currentRoom.equals(goal);
+	public boolean atGoal() {
+		return currentMapIndex + 1 >= maps.size();
 	}
 	
-	/**
-	 * 
-	 * @return the phase's map
-	 */
-	public Map getPhaseMap() {
-		return map;
+	public void checkAndUpdateMap() {
+		if(getCurrentMap().atGoal())
+			nextMap();
 	}
 	
-	/**
-	 * 
-	 * @return the phase's checkpoint
-	 */
-	public Room getCheckpoint() {
-		return checkpoint;
+	public void nextMap() {
+		currentMapIndex++;
 	}
 	
-	/**
-	 * 
-	 * @return the phase's goal
-	 */
-	public Room goal() {
-		return goal;
+	public Map getCurrentMap() {
+		return maps.get(currentMapIndex);
+	}
+	
+	public int getCurrentMapIndex() {
+		return currentMapIndex;
+	}
+	
+	public void setCurrentMapIndex(int index) {
+		if(index>=maps.size())
+			throw new IllegalArgumentException("There is no " + index + "th index.");
+		
+		this.currentMapIndex = index;
+	}
+	
+	
+	public ArrayList<Map> getMaps() {
+		return maps;
+	}
+	
+	public void add(Map map) {
+		maps.add(map);
+	}
+	
+	public void remove(int index) {
+		maps.remove(index);
+	}
+	
+	public int size() {
+		return maps.size();
 	}
 	
 	

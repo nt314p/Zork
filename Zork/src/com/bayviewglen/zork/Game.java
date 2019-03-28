@@ -2,6 +2,7 @@ package com.bayviewglen.zork;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -36,7 +37,73 @@ class Game {
 	// masterRoomMap.get("GREAT_ROOM") will return the Room Object that is the Great
 	// Room (assuming you have one).
 	private HashMap<String, Room> masterRoomMap;
+	
+	
+	
+	
+	
+	
+	private ArrayList<Phase> phases;
+	private int currentPhaseIndex;
 
+	
+	public Game(Phase phase) {
+		phases = new ArrayList<Phase>();
+		phases.add(phase);
+		this.currentPhaseIndex = 0;
+	}
+	
+	public boolean atGoal() {
+		return currentPhaseIndex + 1 >= phases.size();
+	}
+	
+	public void checkAndUpdatePhase() {
+		if(getCurrentPhase().atGoal())
+			nextPhase();
+	}
+	
+	public void nextPhase() {
+		currentPhaseIndex++;
+	}
+	
+	public Phase getCurrentPhase() {
+		return phases.get(currentPhaseIndex);
+	}
+	
+	public int getCurrentPhaseIndex() {
+		return currentPhaseIndex;
+	}
+	
+	public void setCurrentPhaseIndex(int index) {
+		if(index>=phases.size())
+			throw new IllegalArgumentException("There is no " + index + "th index.");
+		
+		this.currentPhaseIndex = index;
+	}
+	
+	public ArrayList<Phase> getPhases() {
+		return phases;
+	}
+	
+	public void add(Phase phase) {
+		phases.add(phase);
+	}	
+	
+	public void remove(int index) {
+		phases.remove(index);
+	}
+	
+	public int size() {
+		return phases.size();
+	}
+	
+
+	
+	
+	
+	
+	
+	
 	private void initRooms(String fileName) throws Exception {
 		masterRoomMap = new HashMap<String, Room>();
 		Scanner roomScanner;
@@ -44,7 +111,7 @@ class Game {
 			HashMap<String, HashMap<String, String>> exits = new HashMap<String, HashMap<String, String>>();
 			roomScanner = new Scanner(new File(fileName));
 			while (roomScanner.hasNext()) {
-				Room room = new Room();
+				Room room = new Room("roomname", "roomDescription");
 				// Read the Name
 				String roomName = roomScanner.nextLine();
 				room.setRoomName(roomName.split(":")[1].trim());
@@ -68,7 +135,7 @@ class Game {
 				// Now we better set the exits.
 			}
 
-			for (String key : masterRoomMap.keySet()) {
+			/*for (String key : masterRoomMap.keySet()) {
 				Room roomTemp = masterRoomMap.get(key);
 				HashMap<String, String> tempExits = exits.get(key);
 				for (String s : tempExits.keySet()) {
@@ -81,7 +148,7 @@ class Game {
 
 				}
 
-			}
+			}*/
 
 			roomScanner.close();
 		} catch (FileNotFoundException e) {
@@ -131,7 +198,7 @@ class Game {
 		System.out.println("Zork is a new, incredibly boring adventure game.");
 		System.out.println("Type \"help\" if you need help.");
 		System.out.println("Type \"commands\" to view the valid command words.");
-		System.out.println(currentRoom.longDescription());
+		System.out.println(currentRoom);
 	}
 	
 	/**

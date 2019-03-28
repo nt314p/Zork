@@ -14,8 +14,11 @@ public class Zork {
 		inventory.add(new Item("hello", 7.5, true));
 		//System.out.println(inventory);
 		
-		Map map = new Map(10,10,10);
-		map.set(0, 3.5, 6, new Room());
+		Room start = new Room("start", "this is start");
+		Room end = new Room("end", "this is end");
+		Map map = new Map(10,10,10, start, end);
+		
+		map.set(new Room("room name", "room description"), 3.5, 6, 0);
 		System.out.println(map.get(0,  3.5,  6).getClass().getSimpleName().equals("Room"));
 		System.out.println(map.get(0,  3.5,  6).getClass().getSimpleName().equals("Wall"));
 		
