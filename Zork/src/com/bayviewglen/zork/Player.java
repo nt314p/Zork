@@ -45,13 +45,6 @@ public class Player{
 			waterMonitor.increase(amount);
 		else
 			System.out.println(monitor + " is not a monitor.");
-	}
-
-
-	
-	
-	
-
-	
+	}	
 	
 }

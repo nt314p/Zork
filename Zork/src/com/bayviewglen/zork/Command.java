@@ -5,11 +5,8 @@ package com.bayviewglen.zork;
  * 
  * Has two parts, the main command and the parameters
  * 
- * 
- * 
- * 
  */
-class Command {
+public class Command {
 	private String mainCommandWord;
 	private String[] commandParameters;
 

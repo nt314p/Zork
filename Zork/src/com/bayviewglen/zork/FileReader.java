@@ -32,13 +32,13 @@ public class FileReader {
 			e.printStackTrace();
 		}
 	}
+	
 	/**
 	 * This method reads the defined file and returns the lines as a string array
 	 * 
 	 * @return An array in which each index holds one line of the file
 	 * 
 	 */
-	
 	public String[] getLines() {
 		ArrayList<String> linesList = new ArrayList<String>();
 		while (reader.hasNextLine()) {
@@ -51,6 +51,24 @@ public class FileReader {
 			lines[i] = linesList.get(i);
 		}
 		return lines;
+	}
+	
+	/**
+	 * This method reads the defined file and returns the lines as a single string
+	 * 
+	 * @return A single string that consists of the whole file in one string with newlines
+	 */
+	public String getLinesSingle() {
+		String[] lines = getLines();
+		
+		String ret = "";
+		for (int i = 0; i < lines.length; i++) {
+			ret += lines[i];
+			if (i != lines.length - 1) // if the line isn't the last line,
+				ret += "\n"; // add a new line
+		}
+		
+		return ret;
 	}
 	
 }

@@ -1,5 +1,8 @@
 package com.bayviewglen.map;
 
+import com.bayviewglen.zork.*;
+import java.util.HashMap;
+
 /*
  * Class Room - a room in an adventure game.
  *
@@ -12,27 +15,23 @@ package com.bayviewglen.map;
  * "Room" represents one location in the scenery of the game.  It is 
  * connected to at most four other rooms via exits.  The exits are labelled
  * north, east, south, west.  For each direction, the room stores a reference
- * to the neighbouring room, or null if there is no exit in that direction.
+ * to the neighboring room, or null if there is no exit in that direction.
  */
-import java.util.Set;
-
-import com.bayviewglen.zork.*;
-
-import java.util.HashMap;
-import java.util.Iterator;
 
 public class Room extends Place{
 	private String roomName;
 	private String description;
 	private Inventory roomItems;
+	private HashMap<Character, Side> sides; // rooms store their own sides
 
 	/**
 	 * Create a room described "description". Initially, it has no exits.
 	 * "description" is something like "a kitchen" or "an open court yard".
 	 */
-	public Room(String roomName, String description) {
+	public Room(String roomName, String description, HashMap<Character, Side> sides) {
 		this.roomName = roomName;
 		this.description = description;
+		this.sides = sides;
 	}
 
 	
