@@ -53,21 +53,7 @@ public class Food extends Item {
 		return this.waterValue;
 	}
 	
-	/**
-	 * eat the food
-	 * @param food the food you would like to eat
-	 */
-	public static void eat(Food food) {
-		Player.increase("food", food.getFoodValue());
-	}	
 
-	/**
-	 * drink the food
-	 * @param food the food you would like to drink
-	 */
-	public static void drink(Food food) {
-		Player.increase("water", food.getWaterValue());
-	}
 	
 	
 	

@@ -167,7 +167,7 @@ public class Inventory {
 	 * @param target the item you want to remove
 	 * @return if the item was in the list and removed
 	 */
-	public boolean removeOne(Item target) {
+	public boolean remove(Item target) {
 		if (getIndexOf(target) == -1)
 			return false;
 
@@ -185,7 +185,7 @@ public class Inventory {
 		boolean result = false;
 
 		while (getIndexOf(target) != -1) {
-			removeOne(target);
+			remove(target);
 			result = true;
 		}
 		return result;

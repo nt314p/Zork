@@ -34,13 +34,5 @@ public class Health extends Item{
 		return this.healthValue;
 	}
 	
-	
-	/**
-	 * heal yourself
-	 * @param health the object you want to use to heal yourself
-	 */
-	public static void heal(Health health) {	
-		Player.increase("health", health.getHealthValue());
-	}
 }
 
