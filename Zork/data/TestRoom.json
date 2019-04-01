@@ -1,0 +1,82 @@
+{
+  "name": "SpaceTestMap",
+  "startcoords": "0.5,0.5,0",
+  "endcoords": "1.5,0.5,0",
+  "places": [
+    {
+      "name": "kitchen",
+      "type": "room",
+      "description": "kitcheny things",
+      "coords": "0.5,0.5,0"
+    }, 
+   {
+      "name": "green door",
+      "type": "door",
+      "locked": true,
+      "keyname": "greenkey",
+      "keyweight": "10",
+      "description": "its covered in a green substance, appears to be mystery goo",
+      "coords": "0,0.5,0"
+    }, 
+    {
+      "name": "red door",
+      "type": "room",
+      "locked": true,
+      "keyname": "redkey",
+      "keyweight": "10",
+      "description": "IMMA LIVING IN A TIN CAAAAaaaAAAaaAN",
+      "coords": "0.5,0,0"
+    }, 
+    {
+      "name": "yellow door",
+      "type": "door",
+      "locked": true,
+      "keyname": "yellowkey",
+      "keyweight": "10",
+      "description": "its covered in a yellow liquidy substance",
+      "coords": "0.5,1,0"
+    }, 
+    {
+      "name": "blue door",
+      "type": "door",
+      "locked": true,
+      "keyname": "blukey",
+      "keyweight": "15",
+      "description": "it is hot, drop it",
+      "coords": "1,0.5,0"
+    },
+    {
+      "name": "pink door",
+      "type": "door",
+      "locked": true,
+      "keyname": "pinkey",
+      "keyweight": "15",
+      "description": "fluffy unicorns",
+      "coords": "1.5,0,0"
+    },
+    {
+      "name": "airlock",
+      "type": "door",
+      "locked": true,
+      "keyname": "creditcard",
+      "keyweight": "15",
+      "description": "don't open it or it will suck you out into space forever",
+      "coords": "2,0.5,0"
+    },
+    {
+      "name": "purple door",
+      "type": "door",
+      "locked": true,
+      "keyname": "purplekey",
+      "keyweight": "9",
+      "description": "barney the dinosaur lives here...",
+      "coords": "1.5,1,0"
+    },
+    {
+      "name": "tin can",
+      "type": "room",
+      "description": "just a tin can, were packed like sardines in here...",
+      "coords": "1.5,0.5,0"
+    }
+  ]
+}
