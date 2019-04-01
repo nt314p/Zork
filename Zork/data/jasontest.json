@@ -13,13 +13,13 @@
       "name": "spaceboitesla",
       "type": "room",
       "description": "THERES A STAAAAAAAAAAAAAAAAAAAAAAAARRRRRRR MMMAAAAAAaaaAAAaAaaANnNNnnH WAITING IN THE SKY",
-      "coords": "10,3,7"
+      "coords": "4,7,2"
     }, 
     {
       "name": "space man boi",
       "type": "room",
       "description": "IMMA LIVING IN A TIN CAAAAaaaAAAaaAN",
-      "coords": "10,3,7"
+      "coords": "3,5,2"
     }, 
     {
       "name": "green door",
@@ -28,7 +28,7 @@
       "keyname": "yellowkey",
       "keyweight": "10",
       "description": "its covered in a green substance, appears to be mystery goo",
-      "coords": "10,3,7"
+      "coords": "1,3,2"
     }, 
     {
       "name": "yellow door",
@@ -37,7 +37,7 @@
       "keyname": "greenkey",
       "keyweight": "15",
       "description": "it is hot",
-      "coords": "10,3,7"
+      "coords": "1,7,3"
     }
   ]
 }

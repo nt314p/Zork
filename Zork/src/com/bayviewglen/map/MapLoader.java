@@ -1,5 +1,6 @@
 package com.bayviewglen.map;
 
+import com.bayviewglen.item.Item;
 import com.bayviewglen.zork.FileReader;
 import org.json.*;
 
@@ -40,10 +41,22 @@ public class MapLoader {
 		Map map = new Map(mapName, maxCoords[0], maxCoords[1], maxCoords[2]);
 		
 		for (int i = 0; i < places.length(); i++) {
+			JSONObject curr = places.getJSONObject(i);
 			if (places.getJSONObject(i).getString("type").equals("room")) {
-				
+				Room r = new Room(curr.getString("name"), curr.getString("description"));
+				int[] coords = readCoords(curr.getString("coords"));
+				map.set(r, coords[0], coords[1], coords[2]);
 			} else if (places.getJSONObject(i).getString("type").equals("door")) {
-				System.out.println("ITS A GIRL");
+				Item key;
+				Door d;
+				try {
+					key = new Item(curr.getString("keyname"), curr.getInt("itemweight"));
+					d = new Door(curr.getString("name"), curr.getBoolean("open"), curr.getBoolean("locked"), key)
+				} catch(JSONException ex) {
+					
+				}
+				if (!curr.getBoolean("open"))
+				d = new Door(curr.getString("name"), curr.getString(key))
 			}
 			
 //			String room = places.getJSONObject(i).getString("coords");

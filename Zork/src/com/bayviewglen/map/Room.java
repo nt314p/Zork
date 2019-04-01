@@ -33,6 +33,19 @@ public class Room extends Place{
 		this.description = description;
 		this.sides = sides;
 	}
+	
+	public void setRoomItems(Inventory roomItems) {
+		this.roomItems = roomItems;
+	}
+
+	public void setSides(HashMap<Character, Side> sides) {
+		this.sides = sides;
+	}
+
+	public Room(String roomName, String description) {
+		this.roomName = roomName;
+		this.description = description;
+	}
 
 	
 	/**

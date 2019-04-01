@@ -2,7 +2,7 @@ package com.bayviewglen.map;
 
 import com.bayviewglen.item.Item;
 
-public abstract class Door extends Side{
+public class Door extends Side{
 	
 	private boolean open;
 	private boolean unlocked;
