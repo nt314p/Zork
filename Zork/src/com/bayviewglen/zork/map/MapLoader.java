@@ -1,7 +1,7 @@
-package com.bayviewglen.map;
+package com.bayviewglen.zork.map;
 
-import com.bayviewglen.item.Item;
-import com.bayviewglen.zork.FileReader;
+import com.bayviewglen.zork.item.Item;
+import com.bayviewglen.zork.main.FileReader;
 import org.json.*;
 
 public class MapLoader {
