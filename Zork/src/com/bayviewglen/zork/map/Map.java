@@ -13,9 +13,6 @@ public class Map {
 	
 	private Room checkpoint;
 	private Room goal;
-	
-	private Room currentRoom;
-	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();
 
 	/**
 	 * map constructor - stores places (rooms/sides)
@@ -203,22 +200,6 @@ public class Map {
 
 	}
 	
-	/**
-	 * check if you are at the map's goal
-	 * @return if your room equals the map goal
-	 */
-	public boolean atMapGoal() {
-		return currentRoom.equals(goal);
-	}
-	
-	/**
-	 * check if you are at the map's checkpoint
-	 * @return if your room equals the map checkpoint
-	 */
-	public boolean atCheckpoint() {
-		return currentRoom.equals(checkpoint);
-	}
-	
 
 	public Room getCheckpoint() {
 		return checkpoint;
@@ -236,31 +217,6 @@ public class Map {
 		this.goal = goal;
 	}
 	
-	
-	public void updateRoomsVisited() {
-		if(!hasVisited(currentRoom))
-			roomsVisited.add(currentRoom);
-	}
-	
-	public static boolean hasVisited(Room room) {
-		for(Room i:roomsVisited) {
-			if(i.equals(room))
-				return true;
-		}
-		return false;
-	}
-	
-	public Room getCurrentRoom() {
-		return currentRoom;
-	}
-
-	public void setCurrentRoom(Room room) {
-		currentRoom = room;
-	}
-
-	public void resetToCheckpoint() {
-		currentRoom = checkpoint;
-	}
 	
 	public int numRooms() {
 		int count = 0;

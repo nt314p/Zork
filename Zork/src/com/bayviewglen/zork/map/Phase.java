@@ -6,44 +6,12 @@ public class Phase {
 	
 	private String phaseName;
 	private ArrayList<Map> maps;
-	private int currentMapIndex;
 
 	
-	public Phase(String phaseName, Map map) {
+	public Phase(String phaseName, ArrayList<Map> maps) {
 		this.phaseName = phaseName;
-		maps = new ArrayList<Map>();
-		maps.add(map);
-		this.currentMapIndex = 0;
+		this.maps = maps;
 	}
-	
-	public boolean atPhaseGoal() {
-		return currentMapIndex + 1 >= maps.size();
-	}
-	
-	public void checkAndUpdateMap() {
-		if(getCurrentMap().atMapGoal())
-			nextMap();
-	}
-	
-	public void nextMap() {
-		currentMapIndex++;
-	}
-	
-	public Map getCurrentMap() {
-		return maps.get(currentMapIndex);
-	}
-	
-	public int getCurrentMapIndex() {
-		return currentMapIndex;
-	}
-	
-	public void setCurrentMapIndex(int index) {
-		if(index>=maps.size())
-			throw new IllegalArgumentException("There is no " + index + "th index.");
-		
-		this.currentMapIndex = index;
-	}
-	
 	
 	public ArrayList<Map> getMaps() {
 		return maps;
