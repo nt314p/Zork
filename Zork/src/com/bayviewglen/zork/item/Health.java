@@ -1,7 +1,5 @@
 package com.bayviewglen.zork.item;
 
-import com.bayviewglen.zork.main.*;
-
 public class Health extends Item{
 
 	private double healthValue;// ex. bandages, repairing, etc.

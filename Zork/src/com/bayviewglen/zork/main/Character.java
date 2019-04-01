@@ -1,7 +1,5 @@
 package com.bayviewglen.zork.main;
 
-import java.util.ArrayList;
-
 import com.bayviewglen.zork.item.*;
 import com.bayviewglen.zork.map.*;
 

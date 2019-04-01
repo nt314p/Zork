@@ -2,6 +2,8 @@ package com.bayviewglen.zork.map;
 
 import java.util.ArrayList;
 
+import com.bayviewglen.zork.main.Game;
+
 public class Location {
 	
 	Phase phase;
@@ -64,7 +66,7 @@ public class Location {
 	}
 	
 	public boolean atLastPhase() {
-		return PhaseList.search(phase) + 1 >= PhaseList.size();
+		return Game.getPhases().indexOf(phase) + 1 >= Game.getPhases().size();
 	}
 	
 	public boolean atLastMap() {
@@ -157,11 +159,11 @@ public class Location {
 	}
 	
 	public void nextPhase() {
-		int phaseIndex = PhaseList.search(phase);
+		int phaseIndex = Game.getPhases().indexOf(phase);
 		if(atLastPhase())
 			System.out.println("No more phases in the game - you win.");
 		else {
-			phase = PhaseList.get(phaseIndex+1);
+			phase = Game.getPhases().get(phaseIndex+1);
 			map = phase.getMaps().get(0);
 			room = map.getCheckpoint();
 			
@@ -173,7 +175,7 @@ public class Location {
 	 */
 	public double [] getLocation() {
 		double[] location = new double[5];
-		location[0] = PhaseList.search(phase);
+		location[0] = Game.getPhases().indexOf(phase);
 		location[1] = phase.search(map);
 		
 		location[2] = map.getCoords(room)[0];

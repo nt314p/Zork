@@ -1,11 +1,6 @@
 package com.bayviewglen.zork.main;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
-
 import com.bayviewglen.zork.map.*;
 
 /**
@@ -18,13 +13,21 @@ import com.bayviewglen.zork.map.*;
 public class Game{
 	private Parser parser;	
 	private static Player player = new Player(null, null);
+	private static ArrayList<Phase> phases;
 	
 
 	public Game() {
 		parser = new Parser();
 		CommandWords.initialize();
-		PhaseList.initialize(new ArrayList<Phase>());
-		
+		phases = new ArrayList<Phase>();
+	}
+	
+	public static ArrayList<Phase> getPhases() {
+		return phases;
+	}
+	
+	public static Player getPlayer() {
+		return player;
 	}
 	
 }

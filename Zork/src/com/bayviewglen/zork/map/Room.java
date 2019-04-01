@@ -1,8 +1,6 @@
 package com.bayviewglen.zork.map;
 
 import com.bayviewglen.zork.main.*;
-import java.util.HashMap;
-
 
 public class Room extends Place{
 	private String roomName;
