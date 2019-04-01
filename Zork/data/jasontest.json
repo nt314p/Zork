@@ -1,0 +1,43 @@
+{
+  "name": "SpaceTestMap",
+  "startcoords": "10,3,7",
+  "endcoords": "4,7,2",
+  "places": [
+    {
+      "name": "kitchen",
+      "type": "room",
+      "description": "kitcheny things",
+      "coords": "10,3,7"
+    }, 
+   {
+      "name": "spaceboitesla",
+      "type": "room",
+      "description": "THERES A STAAAAAAAAAAAAAAAAAAAAAAAARRRRRRR MMMAAAAAAaaaAAAaAaaANnNNnnH WAITING IN THE SKY",
+      "coords": "10,3,7"
+    }, 
+    {
+      "name": "space man boi",
+      "type": "room",
+      "description": "IMMA LIVING IN A TIN CAAAAaaaAAAaaAN",
+      "coords": "10,3,7"
+    }, 
+    {
+      "name": "green door",
+      "type": "door",
+      "locked": true,
+      "keyname": "yellowkey",
+      "keyweight": "10",
+      "description": "its covered in a green substance, appears to be mystery goo",
+      "coords": "10,3,7"
+    }, 
+    {
+      "name": "yellow door",
+      "type": "door",
+      "locked": true,
+      "keyname": "greenkey",
+      "keyweight": "15",
+      "description": "it is hot",
+      "coords": "10,3,7"
+    }
+  ]
+}
