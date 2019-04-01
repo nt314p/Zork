@@ -23,8 +23,7 @@ public class Player extends Character{
 		this.getMonitor("health").reset();
 		this.getMonitor("food").reset();
 		this.getMonitor("water").reset();
-		//currentRoom = currentPhase.getCurrentMap().getCheckpoint();
-		//need to reset location
+		getLocation().resetToCheckpoint();
 	}
 	
 	public int getDeaths() {
