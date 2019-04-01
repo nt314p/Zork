@@ -1,10 +1,8 @@
-package com.bayviewglen.item;
+package com.bayviewglen.zork.item;
 
-import com.bayviewglen.zork.*;
+import com.bayviewglen.zork.main.*;
 
 public class Food extends Item {
-//work on - how water is implemented when you drink it (foodValue)
-	//how food value is affected by the item weight
 	
 	private double foodValue;
 	private double waterValue;

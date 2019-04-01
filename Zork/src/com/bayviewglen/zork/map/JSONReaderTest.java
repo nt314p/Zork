@@ -1,6 +1,6 @@
-package com.bayviewglen.map;
+package com.bayviewglen.zork.map;
 import org.json.*;
-import com.bayviewglen.zork.FileReader;
+import com.bayviewglen.zork.main.*;
 
 public class JSONReaderTest {
 	

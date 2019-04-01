@@ -1,4 +1,4 @@
-package com.bayviewglen.zork;
+package com.bayviewglen.zork.main;
 import java.util.ArrayList;
 
 /* This class is used for command word recognition */

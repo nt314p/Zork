@@ -1,4 +1,4 @@
-package com.bayviewglen.zork;
+package com.bayviewglen.zork.main;
 
 public class Monitor {
 	//measures, monitors, adjusts player health, water, food

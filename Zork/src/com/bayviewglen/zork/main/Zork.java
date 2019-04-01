@@ -1,7 +1,7 @@
-package com.bayviewglen.zork;
+package com.bayviewglen.zork.main;
 
-import com.bayviewglen.item.*;
-import com.bayviewglen.map.*;
+import com.bayviewglen.zork.item.*;
+import com.bayviewglen.zork.map.*;
 
 public class Zork {
 	public static void main(String[] args) {

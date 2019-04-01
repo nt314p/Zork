@@ -1,4 +1,4 @@
-package com.bayviewglen.zork;
+package com.bayviewglen.zork.main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import com.bayviewglen.map.*;
+import com.bayviewglen.zork.map.*;
 
 /**
  * 

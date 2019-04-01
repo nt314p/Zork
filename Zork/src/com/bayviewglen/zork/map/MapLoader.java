@@ -1,7 +1,8 @@
-package com.bayviewglen.map;
+package com.bayviewglen.zork.map;
 
-import com.bayviewglen.item.Item;
-import com.bayviewglen.zork.FileReader;
+import com.bayviewglen.zork.main.*;
+import com.bayviewglen.zork.item.*;
+
 import org.json.*;
 
 public class MapLoader {
@@ -51,12 +52,12 @@ public class MapLoader {
 				Door d;
 				try {
 					key = new Item(curr.getString("keyname"), curr.getInt("itemweight"));
-					d = new Door(curr.getString("name"), curr.getBoolean("open"), curr.getBoolean("locked"), key)
+					d = new Door(curr.getString("name"), curr.getBoolean("open"), curr.getBoolean("locked"), key);
 				} catch(JSONException ex) {
 					
 				}
 				if (!curr.getBoolean("open"))
-				d = new Door(curr.getString("name"), curr.getString(key))
+				d = new Door(curr.getString("name"), curr.getString(key));
 			}
 			
 //			String room = places.getJSONObject(i).getString("coords");

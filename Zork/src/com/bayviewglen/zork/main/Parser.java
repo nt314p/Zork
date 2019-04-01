@@ -1,4 +1,4 @@
-package com.bayviewglen.zork;
+package com.bayviewglen.zork.main;
 
 /**
  * Parser reads user input

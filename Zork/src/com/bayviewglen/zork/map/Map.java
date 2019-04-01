@@ -1,4 +1,4 @@
-package com.bayviewglen.map;
+package com.bayviewglen.zork.map;
 
 import java.util.HashMap;
 import java.util.ArrayList;

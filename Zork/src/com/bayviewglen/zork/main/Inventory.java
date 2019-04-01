@@ -1,10 +1,10 @@
-package com.bayviewglen.zork;
+package com.bayviewglen.zork.main;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.bayviewglen.item.Item;
+import com.bayviewglen.zork.item.Item;
 
 public class Inventory {
 

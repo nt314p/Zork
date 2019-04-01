@@ -1,6 +1,6 @@
-package com.bayviewglen.map;
+package com.bayviewglen.zork.map;
 
-import com.bayviewglen.item.Item;
+import com.bayviewglen.zork.item.Item;
 
 public class Door extends Side{
 	

@@ -1,4 +1,4 @@
-package com.bayviewglen.map;
+package com.bayviewglen.zork.map;
 
 /**
  * A parent class used for storage of both rooms and sides

@@ -1,4 +1,4 @@
-package com.bayviewglen.zork;
+package com.bayviewglen.zork.main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
