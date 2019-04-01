@@ -29,7 +29,7 @@ public class Map {
 	 * @param goal your ending point in the map
 	 */
 	public Map(String mapName, double x, double y, double z) {
-		map = new Place[(int) (x * 2)][(int) (y * 2)][(int) (z * 2)];
+		map = new Place[(int) (x * 2)+1][(int) (y * 2)+1][(int) (z * 2)+1];
 	}
 
 	/**
