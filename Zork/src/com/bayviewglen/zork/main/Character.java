@@ -14,14 +14,20 @@ public class Character{
 	
 	private Inventory inventory;
 	private String name;
+	private Location location;
 	
 
-	public Character(String name, Inventory inventory, int health, int food, int water) {
+	public Character(String name, Inventory inventory, Location location, int health, int food, int water) {
 		this.name = name;
 		this.inventory = inventory;
+		this.location = location;
 		healthMonitor = new Monitor(health);
 		foodMonitor = new Monitor(food);
 		waterMonitor = new Monitor(water);
+	}
+	
+	public Location getLocation() {
+		return location;
 	}
 	
 	public String getName() {
