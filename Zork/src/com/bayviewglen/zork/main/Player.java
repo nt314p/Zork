@@ -8,10 +8,11 @@ import com.bayviewglen.zork.map.*;
 public class Player extends Character{
 	
 	private int deaths = 0;
+	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();	
 
 
-	public Player(Inventory inventory) {
-		super("Player", inventory, 1, 1, 1);
+	public Player(Inventory inventory, Location location) {
+		super("Player", inventory, location, 1, 1, 1);
 	}
 
 	/**
@@ -47,6 +48,24 @@ public class Player extends Character{
 	
 	public void hit(Character character, Weapon weapon) {
 		character.getMonitor("health").decrease(weapon.getDamage());
+	}
+	
+	
+	public void updateRoomsVisited() {
+		if(!hasVisited(getLocation().getRoom()))
+			roomsVisited.add(getLocation().getRoom());
+	}
+	
+	public static boolean hasVisited(Room room) {
+		for(Room i:roomsVisited) {
+			if(i.equals(room))
+				return true;
+		}
+		return false;
+	}
+	
+	public static ArrayList<Room> getRoomsVisited(){
+		return roomsVisited;
 	}
 	
 }
