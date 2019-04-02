@@ -11,7 +11,8 @@ import com.bayviewglen.zork.map.*;
  */
 
 public class Game{
-	private static Parser parser;	
+
+  private static Parser parser;	
 	private static Player player = new Player(null, null);
 	private static ArrayList<Phase> phases;
 	

@@ -2,6 +2,7 @@ package com.bayviewglen.zork.map;
 
 import java.util.ArrayList;
 
+
 import com.bayviewglen.zork.main.Game;
 
 public class Location {
@@ -166,7 +167,6 @@ public class Location {
 			phase = Game.getPhases().get(phaseIndex+1);
 			map = phase.getMaps().get(0);
 			room = map.getCheckpoint();
-			
 		}
 	}
 	
@@ -176,13 +176,10 @@ public class Location {
 	public double [] getLocation() {
 		double[] location = new double[5];
 		location[0] = Game.indexOf(phase);
-		location[1] = phase.indexOf(map);
-		
+		location[1] = phase.indexOf(map);		
 		location[2] = map.getCoords(room)[0];
 		location[3] = map.getCoords(room)[1];
 		location[4] = map.getCoords(room)[2];
 		return location;
 	}
-
-
 }

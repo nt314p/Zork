@@ -2,8 +2,10 @@ package com.bayviewglen.zork.map;
 
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
 
-public class Map {
+public class MapV2 {
 
 	private Place[][][] map;
 	private String mapName;
@@ -23,8 +25,8 @@ public class Map {
 	 * @param checkpoint your starting point in the map
 	 * @param goal your ending point in the map
 	 */
-	public Map(String mapName, double x, double y, double z) {
-		map = new Place[(int) (x * 2)+1][(int) (y * 2)+1][(int) (z * 2)+1];
+	public MapV2(String mapName, double x, double y, double z) {
+		map = new Place[(int) (x * 2)][(int) (y * 2)][(int) (z * 2)];
 	}
 
 	/**
@@ -213,7 +215,7 @@ public class Map {
 	public void setGoal(Room goal) {
 		this.goal = goal;
 	}
-  
+	
 	public int numRooms() {
 		int count = 0;
 		

@@ -8,8 +8,8 @@ import com.bayviewglen.zork.map.*;
 public class Player extends Character{
 	
 	private int deaths = 0;
-	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();
 
+	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();
 
 	public Player(Inventory inventory, Location location) {
 		super("Player", inventory, location, 1, 1, 1);
@@ -60,7 +60,7 @@ public class Player extends Character{
 				return true;
 		}
 		
-		return false;
+    return false;
 	}
 	
 	public static ArrayList<Room> getRoomsVisited(){
