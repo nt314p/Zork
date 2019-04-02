@@ -58,7 +58,7 @@ public class Location {
 	}
 	
 	public boolean checkLocationErrors() {
-		if(phase.search(map) == -1)
+		if(phase.indexOf(map) == -1)
 			return false;
 		if(map.getCoords(room)==null)
 			return false;
@@ -66,11 +66,11 @@ public class Location {
 	}
 	
 	public boolean atLastPhase() {
-		return Game.getPhases().indexOf(phase) + 1 >= Game.getPhases().size();
+		return Game.indexOf(phase) + 1 >= Game.getPhases().size();
 	}
 	
 	public boolean atLastMap() {
-		return phase.search(map) + 1 >= phase.getMaps().size();
+		return phase.indexOf(map) + 1 >= phase.getMaps().size();
 	}
 	
 	public boolean atMapGoal() {
@@ -149,7 +149,7 @@ public class Location {
 	
 	public void nextMap() {
 		ArrayList<Map> maps = phase.getMaps();
-		int mapIndex = phase.search(map);
+		int mapIndex = phase.indexOf(map);
 		if(atLastMap())
 			nextPhase();
 		else {
@@ -159,7 +159,7 @@ public class Location {
 	}
 	
 	public void nextPhase() {
-		int phaseIndex = Game.getPhases().indexOf(phase);
+		int phaseIndex = Game.indexOf(phase);
 		if(atLastPhase())
 			System.out.println("No more phases in the game - you win.");
 		else {
@@ -175,8 +175,8 @@ public class Location {
 	 */
 	public double [] getLocation() {
 		double[] location = new double[5];
-		location[0] = Game.getPhases().indexOf(phase);
-		location[1] = phase.search(map);
+		location[0] = Game.indexOf(phase);
+		location[1] = phase.indexOf(map);
 		
 		location[2] = map.getCoords(room)[0];
 		location[3] = map.getCoords(room)[1];
