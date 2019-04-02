@@ -244,16 +244,15 @@ public class Map {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
 				for (int k = 0; k < map[i][j].length; k++) {
+					String simpleName = map[i][j][k].getClass().getSimpleName();
+					if (i % 2 == 1 && j % 2 == 1) { // true if x or y ends in .5
+						if (new String("DoorWallOpening").indexOf(simpleName) != -1)
+							throw new IllegalStateException("The Side at coordinates " + (double) (i / 2) + ", "
+									+ (double) (j / 2) + ", " + (double) (k / 2) + " should be a Room.");
 
-					if (i % 2 == 1 && j % 2 == 1 && k % 2 == 1) {
-						if (!map[i][j][k].getClass().getSimpleName().equals("Room"))
-							throw new IllegalStateException("The room at coordinates " + (double) (i / 2) + ", "
-									+ (double) (j / 2) + ", " + (double) (k / 2) + " SHOULD be a room.");
-
-					} else if (map[i][j][k].getClass().getSimpleName().equals("Room"))
-						throw new IllegalStateException("The room at coordinates " + (double) (i / 2) + ", "
-								+ (double) (j / 2) + ", " + (double) (k / 2) + " SHOULD NOT be a room.");
-
+					} else if (simpleName.equals("Room"))
+						throw new IllegalStateException("The Room at coordinates " + (double) (i / 2) + ", "
+								+ (double) (j / 2) + ", " + (double) (k / 2) + " should be a Side.");
 				}
 			}
 		}

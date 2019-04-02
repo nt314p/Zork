@@ -66,38 +66,10 @@ public class MapLoader {
 				double[] coords = readCoords(curr.getString("coords"));
 				map.set(d, coords[0], coords[1], coords[2]);
 			}
-			
-//			String room = places.getJSONObject(i).getString("coords");
-//			System.out.println(room);
 		}
+		
+		
 
-		/*
-		for (String line : lines) {
-			// gets the coordinates in a string
-			if (line.charAt(0) == '(') {
-				numPlaces++;
-				int[] coords = readCoords(line); // reading out coords from line
-				for (int i = 0; i < 3; i++) {
-					if (coords[i] > maxCoords[i]) // setting maximum coordinates
-						maxCoords[i] = coords[i];
-				}
-			}
-		}
-		
-		// create new map with max coords
-		Map map = new Map(maxCoords[0], maxCoords[1], maxCoords[2]); 
-		
-		int lineNum = 0;
-		for (int i = 0; i < numPlaces; i++) {
-			int[] coords;
-			String type;
-			String keyName;
-			String line = lines[lineNum];
-			if (line.charAt(0) == '(') {
-				int[] coords = readCoords(line);
-			}
-		}
-*/
 		return map;
 	}
 	
