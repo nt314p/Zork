@@ -41,7 +41,7 @@ public class Inventory {
 	 * @param target the item you are looking for in the list
 	 * @return the first occurrence of the item
 	 */
-	public int getIndexOf(Item target) {
+	public int indexOf(Item target) {
 		for (int i = 0; i < items.size(); i++) {
 			if (items.get(i).equals(target)) {
 				return i;
@@ -71,7 +71,7 @@ public class Inventory {
 	 * @return if the item is in the inventory
 	 */
 	public boolean contains(Item target) {
-		return getIndexOf(target) != -1;
+		return indexOf(target) != -1;
 	}
 
 	/**
@@ -168,10 +168,10 @@ public class Inventory {
 	 * @return if the item was in the list and removed
 	 */
 	public boolean remove(Item target) {
-		if (getIndexOf(target) == -1)
+		if (indexOf(target) == -1)
 			return false;
 
-		items.remove(getIndexOf(target));
+		items.remove(indexOf(target));
 		return true;
 	}
 
@@ -184,7 +184,7 @@ public class Inventory {
 	public boolean removeAll(Item target) {
 		boolean result = false;
 
-		while (getIndexOf(target) != -1) {
+		while (indexOf(target) != -1) {
 			remove(target);
 			result = true;
 		}

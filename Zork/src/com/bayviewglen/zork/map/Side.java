@@ -1,5 +1,4 @@
 package com.bayviewglen.zork.map;
-import com.bayviewglen.zork.main.*;
 
 /**
  * Parent class for doors, openings, and walls

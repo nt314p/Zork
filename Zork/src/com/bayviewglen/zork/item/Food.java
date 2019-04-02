@@ -1,7 +1,5 @@
 package com.bayviewglen.zork.item;
 
-import com.bayviewglen.zork.main.*;
-
 public class Food extends Item {
 	
 	private double foodValue;
