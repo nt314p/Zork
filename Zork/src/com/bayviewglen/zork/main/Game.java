@@ -15,15 +15,20 @@ import com.bayviewglen.zork.map.*;
 
 public class Game{
 
-  private static Parser parser;	
+	private static Parser parser;	
 	private static Player player = new Player(null, null);
 	private static ArrayList<Phase> phases;
+	private static ArrayList<Character> characters;
 	
 
 	public Game() {
 		parser = new Parser();
 		CommandWords.initialize();
 		phases = new ArrayList<Phase>();
+	}
+	
+	public static ArrayList<Character> getCharacters() {
+		return characters;
 	}
 	
 	public static ArrayList<Phase> getPhases() {

@@ -14,6 +14,23 @@ public class Player extends Character{
 	public Player(Inventory inventory, Location location) {
 		super("Player", inventory, location, 1, 1, 1);
 	}
+	
+	public Inventory getInteractableItems(){
+		Inventory i = new Inventory();
+		i.addAll(getLocation().getRoom().getRoomItems());
+		i.addAll(getInventory());
+		
+		return i;		
+	}
+	
+	public ArrayList<Character> getInteractableCharacters(){
+		ArrayList<Character> characters = new ArrayList<Character>();
+		for(Character c:Game.getCharacters()) {
+			if(c.getLocation().getRoom().equals(getLocation().getRoom()))
+				characters.add(c);
+		}
+		return characters;
+	}
 
 	/**
 	 * die - update death count, reset statistics, reset current room to the checkpoint

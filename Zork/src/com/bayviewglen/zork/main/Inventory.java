@@ -19,11 +19,11 @@ public class Inventory {
 	 * @param list the list you want to turn into an arrayList
 	 * @return the finished arrayList
 	 */
-	public ArrayList<Item> toArrayList(Inventory list) {
+	public ArrayList<Item> toArrayList() {
 		ArrayList<Item> temp = new ArrayList<Item>();
 
-		for (int i = 0; i < list.size(); i++) {
-			temp.add(new Item(list.get(i)));
+		for (int i = 0; i < items.size(); i++) {
+			temp.add(new Item(items.get(i)));
 		}
 
 		return temp;
@@ -205,6 +205,12 @@ public class Inventory {
 	public void clearInventory() {
 		while (items.size() > 0) {
 			items.remove(0);
+		}
+	}
+	
+	public void addAll(Inventory inventory) {
+		for(Item i:inventory.toArrayList()) {
+			add(i);
 		}
 	}
 
