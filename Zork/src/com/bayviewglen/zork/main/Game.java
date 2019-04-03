@@ -20,12 +20,42 @@ public class Game{
 	private static ArrayList<Phase> phases;
 	private static ArrayList<Character> characters;
 	
+	private static int turn;
+	private static int turnsUntilDeath;
+	
 
 	public Game() {
 		parser = new Parser();
 		CommandWords.initialize();
 		phases = new ArrayList<Phase>();
 	}
+	
+	public static int getTurn() {
+		return turn;
+	}
+	
+	public static void incrementTurn() {
+		turn++;
+	}
+	
+	public static void setTurn(int turn) {
+		Game.turn = turn;
+	}
+	
+	
+	public static int getTurnsUntilDeath() {
+		return turnsUntilDeath;
+	}
+	
+	public static void decrementTurnsUntilDeath() {
+		turnsUntilDeath--;
+	}
+	
+	public static void setTurnsUntilDeath(int x) {
+		turnsUntilDeath = x;
+	}
+	
+	
 	
 	public static ArrayList<Character> getCharacters() {
 		return characters;

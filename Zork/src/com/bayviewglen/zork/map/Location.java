@@ -95,56 +95,50 @@ public class Location {
 	}
 	
 	public boolean north() {
-		Room temp = map.getNextRoom('n', room);
-		if(temp == null)
+		if(map.isExit('n', room))
 			return false;
-		
-		this.set(phase, map, temp);
+
+		this.set(phase, map, map.getNextRoom('n', room));
 		return true;
 	}
 	
 	public boolean south() {
-		Room temp = map.getNextRoom('s', room);
-		if(temp == null)
+		if(map.isExit('s', room))
 			return false;
-		
-		this.set(phase, map, temp);
+
+		this.set(phase, map, map.getNextRoom('s', room));
 		return true;
 	}
 	
 	public boolean east() {
-		Room temp = map.getNextRoom('e', room);
-		if(temp == null)
+		if(map.isExit('e', room))
 			return false;
-		
-		this.set(phase, map, temp);
+
+		this.set(phase, map, map.getNextRoom('e', room));
 		return true;
 	}
 	
 	public boolean west() {
-		Room temp = map.getNextRoom('w', room);
-		if(temp == null)
+		if(map.isExit('w', room))
 			return false;
-		
-		this.set(phase, map, temp);
+
+		this.set(phase, map, map.getNextRoom('w', room));
 		return true;
 	}
 	
 	public boolean up() {
-		Room temp = map.getNextRoom('u', room);
-		if(temp == null)
+		if(map.isExit('u', room))
 			return false;
-		
-		this.set(phase, map, temp);
+
+		this.set(phase, map, map.getNextRoom('u', room));
 		return true;
 	}
 	
 	public boolean down() {
-		Room temp = map.getNextRoom('d', room);
-		if(temp == null)
+		if(map.isExit('d', room))
 			return false;
-		
-		this.set(phase, map, temp);
+
+		this.set(phase, map, map.getNextRoom('d', room));
 		return true;
 	}
 	

@@ -11,6 +11,7 @@ public class Door extends Side{
 	
 
 	public Door(String doorName, boolean open, boolean unlocked, Item key) {
+		super(open && unlocked);
 		this.doorName = doorName;
 		this.open = open;
 		this.unlocked = unlocked;
@@ -18,9 +19,14 @@ public class Door extends Side{
 		
 		if(key == null && !unlocked) {
 			System.out.println("You cannot lock a door without a key");
-			unlocked = true;
 		}
+		
+		if(open && !unlocked) {
+			System.out.println("A door cannot be open and locked");
+		}
+		
 		updateKey();
+		updateDoor();
 	}
 	
 	
@@ -52,18 +58,22 @@ public class Door extends Side{
 		return unlocked;
 	}
 	
-	public boolean needsKey() {
-		return key != null;
-	}
 	
 	public void updateKey() {
-		if(!needsKey())
+		if(key == null)
 			unlocked = true;
 	}
 	
+	public void updateDoor() {
+		if(open && !unlocked)
+			open = false;
+	}
+	
 	public void lock() {
-		if(key != null)
+		if(key != null) {
+			open = false;
 			unlocked = false;
+		}
 		else
 			System.out.println("You cannot lock a door without a key");
 	}
@@ -86,6 +96,12 @@ public class Door extends Side{
 	
 	public String getDoorName() {
 		return doorName;
+	}
+
+
+	public boolean checkIsExit() {
+		updateDoor();
+		return open;
 	}
 	
 

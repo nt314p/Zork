@@ -191,11 +191,20 @@ public class Map {
 		
 		for (char dir : directions) {
 			Side side = this.getNextSide(dir, r);
-			if (this.getNextRoom(dir, r) != null && (side instanceof Opening || side instanceof Door))
+			if (this.getNextRoom(dir, r) != null && (side.isExit()))
 				exits.add(dir);
 		}
 		return exits;
 
+	}
+	
+	public boolean isExit(char dir, Room r) {
+		ArrayList<Character> exits = getExits(r);
+		for(char c:exits) {
+			if(c == dir)
+				return true;
+		}
+		return false;
 	}
 
 	public Room getCheckpoint() {
