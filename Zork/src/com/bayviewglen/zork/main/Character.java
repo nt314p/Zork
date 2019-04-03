@@ -40,16 +40,16 @@ public class Character{
 		return inventory;
 	}
 	
-	public Monitor getMonitor(String monitor) {
-		if(monitor.equals("health"))
-			return healthMonitor;
-		else if(monitor.equals("food"))
-			return foodMonitor;
-		else if(monitor.equals("water"))
-			return waterMonitor;
-		else
-			System.out.println(monitor + " is not a monitor.");
-			return null;
+	public Monitor getHealthMonitor() {
+		return healthMonitor;
+	}
+	
+	public Monitor getWaterMonitor() {
+		return waterMonitor;
+	}
+	
+	public Monitor getFoodMonitor() {
+		return foodMonitor;
 	}
 
 	/**

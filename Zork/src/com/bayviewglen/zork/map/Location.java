@@ -60,10 +60,10 @@ public class Location {
 	
 	public boolean checkLocationErrors() {
 		if(phase.indexOf(map) == -1)
-			return false;
+			return true;
 		if(map.getCoords(room)==null)
-			return false;
-		return true;
+			return true;
+		return false;
 	}
 	
 	public boolean atLastPhase() {
@@ -181,5 +181,19 @@ public class Location {
 		location[3] = map.getCoords(room)[1];
 		location[4] = map.getCoords(room)[2];
 		return location;
+	}
+	
+
+	public void setRoom(Room r) {
+		set(phase, map, r);
+	}
+	
+	public void setMap(Map m) {
+		set(phase, m, map.getCheckpoint());
+	}
+	
+	public void setPhase(Phase p) {
+		Map temp = p.getMaps().get(0);
+		set(p, temp, temp.getCheckpoint());
 	}
 }

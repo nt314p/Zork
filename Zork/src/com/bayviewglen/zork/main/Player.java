@@ -7,7 +7,7 @@ import com.bayviewglen.zork.map.*;
 
 public class Player extends Character{
 	
-	private int deaths = 0;
+	private static int deaths = 0;
 
 	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();
 
@@ -20,33 +20,32 @@ public class Player extends Character{
 	 */
 	public void die() {
 		deaths++;
-		this.getMonitor("health").reset();
-		this.getMonitor("food").reset();
-		this.getMonitor("water").reset();
-		getLocation().resetToCheckpoint();
+		getFoodMonitor().reset();
+		getWaterMonitor().reset();
+		getHealthMonitor().reset();
 	}
 	
-	public int getDeaths() {
+	public static int getDeaths() {
 		return deaths;
 	}
 
 	
 	public void take(Character character, Item item) {
-		if(this.getInventory().remove(item))
-			this.getInventory().add(item);
+		if(getInventory().remove(item))
+			getInventory().add(item);
 		else
 			System.out.println(character.getName() + " does not have " + item.getItemName());
 	}
 	
 	public void give(Character character, Item item) {
-		if(this.getInventory().remove(item))
+		if(getInventory().remove(item))
 			character.getInventory().add(item);
 		else
 			System.out.println("You do not have " + item.getItemName());
 	}
 	
 	public void hit(Character character, Weapon weapon) {
-		character.getMonitor("health").decrease(weapon.getDamage());
+		character.getHealthMonitor().decrease(weapon.getDamage());
 	}
 	
 	public void updateRoomsVisited() {

@@ -190,8 +190,8 @@ public class Map {
 		ArrayList<Character> exits = new ArrayList<Character>();
 		
 		for (char dir : directions) {
-			String nextSide = this.getNextSide(dir, r).getClass().getSimpleName();
-			if (this.getNextRoom(dir, r) != null && nextSide.equals("Opening") || nextSide.equals("Door"))
+			Side side = this.getNextSide(dir, r);
+			if (this.getNextRoom(dir, r) != null && (side instanceof Opening || side instanceof Door))
 				exits.add(dir);
 		}
 		return exits;
@@ -244,13 +244,13 @@ public class Map {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
 				for (int k = 0; k < map[i][j].length; k++) {
-					String simpleName = map[i][j][k].getClass().getSimpleName();
 					if (i % 2 == 1 && j % 2 == 1) { // true if x or y ends in .5
-						if (new String("DoorWallOpening").indexOf(simpleName) != -1)
+						Place temp = map[i][j][k];
+						if (temp instanceof Door || temp instanceof Wall || temp instanceof Opening)
 							throw new IllegalStateException("The Side at coordinates " + (double) (i / 2) + ", "
 									+ (double) (j / 2) + ", " + (double) (k / 2) + " should be a Room.");
 
-					} else if (simpleName.equals("Room"))
+					} else if (map[i][j][k] instanceof Room)
 						throw new IllegalStateException("The Room at coordinates " + (double) (i / 2) + ", "
 								+ (double) (j / 2) + ", " + (double) (k / 2) + " should be a Side.");
 				}
