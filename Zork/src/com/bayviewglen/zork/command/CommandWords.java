@@ -1,9 +1,11 @@
-package com.bayviewglen.zork.main;
+package com.bayviewglen.zork.command;
 import java.util.ArrayList;
+
+import com.bayviewglen.zork.main.FileReader;
 
 /* This class is used for command word recognition */
 
-class CommandWords {
+public class CommandWords {
 	// a constant array that holds all valid command words
 
 	// array list of array list of strings

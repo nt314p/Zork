@@ -1,4 +1,4 @@
-package com.bayviewglen.zork.main;
+package com.bayviewglen.zork.command;
 
 /**
  * Command Class
