@@ -2,8 +2,6 @@ package com.bayviewglen.zork.map;
 
 import java.util.ArrayList;
 
-import com.bayviewglen.zork.item.Item;
-
 public class Phase {
 	
 	private String phaseName;
@@ -28,13 +26,7 @@ public class Phase {
 	}
 	
 	public int indexOf(Map map) {
-		for (int i = 0; i < maps.size(); i++) {
-			if (maps.get(i).equals(map)) {
-				return i;
-			}
-		}
-		return -1;
-	}
-	
+		return maps.indexOf(map);
+	}	
 	
 }

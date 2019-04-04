@@ -19,10 +19,8 @@ public abstract class Side extends Place{
 		return isExit;
 	}
 	
-	public abstract boolean checkIsExit();
-	
-	public void updateIsExit() {
-		isExit = checkIsExit();
+	public void setExit(boolean isExit) {
+		this.isExit = isExit;
 	}
 	
 }

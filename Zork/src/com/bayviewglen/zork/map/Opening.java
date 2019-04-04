@@ -2,13 +2,10 @@ package com.bayviewglen.zork.map;
 
 public class Opening extends Side {
 	
-	public Opening() {
-		super(true);
-	}
+	private static final boolean isExit = true;
 	
-	public boolean checkIsExit() {
-		return true;
+	public Opening() {
+		super(isExit);
 	}
-
 
 }

@@ -6,6 +6,11 @@ import com.bayviewglen.zork.map.*;
 public class Zork {
 	public static void main(String[] args) {
 		
+		Side s = new Opening();
+		System.out.println(s.isExit());
+		s = new Wall();
+		System.out.println(s.isExit());
+		
 		Inventory inventory = new Inventory();
 		inventory.add(new Item("hi", 5.5, null));
 		inventory.add(new Item("hefello", 6.5, null));

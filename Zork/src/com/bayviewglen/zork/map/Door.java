@@ -11,7 +11,7 @@ public class Door extends Side{
 	
 
 	public Door(String doorName, boolean open, boolean unlocked, Item key) {
-		super(open && unlocked);
+		super(open);
 		this.doorName = doorName;
 		this.open = open;
 		this.unlocked = unlocked;
@@ -31,15 +31,18 @@ public class Door extends Side{
 	
 	
 	public void open() {
-		if(unlocked)
+		if(unlocked) {
 			open = true;
+			setExit(true);
+		}
 	}
 
 	/**
 	 * close the door
 	 */
 	public void close() {
-		this.open = false;
+		open = false;
+		setExit(false);
 	}	
 	
 	/**

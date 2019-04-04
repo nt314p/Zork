@@ -14,13 +14,13 @@ public class MapLoader {
 		String[] lines = mapReader.getLines();
 		double[] maxCoords = new double[3];
 		
-		String mastaboi = ""; //change name
+		String concat = "";
 		
 		for (String s : lines) {
-			mastaboi += s + "\n";
+			concat += s + "\n";
 		}
 		
-		JSONObject obj = new JSONObject(mastaboi);
+		JSONObject obj = new JSONObject(concat);
 		String mapName = obj.getString("name");
 		String startCoords = obj.getString("startcoords");
 		String endCoords = obj.getString("endcoords");
@@ -67,8 +67,6 @@ public class MapLoader {
 				map.set(d, coords[0], coords[1], coords[2]);
 			}
 		}
-		
-		
 
 		return map;
 	}

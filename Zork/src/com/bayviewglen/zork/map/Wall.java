@@ -1,12 +1,11 @@
 package com.bayviewglen.zork.map;
 
 public class Wall extends Side {
+	
+	private static final boolean isExit = false;
 
 	public Wall() {
-		super(false);
+		super(isExit);
 	}
 	
-	public boolean checkIsExit() {
-		return false;
-	}
 }

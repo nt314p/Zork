@@ -55,8 +55,6 @@ public class Game{
 		turnsUntilDeath = x;
 	}
 	
-	
-	
 	public static ArrayList<Character> getCharacters() {
 		return characters;
 	}
@@ -70,12 +68,7 @@ public class Game{
 	}
 	
 	public static int indexOf(Phase phase) {
-		for (int i = 0; i < phases.size(); i++) {
-			if (phases.get(i).equals(phase)) {
-				return i;
-			}
-		}
-		return -1;
+		return phases.indexOf(phase);
 	}
 	
 }
