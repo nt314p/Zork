@@ -85,8 +85,4 @@ public class Game{
 		return player;
 	}
 	
-	public static int indexOf(Phase phase) {
-		return phases.indexOf(phase);
-	}
-	
 }

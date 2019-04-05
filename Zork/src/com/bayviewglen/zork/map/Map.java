@@ -275,8 +275,8 @@ public class Map {
 		}
 	}
 	
-	public static Map loadMap(String FilePath) {
-		FileReader mapReader = new FileReader(FilePath);
+	public static Map loadMap(String filePath) {
+		FileReader mapReader = new FileReader(filePath);
 		String[] lines = mapReader.getLines();
 		double[] maxCoords = new double[3];
 		
@@ -337,7 +337,7 @@ public class Map {
 		return map;
 	}
 	
-	private static double[] readCoords (String line) {
+	public static double[] readCoords (String line) {
 		line.replaceAll("[ (){]", "");
 		String[] coordsString = line.split(","); // split on comma to extract coords
 		double[] coords = new double[3];

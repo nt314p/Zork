@@ -4,7 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.bayviewglen.zork.item.Item;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.bayviewglen.zork.item.*;
+import com.bayviewglen.zork.map.*;
+
 
 public class Inventory {
 
@@ -212,6 +217,46 @@ public class Inventory {
 		for(Item i:inventory.toArrayList()) {
 			add(i);
 		}
+	}
+	
+	public static Inventory loadInventory(String filePath) {
+		FileReader reader = new FileReader(filePath);
+		String[] lines = reader.getLines();
+		Inventory inventory = new Inventory();
+		
+		String concat = "";
+		
+		for (String s : lines) {
+			concat += s + "\n";
+		}
+		
+		JSONObject obj = new JSONObject(concat);
+		JSONArray items = obj.getJSONArray("items");
+		
+
+		for (int i = 0; i < items.length(); i++) {
+			JSONObject curr = items.getJSONObject(i);
+			
+			ArrayList<String> descriptions = new ArrayList<String>();
+			JSONArray JSONDescriptions = curr.getJSONArray("descriptions");
+			for(int j = 0; j<JSONDescriptions.length(); j++) {
+				descriptions.add(JSONDescriptions.getString(j));
+			}
+			Item item = new Item(curr.getString("name"), curr.getDouble("weight"), descriptions);
+			if(curr.getString("type").equals("food")) {
+				Food food = new Food(item, curr.getDouble("foodValue"), curr.getDouble("waterValue"));
+				inventory.add(food);
+			} else if(curr.getString("type").equals("health")) {
+				Health health = new Health(item, curr.getDouble("healthValue"));
+				inventory.add(health);
+			} else if(curr.getString("type").equals("weapon")) {
+				Weapon weapon = new Weapon(item, curr.getDouble("damage"));
+				inventory.add(weapon);
+			} else
+				inventory.add(item);
+
+		}
+		return inventory;
 	}
 
 

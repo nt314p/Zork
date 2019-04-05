@@ -8,4 +8,8 @@ public class Wall extends Side {
 		super(isExit);
 	}
 	
+	public String toString() {
+		return getClass().getSimpleName();
+	}
+	
 }

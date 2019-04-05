@@ -7,5 +7,9 @@ public class Opening extends Side {
 	public Opening() {
 		super(isExit);
 	}
+	
+	public String toString() {
+		return getClass().getSimpleName();
+	}
 
 }

@@ -29,6 +29,10 @@ public class Door extends Side{
 		updateDoor();
 	}
 	
+	public String toString() {
+		return "Door: " + isOpen() + ", " + isUnlocked();
+	}
+	
 	
 	public void open() {
 		if(unlocked) {

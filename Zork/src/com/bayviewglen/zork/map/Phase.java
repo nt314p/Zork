@@ -25,8 +25,4 @@ public class Phase {
 		return this.phaseName.equals(phase.getPhaseName());
 	}
 	
-	public int indexOf(Map map) {
-		return maps.indexOf(map);
-	}	
-	
 }

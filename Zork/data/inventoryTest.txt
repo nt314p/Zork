@@ -1,0 +1,49 @@
+{
+	"items": [
+		{
+			"type": "weapon",
+			"damage": "0.67",
+			"name": "textbook",
+			"weight": "5.4",
+			"descriptions": [
+				"green",
+				"large",
+				"circle"
+			]
+		},
+		{
+			"type": "item",
+			"name": "table",
+			"weight": "53.8",
+			"descriptions": []		
+		},
+		{
+			"type": "item",
+			"name": "textbook",
+			"weight": "5.4",
+			"descriptions": [
+				"purple",
+				"small",
+				"circle"
+			]
+		},
+		{
+			"type": "weapon",
+			"damage": "0.4",
+			"name": "textbook",
+			"weight": "5.7",
+			"descriptions": [
+				"green",
+				"large",
+				"circle"
+			]
+		},
+		{
+			"type": "health",
+			"healthValue": "0.9",
+			"name": "bandage",
+			"weight": "5.4",
+			"descriptions": []
+		}
+	]
+}

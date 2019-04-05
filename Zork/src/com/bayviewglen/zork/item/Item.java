@@ -7,33 +7,33 @@ import java.util.ArrayList;
 
 public class Item implements Comparable<Item> {
 
-	private String itemName;
-	private double itemWeight;
+	private String name;
+	private double weight;
 	private ArrayList<String> descriptions;
 
-	public Item(String itemName, double itemWeight, ArrayList<String> descriptions) {
-		this.itemWeight = itemWeight;
-		this.itemName = itemName;
+	public Item(String name, double weight, ArrayList<String> descriptions) {
+		this.weight = weight;
+		this.name = name;
 		this.descriptions = descriptions;
 	}
 	
-	public Item(String itemName, double itemWeight) {
-		this.itemWeight = itemWeight;
-		this.itemName = itemName;
+	public Item(String name, double weight) {
+		this.weight = weight;
+		this.name = name;
 	}
 	
 	public Item(Item item) {
-		this.itemWeight = item.getWeight();
-		this.itemName = item.getName();
+		this.weight = item.getWeight();
+		this.name = item.getName();
 		this.descriptions = item.getDescriptions();
 	}
 
 	public double getWeight() {
-		return itemWeight;
+		return weight;
 	}
 
 	public String getName() {
-		return itemName;
+		return name;
 	}
 	
 	public ArrayList<String> getDescriptions(){
@@ -68,7 +68,7 @@ public class Item implements Comparable<Item> {
 	 * @return true if they have the same name and weight
 	 */
 	public boolean equals(Item item) {
-		return itemName.equals(item.itemName) && itemWeight == item.itemWeight;
+		return name.equals(item.name) && weight == item.weight;
 	}
 	
 	/**
@@ -89,13 +89,26 @@ public class Item implements Comparable<Item> {
 	}
 
 	public int compareTo(Item item) {
-		int temp = itemName.compareTo(item.itemName);
+		int temp = name.compareTo(item.name);
 		switch (temp) {
 		case 0:
-			return (int)Math.round(item.itemWeight - itemWeight);
+			return (int)Math.round(item.weight - weight);
 		default:
 			return temp;
 		}
+	}
+
+	public String toString() {
+		String str = name;
+		str += ", " + weight + "lbs";
+
+		if(descriptions != null) {
+			for (int i = 0; i < descriptions.size(); i++) {
+				str += ", " + descriptions.get(i);
+			}
+		}
+		str += ".";
+		return str;
 	}
 
 }

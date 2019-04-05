@@ -1,18 +1,25 @@
 package com.bayviewglen.zork.item;
 
+import java.util.ArrayList;
+
 public class Health extends Item{
 
 	private double healthValue;// ex. bandages, repairing, etc.
 	
-	public Health(String itemName, double itemWeight, double healthValue) {
-		super(itemName, itemWeight, null);
+	public Health(String name, double weight, ArrayList<String> descriptions, double healthValue) {
+		super(name, weight, descriptions);
 		this.healthValue = healthValue;
 	}
 	
 	
 	public Health(Health health) {
-		super(health.getName(), health.getWeight(), null);
+		super(health.getName(), health.getWeight(), health.getDescriptions());
 		this.healthValue = health.healthValue;
+	}
+	
+	public Health(Item item, double healthValue) {
+		super(item.getName(), item.getWeight(), item.getDescriptions());
+		this.healthValue = healthValue;
 	}
 
 
@@ -30,6 +37,13 @@ public class Health extends Item{
 	 */
 	public double getHealthValue() {
 		return this.healthValue;
+	}
+	
+	public String toString() {
+		String str = super.toString();
+		str += "\nHealth value: " + healthValue*100 + "%";
+
+		return str;
 	}
 	
 }

@@ -17,15 +17,17 @@ public class Zork {
 		inventory.add(new Item("hello", 6.5, null));
 		inventory.add(new Item("hi", 5.5, null));
 		inventory.add(new Item("hello", 7.5, null));
-		System.out.println(inventory);
+		//System.out.println(inventory);
 		
 		Map map = new Map("mapName",10,10,10);
 		
-		map.set(new Room("room name", "room description"), 3.5, 6, 0);
-		System.out.println(map.get(0,  3.5,  6).getClass().getSimpleName().equals("Room"));
-		System.out.println(map.get(0,  3.5,  6).getClass().getSimpleName().equals("Wall"));
+		map.set(new Room("room name", "room description"), 0, 3.5, 6);
+		System.out.println(map.get(0,  3.5,  6) instanceof Room);
+		System.out.println(map.get(0,  3.5,  6) instanceof Wall);
 		
-	
+		
+		inventory = Inventory.loadInventory("data/inventoryTest.txt");
+		System.out.println(inventory);
 		
 		//Game game = new Game();
 		//game.play();

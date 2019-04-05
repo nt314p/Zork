@@ -1,50 +1,55 @@
 package com.bayviewglen.zork.item;
 
+import java.util.ArrayList;
+
 public class Food extends Item {
 	
 	private double foodValue;
 	private double waterValue;
 	
-	public Food(String itemName, double itemWeight, double foodValue, double waterValue) {
-		super(itemName, itemWeight, null);
+	public Food(String name, double weight, ArrayList<String> descriptions, double foodValue, double waterValue) {
+		super(name, weight, descriptions);
 		this.foodValue = foodValue;
 	}
 	
 	public Food(Food food) {
-		super(food.getName(), food.getWeight(), null);
+		super(food.getName(), food.getWeight(), food.getDescriptions());
 		this.foodValue = food.foodValue;
 		this.waterValue = food.waterValue;
 	}
+	
+	public Food(Item item, double foodValue, double waterValue) {
+		super(item.getName(), item.getWeight(), item.getDescriptions());
+		this.foodValue = foodValue;
+		this.waterValue = waterValue;
+	}
+	
+	public String toString() {
+		String str = super.toString();
+		if(foodValue > 0)
+			str += "\nFood value: " + foodValue*100 + "%";
+		if(waterValue > 0)
+		str += "\nWater value: " + waterValue*100 + "%";
+
+		return str;
+	}
 
 
-	/**
-	 * sets the food value of a food to a different number
-	 * @param foodValue the updated food value
-	 */
 	public void setFoodValue(double foodValue) {
 		this.foodValue = foodValue;
 	}	
 	
-	/**
-	 * 
-	 * @return the value of the food - this is how much it boosts your foodMeter when you consume it
-	 */
+
 	public double getFoodValue() {
 		return this.foodValue;
 	}
 	
-	/**
-	 * sets the water value of a food to a different number
-	 * @param waterValue the updated water value
-	 */
+
 	public void setWaterValue(double waterValue) {
 		this.waterValue = waterValue;
 	}	
 	
-	/**
-	 * 
-	 * @return the value of the water - this is how much it boosts your waterMeter when you consume it
-	 */
+
 	public double getWaterValue() {
 		return this.waterValue;
 	}

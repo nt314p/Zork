@@ -14,6 +14,13 @@ public class Room extends Place{
 	public Room(String roomName, String description) {
 		this.roomName = roomName;
 		this.description = description;
+		this.roomItems = new Inventory();
+	}
+	
+	public Room(String roomName, String description, Inventory inventory) {
+		this.roomName = roomName;
+		this.description = description;
+		this.roomItems = inventory;
 	}
 	
 	public void setRoomItems(Inventory roomItems) {
