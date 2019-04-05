@@ -113,9 +113,9 @@ public class Inventory {
 				continue;
 			
 			int num = getNumMultiples(j);
-			String itemName = j.getItemName();
+			String itemName = j.getName();
 			String multiples = num>1 ? "(" + getNumMultiples(j) + "x):" : ":";
-			String weight = String.format("%.2f kg", j.getItemWeight());
+			String weight = String.format("%.2f kg", j.getWeight());
 			String each = num>1? " each" : "";
 			
 			String part1 = itemName + multiples;
@@ -135,7 +135,7 @@ public class Inventory {
 	public double getTotalWeight() {
 		double count = 0;
 		for (Item i : items) {
-			count += i.getItemWeight();
+			count += i.getWeight();
 		}
 		return count;
 	}

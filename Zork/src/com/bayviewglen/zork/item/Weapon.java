@@ -12,7 +12,7 @@ public class Weapon extends Item{
 	}
 	
 	public Weapon(Weapon weapon) {
-		super(weapon.getItemName(), weapon.getItemWeight(), null);
+		super(weapon.getName(), weapon.getWeight(), null);
 		this.damage = weapon.damage;
 		this.range = weapon.range;
 	}

@@ -11,7 +11,7 @@ public class Health extends Item{
 	
 	
 	public Health(Health health) {
-		super(health.getItemName(), health.getItemWeight(), null);
+		super(health.getName(), health.getWeight(), null);
 		this.healthValue = health.healthValue;
 	}
 

@@ -23,16 +23,16 @@ public class Item implements Comparable<Item> {
 	}
 	
 	public Item(Item item) {
-		this.itemWeight = item.getItemWeight();
-		this.itemName = item.getItemName();
+		this.itemWeight = item.getWeight();
+		this.itemName = item.getName();
 		this.descriptions = item.getDescriptions();
 	}
 
-	public double getItemWeight() {
+	public double getWeight() {
 		return itemWeight;
 	}
 
-	public String getItemName() {
+	public String getName() {
 		return itemName;
 	}
 	

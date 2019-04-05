@@ -2,14 +2,13 @@ package com.bayviewglen.zork.main;
 
 import java.util.ArrayList;
 
-import com.bayviewglen.zork.command.CommandWords;
-import com.bayviewglen.zork.command.Parser;
+import com.bayviewglen.zork.command.*;
+import com.bayviewglen.zork.item.Item;
 import com.bayviewglen.zork.map.*;
 
 /**
  * 
  * @authors bmerbaum, ntong, eelbaz
- * @version final final final final final final final 5.3
  *
  */
 
@@ -30,6 +29,25 @@ public class Game{
 		phases = new ArrayList<Phase>();
 	}
 	
+	public static void processCommand(Command cmd) {
+		ArrayList<Item> interactableItems = player.getInteractableItems().toArrayList();
+		String[] params = cmd.getParameters();
+		ArrayList<Item> commandableItems = new ArrayList<Item>();
+		for (Item i : interactableItems) { // iterating over items
+			for (int j = 0; j < params.length; j++) { // iterating over parameters
+				if (i.getName().compareToIgnoreCase(params[j]) == 0) {
+					commandableItems.add(i);
+				}
+			}
+		}
+		/*
+		java.lang.reflect.Method method;
+		try {
+			  method = i.getClass().getMethod(methodName, param1.class, param2.class, ..);
+			} catch (SecurityException e) { ... }
+			  catch (NoSuchMethodException e) { ... }*/
+	}
+		
 	public static int getTurn() {
 		return turn;
 	}

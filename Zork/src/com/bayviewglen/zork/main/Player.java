@@ -51,14 +51,14 @@ public class Player extends Character{
 		if(getInventory().remove(item))
 			getInventory().add(item);
 		else
-			System.out.println(character.getName() + " does not have " + item.getItemName());
+			System.out.println(character.getName() + " does not have " + item.getName());
 	}
 	
 	public void give(Character character, Item item) {
 		if(getInventory().remove(item))
 			character.getInventory().add(item);
 		else
-			System.out.println("You do not have " + item.getItemName());
+			System.out.println("You do not have " + item.getName());
 	}
 	
 	public void hit(Character character, Weapon weapon) {

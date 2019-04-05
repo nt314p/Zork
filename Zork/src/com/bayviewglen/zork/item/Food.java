@@ -11,7 +11,7 @@ public class Food extends Item {
 	}
 	
 	public Food(Food food) {
-		super(food.getItemName(), food.getItemWeight(), null);
+		super(food.getName(), food.getWeight(), null);
 		this.foodValue = food.foodValue;
 		this.waterValue = food.waterValue;
 	}

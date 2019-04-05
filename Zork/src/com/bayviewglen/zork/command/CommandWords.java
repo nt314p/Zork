@@ -30,6 +30,7 @@ public class CommandWords {
 	/**
 	 * initialize the command words into an arrayList
 	 */
+	@SuppressWarnings("unchecked")
 	public static void initialize() {
 		String[] lines = fReader.getLines();
 

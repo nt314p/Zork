@@ -15,7 +15,7 @@ public class Parser {
 	private final String prompt = ">>";
 
 	public Parser() {
-
+		
 	}
 
 	/**
@@ -50,8 +50,6 @@ public class Parser {
 				commandPhrase += " ";
 			}
 			commandPhrase += words[i - 1]; // add the next word in the input
-
-
 			
 			String tmpCommand = CommandWords.isCommand(commandPhrase);
 			if (tmpCommand != null) {
