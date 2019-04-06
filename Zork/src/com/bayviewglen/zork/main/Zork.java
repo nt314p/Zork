@@ -10,7 +10,6 @@ public class Zork {
 		//testInventory();
 		//testInventoryLoader();
 		//testMap();
-
 		Game game = new Game();
 		//game.play();
 		
@@ -40,6 +39,8 @@ public class Zork {
 	}
 	
 	public static void testMap() {
+		Map myMap = Map.loadMap("data/jasontest.json");
+		
 		Map map = new Map("mapName",10,10,10);
 		map.set(new Room("room name", "room description"), 0, 3.5, 6);
 		System.out.println(map.get(0,  3.5,  6) instanceof Room);

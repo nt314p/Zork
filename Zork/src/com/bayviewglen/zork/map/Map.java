@@ -288,9 +288,6 @@ public class Map {
 		
 		JSONObject obj = new JSONObject(concat);
 		String mapName = obj.getString("name");
-		String startCoords = obj.getString("startcoords");
-		String endCoords = obj.getString("endcoords");
-		
 		
 		JSONArray places = obj.getJSONArray("places");
 		
@@ -302,7 +299,6 @@ public class Map {
 					maxCoords[j] = coords[j];
 			}
 		}
-		
 		
 		Map map = new Map(mapName, maxCoords[0], maxCoords[1], maxCoords[2]);
 		
@@ -317,6 +313,14 @@ public class Map {
 				Door d;
 				
 				try {
+					JSONObject keyInfo = curr.getJSONObject("key");
+					key = new Key(keyInfo.getString("name"), keyInfo.getDouble("weight"), null, keyInfo.getString("code"));
+				} catch(JSONException ex) {
+					key = null;
+				}
+				
+				
+				/*try {
 					ArrayList<String> descriptions = new ArrayList<String>();
 					JSONArray JSONDescriptions = curr.getJSONArray("keydescriptions");
 					for(int j = 0; j<JSONDescriptions.length(); j++) {
@@ -325,7 +329,7 @@ public class Map {
 					key = new Key(curr.getString("keyname"), curr.getInt("itemweight"), null, curr.getString("keycode"));
 				} catch(JSONException ex) {
 					key = null;
-				}
+				}*/
 				
 				try {
 					d = new Door(curr.getString("name"), curr.getBoolean("open"), curr.getBoolean("locked"), key);
@@ -336,6 +340,14 @@ public class Map {
 				map.set(d, coords[0], coords[1], coords[2]);
 			}
 		}
+		
+		String startCoords = obj.getString("startcoords");
+		double[] start = readCoords(startCoords);
+		map.setCheckpoint(map.getRoom(start[0], start[1], start[2]));
+		
+		String endCoords = obj.getString("endcoords");
+		double[]end = readCoords(endCoords);
+		map.setGoal(map.getRoom(end[0], end[1], end[2]));
 
 		return map;
 	}
