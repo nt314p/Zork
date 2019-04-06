@@ -1,11 +1,12 @@
 package com.bayviewglen.zork.item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Key extends Item{
 	String code;
 	
-	public Key(String name, double weight, ArrayList<String> descriptions, String code) {
+	public Key(String name, double weight, HashMap<String, String> descriptions, String code) {
 		super(name, weight, descriptions);
 		this.code = code;
 	}

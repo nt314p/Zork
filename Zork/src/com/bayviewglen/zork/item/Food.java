@@ -1,13 +1,14 @@
 package com.bayviewglen.zork.item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Food extends Item {
 	
 	private double foodValue;
 	private double waterValue;
 	
-	public Food(String name, double weight, ArrayList<String> descriptions, double foodValue, double waterValue) {
+	public Food(String name, double weight, HashMap<String, String> descriptions, double foodValue, double waterValue) {
 		super(name, weight, descriptions);
 		this.foodValue = foodValue;
 	}

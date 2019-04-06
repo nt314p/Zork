@@ -63,10 +63,18 @@ public class Room extends Place{
 	}
 	
 	/**
-	 * Get the description of the room
+	 * Get the short description of the room
 	 * @return the string description of the room
 	 */
-	public String getDescription() {
+	public String getShortDescription() {
+		return description;
+	}
+	
+	/**
+	 * Get the long description of the room
+	 * @return the string description of the room
+	 */
+	public String getLongDescription() {
 		return description;
 	}
 

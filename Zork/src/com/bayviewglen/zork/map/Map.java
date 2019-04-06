@@ -322,7 +322,7 @@ public class Map {
 					for(int j = 0; j<JSONDescriptions.length(); j++) {
 						descriptions.add(JSONDescriptions.getString(j));
 					}
-					key = new Key(curr.getString("keyname"), curr.getInt("itemweight"), descriptions, curr.getString("keycode"));
+					key = new Key(curr.getString("keyname"), curr.getInt("itemweight"), null, curr.getString("keycode"));
 				} catch(JSONException ex) {
 					key = null;
 				}

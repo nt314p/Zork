@@ -1,12 +1,13 @@
 package com.bayviewglen.zork.item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Weapon extends Item{
 	
 	private double damage; // out of 1
 	
-	public Weapon(String name, double weight, ArrayList<String> descriptions, double damage) {
+	public Weapon(String name, double weight, HashMap<String, String> descriptions, double damage) {
 		super(name, weight, descriptions);
 		this.damage = damage;
 	}

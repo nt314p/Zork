@@ -1,12 +1,13 @@
 package com.bayviewglen.zork.item;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Health extends Item{
 
 	private double healthValue;// ex. bandages, repairing, etc.
 	
-	public Health(String name, double weight, ArrayList<String> descriptions, double healthValue) {
+	public Health(String name, double weight, HashMap<String, String> descriptions, double healthValue) {
 		super(name, weight, descriptions);
 		this.healthValue = healthValue;
 	}

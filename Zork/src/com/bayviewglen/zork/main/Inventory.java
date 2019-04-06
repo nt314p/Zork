@@ -249,7 +249,7 @@ public class Inventory {
 			for(int j = 0; j<JSONDescriptions.length(); j++) {
 				descriptions.add(JSONDescriptions.getString(j));
 			}
-			Item item = new Item(curr.getString("name"), curr.getDouble("weight"), descriptions);
+			Item item = new Item(curr.getString("name"), curr.getDouble("weight"), null);
 			if(curr.getString("type").equals("food")) {
 				Food food = new Food(item, curr.getDouble("foodValue"), curr.getDouble("waterValue"));
 				inventory.add(food);
