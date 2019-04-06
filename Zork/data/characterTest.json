@@ -1,0 +1,40 @@
+{
+  "characters": [
+    {
+      "name": "creepy AI",
+      "inventory": "data/inventoryTest.json",
+      "phase": "0",
+      "map": "0",
+      "x": "0.5",
+      "y": "0.5",
+      "z": "0.5",
+       "health": "1",
+      "food": "0.6",
+    	"water": "0.4"
+    }, 
+    {
+      "name": "monster",
+      "inventory": "data/inventoryTest.json",
+      "phase": "0",
+      "map": "0",
+      "x": "0.5",
+      "y": "0.5",
+      "z": "0.5",
+      "health": "0.8",
+      "food": "1.6",
+      "water": "0.4"
+    }, 
+    {
+      "name": "Nick Tong",
+      "inventory": "data/inventoryTest.json",
+      "phase": "0",
+      "map": "0",
+      "x": "0.5",
+      "y": "0.5",
+      "z": "0.5",
+      "health": "0.8",
+      "food": "1.6",
+      "water": "0.4"
+    }
+  ] 
+}

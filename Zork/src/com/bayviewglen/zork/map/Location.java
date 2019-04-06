@@ -23,6 +23,10 @@ public class Location {
 	public Location() {
 		setStart();
 	}
+	
+	public Location(double[]location) {
+		set(location);
+	}
 
 	
 	public Phase getPhase() {
@@ -60,6 +64,19 @@ public class Location {
 		this.room = room;
 		if(checkLocationErrors())
 			throw new IllegalArgumentException("This location is invalid.");
+	}
+	
+	public void set(double[] location) {
+		try {
+			phase = Game.getPhases().get((int)location[0]);
+			map = phase.getMaps().get((int)location[1]);
+			room = map.getRoom(location[2], location[3], location[4]);
+		} catch (Exception IndexOutOfBoundsException) {
+			throw new IllegalArgumentException("This location is invalid (indexoutofbounds).");
+		}
+		if(checkLocationErrors())
+			throw new IllegalArgumentException("This location is invalid.");
+
 	}
 	
 	public void setStart() {

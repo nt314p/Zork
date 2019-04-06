@@ -32,6 +32,7 @@ public class Game{
 		CommandWords.initialize();
 		loadGame("data/gameTest.json");
 		player = new Player(new Inventory(), new Location());
+		characters = Character.loadCharacters("data/characterTest.json");
 	}
 	
 	public static void processCommand(Command cmd) {

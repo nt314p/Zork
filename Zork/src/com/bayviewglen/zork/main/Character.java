@@ -1,11 +1,15 @@
 package com.bayviewglen.zork.main;
 
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import com.bayviewglen.zork.item.*;
 import com.bayviewglen.zork.map.*;
 
 public class Character{
-	
-	
+
 	private Monitor healthMonitor;
 	private Monitor foodMonitor;
 	private Monitor waterMonitor;
@@ -15,7 +19,7 @@ public class Character{
 	private Location location;
 	
 
-	public Character(String name, Inventory inventory, Location location, int health, int food, int water) {
+	public Character(String name, Inventory inventory, Location location, double health, double food, double water) {
 		this.name = name;
 		this.inventory = inventory;
 		this.location = location;
@@ -97,5 +101,32 @@ public class Character{
 		str+= "Inventory: " + inventory.toString();
 		
 		return str;
+	}
+	
+	public static ArrayList<Character> loadCharacters(String filePath){
+		FileReader reader = new FileReader(filePath);
+		String[] lines = reader.getLines();
+		ArrayList<Character> characters = new ArrayList<Character>();
+		
+		String concat = "";
+		
+		for (String s : lines) {
+			concat += s + "\n";
+		}
+		
+		JSONObject obj = new JSONObject(concat);
+		JSONArray textCharacters = obj.getJSONArray("characters");
+		
+
+		for (int i = 0; i < textCharacters.length(); i++) {
+			JSONObject curr = textCharacters.getJSONObject(i);
+			
+			double[]coords = {curr.getDouble("phase"), curr.getDouble("map"), curr.getDouble("x"), curr.getDouble("y"), curr.getDouble("z")};
+			Location location = new Location(coords);
+			Inventory inventory = Inventory.loadInventory(curr.getString("inventory"));
+			Character c = new Character(curr.getString("name"), inventory, location, curr.getDouble("health"), curr.getDouble("food"), curr.getDouble("water"));
+			characters.add(c);
+		}
+		return characters;
 	}
 }
