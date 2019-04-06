@@ -6,7 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.bayviewglen.zork.item.Item;
+import com.bayviewglen.zork.item.*;
 import com.bayviewglen.zork.main.FileReader;
 
 import java.util.ArrayList;
@@ -291,7 +291,6 @@ public class Map {
 		String startCoords = obj.getString("startcoords");
 		String endCoords = obj.getString("endcoords");
 		
-		System.out.println(mapName);
 		
 		JSONArray places = obj.getJSONArray("places");
 		
@@ -304,7 +303,6 @@ public class Map {
 			}
 		}
 		
-		System.out.println(places.length());
 		
 		Map map = new Map(mapName, maxCoords[0], maxCoords[1], maxCoords[2]);
 		
@@ -315,11 +313,16 @@ public class Map {
 				double[] coords = readCoords(curr.getString("coords"));
 				map.set(r, coords[0], coords[1], coords[2]);
 			} else if (places.getJSONObject(i).getString("type").equals("door")) {
-				Item key;
+				Key key;
 				Door d;
 				
 				try {
-					key = new Item(curr.getString("keyname"), curr.getInt("itemweight"));
+					ArrayList<String> descriptions = new ArrayList<String>();
+					JSONArray JSONDescriptions = curr.getJSONArray("keydescriptions");
+					for(int j = 0; j<JSONDescriptions.length(); j++) {
+						descriptions.add(JSONDescriptions.getString(j));
+					}
+					key = new Key(curr.getString("keyname"), curr.getInt("itemweight"), descriptions, curr.getString("keycode"));
 				} catch(JSONException ex) {
 					key = null;
 				}

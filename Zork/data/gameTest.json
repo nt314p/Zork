@@ -1,0 +1,24 @@
+{
+  "phases": [
+    {
+      "name": "phase one",
+      "maps": [
+      	"data/jasontest.json",
+      	"data/jasontest.json",
+      	"data/jasontest.json"      
+      ]
+    }, 
+  	 {
+      "name": "phase two",
+      "maps": [
+      	"data/jasontest.json",
+      	"data/jasontest.json"      
+      ]
+    },  {
+      "name": "phase three",
+      "maps": [
+      	"data/jasontest.json"      
+      ]
+    }
+  ] 
+}

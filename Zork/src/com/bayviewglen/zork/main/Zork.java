@@ -26,10 +26,11 @@ public class Zork {
 		System.out.println(map.get(0,  3.5,  6) instanceof Wall);
 		
 		
-		inventory = Inventory.loadInventory("data/inventoryTest.txt");
+		inventory = Inventory.loadInventory("data/inventoryTest.json");
 		System.out.println(inventory);
+		System.out.println(inventory.get(0));
 		
-		//Game game = new Game();
+		Game game = new Game();
 		//game.play();
 		
 	}

@@ -1,16 +1,16 @@
 package com.bayviewglen.zork.map;
 
-import com.bayviewglen.zork.item.Item;
+import com.bayviewglen.zork.item.*;
 
 public class Door extends Side{
 	
 	private boolean open;
 	private boolean unlocked;
-	private Item key; // unlocked door = null key
+	private Key key; // unlocked door = null key
 	private String doorName;
 	
 
-	public Door(String doorName, boolean open, boolean unlocked, Item key) {
+	public Door(String doorName, boolean open, boolean unlocked, Key key) {
 		super(open);
 		this.doorName = doorName;
 		this.open = open;
@@ -85,7 +85,7 @@ public class Door extends Side{
 			System.out.println("You cannot lock a door without a key");
 	}
 	
-	public boolean unlock(Item key) {
+	public boolean unlock(Key key) {
 		if(unlocked)
 			return true;
 		
@@ -97,7 +97,7 @@ public class Door extends Side{
 		return false;		
 	}
 	
-	public Item getKey() {
+	public Key getKey() {
 		return key;
 	}
 	

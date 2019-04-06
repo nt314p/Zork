@@ -83,4 +83,10 @@ public class Player extends Character{
 		return roomsVisited;
 	}
 	
+	public String toString() {
+		String str = super.toString() + "\n";
+		str+= "Deaths: " + deaths;
+		return str;
+	}
+	
 }

@@ -17,7 +17,7 @@ public class Weapon extends Item{
 	}
 	
 	public Weapon(Item item, double damage) {
-		super(item.getName(), item.getWeight(), item.getDescriptions());
+		super(item);
 		this.damage = damage;
 	}
 	

@@ -86,4 +86,16 @@ public class Character{
 	public void heal(Health health) {	
 		healthMonitor.increase(health.getHealthValue());
 	}
+	
+	public String toString() {
+		String str = name + "'s Statistics:\n";
+		str+="Health: " + healthMonitor.get()*100 + "%\n";
+		str+="Food: " + foodMonitor.get()*100 + "%\n";
+		str+="Water: " + waterMonitor.get()*100 + "%\n\n";
+		
+		str+= location.toString() + "\n\n";
+		str+= "Inventory: " + inventory.toString();
+		
+		return str;
+	}
 }

@@ -2,21 +2,28 @@ package com.bayviewglen.zork.main;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.bayviewglen.zork.item.*;
-import com.bayviewglen.zork.map.*;
 
 
 public class Inventory {
 
-	private List<Item> items;
+	private ArrayList<Item> items;
 
 	public Inventory() {
 		items = new ArrayList<Item>();
+	}
+	
+	public Inventory(Inventory inventory) {
+		items = new ArrayList<Item>();
+		this.addAll(inventory);
+	}
+	
+	public Inventory(ArrayList<Item> items) {
+		this.items = items;
 	}
 
 	/**

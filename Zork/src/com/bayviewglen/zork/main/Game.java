@@ -2,8 +2,11 @@ package com.bayviewglen.zork.main;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import com.bayviewglen.zork.command.*;
-import com.bayviewglen.zork.item.Item;
+import com.bayviewglen.zork.item.*;
 import com.bayviewglen.zork.map.*;
 
 /**
@@ -15,7 +18,7 @@ import com.bayviewglen.zork.map.*;
 public class Game{
 
 	private static Parser parser;	
-	private static Player player = new Player(null, null);
+	private static Player player;
 	private static ArrayList<Phase> phases;
 	private static ArrayList<Character> characters;
 	
@@ -25,8 +28,10 @@ public class Game{
 
 	public Game() {
 		parser = new Parser();
-		CommandWords.initialize();
 		phases = new ArrayList<Phase>();
+		CommandWords.initialize();
+		loadGame("data/gameTest.json");
+		player = new Player(new Inventory(), new Location());
 	}
 	
 	public static void processCommand(Command cmd) {
@@ -83,6 +88,34 @@ public class Game{
 	
 	public static Player getPlayer() {
 		return player;
+	}
+	
+	public static void loadGame(String filePath) {
+		FileReader reader = new FileReader(filePath);
+		String[] lines = reader.getLines();
+		
+		String concat = "";
+		
+		for (String s : lines) {
+			concat += s + "\n";
+		}
+		
+		JSONObject obj = new JSONObject(concat);
+		JSONArray textPhases = obj.getJSONArray("phases");
+		
+
+		for (int i = 0; i < textPhases.length(); i++) {
+			JSONObject curr = textPhases.getJSONObject(i);
+			
+			ArrayList<Map> maps = new ArrayList<Map>();
+			JSONArray JSONMaps = curr.getJSONArray("maps");
+			
+			for(int j = 0; j<JSONMaps.length(); j++) {
+				maps.add(Map.loadMap(JSONMaps.getString(j)));
+			}
+			Phase phase = new Phase(curr.getString("name"), maps);
+			phases.add(phase);
+		}
 	}
 	
 }

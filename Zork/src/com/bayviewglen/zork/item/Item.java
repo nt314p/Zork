@@ -2,6 +2,8 @@ package com.bayviewglen.zork.item;
 
 import java.util.ArrayList;
 
+import com.bayviewglen.zork.main.Inventory;
+
 //The parent class for everything - all objects in the game, ones that can be picked up and ones
 //that are staionary, food, doorways, etc.
 
@@ -99,8 +101,9 @@ public class Item implements Comparable<Item> {
 	}
 
 	public String toString() {
-		String str = name;
-		str += ", " + weight + "lbs";
+		String str = name + ": ";
+		if(weight>0)
+			str +=  + weight + "lbs";
 
 		if(descriptions != null) {
 			for (int i = 0; i < descriptions.size(); i++) {
@@ -109,6 +112,11 @@ public class Item implements Comparable<Item> {
 		}
 		str += ".";
 		return str;
+	}
+	
+	public static Item loadItem(String filePath, int arrNum) {
+		Inventory inventory = Inventory.loadInventory(filePath);
+		return inventory.get(arrNum);
 	}
 
 }

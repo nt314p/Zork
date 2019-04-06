@@ -19,6 +19,10 @@ public class Location {
 		if(checkLocationErrors())
 			throw new IllegalArgumentException("This location is invalid.");
 	}
+	
+	public Location() {
+		setStart();
+	}
 
 	
 	public Phase getPhase() {
@@ -58,20 +62,26 @@ public class Location {
 			throw new IllegalArgumentException("This location is invalid.");
 	}
 	
+	public void setStart() {
+		this.phase = Game.getPhases().get(0);
+		this.map = phase.getMaps().get(0);
+		this.room = map.getCheckpoint();
+	}
+	
 	public boolean checkLocationErrors() {
-		if(phase.getMaps().indexOf(map) == -1)
+		if(getMapNum() == -1)
 			return true;
-		if(map.getCoords(room)==null)
+		if(getRoomCoords()==null)
 			return true;
 		return false;
 	}
 	
 	public boolean atLastPhase() {
-		return Game.getPhases().indexOf(phase) + 1 >= Game.getPhases().size();
+		return getPhaseNum() + 1 >= Game.getPhases().size();
 	}
 	
 	public boolean atLastMap() {
-		return phase.getMaps().indexOf(map) + 1 >= phase.getMaps().size();
+		return getMapNum() + 1 >= phase.getMaps().size();
 	}
 	
 	public boolean atMapGoal() {
@@ -144,21 +154,19 @@ public class Location {
 	
 	public void nextMap() {
 		ArrayList<Map> maps = phase.getMaps();
-		int mapIndex = phase.getMaps().indexOf(map);
 		if(atLastMap())
 			nextPhase();
 		else {
-			map = maps.get(mapIndex + 1);
+			map = maps.get(getMapNum() + 1);
 			room = map.getCheckpoint();
 		}
 	}
 	
 	public void nextPhase() {
-		int phaseIndex = Game.getPhases().indexOf(phase);
 		if(atLastPhase())
 			System.out.println("No more phases in the game - you win.");
 		else {
-			phase = Game.getPhases().get(phaseIndex+1);
+			phase = Game.getPhases().get(getPhaseNum()+1);
 			map = phase.getMaps().get(0);
 			room = map.getCheckpoint();
 		}
@@ -169,8 +177,8 @@ public class Location {
 	 */
 	public double [] getLocation() {
 		double[] location = new double[5];
-		location[0] = Game.getPhases().indexOf(phase);
-		location[1] = phase.getMaps().indexOf(map);		
+		location[0] = getPhaseNum();
+		location[1] = getMapNum();		
 		location[2] = map.getCoords(room)[0];
 		location[3] = map.getCoords(room)[1];
 		location[4] = map.getCoords(room)[2];
@@ -189,5 +197,25 @@ public class Location {
 	public void setPhase(Phase p) {
 		Map temp = p.getMaps().get(0);
 		set(p, temp, temp.getCheckpoint());
+	}
+	
+	public int getPhaseNum() {
+		return Game.getPhases().indexOf(phase);
+	}
+	
+	public int getMapNum() {
+		return phase.getMaps().indexOf(map);
+	}
+	
+	public double[]getRoomCoords(){
+		return map.getCoords(room);
+	}
+	
+	public String toString() {
+		String str = "Location:";
+		str += "\n\tPhase " + getPhaseNum() + ": " + phase.getPhaseName();
+		str += "\n\tMap " + getMapNum() + ": " + map.getMapName();
+		str+= "\n\tRoom: " + room.getRoomName();
+		return str;
 	}
 }

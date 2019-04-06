@@ -27,6 +27,12 @@
       "locked": true,
       "keyname": "yellowkey",
       "keyweight": "10",
+      "keycode": "the code",
+      "keydescriptions": [
+				"purple",
+				"small",
+				"circle"
+			],
       "description": "its covered in a green substance, appears to be mystery goo",
       "coords": "1,3,2"
     }, 
@@ -36,6 +42,12 @@
       "locked": true,
       "keyname": "greenkey",
       "keyweight": "15",
+      "keycode": "the code",
+      "keydescriptions": [
+				"purple",
+				"small",
+				"circle"
+			],
       "description": "it is hot",
       "coords": "1,7,3"
     }

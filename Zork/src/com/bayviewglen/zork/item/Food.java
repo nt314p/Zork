@@ -19,7 +19,7 @@ public class Food extends Item {
 	}
 	
 	public Food(Item item, double foodValue, double waterValue) {
-		super(item.getName(), item.getWeight(), item.getDescriptions());
+		super(item);
 		this.foodValue = foodValue;
 		this.waterValue = waterValue;
 	}

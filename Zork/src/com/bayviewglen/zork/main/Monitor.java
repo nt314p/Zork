@@ -91,7 +91,5 @@ public class Monitor {
 			meter = MONITOR_MAX;
 	}
 	
-	
-	
 
 }
