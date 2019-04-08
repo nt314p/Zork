@@ -23,7 +23,6 @@ public class Game{
 	private static ArrayList<Character> characters;
 	
 	private static int turn;
-	private static int turnsUntilDeath;
 	
 
 	public Game() {
@@ -33,6 +32,8 @@ public class Game{
 		loadGame("data/gameTest.json");
 		player = new Player(new Inventory(), new Location());
 		characters = Character.loadCharacters("data/characterTest.json");
+		
+		turn = 0;
 	}
 	
 	public static void processCommand(Command cmd) {
@@ -64,19 +65,6 @@ public class Game{
 	
 	public static void setTurn(int turn) {
 		Game.turn = turn;
-	}
-	
-	
-	public static int getTurnsUntilDeath() {
-		return turnsUntilDeath;
-	}
-	
-	public static void decrementTurnsUntilDeath() {
-		turnsUntilDeath--;
-	}
-	
-	public static void setTurnsUntilDeath(int x) {
-		turnsUntilDeath = x;
 	}
 	
 	public static ArrayList<Character> getCharacters() {
