@@ -6,21 +6,33 @@ public class Room extends Place{
 	private String roomName;
 	private String description;
 	private Inventory roomItems;
+	
+	private boolean isDeathRoom;
 
 	/**
 	 * Create a room described "description". Initially, it has no exits.
 	 * "description" is something like "a kitchen" or "an open court yard".
 	 */
-	public Room(String roomName, String description) {
+	public Room(String roomName, String description, boolean isDeathRoom) {
 		this.roomName = roomName;
 		this.description = description;
+		this.isDeathRoom = isDeathRoom;
 		this.roomItems = new Inventory();
 	}
 	
-	public Room(String roomName, String description, Inventory inventory) {
+	public Room(String roomName, String description, boolean isDeathRoom, Inventory inventory) {
 		this.roomName = roomName;
 		this.description = description;
+		this.isDeathRoom = isDeathRoom;
 		this.roomItems = inventory;
+	}
+	
+	public boolean isDeathRoom() {
+		return isDeathRoom;
+	}
+	
+	public void setDeathRoom(boolean isDeathRoom) {
+		this.isDeathRoom = isDeathRoom;
 	}
 	
 	public void setRoomItems(Inventory roomItems) {

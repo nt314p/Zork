@@ -64,7 +64,7 @@ public class Zork {
 		Map myMap = Map.loadMap("data/jasontest.json");
 		
 		Map map = new Map("mapName",10,10,10);
-		map.set(new Room("room name", "room description"), 0, 3.5, 6);
+		map.set(new Room("room name", "room description", false), 0, 3.5, 6);
 		System.out.println(map.get(0,  3.5,  6) instanceof Room);
 		System.out.println(map.get(0,  3.5,  6) instanceof Wall);
 	}

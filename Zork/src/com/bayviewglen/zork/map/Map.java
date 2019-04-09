@@ -304,11 +304,13 @@ public class Map {
 		
 		for (int i = 0; i < places.length(); i++) {
 			JSONObject curr = places.getJSONObject(i);
-			if (places.getJSONObject(i).getString("type").equals("room")) {
-				Room r = new Room(curr.getString("name"), curr.getString("description"));
+			String type = places.getJSONObject(i).getString("type");
+			if (type.equals("room") || type.equals("deathRoom")) {
+				boolean isDeath = type.equals("deathRoom");
+				Room r = new Room(curr.getString("name"), curr.getString("description"), isDeath);
 				double[] coords = readCoords(curr.getString("coords"));
 				map.set(r, coords[0], coords[1], coords[2]);
-			} else if (places.getJSONObject(i).getString("type").equals("door")) {
+			} else if (type.equals("door")) {
 				Key key;
 				Door d;
 				

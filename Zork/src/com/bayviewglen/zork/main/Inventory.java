@@ -41,6 +41,10 @@ public class Inventory {
 	}
 	
 	
+	
+	public boolean isInfiniteWeight() {
+		return maxWeight == Double.MAX_VALUE;
+	}
 
 	/**
 	 * formats an inventory list as an arrayList
@@ -181,18 +185,16 @@ public class Inventory {
 			return;
 		this.maxWeight += maxWeight;
 	}
-	
-	public boolean exceedsMaxWeight() {
-		return maxWeight>getTotalWeight();
-	}
 
 	/**
 	 * adds an item to the list
 	 * 
 	 * @param item the item you want to add to the list
 	 */
-	public void add(Item item) {
-		items.add(item);
+	public boolean add(Item item) {
+		if(canAdd(item))
+			items.add(item);
+		return canAdd(item);
 	}
 
 	/**
@@ -201,10 +203,18 @@ public class Inventory {
 	 * @param item    the item to add to the list
 	 * @param nCopies the number of times to add the item
 	 */
-	public void add(Item item, int nCopies) {
+	public int add(Item item, int nCopies) {
+		int added = 0;
+		
 		for (int i = 0; i < nCopies; i++) {
-			items.add(item);
+			if(add(item))
+				added++;
 		}
+		return added;
+	}
+	
+	public boolean canAdd(Item item) {
+		return item.getWeight() + getTotalWeight() <= maxWeight;
 	}
 
 	/**
