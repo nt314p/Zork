@@ -12,19 +12,35 @@ import com.bayviewglen.zork.item.*;
 public class Inventory {
 
 	private ArrayList<Item> items;
+	private double maxWeight;
 
 	public Inventory() {
 		items = new ArrayList<Item>();
+		maxWeight = Double.MAX_VALUE;
+	}
+	
+	public Inventory(double maxWeight) {
+		items = new ArrayList<Item>();
+		this.maxWeight = maxWeight;
 	}
 	
 	public Inventory(Inventory inventory) {
 		items = new ArrayList<Item>();
 		this.addAll(inventory);
+		maxWeight = inventory.maxWeight;
 	}
 	
 	public Inventory(ArrayList<Item> items) {
 		this.items = items;
+		this.maxWeight = Double.MAX_VALUE;
 	}
+	
+	public Inventory(ArrayList<Item> items, double maxWeight) {
+		this.items = items;
+		this.maxWeight = maxWeight;
+	}
+	
+	
 
 	/**
 	 * formats an inventory list as an arrayList
@@ -151,6 +167,24 @@ public class Inventory {
 		}
 		return count;
 	}
+	
+	public double getMaxWeight() {
+		return maxWeight;
+	}
+	
+	public void setMaxWeight(double maxWeight) {
+		this.maxWeight = maxWeight;
+	}
+	
+	public void increaseMaxWeight(double maxWeight) {
+		if(maxWeight == Double.MAX_VALUE)
+			return;
+		this.maxWeight += maxWeight;
+	}
+	
+	public boolean exceedsMaxWeight() {
+		return maxWeight>getTotalWeight();
+	}
 
 	/**
 	 * adds an item to the list
@@ -201,6 +235,12 @@ public class Inventory {
 			result = true;
 		}
 		return result;
+	}
+	
+	public void removeAll(Inventory inventory) {
+		for(Item i:inventory.toArrayList()) {
+			remove(i);
+		}
 	}
 
 	/**

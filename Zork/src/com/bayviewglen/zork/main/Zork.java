@@ -1,18 +1,40 @@
 package com.bayviewglen.zork.main;
 
+import java.util.ArrayList;
+
 import com.bayviewglen.zork.item.*;
 import com.bayviewglen.zork.map.*;
 
 public class Zork {
 	public static void main(String[] args) {
 		
+		//testRiddle();
 		//testSides();
 		//testInventory();
 		//testInventoryLoader();
 		//testMap();
+		
 		Game game = new Game();
 		//game.play();
 		
+	}
+	
+	public static void testRiddle() {
+		Riddle riddle = new Riddle("What is the answer?", "hi");
+		System.out.println(riddle.getAnswerChar());
+		
+		ArrayList<String> sup = new ArrayList<String>();
+		sup.add("hi");
+		sup.add("hey");
+		sup.add("wassup");
+		Riddle riddle2 = new Riddle("Sup", sup, 1);
+		System.out.println(riddle2);
+		System.out.println(riddle2.isAnswer(1));
+		System.out.println(riddle2.displayAll());
+		
+		Riddle riddle3 = new Riddle("Sup", "hey");
+		System.out.println(riddle3.equals(riddle2));
+		System.out.println(riddle3.displayAll());
 	}
 	
 	public static void testSides() {

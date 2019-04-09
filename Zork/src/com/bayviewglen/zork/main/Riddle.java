@@ -4,11 +4,10 @@ import java.util.ArrayList;
 
 public class Riddle {
 	
-	final int ASCII_a = 97;
-	String question;
-	String answer;
+	private String question;
+	private String answer;
 	
-	ArrayList<String> choices;
+	private ArrayList<String> choices;
 	
 	public Riddle(String question, String answer) {
 		this.question = question;
@@ -25,13 +24,29 @@ public class Riddle {
 		}
 	}
 	
+	public Riddle(String question, ArrayList<String> choices, int ansIndex) {
+		this.question = question;
+		this.choices = choices;
+		if(choices.size() <= ansIndex)
+			throw new IndexOutOfBoundsException(ansIndex + " was out of bounds");
+		this.answer = choices.get(ansIndex);
+	}
+	
 	public String toString() {
 		String str = question + "\n";
 		if(hasChoices()) {
 			for(int i = 0; i<choices.size(); i++) {
-				str+= (char)(i+ASCII_a) + ": " + choices.get(i);
+				str+= (char)(i+'a') + ": " + choices.get(i) + "\n";
 			}
 		}
+		return str;
+	}
+	
+	public String displayAll() {
+		String str = toString();
+		str += hasChoices() ? "\n" : "";
+		str += "Answer: ";
+		str += hasChoices() ? getAnswerChar() : getAnswer();
 		return str;
 	}
 	
@@ -50,7 +65,7 @@ public class Riddle {
 		if(!hasChoices())
 			return false;
 		
-		int temp = (int)answer - ASCII_a;
+		int temp = (int)(answer - 'a');
 		return isAnswer(choices.get(temp));
 	}
 	
@@ -67,8 +82,10 @@ public class Riddle {
 	}
 	
 	public int getAnswerIndex() {
-		if(!hasChoices())
+		if(!hasChoices()) {
+			System.out.println("This riddle doesn't have choices.");
 			return -1;
+		}
 		
 		return choices.indexOf(answer);
 	}
@@ -76,9 +93,9 @@ public class Riddle {
 	public char getAnswerChar() {
 		int temp = getAnswerIndex();
 		if(temp == -1)
-			return (char)temp;
-		
-		return (char)(temp + ASCII_a);
+			return ' ';
+					
+		return (char)(temp + 'a');
 	}
 	
 	public void setAnswer(String answer) {
