@@ -24,5 +24,6 @@ public class Phase {
 	public boolean equals(Phase phase) {
 		return this.phaseName.equals(phase.getPhaseName());
 	}
+
 	
 }

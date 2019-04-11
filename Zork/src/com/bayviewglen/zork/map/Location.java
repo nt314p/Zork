@@ -7,15 +7,12 @@ import com.bayviewglen.zork.main.Game;
 
 public class Location {
 	
-	Phase phase;
-	Map map;
-	Room room;
+
+	double[] location;
 		
 	public Location(Phase phase, Map map, Room room) {
-		this.phase = phase;
-		this.map = map;
-		this.room = room;
-		
+		set(phase, map, room);
+
 		if(checkLocationErrors())
 			throw new IllegalArgumentException("This location is invalid.");
 	}
@@ -30,15 +27,15 @@ public class Location {
 
 	
 	public Phase getPhase() {
-		return phase;
+		return Game.getPhases().get((int)location[0]);
 	}
 	
 	public Map getMap() {
-		return map;
+		return getPhase().getMaps().get((int)location[1]);
 	}
 	
 	public Room getRoom() {
-		return room;
+		return getMap().getRoom(location[2], location[3], location[4]);
 	}
 	
 	public boolean checkAndUpdate() {
@@ -58,37 +55,41 @@ public class Location {
 	}
 	
 	
+	/**
+	 * @return location [phase, map, x, y, z]
+	 */
+	public double [] get() {
+		return location;
+	}
+	
+	
 	public void set(Phase phase, Map map, Room room) {
-		this.phase = phase;
-		this.map = map;
-		this.room = room;
+		location[0] = getPhaseNum(phase);
+		location[1] = getMapNum(map);
+		location[2] = map.getCoords(room)[2];
+		location[3] = map.getCoords(room)[3];
+		location[4] = map.getCoords(room)[4];
 		if(checkLocationErrors())
 			throw new IllegalArgumentException("This location is invalid.");
 	}
 	
 	public void set(double[] location) {
-		try {
-			phase = Game.getPhases().get((int)location[0]);
-			map = phase.getMaps().get((int)location[1]);
-			room = map.getRoom(location[2], location[3], location[4]);
-		} catch (Exception IndexOutOfBoundsException) {
-			throw new IllegalArgumentException("This location is invalid (indexoutofbounds).");
-		}
+		this.location = location;
 		if(checkLocationErrors())
 			throw new IllegalArgumentException("This location is invalid.");
 
 	}
 	
 	public void setStart() {
-		this.phase = Game.getPhases().get(0);
-		this.map = phase.getMaps().get(0);
-		this.room = map.getCheckpoint();
+		location[0] = 0;
+		location[1] = 0;
+		setRoom(getMap().getCheckpoint());
 	}
 	
 	public boolean checkLocationErrors() {
 		if(getMapNum() == -1)
 			return true;
-		if(getRoomCoords()==null)
+		if(getRoom()==null)
 			return true;
 		return false;
 	}
@@ -98,11 +99,11 @@ public class Location {
 	}
 	
 	public boolean atLastMap() {
-		return getMapNum() + 1 >= phase.getMaps().size();
+		return getMapNum() + 1 >= getPhase().getMaps().size();
 	}
 	
 	public boolean atMapGoal() {
-		return room.equals(map.getGoal());
+		return getRoom().equals(getMap().getGoal());
 	}
 	
 	public boolean atPhaseGoal() {
@@ -114,68 +115,68 @@ public class Location {
 	}
 	
 	public boolean atMapCheckpoint() {
-		return room.equals(map.getCheckpoint());
+		return getRoom().equals(getMap().getCheckpoint());
 	}
 	
 	public void resetToCheckpoint() {
-		room = map.getCheckpoint();
+		setRoom(getMap().getCheckpoint());
 	}
 	
 	public boolean north() {
-		if(map.isExit('n', room))
+		if(getMap().isExit('n', getRoom()))
 			return false;
 
-		this.set(phase, map, map.getNextRoom('n', room));
+		this.set(getPhase(), getMap(), getMap().getNextRoom('n', getRoom()));
 		return true;
 	}
 	
 	public boolean south() {
-		if(map.isExit('s', room))
+		if(getMap().isExit('s', getRoom()))
 			return false;
 
-		this.set(phase, map, map.getNextRoom('s', room));
+		this.set(getPhase(), getMap(), getMap().getNextRoom('s', getRoom()));
 		return true;
 	}
 	
 	public boolean east() {
-		if(map.isExit('e', room))
+		if(getMap().isExit('e', getRoom()))
 			return false;
 
-		this.set(phase, map, map.getNextRoom('e', room));
+		this.set(getPhase(), getMap(), getMap().getNextRoom('e', getRoom()));
 		return true;
 	}
 	
 	public boolean west() {
-		if(map.isExit('w', room))
+		if(getMap().isExit('w', getRoom()))
 			return false;
 
-		this.set(phase, map, map.getNextRoom('w', room));
+		this.set(getPhase(), getMap(), getMap().getNextRoom('w', getRoom()));
 		return true;
 	}
 	
 	public boolean up() {
-		if(map.isExit('u', room))
+		if(getMap().isExit('u', getRoom()))
 			return false;
 
-		this.set(phase, map, map.getNextRoom('u', room));
+		this.set(getPhase(), getMap(), getMap().getNextRoom('u', getRoom()));
 		return true;
 	}
 	
 	public boolean down() {
-		if(map.isExit('d', room))
+		if(getMap().isExit('d', getRoom()))
 			return false;
 
-		this.set(phase, map, map.getNextRoom('d', room));
+		this.set(getPhase(), getMap(), getMap().getNextRoom('d', getRoom()));
 		return true;
 	}
 	
 	public void nextMap() {
-		ArrayList<Map> maps = phase.getMaps();
+		ArrayList<Map> maps = getPhase().getMaps();
 		if(atLastMap())
 			nextPhase();
 		else {
-			map = maps.get(getMapNum() + 1);
-			room = map.getCheckpoint();
+			location[1] = getMapNum() + 1;
+			setRoom(getMap().getCheckpoint());
 		}
 	}
 	
@@ -183,32 +184,19 @@ public class Location {
 		if(atLastPhase())
 			System.out.println("No more phases in the game - you win.");
 		else {
-			phase = Game.getPhases().get(getPhaseNum()+1);
-			map = phase.getMaps().get(0);
-			room = map.getCheckpoint();
-		}
+			location[0] = getPhaseNum() + 1;
+			location[1] = 0;
+			setRoom(getMap().getCheckpoint());
+			}
 	}
-	
-	/**
-	 * @return location [phase, map, x, y, z]
-	 */
-	public double [] getLocation() {
-		double[] location = new double[5];
-		location[0] = getPhaseNum();
-		location[1] = getMapNum();		
-		location[2] = map.getCoords(room)[0];
-		location[3] = map.getCoords(room)[1];
-		location[4] = map.getCoords(room)[2];
-		return location;
-	}
-	
+
 
 	public void setRoom(Room r) {
-		set(phase, map, r);
+		set(getPhase(), getMap(), r);
 	}
 	
 	public void setMap(Map m) {
-		set(phase, m, map.getCheckpoint());
+		set(getPhase(), m, getMap().getCheckpoint());
 	}
 	
 	public void setPhase(Phase p) {
@@ -216,23 +204,31 @@ public class Location {
 		set(p, temp, temp.getCheckpoint());
 	}
 	
-	public int getPhaseNum() {
+	public int getPhaseNum(Phase phase) {
 		return Game.getPhases().indexOf(phase);
 	}
 	
-	public int getMapNum() {
+	public int getPhaseNum() {
+		return getPhaseNum(getPhase());
+	}
+	
+	public int getMapNum(Phase phase, Map map) {
 		return phase.getMaps().indexOf(map);
 	}
 	
-	public double[]getRoomCoords(){
-		return map.getCoords(room);
+	public int getMapNum(Map map) {
+		return getPhase().getMaps().indexOf(map);
+	}
+	
+	public int getMapNum() {
+		return getMapNum(getMap());
 	}
 	
 	public String toString() {
 		String str = "Location:";
-		str += "\n\tPhase " + getPhaseNum() + ": " + phase.getPhaseName();
-		str += "\n\tMap " + getMapNum() + ": " + map.getMapName();
-		str+= "\n\tRoom: " + room.getRoomName();
+		str += "\n\tPhase " + getPhaseNum() + ": " + getPhase().getPhaseName();
+		str += "\n\tMap " + getMapNum() + ": " + getMap().getMapName();
+		str+= "\n\tRoom: " + getRoom().getRoomName();
 		return str;
 	}
 }

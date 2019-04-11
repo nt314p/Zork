@@ -65,13 +65,13 @@ public class Zork {
 		Map myMap = Map.loadMap("data/jasontest.json");
 		
 		Map map = new Map("mapName",10,10,10);
-		map.set(new Room("room name", "room description", false), 0, 3.5, 6);
+		map.set(new Room("room name", "room description",null, false), 0, 3.5, 6);
 		System.out.println(map.get(0,  3.5,  6) instanceof Room);
 		System.out.println(map.get(0,  3.5,  6) instanceof Wall);
 	}
 	
 	public static void testRoomDescription() {
-		Room r = new Room("Test room", "You are in a test room.");
+		Room r = new Room("Test room", "You are in a test room.", null);
 		Item i1 = new Item("beer bottle", 0.5);
 		Item i2 = new Item("lamp", 0.5);
 		Item i3 = new Item("anchor", 0.5);

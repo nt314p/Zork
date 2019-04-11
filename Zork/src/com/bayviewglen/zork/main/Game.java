@@ -21,8 +21,7 @@ public class Game{
 	private static Player player;
 	private static ArrayList<Phase> phases;
 	private static ArrayList<Character> characters;
-	private static Phase currentPhase;	
-	
+
 	private static int turn;
 	
 

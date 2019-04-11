@@ -1,5 +1,7 @@
 package com.bayviewglen.zork.map;
 
+import java.util.HashMap;
+
 import com.bayviewglen.zork.item.Item;
 import com.bayviewglen.zork.main.*;
 
@@ -9,29 +11,33 @@ public class Room extends Place{
 	private Inventory roomItems;
 	
 	private boolean isDeathRoom;
+	private Location location;
 
 	/**
 	 * Create a room described "description". Initially, it has no exits.
 	 * "description" is something like "a kitchen" or "an open court yard".
 	 */
 	
-	public Room(String roomName, String description) {
+	public Room(String roomName, String description, Location location) {
 		this.roomName = roomName;
 		this.description = description;
+		this.location = location;
 		this.isDeathRoom = false;
 		this.roomItems = new Inventory();
 	}	
 	
-	public Room(String roomName, String description, boolean isDeathRoom) {
+	public Room(String roomName, String description, Location location, boolean isDeathRoom) {
 		this.roomName = roomName;
 		this.description = description;
+		this.location = location;
 		this.isDeathRoom = isDeathRoom;
 		this.roomItems = new Inventory();
 	}
 	
-	public Room(String roomName, String description, boolean isDeathRoom, Inventory inventory) {
+	public Room(String roomName, String description, Location location, boolean isDeathRoom, Inventory inventory) {
 		this.roomName = roomName;
 		this.description = description;
+		this.location = location;
 		this.isDeathRoom = isDeathRoom;
 		this.roomItems = inventory;
 	}
@@ -47,7 +53,10 @@ public class Room extends Place{
 	public void setRoomItems(Inventory roomItems) {
 		this.roomItems = roomItems;
 	}
-
+	
+	public Location getLocation() {
+		return location;
+	}
 	
 	/**
 	 * .equals method comparing 2 rooms - roomName and roomDescription
@@ -103,6 +112,7 @@ public class Room extends Place{
 			ret += currItem.getName();
 			ret += " " + currItem.getDescription("location") + ". ";
 		}
+		HashMap<java.lang.Character, Side> sides = location.getMap().getRoomSides(location.getRoom());
 		//Side[] sides = OH NO WHAT?? ROOM CAN'T ACCESS ITS OWN SIDES?? NO WAY!
 		return ret;
 	}

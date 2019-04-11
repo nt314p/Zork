@@ -307,8 +307,9 @@ public class Map {
 			String type = places.getJSONObject(i).getString("type");
 			if (type.equals("room") || type.equals("deathRoom")) {
 				boolean isDeath = type.equals("deathRoom");
-				Room r = new Room(curr.getString("name"), curr.getString("description"), isDeath);
 				double[] coords = readCoords(curr.getString("coords"));
+				Location location = new Location(coords);
+				Room r = new Room(curr.getString("name"), curr.getString("description"), location, isDeath);
 				map.set(r, coords[0], coords[1], coords[2]);
 			} else if (type.equals("door")) {
 				Key key;
