@@ -11,7 +11,8 @@ package com.bayviewglen.zork.map;
 public abstract class Side extends Place{
 	private boolean isExit;
 	
-	public Side(boolean isExit) {
+	public Side(Location location, boolean isExit) {
+		super(location);
 		this.isExit = isExit;
 	}
 	

@@ -39,9 +39,9 @@ public class Zork {
 	}
 	
 	public static void testSides() {
-		Side s = new Opening();
+		Side s = new Opening(new Location());
 		System.out.println(s.isExit());
-		s = new Wall();
+		s = new Wall(new Location());
 		System.out.println(s.isExit());
 	}
 	
@@ -64,10 +64,10 @@ public class Zork {
 	public static void testMap() {
 		Map myMap = Map.loadMap("data/jasontest.json");
 		
-		Map map = new Map("mapName",10,10,10);
-		map.set(new Room("room name", "room description",null, false), 0, 3.5, 6);
-		System.out.println(map.getPlace(0,  3.5,  6) instanceof Room);
-		System.out.println(map.getPlace(0,  3.5,  6) instanceof Wall);
+		Map map = new Map("mapName",new Coordinate(10,10,10));
+		map.set(new Room("room name", "room description",null, false), new Coordinate(0, 3.5, 6));
+		System.out.println(map.getPlace(new Coordinate(0,  3.5,  6)) instanceof Room);
+		System.out.println(map.getPlace(new Coordinate(0,  3.5,  6)) instanceof Wall);
 	}
 	
 	public static void testRoomDescription() {

@@ -33,8 +33,8 @@ public class Map {
 	 * @param checkpoint your starting point in the map
 	 * @param goal your ending point in the map
 	 */
-	public Map(String mapName, double x, double y, double z) {
-		map = new Place[(int) (x * 2)+1][(int) (y * 2)+1][(int) (z * 2)+1];
+	public Map(String mapName, Coordinate maxCoords) {
+		map = new Place[(int) (maxCoords.getX() * 2)+1][(int) (maxCoords.getY() * 2)+1][(int) (maxCoords.getZ() * 2)+1];
 		maps.add(this);
 	}
 
@@ -47,8 +47,8 @@ public class Map {
 	 * @param y the new y-value (north-south)
 	 * @param z the new z-value (up-down)
 	 */
-	public void set(Place p, double x, double y, double z) {
-		map[(int) (x * 2)][(int) (y * 2)][(int) (z * 2)] = p;
+	public void set(Place p, Coordinate coords) {
+		map[(int) (coords.getX() * 2)][(int) (coords.getY() * 2)][(int) (coords.getZ() * 2)] = p;
 	}
 
 	/**
@@ -60,21 +60,25 @@ public class Map {
 	 * @param z the z-value (up-down)
 	 * @return the place at the coordinates
 	 */
-	public Place getPlace(double x, double y, double z) {
+	public Place getPlace(Coordinate coords) {
 		try {
-			return map[(int) (x * 2)][(int) (y * 2)][(int) (z * 2)];
+			return map[(int) (coords.getX() * 2)][(int) (coords.getY() * 2)][(int) (coords.getZ() * 2)];
 		} catch (Exception IndexOutOfBoundsException) {
 			return null;
 		}
 
 	}
 	
-	public Room getRoom(double x, double y, double z) {
+	public Room getRoom(Coordinate coords) {
 		try {
-			return (Room)this.getPlace(x, y, z);
+			return (Room)this.getPlace(coords);
 		} catch (Exception InvalidCastException){
 			return null;			
 		}
+	}
+	
+	public Phase getPhase() {
+		return getPlace(new Coordinate(0,0,0)).getLocation().getPhase();
 	}
 
 	/**
@@ -85,10 +89,9 @@ public class Map {
 	 * @param z the z-value (up-down)
 	 * @return true if null
 	 */
-	public boolean isEmpty(double x, double y, double z) {
-		return map[(int) (x * 2)][(int) (y * 2)][(int) (z * 2)] == null;
+	public boolean isEmpty(Coordinate coords) {
+		return getPlace(coords) == null;
 	}
-
 	/**
 	 * get the coordinates (x,y,z) of a room with a simple sequential search method
 	 *  traversing through the 3D array
@@ -96,13 +99,13 @@ public class Map {
 	 * @param r the room you are looking for
 	 * @return the rooms coordinates, displayed in a double array (if the room isn't there return null)
 	 */
-	public double[] getCoords(Room r) {
+	public Coordinate getCoords(Room r) {
 
 		for (double i = 0.5; i < map.length*2; i++) {
 			for (double j = 0.5; j < map[(int)(i*2)].length*2; j++) {
 				for (double k = 0.5; k < map[(int)(i*2)][(int)(j*2)].length*2; k++) {
-						if(this.getRoom(i, j, k).equals(r))
-							return new double[] {i,j,k};
+						if(this.getRoom(new Coordinate(i, j, k)).equals(r))
+							return new Coordinate(i, j, k);
 				}
 			}
 		}
@@ -127,17 +130,17 @@ public class Map {
 	public HashMap<Character, Side> getRoomSides(Room r) {
 		HashMap<Character, Side> roomSides = new HashMap<Character, Side>();
 
-		double[] coords = this.getCoords(r);
-		int x = (int) (coords[0] * 2);
-		int y = (int) (coords[1] * 2);
-		int z = (int) (coords[2] * 2);
+		Coordinate coords = this.getCoords(r);
+		int x = (int) (coords.getX() * 2);
+		int y = (int) (coords.getY() * 2);
+		int z = (int) (coords.getZ() * 2);
 
-		roomSides.put('e', (Side) this.getPlace(x - 0.5, y, z));
-		roomSides.put('w', (Side) this.getPlace(x + 0.5, y, z));
-		roomSides.put('n', (Side) this.getPlace(x, y - 0.5, z));
-		roomSides.put('s', (Side) this.getPlace(x, y + 0.5, z));
-		roomSides.put('u', (Side) this.getPlace(x, y, z + 0.5));
-		roomSides.put('d', (Side) this.getPlace(x, y, z - 0.5));
+		roomSides.put('e', (Side) this.getPlace(new Coordinate(x - 0.5, y, z)));
+		roomSides.put('w', (Side) this.getPlace(new Coordinate(x + 0.5, y, z)));
+		roomSides.put('n', (Side) this.getPlace(new Coordinate(x, y - 0.5, z)));
+		roomSides.put('s', (Side) this.getPlace(new Coordinate(x, y + 0.5, z)));
+		roomSides.put('u', (Side) this.getPlace(new Coordinate(x, y, z + 0.5)));
+		roomSides.put('d', (Side) this.getPlace(new Coordinate(x, y, z - 0.5)));
 
 		return roomSides;
 
@@ -152,17 +155,17 @@ public class Map {
 		
 		HashMap<Character, Room> surroundingRooms = new HashMap<Character, Room>();
 
-		double[] coords = this.getCoords(r);
-		int x = (int) (coords[0] * 2);
-		int y = (int) (coords[1] * 2);
-		int z = (int) (coords[2] * 2);
+		Coordinate coords = this.getCoords(r);
+		int x = (int) (coords.getX() * 2);
+		int y = (int) (coords.getY() * 2);
+		int z = (int) (coords.getZ() * 2);
 		
-		surroundingRooms.put('e', (Room) this.getPlace(x - 1, y, z));
-		surroundingRooms.put('w', (Room) this.getPlace(x + 1, y, z));
-		surroundingRooms.put('n', (Room) this.getPlace(x, y - 1, z));
-		surroundingRooms.put('s', (Room) this.getPlace(x, y + 1, z));
-		surroundingRooms.put('u', (Room) this.getPlace(x, y, z + 1));
-		surroundingRooms.put('d', (Room) this.getPlace(x, y, z - 1));
+		surroundingRooms.put('e', (Room) this.getPlace(new Coordinate(x - 1, y, z)));
+		surroundingRooms.put('w', (Room) this.getPlace(new Coordinate(x + 1, y, z)));
+		surroundingRooms.put('n', (Room) this.getPlace(new Coordinate(x, y - 1, z)));
+		surroundingRooms.put('s', (Room) this.getPlace(new Coordinate(x, y + 1, z)));
+		surroundingRooms.put('u', (Room) this.getPlace(new Coordinate(x, y, z + 1)));
+		surroundingRooms.put('d', (Room) this.getPlace(new Coordinate(x, y, z - 1)));
 
 		return surroundingRooms;
 		
@@ -240,7 +243,7 @@ public class Map {
 		for (double i = 0.5; i < map.length*2; i++) {
 			for (double j = 0.5; j < map[(int)(i*2)].length*2; j++) {
 				for (double k = 0.5; k < map[(int)(i*2)][(int)(j*2)].length*2; k++) {
-						if(!isEmpty(i,j,k))
+						if(!isEmpty(new Coordinate(i,j,k)))
 							count++;
 				}
 			}
@@ -281,7 +284,7 @@ public class Map {
 	public static Map loadMap(String filePath) {
 		FileReader mapReader = new FileReader(filePath);
 		String[] lines = mapReader.getLines();
-		double[] maxCoords = new double[3];
+		Coordinate maxCoords = new Coordinate();
 		
 		String concat = "";
 		
@@ -296,24 +299,32 @@ public class Map {
 		
 		for (int i = 0; i < places.length(); i++) {
 			String coordsString = places.getJSONObject(i).getString("coords");
-			double[] coords = readCoords(coordsString);
-			for (int j = 0; j < 3; j++) {
-				if (coords[j] > maxCoords[j]) // setting maximum coordinates
-					maxCoords[j] = coords[j];
-			}
+			Coordinate coords = readCoords(coordsString);
+			
+			if(coords.getX() > maxCoords.getX())
+				maxCoords.setX(coords.getX());
+			
+			if(coords.getY() > maxCoords.getY())
+				maxCoords.setY(coords.getY());
+			
+			if(coords.getZ() > maxCoords.getZ())
+				maxCoords.setZ(coords.getZ());
 		}
 		
-		Map map = new Map(mapName, maxCoords[0], maxCoords[1], maxCoords[2]);
+		
+		//NEED TO IMPLEMENT COORDS INTO DOORS, WALLS, OPENINGS, ETC.
+		
+		Map map = new Map(mapName, maxCoords);
 		
 		for (int i = 0; i < places.length(); i++) {
 			JSONObject curr = places.getJSONObject(i);
 			String type = places.getJSONObject(i).getString("type");
 			if (type.equals("room") || type.equals("deathRoom")) {
 				boolean isDeath = type.equals("deathRoom");
-				double[] coords = readCoords(curr.getString("coords"));
-				Location location = new Location(coords);
+				Coordinate coords = readCoords(curr.getString("coords"));
+				Location location = new Location(this.getPhase(), this, coords);
 				Room r = new Room(curr.getString("name"), curr.getString("description"), location, isDeath);
-				map.set(r, coords[0], coords[1], coords[2]);
+				map.set(r, coords);
 			} else if (type.equals("door")) {
 				Key key;
 				Door d;
@@ -342,29 +353,29 @@ public class Map {
 				} catch(JSONException ex) {
 					d = new Door(curr.getString("name"), false, curr.getBoolean("locked"), key);
 				}
-				double[] coords = readCoords(curr.getString("coords"));
-				map.set(d, coords[0], coords[1], coords[2]);
+				Coordinate coords = readCoords(curr.getString("coords"));
+				map.set(d, coords);
 			}
 		}
 		
 		String startCoords = obj.getString("startcoords");
-		double[] start = readCoords(startCoords);
-		map.setCheckpoint(map.getRoom(start[0], start[1], start[2]));
+		Coordinate start = readCoords(startCoords);
+		map.setCheckpoint(map.getRoom(start));
 		
 		String endCoords = obj.getString("endcoords");
-		double[]end = readCoords(endCoords);
-		map.setGoal(map.getRoom(end[0], end[1], end[2]));
+		Coordinate end = readCoords(endCoords);
+		map.setGoal(map.getRoom(end));
 
 		return map;
 	}
 	
-	private static double[] readCoords (String line) {
+	private static Coordinate readCoords (String line) {
 		line.replaceAll("[ (){]", "");
 		String[] coordsString = line.split(","); // split on comma to extract coords
 		double[] coords = new double[3];
 		for (int i = 0; i < 3; i++)
 			coords[i] = Double.parseDouble(coordsString[i]);
-		return coords;
+		return new Coordinate(coords);
 	}
 
 }

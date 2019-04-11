@@ -10,6 +10,12 @@ public class Coordinate {
 		this.z = z;
 	}
 	
+	public Coordinate() {
+		this.x = 0;
+		this.y = 0;
+		this.z = 0;
+	}
+	
 	public Coordinate (double[] coords) {
 		this.x = coords[0];
 		this.y = coords[1];

@@ -9,13 +9,9 @@ public class Location {
 	
 
 	double[] location;
-	
-	Map map;
-	Coordinate coords;
 		
 	public Location(Phase phase, Map map, Coordinate coords) {
-		this.map = map;
-		this.coords = coords;
+		set(phase, map, coords);
 
 		if(checkLocationErrors())
 			throw new IllegalArgumentException("This location is invalid.");
@@ -24,7 +20,6 @@ public class Location {
 	public Location() {
 		setStart();
 	}
-	
 	
 	public Location(double[]location) {
 		set(location);
@@ -36,11 +31,15 @@ public class Location {
 	}
 	
 	public Map getMap() {
-		return map;//getPhase().getMaps().get((int)location[1]);
+		return getPhase().getMaps().get((int)location[1]);
+	}
+	
+	public Coordinate getCoords() {
+		return new Coordinate(location[2], location[3], location[4]);
 	}
 	
 	public Room getRoom() {
-		//return //getMap().getRoom(location[2], location[3], location[4]);
+		return getMap().getRoom(getCoords());
 	}
 	
 	public boolean checkAndUpdate() {
@@ -63,19 +62,23 @@ public class Location {
 	/**
 	 * @return location [phase, map, x, y, z]
 	 */
-//	public double [] get() {
-//		return location;
-//	}
+	public double [] get() {
+		return location;
+	}
 	
 	
-	public void set(Phase phase, Map map, Room room) {
-		this.phase = getPhaseNum(phase);
-		this.map = getMapNum(map);
-		coords.setX(map.getCoords(room)[2]);
-		coords.setX(map.getCoords(room)[3];
-		coords.setX(map.getCoords(room)[4];
+	public void set(Phase phase, Map map, Coordinate coords) {
+		location[0] = getPhaseNum(phase);
+		location[1] = getMapNum(map);
+		location[2] = coords.getX();
+		location[3] = coords.getY();
+		location[4] = coords.getZ();
 		if(checkLocationErrors())
 			throw new IllegalArgumentException("This location is invalid.");
+	}
+	
+	public void set(Phase phase, Map map, Room room) {
+		set(phase, map, room.getLocation().getCoords());
 	}
 	
 	public void set(double[] location) {
@@ -127,53 +130,14 @@ public class Location {
 		setRoom(getMap().getCheckpoint());
 	}
 	
-	public boolean north() {
-		if(getMap().isExit('n', getRoom()))
+	public boolean go(char dir) {
+		if(getMap().isExit(dir, getRoom()))
 			return false;
-
-		this.set(getPhase(), getMap(), getMap().getNextRoom('n', getRoom()));
+		this.set(getPhase(), getMap(), getMap().getNextRoom(dir, getRoom()).getLocation().getCoords());
 		return true;
 	}
 	
-	public boolean south() {
-		if(getMap().isExit('s', getRoom()))
-			return false;
-
-		this.set(getPhase(), getMap(), getMap().getNextRoom('s', getRoom()));
-		return true;
-	}
 	
-	public boolean east() {
-		if(getMap().isExit('e', getRoom()))
-			return false;
-
-		this.set(getPhase(), getMap(), getMap().getNextRoom('e', getRoom()));
-		return true;
-	}
-	
-	public boolean west() {
-		if(getMap().isExit('w', getRoom()))
-			return false;
-
-		this.set(getPhase(), getMap(), getMap().getNextRoom('w', getRoom()));
-		return true;
-	}
-	
-	public boolean up() {
-		if(getMap().isExit('u', getRoom()))
-			return false;
-
-		this.set(getPhase(), getMap(), getMap().getNextRoom('u', getRoom()));
-		return true;
-	}
-	
-	public boolean down() {
-		if(getMap().isExit('d', getRoom()))
-			return false;
-
-		this.set(getPhase(), getMap(), getMap().getNextRoom('d', getRoom()));
-		return true;
-	}
 	
 	public void nextMap() {
 		ArrayList<Map> maps = getPhase().getMaps();
@@ -227,10 +191,6 @@ public class Location {
 	
 	public int getMapNum() {
 		return getMapNum(getMap());
-	}
-	
-	public Coordinate getCoords() {
-		return coords;
 	}
 	
 	public String toString() {

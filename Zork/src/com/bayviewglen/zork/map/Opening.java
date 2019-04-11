@@ -4,8 +4,8 @@ public class Opening extends Side {
 	
 	private static final boolean isExit = true;
 	
-	public Opening() {
-		super(isExit);
+	public Opening(Location location) {
+		super(location, isExit);
 	}
 	
 	public String toString() {

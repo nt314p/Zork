@@ -9,5 +9,14 @@ package com.bayviewglen.zork.map;
  *
  */
 public abstract class Place {
+	private Location location;
+
+	public Place(Location location) {
+		this.location = location;
+	}
+	
+	public Location getLocation() {
+		return location;
+	}
 	
 }

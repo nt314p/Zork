@@ -11,7 +11,6 @@ public class Room extends Place{
 	private Inventory roomItems;
 	
 	private boolean isDeathRoom;
-	private Location location;
 
 	/**
 	 * Create a room described "description". Initially, it has no exits.
@@ -19,25 +18,25 @@ public class Room extends Place{
 	 */
 	
 	public Room(String roomName, String description, Location location) {
+		super(location);
 		this.roomName = roomName;
 		this.description = description;
-		this.location = location;
 		this.isDeathRoom = false;
 		this.roomItems = new Inventory();
 	}	
 	
 	public Room(String roomName, String description, Location location, boolean isDeathRoom) {
+		super(location);
 		this.roomName = roomName;
 		this.description = description;
-		this.location = location;
 		this.isDeathRoom = isDeathRoom;
 		this.roomItems = new Inventory();
 	}
 	
 	public Room(String roomName, String description, Location location, boolean isDeathRoom, Inventory inventory) {
+		super(location);
 		this.roomName = roomName;
 		this.description = description;
-		this.location = location;
 		this.isDeathRoom = isDeathRoom;
 		this.roomItems = inventory;
 	}
@@ -52,10 +51,6 @@ public class Room extends Place{
 	
 	public void setRoomItems(Inventory roomItems) {
 		this.roomItems = roomItems;
-	}
-	
-	public Location getLocation() {
-		return location;
 	}
 	
 	/**
@@ -112,7 +107,7 @@ public class Room extends Place{
 			ret += currItem.getName();
 			ret += " " + currItem.getDescription("location") + ". ";
 		}
-		HashMap<java.lang.Character, Side> sides = location.getMap().getRoomSides(location.getRoom());
+		HashMap<java.lang.Character, Side> sides = getLocation().getMap().getRoomSides(getLocation().getRoom());
 		//Side[] sides = OH NO WHAT?? ROOM CAN'T ACCESS ITS OWN SIDES?? NO WAY!
 		return ret;
 	}
