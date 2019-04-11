@@ -9,9 +9,13 @@ public class Location {
 	
 
 	double[] location;
+	
+	Map map;
+	Coordinate coords;
 		
-	public Location(Phase phase, Map map, Room room) {
-		set(phase, map, room);
+	public Location(Phase phase, Map map, Coordinate coords) {
+		this.map = map;
+		this.coords = coords;
 
 		if(checkLocationErrors())
 			throw new IllegalArgumentException("This location is invalid.");
@@ -20,6 +24,7 @@ public class Location {
 	public Location() {
 		setStart();
 	}
+	
 	
 	public Location(double[]location) {
 		set(location);
@@ -31,11 +36,11 @@ public class Location {
 	}
 	
 	public Map getMap() {
-		return getPhase().getMaps().get((int)location[1]);
+		return map;//getPhase().getMaps().get((int)location[1]);
 	}
 	
 	public Room getRoom() {
-		return getMap().getRoom(location[2], location[3], location[4]);
+		//return //getMap().getRoom(location[2], location[3], location[4]);
 	}
 	
 	public boolean checkAndUpdate() {
@@ -58,17 +63,17 @@ public class Location {
 	/**
 	 * @return location [phase, map, x, y, z]
 	 */
-	public double [] get() {
-		return location;
-	}
+//	public double [] get() {
+//		return location;
+//	}
 	
 	
 	public void set(Phase phase, Map map, Room room) {
-		location[0] = getPhaseNum(phase);
-		location[1] = getMapNum(map);
-		location[2] = map.getCoords(room)[2];
-		location[3] = map.getCoords(room)[3];
-		location[4] = map.getCoords(room)[4];
+		this.phase = getPhaseNum(phase);
+		this.map = getMapNum(map);
+		coords.setX(map.getCoords(room)[2]);
+		coords.setX(map.getCoords(room)[3];
+		coords.setX(map.getCoords(room)[4];
 		if(checkLocationErrors())
 			throw new IllegalArgumentException("This location is invalid.");
 	}
@@ -222,6 +227,10 @@ public class Location {
 	
 	public int getMapNum() {
 		return getMapNum(getMap());
+	}
+	
+	public Coordinate getCoords() {
+		return coords;
 	}
 	
 	public String toString() {

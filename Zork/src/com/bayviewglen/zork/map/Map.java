@@ -12,6 +12,8 @@ import com.bayviewglen.zork.main.FileReader;
 import java.util.ArrayList;
 
 public class Map {
+	
+	private static ArrayList<Map> maps;
 
 	private Place[][][] map;
 	private String mapName;
@@ -33,6 +35,7 @@ public class Map {
 	 */
 	public Map(String mapName, double x, double y, double z) {
 		map = new Place[(int) (x * 2)+1][(int) (y * 2)+1][(int) (z * 2)+1];
+		maps.add(this);
 	}
 
 	/**
@@ -57,7 +60,7 @@ public class Map {
 	 * @param z the z-value (up-down)
 	 * @return the place at the coordinates
 	 */
-	public Place get(double x, double y, double z) {
+	public Place getPlace(double x, double y, double z) {
 		try {
 			return map[(int) (x * 2)][(int) (y * 2)][(int) (z * 2)];
 		} catch (Exception IndexOutOfBoundsException) {
@@ -68,7 +71,7 @@ public class Map {
 	
 	public Room getRoom(double x, double y, double z) {
 		try {
-			return (Room)this.get(x, y, z);
+			return (Room)this.getPlace(x, y, z);
 		} catch (Exception InvalidCastException){
 			return null;			
 		}
@@ -129,12 +132,12 @@ public class Map {
 		int y = (int) (coords[1] * 2);
 		int z = (int) (coords[2] * 2);
 
-		roomSides.put('e', (Side) this.get(x - 0.5, y, z));
-		roomSides.put('w', (Side) this.get(x + 0.5, y, z));
-		roomSides.put('n', (Side) this.get(x, y - 0.5, z));
-		roomSides.put('s', (Side) this.get(x, y + 0.5, z));
-		roomSides.put('u', (Side) this.get(x, y, z + 0.5));
-		roomSides.put('d', (Side) this.get(x, y, z - 0.5));
+		roomSides.put('e', (Side) this.getPlace(x - 0.5, y, z));
+		roomSides.put('w', (Side) this.getPlace(x + 0.5, y, z));
+		roomSides.put('n', (Side) this.getPlace(x, y - 0.5, z));
+		roomSides.put('s', (Side) this.getPlace(x, y + 0.5, z));
+		roomSides.put('u', (Side) this.getPlace(x, y, z + 0.5));
+		roomSides.put('d', (Side) this.getPlace(x, y, z - 0.5));
 
 		return roomSides;
 
@@ -154,12 +157,12 @@ public class Map {
 		int y = (int) (coords[1] * 2);
 		int z = (int) (coords[2] * 2);
 		
-		surroundingRooms.put('e', (Room) this.get(x - 1, y, z));
-		surroundingRooms.put('w', (Room) this.get(x + 1, y, z));
-		surroundingRooms.put('n', (Room) this.get(x, y - 1, z));
-		surroundingRooms.put('s', (Room) this.get(x, y + 1, z));
-		surroundingRooms.put('u', (Room) this.get(x, y, z + 1));
-		surroundingRooms.put('d', (Room) this.get(x, y, z - 1));
+		surroundingRooms.put('e', (Room) this.getPlace(x - 1, y, z));
+		surroundingRooms.put('w', (Room) this.getPlace(x + 1, y, z));
+		surroundingRooms.put('n', (Room) this.getPlace(x, y - 1, z));
+		surroundingRooms.put('s', (Room) this.getPlace(x, y + 1, z));
+		surroundingRooms.put('u', (Room) this.getPlace(x, y, z + 1));
+		surroundingRooms.put('d', (Room) this.getPlace(x, y, z - 1));
 
 		return surroundingRooms;
 		

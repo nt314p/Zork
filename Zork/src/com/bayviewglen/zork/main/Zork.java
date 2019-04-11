@@ -66,8 +66,8 @@ public class Zork {
 		
 		Map map = new Map("mapName",10,10,10);
 		map.set(new Room("room name", "room description",null, false), 0, 3.5, 6);
-		System.out.println(map.get(0,  3.5,  6) instanceof Room);
-		System.out.println(map.get(0,  3.5,  6) instanceof Wall);
+		System.out.println(map.getPlace(0,  3.5,  6) instanceof Room);
+		System.out.println(map.getPlace(0,  3.5,  6) instanceof Wall);
 	}
 	
 	public static void testRoomDescription() {
