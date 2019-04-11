@@ -24,6 +24,12 @@ public class Location {
 	public Location(double[]location) {
 		set(location);
 	}
+	
+	public Location(int phase, int map, Coordinate coords) {
+		double [] temp = coords.toArray();
+		double [] location = {phase, map, temp[0], temp[1], temp[2]};
+		set(location);
+	}
 
 	
 	public Phase getPhase() {
@@ -140,7 +146,6 @@ public class Location {
 	
 	
 	public void nextMap() {
-		ArrayList<Map> maps = getPhase().getMaps();
 		if(atLastMap())
 			nextPhase();
 		else {

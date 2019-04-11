@@ -8,6 +8,8 @@ import org.json.JSONObject;
 
 import com.bayviewglen.zork.item.*;
 import com.bayviewglen.zork.main.FileReader;
+import com.bayviewglen.zork.main.Game;
+import com.bayviewglen.zork.map.*;
 
 import java.util.ArrayList;
 
@@ -21,6 +23,7 @@ public class Map {
 	
 	private Room checkpoint;
 	private Room goal;
+	private Location location;//phase, map, maxcoords
 
 	/**
 	 * map constructor - stores places (rooms/sides)
@@ -33,7 +36,9 @@ public class Map {
 	 * @param checkpoint your starting point in the map
 	 * @param goal your ending point in the map
 	 */
-	public Map(String mapName, Coordinate maxCoords) {
+	public Map(String mapName, Location location) {
+		this.location = location;
+		Coordinate maxCoords = location.getCoords();
 		map = new Place[(int) (maxCoords.getX() * 2)+1][(int) (maxCoords.getY() * 2)+1][(int) (maxCoords.getZ() * 2)+1];
 		maps.add(this);
 	}
@@ -66,7 +71,6 @@ public class Map {
 		} catch (Exception IndexOutOfBoundsException) {
 			return null;
 		}
-
 	}
 	
 	public Room getRoom(Coordinate coords) {
@@ -77,8 +81,8 @@ public class Map {
 		}
 	}
 	
-	public Phase getPhase() {
-		return getPlace(new Coordinate(0,0,0)).getLocation().getPhase();
+	public Location getLocation() {
+		return location;
 	}
 
 	/**
@@ -281,7 +285,7 @@ public class Map {
 		}
 	}
 	
-	public static Map loadMap(String filePath) {
+	public static Map loadMap(String filePath, int phaseNum, int mapNum) {
 		FileReader mapReader = new FileReader(filePath);
 		String[] lines = mapReader.getLines();
 		Coordinate maxCoords = new Coordinate();
@@ -311,19 +315,22 @@ public class Map {
 				maxCoords.setZ(coords.getZ());
 		}
 		
-		
-		//NEED TO IMPLEMENT COORDS INTO DOORS, WALLS, OPENINGS, ETC.
-		
-		Map map = new Map(mapName, maxCoords);
+		double [] temp = {phaseNum, mapNum, maxCoords.getX(), maxCoords.getY(), maxCoords.getZ()};
+		Location mapLocation = new Location(temp);
+		Map map = new Map(mapName, mapLocation);
 		
 		for (int i = 0; i < places.length(); i++) {
 			JSONObject curr = places.getJSONObject(i);
 			String type = places.getJSONObject(i).getString("type");
+			
+			Coordinate coords = readCoords(curr.getString("coords"));
+			Location aLocation = new Location(mapLocation.getPhase(), map, coords);
+			
+			Object Opening;
 			if (type.equals("room") || type.equals("deathRoom")) {
 				boolean isDeath = type.equals("deathRoom");
-				Coordinate coords = readCoords(curr.getString("coords"));
-				Location location = new Location(this.getPhase(), this, coords);
-				Room r = new Room(curr.getString("name"), curr.getString("description"), location, isDeath);
+				
+				Room r = new Room(curr.getString("name"), curr.getString("description"), aLocation, isDeath);
 				map.set(r, coords);
 			} else if (type.equals("door")) {
 				Key key;
@@ -336,25 +343,20 @@ public class Map {
 					key = null;
 				}
 				
-				
-				/*try {
-					ArrayList<String> descriptions = new ArrayList<String>();
-					JSONArray JSONDescriptions = curr.getJSONArray("keydescriptions");
-					for(int j = 0; j<JSONDescriptions.length(); j++) {
-						descriptions.add(JSONDescriptions.getString(j));
-					}
-					key = new Key(curr.getString("keyname"), curr.getInt("itemweight"), null, curr.getString("keycode"));
-				} catch(JSONException ex) {
-					key = null;
-				}*/
-				
 				try {
-					d = new Door(curr.getString("name"), curr.getBoolean("open"), curr.getBoolean("locked"), key);
+					d = new Door(aLocation, curr.getString("name"), curr.getBoolean("open"), curr.getBoolean("locked"), key);
 				} catch(JSONException ex) {
-					d = new Door(curr.getString("name"), false, curr.getBoolean("locked"), key);
+					d = new Door(aLocation, curr.getString("name"), false, curr.getBoolean("locked"), key);
 				}
-				Coordinate coords = readCoords(curr.getString("coords"));
 				map.set(d, coords);
+				
+			} else if(type.equals("wall")) {
+				Wall wall = new Wall(aLocation);
+				map.set(wall, coords);
+				
+			} else if(type.equals("opening")) {
+				Opening opening = new Opening(aLocation);
+				map.set(opening, coords);
 			}
 		}
 		
@@ -365,7 +367,7 @@ public class Map {
 		String endCoords = obj.getString("endcoords");
 		Coordinate end = readCoords(endCoords);
 		map.setGoal(map.getRoom(end));
-
+		
 		return map;
 	}
 	

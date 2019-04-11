@@ -62,9 +62,9 @@ public class Zork {
 	}
 	
 	public static void testMap() {
-		Map myMap = Map.loadMap("data/jasontest.json");
+		Map myMap = Map.loadMap("data/jasontest.json", 0, 0);
 		
-		Map map = new Map("mapName",new Coordinate(10,10,10));
+		Map map = new Map("mapName",new Location(0, 0, new Coordinate(10,10,10)));
 		map.set(new Room("room name", "room description",null, false), new Coordinate(0, 3.5, 6));
 		System.out.println(map.getPlace(new Coordinate(0,  3.5,  6)) instanceof Room);
 		System.out.println(map.getPlace(new Coordinate(0,  3.5,  6)) instanceof Wall);

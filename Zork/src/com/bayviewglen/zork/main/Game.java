@@ -100,7 +100,7 @@ public class Game{
 			JSONArray JSONMaps = curr.getJSONArray("maps");
 			
 			for(int j = 0; j<JSONMaps.length(); j++) {
-				maps.add(Map.loadMap(JSONMaps.getString(j)));
+				maps.add(Map.loadMap(JSONMaps.getString(j), i, j));
 			}
 			Phase phase = new Phase(curr.getString("name"), maps);
 			phases.add(phase);
