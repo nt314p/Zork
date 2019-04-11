@@ -1,6 +1,5 @@
 package com.bayviewglen.zork.item;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Food extends Item {

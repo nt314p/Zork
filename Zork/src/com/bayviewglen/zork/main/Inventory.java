@@ -40,8 +40,6 @@ public class Inventory {
 		this.maxWeight = maxWeight;
 	}
 	
-	
-	
 	public boolean isInfiniteWeight() {
 		return maxWeight == Double.MAX_VALUE;
 	}

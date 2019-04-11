@@ -13,6 +13,7 @@ public class Zork {
 		//testInventory();
 		//testInventoryLoader();
 		//testMap();
+		testRoomDescription();
 		
 		Game game = new Game();
 		//game.play();
@@ -67,5 +68,22 @@ public class Zork {
 		map.set(new Room("room name", "room description", false), 0, 3.5, 6);
 		System.out.println(map.get(0,  3.5,  6) instanceof Room);
 		System.out.println(map.get(0,  3.5,  6) instanceof Wall);
+	}
+	
+	public static void testRoomDescription() {
+		Room r = new Room("Test room", "You are in a test room.");
+		Item i1 = new Item("beer bottle", 0.5);
+		Item i2 = new Item("lamp", 0.5);
+		Item i3 = new Item("anchor", 0.5);
+		i1.addDescription("location", "on the bed");
+		i2.addDescription("location", "on a table");
+		i3.addDescription("location", "on the floor");
+
+		r.getRoomItems().add(i1);
+		r.getRoomItems().add(i2);
+		r.getRoomItems().add(i3);
+		System.out.println(r.getLongDescription());
+		System.out.println(r.getShortDescription());
+
 	}
 }

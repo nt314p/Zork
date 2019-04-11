@@ -1,9 +1,10 @@
 package com.bayviewglen.zork.item;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
+
 import com.bayviewglen.zork.main.Inventory;
 
 /* The parent class for everything - all objects in the game, ones that can be picked up and ones
@@ -40,6 +41,7 @@ public class Item implements Comparable<Item> {
 	public Item(String name, double weight) {
 		this.weight = weight;
 		this.name = name;
+		this.descriptions = new HashMap<String, String>();
 	}
 
 	public Item(Item item) {
@@ -58,6 +60,10 @@ public class Item implements Comparable<Item> {
 
 	public HashMap<String, String> getDescriptions() {
 		return descriptions;
+	}
+	
+	public String getDescription(String key) {
+		return descriptions.get(key);
 	}
 
 	public void addDescription(String key, String description) {
@@ -115,9 +121,9 @@ public class Item implements Comparable<Item> {
 			str +=  + weight + "lbs";
 
 		if (descriptions != null) {
-			Iterator descriptionsItr = descriptions.entrySet().iterator();
+			Iterator<Entry<String, String>> descriptionsItr = descriptions.entrySet().iterator();
 			while (descriptionsItr.hasNext()) {
-				Map.Entry mapElement = (Map.Entry) descriptionsItr.next();
+				Map.Entry<String, String> mapElement = descriptionsItr.next();
 				String value = (String) mapElement.getValue();
 				str += " " + mapElement.getKey() + ": " + value;
 			}

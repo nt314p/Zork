@@ -1,5 +1,6 @@
 package com.bayviewglen.zork.map;
 
+import com.bayviewglen.zork.item.Item;
 import com.bayviewglen.zork.main.*;
 
 public class Room extends Place{
@@ -13,6 +14,14 @@ public class Room extends Place{
 	 * Create a room described "description". Initially, it has no exits.
 	 * "description" is something like "a kitchen" or "an open court yard".
 	 */
+	
+	public Room(String roomName, String description) {
+		this.roomName = roomName;
+		this.description = description;
+		this.isDeathRoom = false;
+		this.roomItems = new Inventory();
+	}	
+	
 	public Room(String roomName, String description, boolean isDeathRoom) {
 		this.roomName = roomName;
 		this.description = description;
@@ -87,7 +96,15 @@ public class Room extends Place{
 	 * @return the string description of the room
 	 */
 	public String getLongDescription() {
-		return description;
+		String ret = description + " ";
+		for (int i = 0; i < roomItems.size(); i++) {
+			Item currItem = roomItems.get(i);
+			ret += "There is a" + ("aeiou".indexOf(currItem.getName().charAt(0)) != -1 ? "n " : " ");
+			ret += currItem.getName();
+			ret += " " + currItem.getDescription("location") + ". ";
+		}
+		//Side[] sides = OH NO WHAT?? ROOM CAN'T ACCESS ITS OWN SIDES?? NO WAY!
+		return ret;
 	}
 
 	/**

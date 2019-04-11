@@ -354,7 +354,7 @@ public class Map {
 		return map;
 	}
 	
-	public static double[] readCoords (String line) {
+	private static double[] readCoords (String line) {
 		line.replaceAll("[ (){]", "");
 		String[] coordsString = line.split(","); // split on comma to extract coords
 		double[] coords = new double[3];
