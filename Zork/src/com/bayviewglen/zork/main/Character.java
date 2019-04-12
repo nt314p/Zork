@@ -16,10 +16,10 @@ public class Character{
 	
 	private Inventory inventory;
 	private String name;
-	private Location location;
+	private MoveableLocation location;
 	
 
-	public Character(String name, Inventory inventory, Location location, double health, double food, double water) {
+	public Character(String name, Inventory inventory, MoveableLocation location, double health, double food, double water) {
 		this.name = name;
 		this.inventory = inventory;
 		this.location = location;
@@ -28,7 +28,7 @@ public class Character{
 		waterMonitor = new Monitor(water);
 	}
 	
-	public Location getLocation() {
+	public MoveableLocation getLocation() {
 		return location;
 	}
 	
@@ -122,7 +122,7 @@ public class Character{
 			JSONObject curr = textCharacters.getJSONObject(i);
 			
 			double[]coords = {curr.getDouble("phase"), curr.getDouble("map"), curr.getDouble("x"), curr.getDouble("y"), curr.getDouble("z")};
-			Location location = new Location(coords);
+			MoveableLocation location = new MoveableLocation(coords);
 			Inventory inventory = Inventory.loadInventory(curr.getString("inventory"));
 			Character c = new Character(curr.getString("name"), inventory, location, curr.getDouble("health"), curr.getDouble("food"), curr.getDouble("water"));
 			characters.add(c);

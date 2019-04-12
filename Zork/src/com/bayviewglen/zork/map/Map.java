@@ -326,7 +326,6 @@ public class Map {
 			Coordinate coords = readCoords(curr.getString("coords"));
 			Location aLocation = new Location(mapLocation.getPhase(), map, coords);
 			
-			Object Opening;
 			if (type.equals("room") || type.equals("deathRoom")) {
 				boolean isDeath = type.equals("deathRoom");
 				

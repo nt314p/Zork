@@ -11,7 +11,7 @@ public class Player extends Character{
 
 	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();
 
-	public Player(Inventory inventory, Location location) {
+	public Player(Inventory inventory, MoveableLocation location) {
 		super("Player", inventory, location, 1, 1, 1);
 	}
 	

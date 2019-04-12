@@ -48,22 +48,6 @@ public class Location {
 		return getMap().getRoom(getCoords());
 	}
 	
-	public boolean checkAndUpdate() {
-		boolean updated = false;
-		
-		if(atMapGoal()) {
-			nextMap();
-			updated = true;
-		}
-		
-		if(atPhaseGoal()) {
-			nextPhase();
-			updated = true;
-		}
-		
-		return updated;
-	}
-	
 	
 	/**
 	 * @return location [phase, map, x, y, z]
@@ -91,7 +75,6 @@ public class Location {
 		this.location = location;
 		if(checkLocationErrors())
 			throw new IllegalArgumentException("This location is invalid.");
-
 	}
 	
 	public void setStart() {
@@ -101,11 +84,13 @@ public class Location {
 	}
 	
 	public boolean checkLocationErrors() {
-		if(getMapNum() == -1)
+		try {
+			Room r = getPhase().getMaps().get(getMapNum()).getRoom(getCoords());
+			r.getLocation().getMap().getExits(r);
 			return true;
-		if(getRoom()==null)
-			return true;
-		return false;
+		} catch (Exception NullPointerException) {
+			return false;
+		}
 	}
 	
 	public boolean atLastPhase() {
@@ -136,35 +121,7 @@ public class Location {
 		setRoom(getMap().getCheckpoint());
 	}
 	
-	public boolean go(char dir) {
-		if(getMap().isExit(dir, getRoom()))
-			return false;
-		this.set(getPhase(), getMap(), getMap().getNextRoom(dir, getRoom()).getLocation().getCoords());
-		return true;
-	}
 	
-	
-	
-	public void nextMap() {
-		if(atLastMap())
-			nextPhase();
-		else {
-			location[1] = getMapNum() + 1;
-			setRoom(getMap().getCheckpoint());
-		}
-	}
-	
-	public void nextPhase() {
-		if(atLastPhase())
-			System.out.println("No more phases in the game - you win.");
-		else {
-			location[0] = getPhaseNum() + 1;
-			location[1] = 0;
-			setRoom(getMap().getCheckpoint());
-			}
-	}
-
-
 	public void setRoom(Room r) {
 		set(getPhase(), getMap(), r);
 	}
