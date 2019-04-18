@@ -6,9 +6,9 @@
 			"name": "textbook",
 			"weight": "5.4",
 			"descriptions": [
-				"green",
-				"large",
-				"circle"
+				"colour;green",
+				"size;large",
+				"shape;circle"
 			]
 		},
 		{
@@ -22,9 +22,9 @@
 			"name": "textbook",
 			"weight": "5.4",
 			"descriptions": [
-				"purple",
-				"small",
-				"circle"
+				"colour;purple",
+				"size;small",
+				"shape;circle"
 			]
 		},
 		{
@@ -33,9 +33,10 @@
 			"name": "textbook",
 			"weight": "5.7",
 			"descriptions": [
-				"green",
-				"large",
-				"circle"
+				"colour;green",
+				"size;large",
+				"shape;circle",
+				"type;math book"
 			]
 		},
 		{

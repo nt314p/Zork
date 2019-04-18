@@ -1,6 +1,7 @@
 package com.bayviewglen.zork.main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -8,36 +9,27 @@ import org.json.JSONObject;
 import com.bayviewglen.zork.item.*;
 import com.bayviewglen.zork.map.*;
 
-public class Character{
+public class Character extends Item{
 
 	private Monitor healthMonitor;
 	private Monitor foodMonitor;
 	private Monitor waterMonitor;
 	
 	private Inventory inventory;
-	private String name;
 	private MoveableLocation location;
 	
 
-	public Character(String name, Inventory inventory, MoveableLocation location, double health, double food, double water) {
-		this.name = name;
+	public Character(String name, double weight, HashMap<String, String> descriptions, Inventory inventory, MoveableLocation location, double [] stats) {
+		super(name, weight, descriptions);
 		this.inventory = inventory;
 		this.location = location;
-		healthMonitor = new Monitor(health);
-		foodMonitor = new Monitor(food);
-		waterMonitor = new Monitor(water);
+		healthMonitor = new Monitor(stats[0]);
+		foodMonitor = new Monitor(stats[1]);
+		waterMonitor = new Monitor(stats[2]);
 	}
 	
 	public MoveableLocation getLocation() {
 		return location;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
 	}
 	
 	public Inventory getInventory() {
@@ -92,7 +84,7 @@ public class Character{
 	}
 	
 	public String toString() {
-		String str = name + "'s Statistics:\n";
+		String str = getName() + "'s Statistics:\n";
 		str+="Health: " + healthMonitor.get()*100 + "%\n";
 		str+="Food: " + foodMonitor.get()*100 + "%\n";
 		str+="Water: " + waterMonitor.get()*100 + "%\n\n";
@@ -124,7 +116,18 @@ public class Character{
 			double[]coords = {curr.getDouble("phase"), curr.getDouble("map"), curr.getDouble("x"), curr.getDouble("y"), curr.getDouble("z")};
 			MoveableLocation location = new MoveableLocation(coords);
 			Inventory inventory = Inventory.loadInventory(curr.getString("inventory"));
-			Character c = new Character(curr.getString("name"), inventory, location, curr.getDouble("health"), curr.getDouble("food"), curr.getDouble("water"));
+			
+			HashMap<String, String> descriptions = new HashMap<String, String>();
+			JSONArray JSONDescriptions = curr.getJSONArray("descriptions");
+			for(int j = 0; j<JSONDescriptions.length(); j++) {
+				String temp = JSONDescriptions.getString(j);
+				int index = temp.indexOf(";");
+				descriptions.put(temp.substring(0, index), temp.substring(index+1));
+			}
+			
+			double[] stats = {curr.getDouble("health"), curr.getDouble("food"), curr.getDouble("water")};
+			
+			Character c = new Character(curr.getString("name"), curr.getDouble("weight"), descriptions, inventory, location, stats);
 			characters.add(c);
 		}
 		return characters;

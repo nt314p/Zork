@@ -30,7 +30,7 @@ public class Game{
 		phases = new ArrayList<Phase>();
 		CommandWords.initialize();
 		loadGame("data/gameTest.json");
-		player = new Player(new Inventory(), new MoveableLocation());
+		player = new Player(100, null, new Inventory(), new MoveableLocation());
 		characters = Character.loadCharacters("data/characterTest.json");
 		
 		turn = 0;

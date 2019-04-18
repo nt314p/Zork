@@ -2,6 +2,7 @@ package com.bayviewglen.zork.main;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -292,12 +293,15 @@ public class Inventory {
 		for (int i = 0; i < items.length(); i++) {
 			JSONObject curr = items.getJSONObject(i);
 			
-			ArrayList<String> descriptions = new ArrayList<String>();
+			HashMap<String, String> descriptions = new HashMap<String, String>();
 			JSONArray JSONDescriptions = curr.getJSONArray("descriptions");
 			for(int j = 0; j<JSONDescriptions.length(); j++) {
-				descriptions.add(JSONDescriptions.getString(j));
+				String temp = JSONDescriptions.getString(j);
+				int index = temp.indexOf(";");
+				descriptions.put(temp.substring(0, index), temp.substring(index+1));
 			}
-			Item item = new Item(curr.getString("name"), curr.getDouble("weight"), null);
+			
+			Item item = new Item(curr.getString("name"), curr.getDouble("weight"), descriptions);
 			if(curr.getString("type").equals("food")) {
 				Food food = new Food(item, curr.getDouble("foodValue"), curr.getDouble("waterValue"));
 				inventory.add(food);
