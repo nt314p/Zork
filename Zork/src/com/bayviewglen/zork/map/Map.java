@@ -14,8 +14,6 @@ import com.bayviewglen.zork.map.*;
 import java.util.ArrayList;
 
 public class Map {
-	
-	private static ArrayList<Map> maps;
 
 	private Place[][][] map;
 	private String mapName;
@@ -37,10 +35,10 @@ public class Map {
 	 * @param goal your ending point in the map
 	 */
 	public Map(String mapName, Location location) {
+		this.mapName = mapName;
 		this.location = location;
 		Coordinate maxCoords = location.getCoords();
 		map = new Place[(int) (maxCoords.getX() * 2)+1][(int) (maxCoords.getY() * 2)+1][(int) (maxCoords.getZ() * 2)+1];
-		maps.add(this);
 	}
 
 	/**
@@ -324,7 +322,7 @@ public class Map {
 			String type = places.getJSONObject(i).getString("type");
 			
 			Coordinate coords = readCoords(curr.getString("coords"));
-			Location aLocation = new Location(mapLocation.getPhase(), map, coords);
+			Location aLocation = new Location(phaseNum, mapNum, coords);
 			
 			if (type.equals("room") || type.equals("deathRoom")) {
 				boolean isDeath = type.equals("deathRoom");

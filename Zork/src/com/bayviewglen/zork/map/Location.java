@@ -8,7 +8,7 @@ import com.bayviewglen.zork.main.Game;
 public class Location {
 	
 
-	double[] location;
+	private double[] location;
 		
 	public Location(Phase phase, Map map, Coordinate coords) {
 		set(phase, map, coords);
@@ -18,6 +18,7 @@ public class Location {
 	}
 	
 	public Location() {
+		location = new double[5];
 		setStart();
 	}
 	
@@ -29,6 +30,10 @@ public class Location {
 		double [] temp = coords.toArray();
 		double [] location = {phase, map, temp[0], temp[1], temp[2]};
 		set(location);
+	}
+	
+	public void set(int index, double num) {
+		location[index] = num;
 	}
 
 	
@@ -63,8 +68,8 @@ public class Location {
 		location[2] = coords.getX();
 		location[3] = coords.getY();
 		location[4] = coords.getZ();
-		if(checkLocationErrors())
-			throw new IllegalArgumentException("This location is invalid.");
+		//if(checkLocationErrors())
+			//throw new IllegalArgumentException("This location is invalid.");
 	}
 	
 	public void set(Phase phase, Map map, Room room) {
@@ -73,14 +78,17 @@ public class Location {
 	
 	public void set(double[] location) {
 		this.location = location;
-		if(checkLocationErrors())
-			throw new IllegalArgumentException("This location is invalid.");
+		//if(checkLocationErrors())
+			//throw new IllegalArgumentException("This location is invalid.");
 	}
 	
 	public void setStart() {
 		location[0] = 0;
 		location[1] = 0;
-		setRoom(getMap().getCheckpoint());
+		Coordinate coords = getMap().getCheckpoint().getLocation().getCoords();
+		location[2] = coords.getX();
+		location[3] = coords.getY();
+		location[4] = coords.getZ();
 	}
 	
 	public boolean checkLocationErrors() {
@@ -116,24 +124,7 @@ public class Location {
 	public boolean atMapCheckpoint() {
 		return getRoom().equals(getMap().getCheckpoint());
 	}
-	
-	public void resetToCheckpoint() {
-		setRoom(getMap().getCheckpoint());
-	}
-	
-	
-	public void setRoom(Room r) {
-		set(getPhase(), getMap(), r);
-	}
-	
-	public void setMap(Map m) {
-		set(getPhase(), m, getMap().getCheckpoint());
-	}
-	
-	public void setPhase(Phase p) {
-		Map temp = p.getMaps().get(0);
-		set(p, temp, temp.getCheckpoint());
-	}
+
 	
 	public int getPhaseNum(Phase phase) {
 		return Game.getPhases().indexOf(phase);
@@ -161,5 +152,9 @@ public class Location {
 		str += "\n\tMap " + getMapNum() + ": " + getMap().getMapName();
 		str+= "\n\tRoom: " + getRoom().getRoomName();
 		return str;
+	}
+	
+	public boolean equals(Location location) {
+		return getPhase().equals(location.getPhase()) && getMap().equals(location.getMap()) && getRoom().equals(location.getRoom());
 	}
 }

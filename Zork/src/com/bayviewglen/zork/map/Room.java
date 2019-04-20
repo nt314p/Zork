@@ -9,6 +9,7 @@ public class Room extends Place{
 	private String roomName;
 	private String description;
 	private Inventory roomItems;
+	private Inventory roomCharacters = new Inventory();
 	
 	private boolean isDeathRoom;
 
@@ -52,6 +53,7 @@ public class Room extends Place{
 	public void setRoomItems(Inventory roomItems) {
 		this.roomItems = roomItems;
 	}
+	
 	
 	/**
 	 * .equals method comparing 2 rooms - roomName and roomDescription
@@ -108,7 +110,7 @@ public class Room extends Place{
 			ret += " " + currItem.getDescription("location") + ". ";
 		}
 		HashMap<java.lang.Character, Side> sides = getLocation().getMap().getRoomSides(getLocation().getRoom());
-		//Side[] sides = OH NO WHAT?? ROOM CAN'T ACCESS ITS OWN SIDES?? NO WAY!
+		ret += "Exits: " + sides.toString();
 		return ret;
 	}
 
@@ -122,5 +124,9 @@ public class Room extends Place{
 	
 	public Inventory getRoomItems() {
 		return roomItems;
+	}
+	
+	public Inventory getRoomCharacters() {
+		return roomCharacters;
 	}
 }

@@ -17,6 +17,7 @@ public class Character extends Item{
 	
 	private Inventory inventory;
 	private MoveableLocation location;
+	private Location prevLocation;
 	
 
 	public Character(String name, double weight, HashMap<String, String> descriptions, Inventory inventory, MoveableLocation location, double [] stats) {
@@ -26,6 +27,8 @@ public class Character extends Item{
 		healthMonitor = new Monitor(stats[0]);
 		foodMonitor = new Monitor(stats[1]);
 		waterMonitor = new Monitor(stats[2]);
+		prevLocation = location;
+		updateTurn();
 	}
 	
 	public MoveableLocation getLocation() {
@@ -47,7 +50,10 @@ public class Character extends Item{
 	public Monitor getFoodMonitor() {
 		return foodMonitor;
 	}
-
+	
+	public Location getPrevLocation() {
+		return prevLocation;
+	}
 	/**
 	 * check if healthMonitor/foodMonitor/waterMonitor is 0
 	 * @return if you're dead
@@ -93,6 +99,24 @@ public class Character extends Item{
 		str+= "Inventory: " + inventory.toString();
 		
 		return str;
+	}
+	
+	public boolean hasMoved() {
+		if(prevLocation == null)
+			return true;
+		return !prevLocation.equals(location);
+	}
+	
+	private void updatePrevLocation() {
+		if(hasMoved())
+			prevLocation = location;
+	}
+
+	public void updateTurn() {
+		if(prevLocation != null)
+			prevLocation.getRoom().getRoomCharacters().remove(this);
+		location.getRoom().getRoomCharacters().add(this);
+		updatePrevLocation();
 	}
 	
 	public static ArrayList<Character> loadCharacters(String filePath){
