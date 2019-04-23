@@ -14,6 +14,8 @@ import com.bayviewglen.zork.map.*;
 import java.util.ArrayList;
 
 public class Map {
+	
+	private static HashMap<String, Map> mapList = new HashMap<String, Map>();
 
 	private Place[][][] map;
 	private String mapName;
@@ -39,6 +41,7 @@ public class Map {
 		this.location = location;
 		Coordinate maxCoords = location.getCoords();
 		map = new Place[(int) (maxCoords.getX() * 2)+1][(int) (maxCoords.getY() * 2)+1][(int) (maxCoords.getZ() * 2)+1];
+		mapList.put(mapName, this);
 	}
 
 	/**

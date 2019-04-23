@@ -49,6 +49,12 @@ public class Item implements Comparable<Item> {
 		this.name = item.getName();
 		this.descriptions = item.getDescriptions();
 	}
+	
+	public Item(String name) {
+		this.name = name;
+		this.weight = Double.MAX_VALUE;
+		this.descriptions = new HashMap<String, String>();
+	}
 
 	public double getWeight() {
 		return weight;
