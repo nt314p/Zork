@@ -137,8 +137,9 @@ public class Character extends Item{
 		for (int i = 0; i < textCharacters.length(); i++) {
 			JSONObject curr = textCharacters.getJSONObject(i);
 			
-			double[]coords = {curr.getDouble("phase"), curr.getDouble("map"), curr.getDouble("x"), curr.getDouble("y"), curr.getDouble("z")};
-			MoveableLocation location = new MoveableLocation(coords);
+			// double[]coords = {curr.getDouble("phase"), curr.getDouble("map"), curr.getDouble("x"), curr.getDouble("y"), curr.getDouble("z")};
+			Coordinate coords = Coordinate.readCoords(curr.getString("coords"));
+			MoveableLocation location = new MoveableLocation(curr.getString("map"), coords);
 			Inventory inventory = Inventory.loadInventory(curr.getString("inventory"));
 			
 			HashMap<String, String> descriptions = new HashMap<String, String>();

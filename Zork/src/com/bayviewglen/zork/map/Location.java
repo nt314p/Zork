@@ -1,160 +1,125 @@
 package com.bayviewglen.zork.map;
 
-import java.util.ArrayList;
-
-
 import com.bayviewglen.zork.main.Game;
 
 public class Location {
-	
 
-	private double[] location;
-		
-	public Location(Phase phase, Map map, Coordinate coords) {
-		set(phase, map, coords);
+	private Map map;
+	private Coordinate coords;
+	// private double[] location;
 
-		if(checkLocationErrors())
-			throw new IllegalArgumentException("This location is invalid.");
+	public Location(Map map, Coordinate coords) {
+		this.map = map;
+		this.coords = coords;
+
+//		if (checkLocationErrors())
+//			throw new IllegalArgumentException("This location is invalid.");
 	}
 	
 	public Location() {
-		location = new double[5];
-		setStart();
-	}
-	
-	public Location(double[]location) {
-		set(location);
-	}
-	
-	public Location(int phase, int map, Coordinate coords) {
-		double [] temp = coords.toArray();
-		double [] location = {phase, map, temp[0], temp[1], temp[2]};
-		set(location);
-	}
-	
-	public void set(int index, double num) {
-		location[index] = num;
+		this.map = null;
+		this.coords = null;
 	}
 
-	
-	public Phase getPhase() {
-		return Game.getPhases().get((int)location[0]);
+	public Location(String mapName, Coordinate coords) {
+		this.map = Map.getMap(mapName);
+		this.coords = coords;
 	}
-	
+
+	public Location(String mapName, double[] coords) {
+		this.map = Map.getMap(mapName);
+		this.coords = new Coordinate(coords);
+	}
+
 	public Map getMap() {
-		return getPhase().getMaps().get((int)location[1]);
+		return map;
 	}
-	
+
 	public Coordinate getCoords() {
-		return new Coordinate(location[2], location[3], location[4]);
+		return coords;
 	}
-	
+
 	public Room getRoom() {
-		return getMap().getRoom(getCoords());
+		return map.getRoom(coords);
 	}
-	
-	
+
 	/**
 	 * @return location [phase, map, x, y, z]
 	 */
-	public double [] get() {
-		return location;
+//	public double[] get() {
+//		return location;
+//	}
+
+//	public void set(Phase phase, Map map, Coordinate coords) {
+//		location[0] = getPhaseNum(phase);
+//		location[1] = getMapNum(map);
+//		location[2] = coords.getX();
+//		location[3] = coords.getY();
+//		location[4] = coords.getZ();
+//		// if(checkLocationErrors())
+//		// throw new IllegalArgumentException("This location is invalid.");
+//	}
+
+	protected void set(Map map, Coordinate coords) {
+		this.map = map;
+		this.coords = coords;
+	}	
+	
+	protected void setMap(Map map) {
+		this.map = map;
 	}
 	
-	
-	public void set(Phase phase, Map map, Coordinate coords) {
-		location[0] = getPhaseNum(phase);
-		location[1] = getMapNum(map);
-		location[2] = coords.getX();
-		location[3] = coords.getY();
-		location[4] = coords.getZ();
-		//if(checkLocationErrors())
-			//throw new IllegalArgumentException("This location is invalid.");
+	protected void setCoords(double[] coords) {
+		this.coords = new Coordinate(coords);
 	}
 	
-	public void set(Phase phase, Map map, Room room) {
-		set(phase, map, room.getLocation().getCoords());
-	}
-	
-	public void set(double[] location) {
-		this.location = location;
-		//if(checkLocationErrors())
-			//throw new IllegalArgumentException("This location is invalid.");
-	}
-	
-	public void setStart() {
-		location[0] = 0;
-		location[1] = 0;
-		Coordinate coords = getMap().getCheckpoint().getLocation().getCoords();
-		location[2] = coords.getX();
-		location[3] = coords.getY();
-		location[4] = coords.getZ();
-	}
-	
-	public boolean checkLocationErrors() {
-		try {
-			Room r = getPhase().getMaps().get(getMapNum()).getRoom(getCoords());
-			r.getLocation().getMap().getExits(r);
-			return true;
-		} catch (Exception NullPointerException) {
-			return false;
-		}
-	}
-	
-	public boolean atLastPhase() {
-		return getPhaseNum() + 1 >= Game.getPhases().size();
-	}
-	
-	public boolean atLastMap() {
-		return getMapNum() + 1 >= getPhase().getMaps().size();
-	}
-	
-	public boolean atMapGoal() {
-		return getRoom().equals(getMap().getGoal());
-	}
-	
-	public boolean atPhaseGoal() {
-		return atLastMap() && atMapGoal();
-	}
-	
-	public boolean atGameGoal() {
-		return atLastPhase() && atPhaseGoal();
-	}
-	
-	public boolean atMapCheckpoint() {
-		return getRoom().equals(getMap().getCheckpoint());
+	protected void setCoords(Coordinate coords) {
+		this.coords = coords;
 	}
 
-	
+//	public void setStart() {
+//		location[0] = 0;
+//		location[1] = 0;
+//		Coordinate coords = getMap().getCheckpoint().getLocation().getCoords();
+//		location[2] = coords.getX();
+//		location[3] = coords.getY();
+//		location[4] = coords.getZ();
+//	}
+
+//	public boolean checkLocationErrors() {
+//		try {
+//			Room r = getRoom();
+//			r.getLocation().getMap().getExits(r);
+//			return true;
+//		} catch (Exception NullPointerException) {
+//			return false;
+//		}
+//	}
+
+	public boolean atMapGoal() {
+		return getCoords().equals(getMap().getGoal());
+	}
+
+	public boolean atMapCheckpoint() {
+		return getCoords().equals(getMap().getCheckpoint());
+	}
+
 	public int getPhaseNum(Phase phase) {
 		return Game.getPhases().indexOf(phase);
 	}
-	
-	public int getPhaseNum() {
-		return getPhaseNum(getPhase());
-	}
-	
+
 	public int getMapNum(Phase phase, Map map) {
 		return phase.getMaps().indexOf(map);
 	}
-	
-	public int getMapNum(Map map) {
-		return getPhase().getMaps().indexOf(map);
-	}
-	
-	public int getMapNum() {
-		return getMapNum(getMap());
-	}
-	
+
 	public String toString() {
 		String str = "Location:";
-		str += "\n\tPhase " + getPhaseNum() + ": " + getPhase().getPhaseName();
-		str += "\n\tMap " + getMapNum() + ": " + getMap().getMapName();
-		str+= "\n\tRoom: " + getRoom().getRoomName();
+		str += "\n\tMap: " + map.getMapName();
+		str += "\n\tRoom: " + getRoom().getRoomName();
 		return str;
 	}
-	
+
 	public boolean equals(Location location) {
-		return getPhase().equals(location.getPhase()) && getMap().equals(location.getMap()) && getRoom().equals(location.getRoom());
+		return map.equals(location.map) && coords.equals(location.coords);
 	}
 }

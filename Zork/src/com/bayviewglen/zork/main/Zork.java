@@ -12,16 +12,16 @@ public class Zork {
 
 
 		
-		Game game = new Game();
+		//Game game = new Game();
 
 		
-		testCharacters();
+		//testCharacters();
 		//testRiddle();
 		//testSides();
 		//testInventory();
 		//testInventoryLoader();
 		//testMap();
-		//testRoomDescription();
+		testRoomDescription();
 		
 
 		
@@ -37,7 +37,7 @@ public class Zork {
 		
 		System.out.println(temp.getLocation().getRoom().getRoomCharacters().contains(temp));
 		System.out.println(temp.getPrevLocation().getRoom().getRoomCharacters().contains(temp));
-		temp.getLocation().setRoom(new Coordinate(3,5,2));
+		temp.getLocation().setCoords(new Coordinate(3,5,2));
 		
 		//why is temp room updating the character
 		
@@ -90,16 +90,14 @@ public class Zork {
 	}
 	
 	public static void testMap() {
-		Map myMap = Map.loadMap("data/jasontest.json", 0, 0);
-		
-		Map map = new Map("mapName",new Location(0, 0, new Coordinate(10,10,10)));
+		Map map = Map.loadMap("data/jasontest.json");		
 		map.set(new Room("room name", "room description",null, false), new Coordinate(0, 3.5, 6));
 		System.out.println(map.getPlace(new Coordinate(0,  3.5,  6)) instanceof Room);
 		System.out.println(map.getPlace(new Coordinate(0,  3.5,  6)) instanceof Wall);
 	}
 	
 	public static void testRoomDescription() {
-		Room r = new Room("Test room", "You are in a test room.", null);
+		Room r = new Room("Test room", "You are in a test room.", new Location("TestMap",new Coordinate(0.5,0.5,0.5)));
 		Item i1 = new Item("beer bottle", 0.5);
 		Item i2 = new Item("lamp", 0.5);
 		Item i3 = new Item("anchor", 0.5);
