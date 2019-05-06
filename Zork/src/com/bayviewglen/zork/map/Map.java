@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
+import java.lang.Character;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,6 +13,7 @@ import org.json.JSONObject;
 
 import com.bayviewglen.zork.item.Key;
 import com.bayviewglen.zork.main.FileReader;
+import com.bayviewglen.zork.main.Inventory;
 
 public class Map {
 
@@ -19,9 +22,9 @@ public class Map {
 	private Place[][][] map;
 	private String mapName;
 	private final char[] directions = { 'n', 'e', 's', 'w', 'u', 'd' };
-	private static final HashMap<Character, Coordinate> dirCoords = new HashMap<>(java.util.Map.of(
-			'n', new Coordinate(0, -1, 0), 's', new Coordinate(0, 1, 0), 'e', new Coordinate(1, 0, 0), 'w',
-			new Coordinate(-1, 0, 0), 'u', new Coordinate(0, 0, 1), 'd', new Coordinate(0, 0, -1)));
+	private static final HashMap<Character, Coordinate> dirCoords = new HashMap<>(
+			java.util.Map.of('n', new Coordinate(0, -1, 0), 's', new Coordinate(0, 1, 0), 'e', new Coordinate(1, 0, 0),
+					'w', new Coordinate(-1, 0, 0), 'u', new Coordinate(0, 0, 1), 'd', new Coordinate(0, 0, -1)));
 
 	private Coordinate checkpoint;
 	private Coordinate goal;
@@ -40,9 +43,11 @@ public class Map {
 	 */
 	public Map(String mapName, Coordinate maxCoords) {
 		this.mapName = mapName;
+		int x = (int) (maxCoords.getX() * 2) + 1;
+		int y = (int) (maxCoords.getY() * 2) + 1;
+		int z = (int) (maxCoords.getZ() * 2) + 1;
 		// this.location = location;
-		map = new Place[(int) (maxCoords.getX() * 2) + 1][(int) (maxCoords.getY() * 2) + 1][(int) (maxCoords.getZ() * 2)
-				+ 1];
+		map = new Place[x][y][z];
 		mapList.put(mapName, this);
 	}
 
@@ -83,7 +88,7 @@ public class Map {
 			return null;
 		}
 	}
-	
+
 	public Side getSide(Coordinate coords) {
 		try {
 			return (Side) this.getPlace(coords);
@@ -117,7 +122,6 @@ public class Map {
 	 *         there return null)
 	 */
 	public Coordinate getCoords(Room r) {
-
 		for (double i = 0.5; i < map.length * 2; i++) {
 			for (double j = 0.5; j < map[(int) (i * 2)].length * 2; j++) {
 				for (double k = 0.5; k < map[(int) (i * 2)][(int) (j * 2)].length * 2; k++) {
@@ -150,10 +154,10 @@ public class Map {
 
 		HashMap<Character, Coordinate> surroundingSideCoords = new HashMap<Character, Coordinate>();
 		HashMap<Character, Coordinate> surroundingCoords = getSurroundingCoords(coords, 1);
-		
+
 		Iterator<Entry<Character, Coordinate>> it = surroundingCoords.entrySet().iterator();
 		while (it.hasNext()) {
-			java.util.Map.Entry pair = (java.util.Map.Entry) it.next();
+			java.util.Map.Entry<Character, Coordinate> pair = (java.util.Map.Entry<Character, Coordinate>) it.next();
 			char key = (char) pair.getKey();
 			Coordinate surrCoords = (Coordinate) pair.getValue();
 			surroundingSideCoords.put(key, surrCoords);
@@ -173,10 +177,10 @@ public class Map {
 
 		HashMap<Character, Coordinate> surroundingRoomCoords = new HashMap<Character, Coordinate>();
 		HashMap<Character, Coordinate> surroundingCoords = getSurroundingCoords(coords, 1);
-		
+
 		Iterator<Entry<Character, Coordinate>> it = surroundingCoords.entrySet().iterator();
 		while (it.hasNext()) {
-			java.util.Map.Entry pair = (java.util.Map.Entry) it.next();
+			java.util.Map.Entry<Character, Coordinate> pair = (java.util.Map.Entry<Character, Coordinate>) it.next();
 			char key = (char) pair.getKey();
 			Coordinate surrCoords = (Coordinate) pair.getValue();
 			surroundingRoomCoords.put(key, surrCoords);
@@ -190,7 +194,7 @@ public class Map {
 
 		Iterator<Entry<Character, Coordinate>> it = dirCoords.entrySet().iterator();
 		while (it.hasNext()) {
-			java.util.Map.Entry pair = (java.util.Map.Entry) it.next();
+			java.util.Map.Entry<Character, Coordinate> pair = (java.util.Map.Entry<Character, Coordinate>) it.next();
 			char key = (char) pair.getKey();
 			Coordinate dirCoord = (Coordinate) pair.getValue();
 			surroundingCoords.put(key, dirCoord.add(coords.multiply(factor)));
@@ -206,13 +210,12 @@ public class Map {
 	 * @param r   the room from where you are searching from
 	 * @return the room in that direction
 	 */
-	
 
 	public Coordinate getNextRoomCoords(char dir, Coordinate coords) {
 		HashMap<Character, Coordinate> surroundingRooms = this.getSurroundingRoomCoords(coords);
 		return surroundingRooms.get(dir);
 	}
-	
+
 	public Room getNextRoom(char dir, Coordinate coords) {
 		return getRoom(getNextRoomCoords(dir, coords));
 	}
@@ -228,7 +231,7 @@ public class Map {
 		HashMap<Character, Coordinate> surroundingSides = this.getSurroundingSideCoords(coords);
 		return surroundingSides.get(dir);
 	}
-	
+
 	public Side getNextSide(char dir, Coordinate coords) {
 		return getSide(getNextSideCoords(dir, coords));
 	}
@@ -368,6 +371,14 @@ public class Map {
 			Coordinate coords = Coordinate.readCoords(curr.getString("coords"));
 			Location aLocation = new Location(mapName, coords);
 
+			HashMap<String, String> descriptions = new HashMap<String, String>();
+			JSONArray JSONDescriptions = curr.getJSONArray("descriptions");
+			for (int j = 0; j < JSONDescriptions.length(); j++) {
+				String temp = JSONDescriptions.getString(j);
+				int index = temp.indexOf(":");
+				descriptions.put(temp.substring(0, index), temp.substring(index + 1));
+			}
+
 			if (type.equals("room") || type.equals("deathRoom")) {
 				boolean isDeath = type.equals("deathRoom");
 
@@ -412,6 +423,41 @@ public class Map {
 		map.setGoal(end);
 
 		return map;
+	}
+
+	public static ArrayList<Character> loadCharacters(String filePath) {
+		FileReader reader = new FileReader(filePath);
+		String[] lines = reader.getLines();
+		ArrayList<Character> characters = new ArrayList<Character>();
+
+		String concat = "";
+
+		for (String s : lines) {
+			concat += s + "\n";
+		}
+
+		JSONObject obj = new JSONObject(concat);
+		JSONArray textCharacters = obj.getJSONArray("characters");
+
+		for (int i = 0; i < textCharacters.length(); i++) {
+			JSONObject curr = textCharacters.getJSONObject(i);
+
+			// double[]coords = {curr.getDouble("phase"), curr.getDouble("map"),
+			// curr.getDouble("x"), curr.getDouble("y"), curr.getDouble("z")};
+			Coordinate coords = Coordinate.readCoords(curr.getString("coords"));
+			MoveableLocation location = new MoveableLocation(curr.getString("map"), coords);
+			Inventory inventory = Inventory.loadInventory(curr.getString("inventory"));
+
+			HashMap<String, String> descriptions = new HashMap<String, String>();
+			JSONArray JSONDescriptions = curr.getJSONArray("descriptions");
+			for (int j = 0; j < JSONDescriptions.length(); j++) {
+				String temp = JSONDescriptions.getString(j);
+				int index = temp.indexOf(":");
+				descriptions.put(temp.substring(0, index), temp.substring(index + 1));
+			}
+
+		}
+		return characters;
 	}
 
 }

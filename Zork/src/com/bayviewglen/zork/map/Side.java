@@ -1,5 +1,7 @@
 package com.bayviewglen.zork.map;
 
+import java.util.HashMap;
+
 /**
  * Parent class for doors, openings, and walls
  * 
@@ -11,8 +13,8 @@ package com.bayviewglen.zork.map;
 public abstract class Side extends Place{
 	private boolean isExit;
 	
-	public Side(Location location, boolean isExit) {
-		super(location);
+	public Side(String name, HashMap<String, String> descriptions, boolean isExit, Location location) {
+		super(name, descriptions, location);
 		this.isExit = isExit;
 	}
 	

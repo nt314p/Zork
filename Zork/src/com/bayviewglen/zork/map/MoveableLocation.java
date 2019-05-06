@@ -1,7 +1,5 @@
 package com.bayviewglen.zork.map;
 
-import com.bayviewglen.zork.item.*;
-
 public class MoveableLocation extends Location{
 	
 	public MoveableLocation(Map map, Coordinate coords) {

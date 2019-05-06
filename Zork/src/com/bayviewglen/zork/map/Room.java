@@ -5,11 +5,11 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 
 import com.bayviewglen.zork.item.Item;
-import com.bayviewglen.zork.main.*;
+import com.bayviewglen.zork.main.Inventory;
 
 public class Room extends Place {
 	private String roomName;
-	private String description;
+	private HashMap<String, String> descriptions;
 	private Inventory roomItems;
 	private Inventory roomCharacters = new Inventory();
 
@@ -20,26 +20,26 @@ public class Room extends Place {
 	 * "description" is something like "a kitchen" or "an open court yard".
 	 */
 
-	public Room(String roomName, String description, Location location) {
-		super(location);
+	public Room(String roomName, HashMap<String, String> descriptions, Location location) {
+		super(roomName, descriptions, location);
 		this.roomName = roomName;
-		this.description = description;
+		this.descriptions = descriptions;
 		this.isDeathRoom = false;
 		this.roomItems = new Inventory();
 	}
 
-	public Room(String roomName, String description, Location location, boolean isDeathRoom) {
-		super(location);
+	public Room(String roomName, HashMap<String, String> descriptions, Location location, boolean isDeathRoom) {
+		super(roomName, descriptions, location);
 		this.roomName = roomName;
-		this.description = description;
+		this.descriptions = descriptions;
 		this.isDeathRoom = isDeathRoom;
 		this.roomItems = new Inventory();
 	}
 
-	public Room(String roomName, String description, Location location, boolean isDeathRoom, Inventory inventory) {
-		super(location);
+	public Room(String roomName, HashMap<String, String> descriptions, Location location, boolean isDeathRoom, Inventory inventory) {
+		super(roomName, descriptions, location);
 		this.roomName = roomName;
-		this.description = description;
+		this.descriptions = descriptions;
 		this.isDeathRoom = isDeathRoom;
 		this.roomItems = inventory;
 	}
@@ -63,7 +63,7 @@ public class Room extends Place {
 	 * @return if they are identical
 	 */
 	public boolean equals(Room room) {
-		return roomName.equals(room.roomName) && description.equals(room.description);
+		return roomName.equals(room.roomName) && descriptions.equals(room.descriptions);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class Room extends Place {
 	 *         access the maps for that***********
 	 */
 	public String toString() {
-		return "Room: " + roomName + "\n\n" + description;
+		return "Room: " + roomName + "\n\n" + descriptions;
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class Room extends Place {
 	 * @return the string description of the room
 	 */
 	public String getShortDescription() {
-		return description;
+		return descriptions;
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class Room extends Place {
 	 * @return the string description of the room
 	 */
 	public String getLongDescription() {
-		String ret = description + " ";
+		String ret = descriptions + " ";
 		for (int i = 0; i < roomItems.size(); i++) {
 			Item currItem = roomItems.get(i);
 			ret += "There is a" + ("aeiou".indexOf(currItem.getName().charAt(0)) != -1 ? "n " : " ");
@@ -122,10 +122,11 @@ public class Room extends Place {
 		HashMap<java.lang.Character, Coordinate> sideCoords = map.getSurroundingSideCoords(coords);
 		
 		Iterator<Entry<java.lang.Character, Coordinate>> it = sideCoords.entrySet().iterator();
+		java.util.Map.Entry<java.lang.Character, Coordinate> pair;
+		
 		while (it.hasNext()) {
-			java.util.Map.Entry pair = (java.util.Map.Entry) it.next();
-			map.getSide((Coordinate) pair.getValue());
-			ret += ((String) pair.getKey()) + ": " + ((Side)pair.getValue()).toString();
+			pair = (java.util.Map.Entry<java.lang.Character, Coordinate>) it.next();	
+			ret += pair.getKey() + ": " + map.getSide(pair.getValue()).toString();
 		}
 		
 		return ret;
@@ -136,8 +137,8 @@ public class Room extends Place {
 	 * 
 	 * @param description the description to be set
 	 */
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDescription(HashMap<String, String> description) {
+		this.descriptions = description;
 	}
 
 	public Inventory getRoomItems() {

@@ -21,9 +21,9 @@
       "food": "1.6",
       "water": "0.4",
       "descriptions": [
-				"colour;green",
-				"size;large",
-				"shape;circle"
+				"colour:green",
+				"size:large",
+				"shape:circle"
 			]
     }, 
     {

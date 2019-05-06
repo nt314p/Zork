@@ -1,5 +1,7 @@
 package com.bayviewglen.zork.map;
 
+import java.util.HashMap;
+
 import com.bayviewglen.zork.item.*;
 
 public class Door extends Side{
@@ -10,8 +12,8 @@ public class Door extends Side{
 	private String doorName;
 	
 
-	public Door(Location location, String doorName, boolean open, boolean unlocked, Key key) {
-		super(location, open);
+	public Door(String doorName, HashMap<String, String> descriptions, boolean open, boolean unlocked, Key key, Location location) {
+		super(doorName, descriptions, open, location);
 		this.doorName = doorName;
 		this.open = open;
 		this.unlocked = unlocked;
@@ -101,17 +103,4 @@ public class Door extends Side{
 		return key;
 	}
 	
-	public String getDoorName() {
-		return doorName;
-	}
-
-
-	public boolean checkIsExit() {
-		updateDoor();
-		return open;
-	}
-	
-
-	
-
 }

@@ -104,9 +104,9 @@ public class Location {
 		return getCoords().equals(getMap().getCheckpoint());
 	}
 
-	public int getPhaseNum(Phase phase) {
-		return Game.getPhases().indexOf(phase);
-	}
+//	public int getPhaseNum(Phase phase) {
+//		return Game.getPhases().indexOf(phase);
+//	}
 
 	public int getMapNum(Phase phase, Map map) {
 		return phase.getMaps().indexOf(map);

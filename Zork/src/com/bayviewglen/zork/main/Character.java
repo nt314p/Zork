@@ -146,7 +146,7 @@ public class Character extends Item{
 			JSONArray JSONDescriptions = curr.getJSONArray("descriptions");
 			for(int j = 0; j<JSONDescriptions.length(); j++) {
 				String temp = JSONDescriptions.getString(j);
-				int index = temp.indexOf(";");
+				int index = temp.indexOf(":");
 				descriptions.put(temp.substring(0, index), temp.substring(index+1));
 			}
 			

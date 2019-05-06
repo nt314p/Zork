@@ -1,5 +1,9 @@
 package com.bayviewglen.zork.map;
 
+import java.util.HashMap;
+
+import com.bayviewglen.zork.item.Item;
+
 /**
  * A parent class used for storage of both rooms and sides
  * in maps
@@ -8,10 +12,11 @@ package com.bayviewglen.zork.map;
  * A Side is-a place
  *
  */
-public abstract class Place {
+public abstract class Place extends Item{
 	private Location location;
 
-	public Place(Location location) {
+	public Place(String name, HashMap<String, String> descriptions, Location location) {
+		super(name, Double.MAX_VALUE, descriptions);
 		this.location = location;
 	}
 	

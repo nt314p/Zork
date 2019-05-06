@@ -6,7 +6,10 @@
     {
       "name": "kitchen",
       "type": "room",
-      "description": "kitcheny things",
+      "descriptions": [
+      	"data/jasontest.json",
+      	"data/jasontest.json"      
+      ],
       "coords": "0.5,0.5,0"
     }, 
    {
