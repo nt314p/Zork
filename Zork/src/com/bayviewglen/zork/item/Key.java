@@ -3,7 +3,7 @@ package com.bayviewglen.zork.item;
 import java.util.HashMap;
 
 public class Key extends Item{
-	String code;
+	private String code;
 	
 	public Key(String name, double weight, HashMap<String, String> descriptions, String code) {
 		super(name, weight, descriptions);
@@ -13,7 +13,7 @@ public class Key extends Item{
 	
 	public Key(Key key) {
 		super(key.getName(), key.getWeight(), key.getDescriptions());
-		this.code = key.code;
+		this.code = key.getCode();
 	}
 	
 	public Key(Item item, String code) {

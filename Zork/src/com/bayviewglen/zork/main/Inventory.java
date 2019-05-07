@@ -80,6 +80,15 @@ public class Inventory {
 		}
 		return -1;
 	}
+	
+	public Item getItem(String name) {
+		for (int i = 0; i < items.size(); i++) {
+			if (items.get(i).getName().equals(name)) {
+				return items.get(i);
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * 

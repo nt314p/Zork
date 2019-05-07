@@ -5,7 +5,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.bayviewglen.zork.main.Inventory;
+import com.bayviewglen.zork.main.*;
+import com.bayviewglen.zork.main.Character;
+import com.bayviewglen.zork.map.*;
 
 /* The parent class for everything - all objects in the game, ones that can be picked up and ones
  * that are stationary, food, doorways, etc.
@@ -27,6 +29,8 @@ import com.bayviewglen.zork.main.Inventory;
  */
 
 public class Item implements Comparable<Item> {
+	
+	private static HashMap<String, Item> presets = new HashMap<String, Item>();
 
 	private String name;
 	private double weight;
@@ -50,10 +54,27 @@ public class Item implements Comparable<Item> {
 		this.descriptions = item.getDescriptions();
 	}
 	
-	public Item(String name) {
-		this.name = name;
-		this.weight = Double.MAX_VALUE;
-		this.descriptions = new HashMap<String, String>();
+	public Item getItem(String preset) {
+		Item temp = presets.get(preset);
+		String className = temp.getClass().getSimpleName();
+		Item x;
+		switch(className) {
+		case "Food": x = new Food((Food)temp);
+		case "Weapon": x = new Weapon((Weapon)temp);
+		case "Health": x = new Health((Health)temp);
+		case "Room": x = new Room((Room)temp);
+		case "Door": x = new Door((Door)temp);
+		case "Key": x = new Key((Key)temp);
+		case "Character": x = new Character((Character)temp);
+		default:x = null;
+		}
+		
+		
+		this.name = temp.getName();
+		this.weight = temp.getWeight();
+		this.descriptions = temp.getDescriptions();
+		return temp;
+		
 	}
 
 	public double getWeight() {
@@ -74,6 +95,10 @@ public class Item implements Comparable<Item> {
 
 	public HashMap<String, String> getDescriptions() {
 		return descriptions;
+	}
+	
+	public HashMap<String, Item> getPresets(){
+		return presets;
 	}
 	
 	public String getDescription(String key) {
@@ -146,9 +171,9 @@ public class Item implements Comparable<Item> {
 		return str;
 	}
 	
-	public static Item loadItem(String filePath, int arrNum) {
+	public static Item loadItem(String filePath, String name) {
 		Inventory inventory = Inventory.loadInventory(filePath);
-		return inventory.get(arrNum);
+		return inventory.getItem(name);
 	}
 
 }

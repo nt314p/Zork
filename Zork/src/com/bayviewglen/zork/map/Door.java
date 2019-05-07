@@ -27,6 +27,12 @@ public class Door extends Side{
 		updateKey();
 		updateDoor();
 	}
+	public Door(Door door) {
+		super(door.getName(), door.getDescriptions(), door.isOpen(), door.getLocation());
+		this.open = door.isOpen();
+		this.unlocked = door.isUnlocked();
+		this.key = door.getKey();
+	}
 	
 	public String toString() {
 		return "Door: " + isOpen() + ", " + isUnlocked();

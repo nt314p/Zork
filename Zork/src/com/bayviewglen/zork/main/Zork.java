@@ -13,7 +13,6 @@ public class Zork {
 		//Game game = new Game();
 
 		
-		//testCharacters();
 		//testRiddle();
 		//testSides();
 		//testInventory();
@@ -24,27 +23,7 @@ public class Zork {
 
 		
 	}
-	
-	public static void testCharacters() {
-		Game.loadGame("data/gameTest.json");
-		Inventory inventory = Inventory.loadInventory("data/inventoryTest.json");
-		
-		Character temp = Game.getCharacters().get(0);
-		if(temp.hasMoved())
-			temp.updateTurn();
-		
-		System.out.println(temp.getLocation().getRoom().getRoomCharacters().contains(temp));
-		System.out.println(temp.getPrevLocation().getRoom().getRoomCharacters().contains(temp));
-		temp.getLocation().setCoords(new Coordinate(3,5,2));
-		
-		//why is temp room updating the character
-		
-		if(temp.hasMoved())
-			temp.updateTurn();
-		
-		System.out.println(temp.getLocation().getRoom().getRoomCharacters().contains(temp));
-		System.out.println(temp.getPrevLocation().getRoom().getRoomCharacters().contains(temp));
-	}
+
 	
 	public static void testRiddle() {
 		Riddle riddle = new Riddle("What is the answer?", "hi");
