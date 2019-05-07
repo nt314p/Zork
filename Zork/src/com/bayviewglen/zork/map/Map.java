@@ -343,11 +343,11 @@ public class Map {
 		JSONObject obj = new JSONObject(concat);
 		String mapName = obj.getString("name");
 
-		JSONArray places = obj.getJSONArray("places");
+		JSONArray places = obj.getJSONArray("places"); // getting array of places
 
-		for (int i = 0; i < places.length(); i++) {
-			String coordsString = places.getJSONObject(i).getString("coords");
-			Coordinate coords = Coordinate.readCoords(coordsString);
+		for (int i = 0; i < places.length(); i++) { // looping through places
+			String coordsString = places.getJSONObject(i).getString("coords"); // getting coordinates
+			Coordinate coords = Coordinate.readCoords(coordsString); // finding max coordinates
 
 			if (coords.getX() > maxCoords.getX())
 				maxCoords.setX(coords.getX());
@@ -359,30 +359,28 @@ public class Map {
 				maxCoords.setZ(coords.getZ());
 		}
 
-		// double [] temp = {phaseNum, mapNum, maxCoords.getX(), maxCoords.getY(),
-		// maxCoords.getZ()};
-		// Location mapLocation = new Location(temp);
-		Map map = new Map(mapName, maxCoords);
+		Map map = new Map(mapName, maxCoords); // creating map with max coords
 
-		for (int i = 0; i < places.length(); i++) {
-			JSONObject curr = places.getJSONObject(i);
+		for (int i = 0; i < places.length(); i++) { // looping through places
+			JSONObject curr = places.getJSONObject(i); // setting curr to the current place
+			
 			String type = places.getJSONObject(i).getString("type");
-
 			Coordinate coords = Coordinate.readCoords(curr.getString("coords"));
 			Location aLocation = new Location(mapName, coords);
 
 			HashMap<String, String> descriptions = new HashMap<String, String>();
 			JSONArray JSONDescriptions = curr.getJSONArray("descriptions");
-			for (int j = 0; j < JSONDescriptions.length(); j++) {
+			
+			for (int j = 0; j < JSONDescriptions.length(); j++) { // splitting descriptions
 				String temp = JSONDescriptions.getString(j);
 				int index = temp.indexOf(":");
-				descriptions.put(temp.substring(0, index), temp.substring(index + 1));
+				descriptions.put(temp.substring(0, index), temp.substring(index + 1)); // hashmap insertion
 			}
 
 			if (type.equals("room") || type.equals("deathRoom")) {
 				boolean isDeath = type.equals("deathRoom");
 
-				Room r = new Room(curr.getString("name"), curr.getString("description"), aLocation, isDeath);
+				Room r = new Room(curr.getString("name"), descriptions, aLocation, isDeath);
 				map.set(r, coords);
 			} else if (type.equals("door")) {
 				Key key;
@@ -397,19 +395,19 @@ public class Map {
 				}
 
 				try {
-					d = new Door(aLocation, curr.getString("name"), curr.getBoolean("open"), curr.getBoolean("locked"),
-							key);
+					d = new Door(curr.getString("name"), descriptions, curr.getBoolean("open"), curr.getBoolean("locked"), key,
+							aLocation);
 				} catch (JSONException ex) {
-					d = new Door(aLocation, curr.getString("name"), false, curr.getBoolean("locked"), key);
+					d = new Door(curr.getString("name"), descriptions, false, curr.getBoolean("locked"), key, aLocation);
 				}
 				map.set(d, coords);
 
 			} else if (type.equals("wall")) {
-				Wall wall = new Wall(aLocation);
+				Wall wall = new Wall(curr.getString("name"), descriptions, aLocation);
 				map.set(wall, coords);
 
 			} else if (type.equals("opening")) {
-				Opening opening = new Opening(aLocation);
+				Opening opening = new Opening(curr.getString("name"), descriptions, aLocation);
 				map.set(opening, coords);
 			}
 		}

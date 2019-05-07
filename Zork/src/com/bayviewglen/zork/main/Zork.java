@@ -1,6 +1,7 @@
 package com.bayviewglen.zork.main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.bayviewglen.zork.item.*;
 import com.bayviewglen.zork.map.*;
@@ -64,9 +65,9 @@ public class Zork {
 	}
 	
 	public static void testSides() {
-		Side s = new Opening(new Location());
+		Side s = new Opening("hello", null, new Location());
 		System.out.println(s.isExit());
-		s = new Wall(new Location());
+		s = new Wall("hi", null, new Location());
 		System.out.println(s.isExit());
 	}
 	
@@ -87,14 +88,19 @@ public class Zork {
 	}
 	
 	public static void testMap() {
-		Map map = Map.loadMap("data/jasontest.json");		
-		map.set(new Room("room name", "room description",null, false), new Coordinate(0, 3.5, 6));
+		Map map = Map.loadMap("data/jasontest.json");	
+		HashMap<String, String> h = new HashMap<String, String>();
+		h.put("short", "You are in a test room.");
+		Room r = new Room("Test room", h , new Location("TestMap",new Coordinate(0,03.5,6)));
+		map.set(r, new Coordinate(0, 3.5, 6));
 		System.out.println(map.getPlace(new Coordinate(0,  3.5,  6)) instanceof Room);
 		System.out.println(map.getPlace(new Coordinate(0,  3.5,  6)) instanceof Wall);
 	}
 	
 	public static void testRoomDescription() {
-		Room r = new Room("Test room", "You are in a test room.", new Location("TestMap",new Coordinate(0.5,0.5,0.5)));
+		HashMap<String, String> h = new HashMap<String, String>();
+		h.put("short", "You are in a test room.");
+		Room r = new Room("Test room", h , new Location("TestMap",new Coordinate(0.5,0.5,0.5)));
 		Item i1 = new Item("beer bottle", 0.5);
 		Item i2 = new Item("lamp", 0.5);
 		Item i3 = new Item("anchor", 0.5);

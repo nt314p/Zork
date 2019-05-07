@@ -100,7 +100,7 @@ public class Room extends Place {
 	 * @return the string description of the room
 	 */
 	public String getShortDescription() {
-		return descriptions;
+		return descriptions.get("short");
 	}
 
 	/**

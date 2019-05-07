@@ -8,13 +8,10 @@ public class Door extends Side{
 	
 	private boolean open;
 	private boolean unlocked;
-	private Key key; // unlocked door = null key
-	private String doorName;
-	
+	private Key key; // unlocked door = null key	
 
 	public Door(String doorName, HashMap<String, String> descriptions, boolean open, boolean unlocked, Key key, Location location) {
 		super(doorName, descriptions, open, location);
-		this.doorName = doorName;
 		this.open = open;
 		this.unlocked = unlocked;
 		this.key = key;
@@ -34,7 +31,6 @@ public class Door extends Side{
 	public String toString() {
 		return "Door: " + isOpen() + ", " + isUnlocked();
 	}
-	
 	
 	public void open() {
 		if(unlocked) {
