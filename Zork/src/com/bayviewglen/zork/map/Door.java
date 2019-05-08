@@ -6,41 +6,53 @@ import com.bayviewglen.zork.item.*;
 
 public class Door extends Side{
 	
-	private boolean open;
-	private boolean unlocked;
+	private boolean locked;
 	private Key key; // unlocked door = null key	
 
-	public Door(String doorName, HashMap<String, String> descriptions, boolean open, boolean unlocked, Key key, Location location) {
+	public Door(String doorName, HashMap<String, String> descriptions, boolean open, boolean locked, Key key, Location location) {
 		super(doorName, descriptions, open, location);
-		this.open = open;
-		this.unlocked = unlocked;
+		this.locked = locked;
 		this.key = key;
 		
-		if(key == null && !unlocked) {
-			System.out.println("You cannot lock a door without a key");
+		if(key == null && locked) {
+			System.out.println("You cannot lock a door that has no key");
 		}
 		
-		if(open && !unlocked) {
+		if(open && locked) {
 			System.out.println("A door cannot be open and locked");
 		}
 		
 		updateKey();
-		updateDoor();
 	}
+	
+	public Door(String doorName, HashMap<String, String> descriptions, boolean open, boolean locked, Key key) {
+		super(doorName, descriptions, open);
+		this.locked = locked;
+		this.key = key;
+		
+		if(key == null && locked) {
+			System.out.println("You cannot lock a door that has no key");
+		}
+		
+		if(open && locked) {
+			System.out.println("A door cannot be open and locked");
+		}
+		
+		updateKey();
+	}
+	
 	public Door(Door door) {
 		super(door.getName(), door.getDescriptions(), door.isOpen(), door.getLocation());
-		this.open = door.isOpen();
-		this.unlocked = door.isUnlocked();
-		this.key = door.getKey();
+		this.locked = door.locked;
+		this.key = door.key;
 	}
 	
 	public String toString() {
-		return "Door: " + isOpen() + ", " + isUnlocked();
+		return "Door: " + isOpen() + ", " + isLocked();
 	}
 	
 	public void open() {
-		if(unlocked) {
-			open = true;
+		if(!locked) {
 			setExit(true);
 		}
 	}
@@ -49,7 +61,6 @@ public class Door extends Side{
 	 * close the door
 	 */
 	public void close() {
-		open = false;
 		setExit(false);
 	}	
 	
@@ -58,43 +69,38 @@ public class Door extends Side{
 	 * @return true if the door is open, false if closed
 	 */
 	public boolean isOpen() {
-		return open;
+		return isExit();
 	}
 	
 	/**
 	 * Checks if the door is unlocked
 	 * @return true if the door is unlocked
 	 */
-	public boolean isUnlocked() {
-		return unlocked;
+	public boolean isLocked() {
+		return locked;
 	}
 	
 	
 	public void updateKey() {
 		if(key == null)
-			unlocked = true;
-	}
-	
-	public void updateDoor() {
-		if(open && !unlocked)
-			open = false;
+			locked = false;
 	}
 	
 	public void lock() {
 		if(key != null) {
-			open = false;
-			unlocked = false;
+			close();
+			locked = true;
 		}
 		else
 			System.out.println("You cannot lock a door without a key");
 	}
 	
 	public boolean unlock(Key key) {
-		if(unlocked)
-			return true;
+		if(!locked)
+			return false;
 		
 		if(this.key.equals(key)) {
-			unlocked = true;
+			locked = false;
 			return true;
 		}
 		

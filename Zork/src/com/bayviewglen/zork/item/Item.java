@@ -1,12 +1,17 @@
 package com.bayviewglen.zork.item;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.bayviewglen.zork.main.*;
-import com.bayviewglen.zork.main.Character;
 import com.bayviewglen.zork.map.*;
 
 /* The parent class for everything - all objects in the game, ones that can be picked up and ones
@@ -29,7 +34,7 @@ import com.bayviewglen.zork.map.*;
  */
 
 public class Item implements Comparable<Item> {
-	
+
 	private static HashMap<String, Item> presets = new HashMap<String, Item>();
 
 	private String name;
@@ -53,34 +58,34 @@ public class Item implements Comparable<Item> {
 		this.name = item.getName();
 		this.descriptions = item.getDescriptions();
 	}
-	
-	public Item getItem(String preset) {
-		Item temp = presets.get(preset);
-		String className = temp.getClass().getSimpleName();
-		Item x;
-		switch(className) {
-		case "Food": x = new Food((Food)temp);
-		case "Weapon": x = new Weapon((Weapon)temp);
-		case "Health": x = new Health((Health)temp);
-		case "Room": x = new Room((Room)temp);
-		case "Door": x = new Door((Door)temp);
-		case "Key": x = new Key((Key)temp);
-		case "Character": x = new Character((Character)temp);
-		default:x = null;
+
+	public static Item copy(Item item) {
+
+		Class<? extends Item> cls = item.getClass();
+		Constructor<? extends Item> cons;
+		try {
+			cons = cls.getConstructor(cls);
+			return cons.newInstance(cls.cast(item));
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
 		}
-		
-		
-		this.name = temp.getName();
-		this.weight = temp.getWeight();
-		this.descriptions = temp.getDescriptions();
-		return temp;
-		
+		return null; // error
 	}
 
 	public double getWeight() {
 		return weight;
 	}
-	
+
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
@@ -88,7 +93,7 @@ public class Item implements Comparable<Item> {
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -96,11 +101,11 @@ public class Item implements Comparable<Item> {
 	public HashMap<String, String> getDescriptions() {
 		return descriptions;
 	}
-	
-	public HashMap<String, Item> getPresets(){
+
+	public HashMap<String, Item> getPresets() {
 		return presets;
 	}
-	
+
 	public String getDescription(String key) {
 		return descriptions.get(key);
 	}
@@ -130,9 +135,8 @@ public class Item implements Comparable<Item> {
 	}
 
 	/**
-	 * Compares items more exactly 
-	 * 1) runs through equals method 
-	 * 2) makes sure every description is found in the argument item
+	 * Compares items more exactly 1) runs through equals method 2) makes sure every
+	 * description is found in the argument item
 	 * 
 	 * @param item to check if equals
 	 * @return if equal
@@ -156,8 +160,8 @@ public class Item implements Comparable<Item> {
 
 	public String toString() {
 		String str = name + ": ";
-		if(weight > 0)
-			str +=  + weight + "lbs";
+		if (weight > 0)
+			str += +weight + "lbs";
 
 		if (descriptions != null) {
 			Iterator<Entry<String, String>> descriptionsItr = descriptions.entrySet().iterator();
@@ -170,10 +174,94 @@ public class Item implements Comparable<Item> {
 		str += ".";
 		return str;
 	}
-	
+
 	public static Item loadItem(String filePath, String name) {
 		Inventory inventory = Inventory.loadInventory(filePath);
 		return inventory.getItem(name);
+	}
+
+	public static Item loadItem(JSONObject jObj) {
+		try {
+			String presetName = jObj.getString("preset"); // checking for preset
+			return Item.copy(Preset.get(presetName)); // returning preset
+		} catch (JSONException e) {
+			// nothing to see here, just no preset
+		}
+		
+		String type = "";
+		Class<?> cls = null;
+		try {
+			type = jObj.getString("type");
+			type = type.substring(0, 1).toUpperCase() + type.substring(1); // capitalizing
+			cls = Class.forName(type);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		String name = jObj.getString("name");
+				
+		HashMap<String, String> descriptions = new HashMap<String, String>();
+		JSONArray JSONDescriptions = jObj.getJSONArray("descriptions");
+		
+		for (int j = 0; j < JSONDescriptions.length(); j++) { // splitting descriptions
+			String temp = JSONDescriptions.getString(j);
+			int index = temp.indexOf(":");
+			descriptions.put(temp.substring(0, index), temp.substring(index + 1)); // hashmap insertion
+		}
+		
+		if ("RoomWallOpening".indexOf(type) != -1) {
+			Constructor<?> cons;
+			try {
+				cons = cls.getConstructor(String.class, HashMap.class);
+				return (Item) cons.newInstance(name, descriptions);
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			}	
+		}
+		
+		if (type.equals("Door")) {
+			Key key;
+			Door d;
+
+			try {
+				JSONObject keyInfo = jObj.getJSONObject("key");
+				key = (Key) Item.loadItem(keyInfo);
+			} catch (JSONException ex) {
+				key = null;
+			}
+
+			try {
+				d = new Door(name, descriptions, jObj.getBoolean("open"), jObj.getBoolean("locked"), key);
+			} catch (JSONException ex) {
+				d = new Door(name, descriptions, jObj.getBoolean("open"), false, key);
+			}
+			return d;
+		}
+		
+		// Key, Food, Health, Item, and Weapon are left
+		double weight = jObj.getDouble("weight");
+		
+		switch (type) {
+		case "key": return new Key(name, weight, descriptions, jObj.getString("code"));
+		case "weapon": return new Weapon(name, weight, descriptions, jObj.getDouble("damage"));
+		case "health": return new Health(name, weight, descriptions, jObj.getDouble("health"));
+		case "food": return new Food(name, weight, descriptions, jObj.getDouble("food"), jObj.getDouble("water"));
+		case "item": return new Item(name, weight, descriptions);
+		}
+		
+		return null;
 	}
 
 }

@@ -10,6 +10,10 @@ public class Opening extends Side {
 		super(name, descriptions, isExit, location);
 	}
 	
+	public Opening(String name, HashMap<String, String> descriptions) {
+		super(name, descriptions, isExit);
+	}
+	
 	public String toString() {
 		return getClass().getSimpleName();
 	}

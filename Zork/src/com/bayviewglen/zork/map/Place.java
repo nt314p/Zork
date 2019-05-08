@@ -20,8 +20,17 @@ public abstract class Place extends Item{
 		this.location = location;
 	}
 	
+	public Place(String name, HashMap<String, String> descriptions) {
+		super(name, Double.MAX_VALUE, descriptions);
+		this.location = null;
+	}
+	
 	public Location getLocation() {
 		return location;
+	}
+	
+	public void setLocation(Location loc) {
+		location = loc;
 	}
 	
 }

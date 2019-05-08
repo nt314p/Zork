@@ -27,6 +27,14 @@ public class Room extends Place {
 		this.isDeathRoom = false;
 		this.roomItems = new Inventory();
 	}
+	
+	public Room(String roomName, HashMap<String, String> descriptions) {
+		super(roomName, descriptions);
+		this.roomName = roomName;
+		this.descriptions = descriptions;
+		this.isDeathRoom = false;
+		this.roomItems = new Inventory();
+	}
 
 	public Room(String roomName, HashMap<String, String> descriptions, Location location, boolean isDeathRoom) {
 		super(roomName, descriptions, location);

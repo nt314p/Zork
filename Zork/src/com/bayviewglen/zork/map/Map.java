@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.bayviewglen.zork.item.Item;
 import com.bayviewglen.zork.item.Key;
 import com.bayviewglen.zork.main.FileReader;
 import com.bayviewglen.zork.main.Inventory;
@@ -362,54 +363,13 @@ public class Map {
 		Map map = new Map(mapName, maxCoords); // creating map with max coords
 
 		for (int i = 0; i < places.length(); i++) { // looping through places
-			JSONObject curr = places.getJSONObject(i); // setting curr to the current place
 			
-			String type = places.getJSONObject(i).getString("type");
-			Coordinate coords = Coordinate.readCoords(curr.getString("coords"));
+			Coordinate coords = Coordinate.readCoords(places.getJSONObject(i).getString("coords"));
 			Location aLocation = new Location(mapName, coords);
-
-			HashMap<String, String> descriptions = new HashMap<String, String>();
-			JSONArray JSONDescriptions = curr.getJSONArray("descriptions");
 			
-			for (int j = 0; j < JSONDescriptions.length(); j++) { // splitting descriptions
-				String temp = JSONDescriptions.getString(j);
-				int index = temp.indexOf(":");
-				descriptions.put(temp.substring(0, index), temp.substring(index + 1)); // hashmap insertion
-			}
-
-			if (type.equals("room") || type.equals("deathRoom")) {
-				boolean isDeath = type.equals("deathRoom");
-
-				Room r = new Room(curr.getString("name"), descriptions, aLocation, isDeath);
-				map.set(r, coords);
-			} else if (type.equals("door")) {
-				Key key;
-				Door d;
-
-				try {
-					JSONObject keyInfo = curr.getJSONObject("key");
-					key = new Key(keyInfo.getString("name"), keyInfo.getDouble("weight"), null,
-							keyInfo.getString("code"));
-				} catch (JSONException ex) {
-					key = null;
-				}
-
-				try {
-					d = new Door(curr.getString("name"), descriptions, curr.getBoolean("open"), curr.getBoolean("locked"), key,
-							aLocation);
-				} catch (JSONException ex) {
-					d = new Door(curr.getString("name"), descriptions, false, curr.getBoolean("locked"), key, aLocation);
-				}
-				map.set(d, coords);
-
-			} else if (type.equals("wall")) {
-				Wall wall = new Wall(curr.getString("name"), descriptions, aLocation);
-				map.set(wall, coords);
-
-			} else if (type.equals("opening")) {
-				Opening opening = new Opening(curr.getString("name"), descriptions, aLocation);
-				map.set(opening, coords);
-			}
+			Place p = (Place) Item.loadItem(places.getJSONObject(i));
+			p.setLocation(aLocation);
+			map.set(p, coords);
 		}
 
 		String startCoords = obj.getString("startcoords");

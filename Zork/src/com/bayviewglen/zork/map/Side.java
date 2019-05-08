@@ -18,6 +18,11 @@ public abstract class Side extends Place{
 		this.isExit = isExit;
 	}
 	
+	public Side(String name, HashMap<String, String> descriptions, boolean isExit) {
+		super(name, descriptions);
+		this.isExit = isExit;
+	}
+	
 	public boolean isExit() {
 		return isExit;
 	}

@@ -1,7 +1,5 @@
 package com.bayviewglen.zork.map;
 
-import com.bayviewglen.zork.main.Game;
-
 public class Location {
 
 	private Map map;
