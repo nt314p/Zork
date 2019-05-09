@@ -19,13 +19,16 @@ public class Zork {
 		//testInventoryLoader();
 		//testMap();
 		//testRoomDescription();
-		testPresets();
+		//testPresets();
 
 		
 	}
 	
 	public static void testPresets() {
 		Preset.initialize();
+		Item x = Preset.get("Thin Ice");
+		System.out.println(x.getDescriptions());
+		System.out.println(x.getName());
 	}
 
 	
@@ -71,7 +74,7 @@ public class Zork {
 	}
 	
 	public static void testMap() {
-		Map map = Map.loadMap("data/jasontest.json");	
+		Map map = Map.loadMap("data/TestMap.json");	
 		HashMap<String, String> h = new HashMap<String, String>();
 		h.put("short", "You are in a test room.");
 		Room r = new Room("Test room", h , new Location("TestMap",new Coordinate(0,03.5,6)));
