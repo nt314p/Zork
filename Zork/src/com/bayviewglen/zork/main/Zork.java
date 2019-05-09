@@ -18,10 +18,14 @@ public class Zork {
 		//testInventory();
 		//testInventoryLoader();
 		//testMap();
-		testRoomDescription();
-		
+		//testRoomDescription();
+		testPresets();
 
 		
+	}
+	
+	public static void testPresets() {
+		Preset.initialize();
 	}
 
 	

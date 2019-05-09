@@ -1,0 +1,74 @@
+{
+	"presets": [
+		{
+			"type": "room",
+			"name": "Thick Ice",
+			"descriptions": [
+				"short:You are standing on thick ice. Low chance of death."
+			]
+		},
+		{
+			"type": "room",
+			"name": "Thin Ice",
+			"descriptions": [
+				"short:You are standing on thin ice. High chance of death."
+			]
+		},
+		{
+			"type": "room",
+			"name": "Ice Death",
+			"descriptions": [
+				"short:You fell into the ice. You died."
+			]
+		},
+		{
+			"type": "room",
+			"name": "Slide to Start",
+			"descriptions": [
+				"short:You slid back to start."
+			]
+		},
+		{
+			"type": "room",
+			"name": "Rocket ladder",
+			"descriptions": [
+				"short:You are on a ladder. You cannot see anything."
+			]
+		},
+		{
+			"type": "room",
+			"name": "Corridor",
+			"descriptions": [
+				"short:You are in an empty corridor."
+			]
+		},
+		{
+			"type": "room",
+			"name": "???",
+			"descriptions": [
+				"short:Everything is black. Everything. You hear noises - is that a creepy AI? Or is it Nicolas Tong?"
+			]
+		},
+		{
+			"type": "room",
+			"name": "Ladder",
+			"descriptions": [
+				"short:Congratulations. You beat the level. Now get ready for death!"
+			]
+		},
+		{
+			"type": "room",
+			"name": "Potato farm",
+			"descriptions": [
+				"short:There are potatoes everywhere. Delicious!",
+			],
+			"items": [
+				"Sweet potato",
+				"Yam tempura",
+				"Potato",
+				"Brown potato",
+				"Yellow potato with mold"
+			]
+		}
+	]
+}

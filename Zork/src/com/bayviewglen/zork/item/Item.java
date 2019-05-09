@@ -193,7 +193,7 @@ public class Item implements Comparable<Item> {
 		try {
 			type = jObj.getString("type");
 			type = type.substring(0, 1).toUpperCase() + type.substring(1); // capitalizing
-			cls = Class.forName(type);
+			cls = Class.forName("com.bayviewglen.zork.map." + type);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (JSONException e) {
