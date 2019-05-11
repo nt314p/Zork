@@ -3,7 +3,7 @@ package com.bayviewglen.zork.map;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Link {
+public abstract class Link {
 	
 	private static HashMap<Location, Location> links = new HashMap<Location, Location>();
 	
@@ -13,11 +13,15 @@ public class Link {
 	 * @param coord2
 	 * @param dir -1 = back, 0 = both, 1 = forward
 	 */
-	public Link(Location coord1, Location coord2, int dir) {
+	public static void add(Location coord1, Location coord2, int dir) {
 		if(dir == 1 || dir == 0)
 			links.put(coord1, coord2);
 		if (dir == -1 || dir == 0)
 			links.put(coord2, coord1);
+	}
+	
+	public static boolean hasLink(Location loc) {
+		return links.get(loc) != null;
 	}
 	
 	public static Location getLink(Location loc) {

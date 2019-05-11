@@ -20,8 +20,16 @@ public class Zork {
 		//testMap();
 		//testRoomDescription();
 		//testPresets();
+		testLink();
 
 		
+	}
+	
+	public static void testLink() {
+		
+		Location loc = new Location(new Map("a", new Coordinate(7,7,7)), new Coordinate(3,4,6));
+		Link.add(loc, new Location(), 0);
+		System.out.println(Link.getLink(new Location()));
 	}
 	
 	public static void testPresets() {
