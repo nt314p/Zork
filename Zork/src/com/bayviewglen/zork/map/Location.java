@@ -94,13 +94,13 @@ public class Location {
 //		}
 //	}
 
-	public boolean atMapGoal() {
-		return getCoords().equals(getMap().getGoal());
-	}
-
-	public boolean atMapCheckpoint() {
-		return getCoords().equals(getMap().getCheckpoint());
-	}
+//	public boolean atMapGoal() {
+//		return getCoords().equals(getMap().getGoal());
+//	}
+//
+//	public boolean atMapCheckpoint() {
+//		return getCoords().equals(getMap().getCheckpoint());
+//	}
 
 //	public int getPhaseNum(Phase phase) {
 //		return Game.getPhases().indexOf(phase);

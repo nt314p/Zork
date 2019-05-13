@@ -2,9 +2,9 @@
 	"presets": [
 		{
 			"type": "room",
-			"name": "Thick Ice",
+			"name": "Thicc Ice",
 			"descriptions": [
-				"short:You are standing on thick ice. Low chance of death."
+				"short:You are standing on thicc ice. Low chance of death."
 			]
 		},
 		{
@@ -60,7 +60,7 @@
 			"type": "room",
 			"name": "Potato farm",
 			"descriptions": [
-				"short:There are potatoes everywhere. Delicious!",
+				"short:There are potatoes everywhere. Delicious!"
 			]
 		}
 	]

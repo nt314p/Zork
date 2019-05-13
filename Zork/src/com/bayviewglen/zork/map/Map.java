@@ -27,8 +27,7 @@ public class Map {
 			java.util.Map.of('n', new Coordinate(0, -1, 0), 's', new Coordinate(0, 1, 0), 'e', new Coordinate(1, 0, 0),
 					'w', new Coordinate(-1, 0, 0), 'u', new Coordinate(0, 0, 1), 'd', new Coordinate(0, 0, -1)));
 
-	private Coordinate checkpoint;
-	private Coordinate goal;
+
 	// private Location location;//phase, map, maxcoords
 
 	/**
@@ -266,22 +265,6 @@ public class Map {
 		return false;
 	}
 
-	public Coordinate getCheckpoint() {
-		return checkpoint;
-	}
-
-	public Coordinate getGoal() {
-		return goal;
-	}
-
-	public void setCheckpoint(Coordinate checkpoint) {
-		this.checkpoint = checkpoint;
-	}
-
-	public void setGoal(Coordinate goal) {
-		this.goal = goal;
-	}
-
 	public int numRooms() {
 		int count = 0;
 
@@ -298,6 +281,10 @@ public class Map {
 
 	public String getMapName() {
 		return mapName;
+	}
+	
+	public Place[][][] getMap() {
+		return map;
 	}
 
 	public static Map getMap(String mapName) {
@@ -364,15 +351,6 @@ public class Map {
 			p.setLocation(aLocation);
 			tempMap.set(p, coords);
 		}
-
-		String startCoords = obj.getString("startcoords");
-		Coordinate start = Coordinate.readCoords(startCoords);
-		tempMap.setCheckpoint(start);
-
-		String endCoords = obj.getString("endcoords");
-		Coordinate end = Coordinate.readCoords(endCoords);
-		tempMap.setGoal(end);
-
 		
 		for (int i = 1; i < tempMap.map.length; i+=2) { //x
 			for (int j = 0; j < tempMap.map[0].length; j+=2) { //y

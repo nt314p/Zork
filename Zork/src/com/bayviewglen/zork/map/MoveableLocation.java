@@ -54,9 +54,9 @@ public class MoveableLocation extends Location{
 //	}
 	
 	
-	public void resetToCheckpoint() {
-		setCoords(getMap().getCheckpoint());
-	}
+//	public void resetToCheckpoint() {
+//		setCoords(getMap().getCheckpoint());
+//	}
 	
 	
 //	public void setRoom(Room r) {

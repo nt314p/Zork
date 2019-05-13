@@ -8,7 +8,6 @@ import com.bayviewglen.zork.item.Item;
 import com.bayviewglen.zork.main.Inventory;
 
 public class Room extends Place {
-	private HashMap<String, String> descriptions;
 	private Inventory roomItems;
 	private Inventory roomCharacters = new Inventory();
 
@@ -21,30 +20,32 @@ public class Room extends Place {
 
 	public Room(String roomName, HashMap<String, String> descriptions, Location location) {
 		super(roomName, descriptions, location);
-		this.descriptions = descriptions;
 		this.isDeathRoom = false;
 		this.roomItems = new Inventory();
 	}
 	
 	public Room(String roomName, HashMap<String, String> descriptions) {
 		super(roomName, descriptions);
-		this.descriptions = descriptions;
 		this.isDeathRoom = false;
 		this.roomItems = new Inventory();
 	}
 
 	public Room(String roomName, HashMap<String, String> descriptions, Location location, boolean isDeathRoom) {
 		super(roomName, descriptions, location);
-		this.descriptions = descriptions;
 		this.isDeathRoom = isDeathRoom;
 		this.roomItems = new Inventory();
 	}
 
 	public Room(String roomName, HashMap<String, String> descriptions, Location location, boolean isDeathRoom, Inventory inventory) {
 		super(roomName, descriptions, location);
-		this.descriptions = descriptions;
 		this.isDeathRoom = isDeathRoom;
 		this.roomItems = inventory;
+	}
+	
+	public Room(Room room) {
+		super(room.getName(), room.getDescriptions(), room.getLocation());
+		this.isDeathRoom = room.isDeathRoom;
+		this.roomItems = room.roomItems;
 	}
 
 	public boolean isDeathRoom() {
@@ -66,7 +67,7 @@ public class Room extends Place {
 	 * @return if they are identical
 	 */
 	public boolean equals(Room room) {
-		return getName().equals(room.getName()) && descriptions.equals(room.descriptions);
+		return getName().equals(room.getName()) && getShortDescription().equals(room.getShortDescription());
 	}
 
 	/**
@@ -76,7 +77,7 @@ public class Room extends Place {
 	 *         access the maps for that***********
 	 */
 	public String toString() {
-		return "Room: " + getName() + "\n\n" + descriptions;
+		return "Room: " + getName() + "\n\n" + getShortDescription();
 	}
 
 	/**
@@ -85,7 +86,7 @@ public class Room extends Place {
 	 * @return the string description of the room
 	 */
 	public String getShortDescription() {
-		return descriptions.get("short");
+		return getDescriptions().get("short");
 	}
 
 	/**
@@ -93,7 +94,7 @@ public class Room extends Place {
 	 * @return the string description of the room
 	 */
 	public String getLongDescription() {
-		String ret = descriptions + " ";
+		String ret = getShortDescription() + " ";
 		for (int i = 0; i < roomItems.size(); i++) {
 			Item currItem = roomItems.get(i);
 			ret += "There is a" + ("aeiou".indexOf(currItem.getName().charAt(0)) != -1 ? "n " : " ");
@@ -115,15 +116,6 @@ public class Room extends Place {
 		}
 		
 		return ret;
-	}
-
-	/**
-	 * Set your description being passed in as the current description
-	 * 
-	 * @param description the description to be set
-	 */
-	public void setDescription(HashMap<String, String> description) {
-		this.descriptions = description;
 	}
 
 	public Inventory getRoomItems() {
