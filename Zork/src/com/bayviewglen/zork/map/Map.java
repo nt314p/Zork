@@ -332,16 +332,9 @@ public class Map {
 
 	public static Map loadMap(String filePath) {
 		FileReader mapReader = new FileReader(filePath);
-		String[] lines = mapReader.getLines();
 		Coordinate maxCoords = new Coordinate();
 
-		String concat = "";
-
-		for (String s : lines) {
-			concat += s + "\n";
-		}
-
-		JSONObject obj = new JSONObject(concat);
+		JSONObject obj = new JSONObject(mapReader.getLinesSingle()); //one line because JSONObject takes string
 		String mapName = obj.getString("name");
 
 		JSONArray places = obj.getJSONArray("places"); // getting array of places
