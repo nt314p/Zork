@@ -395,6 +395,17 @@ public class Map {
 				}
 			}
 		}
+		
+		for (int i = 1; i < tempMap.map.length; i+=2) { //x
+			for (int j = 1; j < tempMap.map[0].length; j+=2) { //y
+				for (int k = 0; k < tempMap.map[0][0].length; k+=2) { //z
+					if (tempMap.map[i][j][k] == null) {
+						tempMap.map[i][j][k] = new Wall(
+								"Solid", null, new Location(tempMap, new Coordinate(i, j, k, true)));
+					}
+				}
+			}
+		}
 				
 		return tempMap;
 	}
