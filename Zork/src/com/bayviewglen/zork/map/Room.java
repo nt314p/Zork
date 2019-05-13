@@ -85,24 +85,6 @@ public class Room extends Place {
 	}
 
 	/**
-	 * Get the name of the room
-	 * 
-	 * @return the room name
-	 */
-	public String getRoomName() {
-		return roomName;
-	}
-
-	/**
-	 * Sets the current room to the room being passed in (parameter roomName)
-	 * 
-	 * @param roomName the name of the room you are currently in
-	 */
-	public void setRoomName(String roomName) {
-		this.roomName = roomName;
-	}
-
-	/**
 	 * Get the short description of the room
 	 * 
 	 * @return the string description of the room

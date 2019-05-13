@@ -29,6 +29,7 @@ public class Game{
 		parser = new Parser();
 		phases = new ArrayList<Phase>();
 		CommandWords.initialize();
+		Preset.initialize();
 		loadGame("data/gameTest.json");
 		player = new Player(100, null, new Inventory(), new MoveableLocation());
 		characters = Character.loadCharacters("data/characterTest.json");
@@ -53,6 +54,14 @@ public class Game{
 			  method = i.getClass().getMethod(methodName, param1.class, param2.class, ..);
 			} catch (SecurityException e) { ... }
 			  catch (NoSuchMethodException e) { ... }*/
+	}
+	
+	public static String doTurn() {
+		Map.loadMap("data/TestMapV2.json");
+		Location currLoc = player.getLocation();
+		String roomDesc = currLoc.getMap().getRoom(currLoc.getCoords()).getLongDescription();
+		
+		return roomDesc;
 	}
 		
 	public static int getTurn() {
