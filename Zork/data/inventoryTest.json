@@ -41,7 +41,7 @@
 		},
 		{
 			"type": "health",
-			"healthValue": "0.9",
+			"health": "0.9",
 			"name": "bandage",
 			"weight": "5.4",
 			"descriptions": []

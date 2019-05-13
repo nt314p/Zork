@@ -113,7 +113,7 @@ public class Location {
 	public String toString() {
 		String str = "Location:";
 		str += "\n\tMap: " + map.getMapName();
-		str += "\n\tRoom: " + getRoom().getRoomName();
+		str += "\n\tRoom: " + getRoom().getName();
 		return str;
 	}
 

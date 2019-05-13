@@ -20,16 +20,20 @@ public class Zork {
 		//testMap();
 		//testRoomDescription();
 		//testPresets();
-		testLink();
+		//testLink();
+		Item i = new Food("myItem", 17.9, null, 0, 0.9);
+		Item t = Item.copy(i);
+		System.out.println(i + "\n" + t);
 
 		
 	}
 	
 	public static void testLink() {
 		
+		Location l = new Location();
 		Location loc = new Location(new Map("a", new Coordinate(7,7,7)), new Coordinate(3,4,6));
-		Link.add(loc, new Location(), 0);
-		System.out.println(Link.getLink(new Location()));
+		Link.add(loc, l, 0);
+		System.out.println(Link.getLink(l));
 	}
 	
 	public static void testPresets() {

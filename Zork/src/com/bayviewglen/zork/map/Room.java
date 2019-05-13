@@ -8,7 +8,6 @@ import com.bayviewglen.zork.item.Item;
 import com.bayviewglen.zork.main.Inventory;
 
 public class Room extends Place {
-	private String roomName;
 	private HashMap<String, String> descriptions;
 	private Inventory roomItems;
 	private Inventory roomCharacters = new Inventory();
@@ -22,7 +21,6 @@ public class Room extends Place {
 
 	public Room(String roomName, HashMap<String, String> descriptions, Location location) {
 		super(roomName, descriptions, location);
-		this.roomName = roomName;
 		this.descriptions = descriptions;
 		this.isDeathRoom = false;
 		this.roomItems = new Inventory();
@@ -30,7 +28,6 @@ public class Room extends Place {
 	
 	public Room(String roomName, HashMap<String, String> descriptions) {
 		super(roomName, descriptions);
-		this.roomName = roomName;
 		this.descriptions = descriptions;
 		this.isDeathRoom = false;
 		this.roomItems = new Inventory();
@@ -38,7 +35,6 @@ public class Room extends Place {
 
 	public Room(String roomName, HashMap<String, String> descriptions, Location location, boolean isDeathRoom) {
 		super(roomName, descriptions, location);
-		this.roomName = roomName;
 		this.descriptions = descriptions;
 		this.isDeathRoom = isDeathRoom;
 		this.roomItems = new Inventory();
@@ -46,7 +42,6 @@ public class Room extends Place {
 
 	public Room(String roomName, HashMap<String, String> descriptions, Location location, boolean isDeathRoom, Inventory inventory) {
 		super(roomName, descriptions, location);
-		this.roomName = roomName;
 		this.descriptions = descriptions;
 		this.isDeathRoom = isDeathRoom;
 		this.roomItems = inventory;
@@ -71,7 +66,7 @@ public class Room extends Place {
 	 * @return if they are identical
 	 */
 	public boolean equals(Room room) {
-		return roomName.equals(room.roomName) && descriptions.equals(room.descriptions);
+		return getName().equals(room.getName()) && descriptions.equals(room.descriptions);
 	}
 
 	/**
@@ -81,7 +76,7 @@ public class Room extends Place {
 	 *         access the maps for that***********
 	 */
 	public String toString() {
-		return "Room: " + roomName + "\n\n" + descriptions;
+		return "Room: " + getName() + "\n\n" + descriptions;
 	}
 
 	/**

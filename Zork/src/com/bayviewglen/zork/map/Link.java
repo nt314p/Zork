@@ -9,15 +9,15 @@ public abstract class Link {
 	
 	/**
 	 * 
-	 * @param coord1
-	 * @param coord2
+	 * @param loc1
+	 * @param loc2
 	 * @param dir -1 = back, 0 = both, 1 = forward
 	 */
-	public static void add(Location coord1, Location coord2, int dir) {
+	public static void add(Location loc1, Location loc2, int dir) {
 		if(dir == 1 || dir == 0)
-			links.put(coord1, coord2);
+			links.put(loc1, loc2);
 		if (dir == -1 || dir == 0)
-			links.put(coord2, coord1);
+			links.put(loc1, loc2);
 	}
 	
 	public static boolean hasLink(Location loc) {

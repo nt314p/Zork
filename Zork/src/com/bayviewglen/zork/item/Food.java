@@ -10,6 +10,7 @@ public class Food extends Item {
 	public Food(String name, double weight, HashMap<String, String> descriptions, double foodValue, double waterValue) {
 		super(name, weight, descriptions);
 		this.foodValue = foodValue;
+		this.waterValue = waterValue;
 	}
 	
 	public Food(Food food) {
@@ -26,12 +27,7 @@ public class Food extends Item {
 	
 	public String toString() {
 		String str = super.toString();
-		if(foodValue > 0)
-			str += "\nFood value: " + foodValue*100 + "%";
-		if(waterValue > 0)
-		str += "\nWater value: " + waterValue*100 + "%";
-
-		return str;
+		return str += "\nFood value: " + foodValue*100 + "%" + "\nWater value: " + waterValue*100 + "%";
 	}
 
 
