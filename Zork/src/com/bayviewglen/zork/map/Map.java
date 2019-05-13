@@ -337,10 +337,10 @@ public class Map {
 		JSONObject obj = new JSONObject(mapReader.getLinesSingle()); //one line because JSONObject takes string
 		String mapName = obj.getString("name");
 
-		JSONArray places = obj.getJSONArray("places"); // getting array of places
+		JSONArray jPlaces = obj.getJSONArray("places"); // getting array of places
 
-		for (int i = 0; i < places.length(); i++) { // looping through places
-			String coordsString = places.getJSONObject(i).getString("coords"); // getting coordinates
+		for (int i = 0; i < jPlaces.length(); i++) { // looping through places
+			String coordsString = jPlaces.getJSONObject(i).getString("coords"); // getting coordinates
 			Coordinate coords = Coordinate.readCoords(coordsString); // finding max coordinates
 
 			if (coords.getX() > maxCoords.getX())
@@ -353,27 +353,50 @@ public class Map {
 				maxCoords.setZ(coords.getZ());
 		}
 
-		Map map = new Map(mapName, maxCoords); // creating map with max coords
+		Map tempMap = new Map(mapName, maxCoords); // creating map with max coords
 
-		for (int i = 0; i < places.length(); i++) { // looping through places
+		for (int i = 0; i < jPlaces.length(); i++) { // looping through places
 			
-			Coordinate coords = Coordinate.readCoords(places.getJSONObject(i).getString("coords"));
+			Coordinate coords = Coordinate.readCoords(jPlaces.getJSONObject(i).getString("coords"));
 			Location aLocation = new Location(mapName, coords);
 			
-			Place p = (Place) Item.loadItem(places.getJSONObject(i));
+			Place p = (Place) Item.loadItem(jPlaces.getJSONObject(i));
 			p.setLocation(aLocation);
-			map.set(p, coords);
+			tempMap.set(p, coords);
 		}
 
 		String startCoords = obj.getString("startcoords");
 		Coordinate start = Coordinate.readCoords(startCoords);
-		map.setCheckpoint(start);
+		tempMap.setCheckpoint(start);
 
 		String endCoords = obj.getString("endcoords");
 		Coordinate end = Coordinate.readCoords(endCoords);
-		map.setGoal(end);
+		tempMap.setGoal(end);
 
-		return map;
+		
+		for (int i = 1; i < tempMap.map.length; i+=2) { //x
+			for (int j = 0; j < tempMap.map[0].length; j+=2) { //y
+				for (int k = 1; k < tempMap.map[0][0].length; k+=2) { //z
+					if (tempMap.map[i][j][k] == null) {
+						tempMap.map[i][j][k] = new Opening(
+								"Empty", null, new Location(tempMap, new Coordinate(i, j, k, true)));
+					}
+				}
+			}
+		}
+		
+		for (int i = 0; i < tempMap.map.length; i+=2) { //x
+			for (int j = 1; j < tempMap.map[0].length; j+=2) { //y
+				for (int k = 1; k < tempMap.map[0][0].length; k+=2) { //z
+					if (tempMap.map[i][j][k] == null) {
+						tempMap.map[i][j][k] = new Opening(
+								"Empty", null, new Location(tempMap, new Coordinate(i, j, k, true)));
+					}
+				}
+			}
+		}
+				
+		return tempMap;
 	}
 
 	public static ArrayList<Character> loadCharacters(String filePath) {

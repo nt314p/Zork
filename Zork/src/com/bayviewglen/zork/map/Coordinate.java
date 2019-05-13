@@ -9,6 +9,14 @@ public class Coordinate {
 		this.y = y;
 		this.z = z;
 	}
+	
+	public Coordinate(double x, double y, double z, boolean isDouble) { //true if the coordinates are double their actual val
+		if (isDouble) {
+			this.x = x/2;
+			this.y = y/2;
+			this.z = z/2;
+		}
+	}
 
 	public Coordinate() {
 		this.x = 0;
