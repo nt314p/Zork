@@ -16,7 +16,7 @@ public class MapDisplay extends PApplet {
 
 	public static void main(String[] args) {
 		Preset.initialize();
-		display(Map.loadMap("data/minesweeper.json"));
+		display(Map.loadMap("data/minesweeper2.json"));
 	}
 
 	public static void display(Map m) {
@@ -27,7 +27,7 @@ public class MapDisplay extends PApplet {
 	}
 
 	public void settings() {
-		size(1100, 900);
+		fullScreen();
 		smooth(8);
 	}
 
@@ -38,6 +38,7 @@ public class MapDisplay extends PApplet {
 	public void draw() {
 		background(0, 0, 0);
 		drawLayer(1);
+		
 	}
 
 	public void drawLayer(double layer) {

@@ -1,0 +1,283 @@
+{
+	"name": "Ice Ice Baby",
+	"default-side-vertical": {
+		"preset": "default-opening"
+	},
+	"default-room": {
+		"preset": "Ice Death"
+	},
+	"places": [
+		{
+			"preset": "Thicc Ice",
+			"coords": "1.5,1.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "2.5,1.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "5.5,1.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "6.5,1.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "7.5,1.5,0.5"
+		},
+		{
+			"preset": "Slide to Start",
+			"coords": "10.5,1.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "11.5,1.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "2.5,2.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "5.5,2.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "6.5,2.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "7.5,2.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "9.5,2.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "11.5,2.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "2.5,3.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "3.5,3.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "4.5,3.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "5.5,3.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "7.5,3.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "8.5,3.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "9.5,3.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "11.5,3.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "1.5,4.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "2.5,4.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "3.5,4.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "8.5,4.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "9.5,4.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "10.5,4.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "11.5,4.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "1.5,5.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "2.5,5.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "4.5,5.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "5.5,5.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "6.5,5.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "9.5,5.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "10.5,5.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "11.5,5.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "1.5,6.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "3.5,6.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "4.5,6.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "5.5,6.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "6.5,6.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "7.5,6.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "9.5,6.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "10.5,6.5,0.5"
+		},
+		{
+			"preset": "Slide to Start",
+			"coords": "1.5,7.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "3.5,7.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "4.5,7.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "5.5,7.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "6.5,7.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "7.5,7.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "8.5,7.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "9.5,7.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "10.5,7.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "11.5,7.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "3.5,8.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "4.5,8.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "5.5,8.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "6.5,8.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "7.5,8.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "8.5,8.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "9.5,8.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "10.5,8.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "11.5,8.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "3.5,9.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "4.5,9.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "5.5,9.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "7.5,9.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "9.5,9.5,0.5"
+		}
+	]
+}

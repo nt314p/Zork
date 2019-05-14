@@ -203,12 +203,18 @@ public class Item implements Comparable<Item> {
 		String name = jObj.getString("name");
 				
 		HashMap<String, String> descriptions = new HashMap<String, String>();
-		JSONArray JSONDescriptions = jObj.getJSONArray("descriptions");
 		
-		for (int j = 0; j < JSONDescriptions.length(); j++) { // splitting descriptions
-			String temp = JSONDescriptions.getString(j);
-			int index = temp.indexOf(":");
-			descriptions.put(temp.substring(0, index), temp.substring(index + 1)); // hashmap insertion
+		
+		JSONArray JSONDescriptions;
+		try {
+			JSONDescriptions = jObj.getJSONArray("descriptions");
+			for (int j = 0; j < JSONDescriptions.length(); j++) { // splitting descriptions
+				String temp = JSONDescriptions.getString(j);
+				int index = temp.indexOf(":");
+				descriptions.put(temp.substring(0, index), temp.substring(index + 1)); // hashmap insertion
+			}
+		} catch (JSONException e) {
+			// no descriptions
 		}
 		
 		if ("RoomWallOpening".indexOf(type) != -1) {

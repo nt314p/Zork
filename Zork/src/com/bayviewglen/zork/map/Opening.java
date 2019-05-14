@@ -14,6 +14,10 @@ public class Opening extends Side {
 		super(name, descriptions, isExit);
 	}
 	
+	public Opening(Opening opening) {
+		super(opening.getName(), opening.getDescriptions(), opening.isExit());
+	}
+	
 	public String toString() {
 		return getClass().getSimpleName();
 	}

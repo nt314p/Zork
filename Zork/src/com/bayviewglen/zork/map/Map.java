@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.lang.Character;
 
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,7 +25,6 @@ public class Map {
 	private static final HashMap<Character, Coordinate> dirCoords = new HashMap<>(
 			java.util.Map.of('n', new Coordinate(0, -1, 0), 's', new Coordinate(0, 1, 0), 'e', new Coordinate(1, 0, 0),
 					'w', new Coordinate(-1, 0, 0), 'u', new Coordinate(0, 0, 1), 'd', new Coordinate(0, 0, -1)));
-
 
 	// private Location location;//phase, map, maxcoords
 
@@ -282,7 +280,7 @@ public class Map {
 	public String getMapName() {
 		return mapName;
 	}
-	
+
 	public Place[][][] getMap() {
 		return map;
 	}
@@ -321,7 +319,7 @@ public class Map {
 		FileReader mapReader = new FileReader(filePath);
 		Coordinate maxCoords = new Coordinate();
 
-		JSONObject obj = new JSONObject(mapReader.getLinesSingle()); //one line because JSONObject takes string
+		JSONObject obj = new JSONObject(mapReader.getLinesSingle()); // one line because JSONObject takes string
 		String mapName = obj.getString("name");
 
 		JSONArray jPlaces = obj.getJSONArray("places"); // getting array of places
@@ -341,50 +339,69 @@ public class Map {
 		}
 
 		Map tempMap = new Map(mapName, maxCoords); // creating map with max coords
+		
+		Side defaultSideV = null;
+		Side defaultSideH = null;
+		Room defaultRoom = null;
+		
+		if (obj.has("default-side-vertical")) {
+			defaultSideV = (Side) Item.loadItem(obj.getJSONObject("default-side-vertical"));
+		}
+		
+		if (obj.has("default-side-horizontal")) {
+			defaultSideH = (Side) Item.loadItem(obj.getJSONObject("default-side-horizontal"));
+		}
+		
+		if (obj.has("default-room")) {
+			defaultRoom = (Room) Item.loadItem(obj.getJSONObject("default-room"));
+		}
+
+		for (int i = 1; i < tempMap.map.length; i += 2) { // x
+			for (int j = 1; j < tempMap.map[0].length; j += 2) { // y
+				for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
+					tempMap.map[i][j][k] = defaultRoom;
+				}
+			}
+		}
+
+		// filling vertical sides
+		for (int i = 1; i < tempMap.map.length; i += 2) { // x
+			for (int j = 0; j < tempMap.map[0].length; j += 2) { // y
+				for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
+					tempMap.map[i][j][k] = defaultSideV;
+
+				}
+			}
+		}
+
+		// filling more vertical sides
+		for (int i = 0; i < tempMap.map.length; i += 2) { // x
+			for (int j = 1; j < tempMap.map[0].length; j += 2) { // y
+				for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
+					tempMap.map[i][j][k] = defaultSideV;
+				}
+			}
+		}
+
+		// filling horizontal sides
+		for (int i = 1; i < tempMap.map.length; i += 2) { // x
+			for (int j = 1; j < tempMap.map[0].length; j += 2) { // y
+				for (int k = 0; k < tempMap.map[0][0].length; k += 2) { // z
+					tempMap.map[i][j][k] = defaultSideH;
+				}
+			}
+		}
 
 		for (int i = 0; i < jPlaces.length(); i++) { // looping through places
-			
+
 			Coordinate coords = Coordinate.readCoords(jPlaces.getJSONObject(i).getString("coords"));
 			Location aLocation = new Location(mapName, coords);
-			
+
 			Place p = (Place) Item.loadItem(jPlaces.getJSONObject(i));
 			p.setLocation(aLocation);
 			tempMap.set(p, coords);
 		}
-		
-		for (int i = 1; i < tempMap.map.length; i+=2) { //x
-			for (int j = 0; j < tempMap.map[0].length; j+=2) { //y
-				for (int k = 1; k < tempMap.map[0][0].length; k+=2) { //z
-					if (tempMap.map[i][j][k] == null) {
-						tempMap.map[i][j][k] = new Opening(
-								"Empty", null, new Location(tempMap, new Coordinate(i, j, k, true)));
-					}
-				}
-			}
-		}
-		
-		for (int i = 0; i < tempMap.map.length; i+=2) { //x
-			for (int j = 1; j < tempMap.map[0].length; j+=2) { //y
-				for (int k = 1; k < tempMap.map[0][0].length; k+=2) { //z
-					if (tempMap.map[i][j][k] == null) {
-						tempMap.map[i][j][k] = new Opening(
-								"Empty", null, new Location(tempMap, new Coordinate(i, j, k, true)));
-					}
-				}
-			}
-		}
-		
-		for (int i = 1; i < tempMap.map.length; i+=2) { //x
-			for (int j = 1; j < tempMap.map[0].length; j+=2) { //y
-				for (int k = 0; k < tempMap.map[0][0].length; k+=2) { //z
-					if (tempMap.map[i][j][k] == null) {
-						tempMap.map[i][j][k] = new Wall(
-								"Solid", null, new Location(tempMap, new Coordinate(i, j, k, true)));
-					}
-				}
-			}
-		}
-				
+
 		return tempMap;
 	}
 

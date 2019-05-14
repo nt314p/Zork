@@ -14,6 +14,10 @@ public class Wall extends Side {
 		super(name, descriptions, isExit);
 	}
 	
+	public Wall(Wall wall) {
+		super(wall.getName(), wall.getDescriptions(), wall.isExit());
+	}
+	
 	public String toString() {
 		return getClass().getSimpleName();
 	}

@@ -1,6 +1,14 @@
 {
 	"presets": [
 		{
+			"type": "opening",
+			"name": "default-opening"
+		},
+		{
+			"type": "wall",
+			"name": "default-wall"
+		},
+		{
 			"type": "room",
 			"name": "Thicc Ice",
 			"descriptions": [
