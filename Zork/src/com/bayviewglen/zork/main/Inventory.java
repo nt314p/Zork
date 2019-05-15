@@ -295,34 +295,17 @@ public class Inventory {
 			concat += s + "\n";
 		}
 		
-		JSONObject obj = new JSONObject(concat);
-		JSONArray items = obj.getJSONArray("items");
+		JSONObject obj = new JSONObject(concat).getJSONObject("inventories");
+		String[] invNames = JSONObject.getNames(obj);
+		//JSONArray items = obj.getJSONArray("items");
 		
 
-		for (int i = 0; i < items.length(); i++) {
-			JSONObject curr = items.getJSONObject(i);
-			
-			HashMap<String, String> descriptions = new HashMap<String, String>();
-			JSONArray JSONDescriptions = curr.getJSONArray("descriptions");
-			for(int j = 0; j<JSONDescriptions.length(); j++) {
-				String temp = JSONDescriptions.getString(j);
-				int index = temp.indexOf(";");
-				descriptions.put(temp.substring(0, index), temp.substring(index+1));
+		for (int i = 0; i < invNames.length; i++) { // iterating through inventories
+			JSONArray inv = obj.getJSONArray(invNames[i]);
+			for (int j = 0; j < inv.length(); j++) { // iterating through items (json objects) in inventories
+				JSONObject item = inv.getJSONObject(j);
+				inventory.add(Item.loadItem(item));
 			}
-			
-			Item item = new Item(curr.getString("name"), curr.getDouble("weight"), descriptions);
-			if(curr.getString("type").equals("food")) {
-				Food food = new Food(item, curr.getDouble("foodValue"), curr.getDouble("waterValue"));
-				inventory.add(food);
-			} else if(curr.getString("type").equals("health")) {
-				Health health = new Health(item, curr.getDouble("healthValue"));
-				inventory.add(health);
-			} else if(curr.getString("type").equals("weapon")) {
-				Weapon weapon = new Weapon(item, curr.getDouble("damage"));
-				inventory.add(weapon);
-			} else
-				inventory.add(item);
-
 		}
 		return inventory;
 	}
