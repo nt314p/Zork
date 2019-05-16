@@ -137,6 +137,32 @@ public class Inventory {
 	public Item get(int index) {
 		return items.get(index);
 	}
+	
+	public ArrayList<String> toStringArray(){
+		ArrayList<String> result = new ArrayList<String>();
+		Inventory usedItems = new Inventory();
+
+		for(int i = 0; i<items.size(); i++) {
+			Item j = items.get(i);
+			
+			if(usedItems.contains(j))
+				continue;
+			
+			int num = getNumMultiples(j);
+			String itemName = j.getName();
+			String multiples = num>1 ? "(" + getNumMultiples(j) + "x):" : ":";
+			String weight = String.format("%.2f kg", j.getWeight());
+			String each = num>1? " each" : "";
+			
+			String part1 = itemName + multiples;
+			String part2 = weight + each;
+			
+			result.add(String.format("%-15s%s", part1, part2));
+			usedItems.add(j);
+		}
+		result.add(String.format("%-15s%.2f%s", "Total Weight:", getTotalWeight(), " kg"));
+		return result;
+	}
 
 	/**
 	 * puts the inventory in a clean, neat, organized string like so: ... Bird(5x):

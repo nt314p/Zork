@@ -18,11 +18,25 @@ public class Monitor {
 	}
 	
 	/**
+	 * to string method mentioning if low/critical
+	 * Format: start the string with "Health" + toString()"
+	 * This method adds in colons, percentages, etc.
+	 */
+	public String toString() {
+		String ret = isLow() ? (isCritical() ? " Critcal: " : " Low: ") : ": ";
+		return ret + getPercent() + "%";
+	}
+	
+	/**
 	 *
 	 * @return the player's statistic meter - how much food, health, water, etc.
 	 */
 	public double get() {
 		return meter;
+	}
+	
+	public int getPercent() {
+		return (int)(meter * 100 + 0.5);
 	}
 	
 	/**
