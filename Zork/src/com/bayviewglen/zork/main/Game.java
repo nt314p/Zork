@@ -93,17 +93,17 @@ public class Game{
 		
 
 		int i = 0;
-		String ret = String.format("%s%-40s", "STATISTICS", "INVENTORY");
-		ret += String.format("\n%s%-40s", "----------", "----------");
-		ret += String.format("\n%s%-40s", healthMonitor, inventoryLines.get(i));
+		String ret = String.format("%-20s%s", "STATISTICS", "INVENTORY");
+		ret += String.format("\n%-20s%s", "----------", "----------");
+		ret += String.format("\n%-20s%s", healthMonitor, inventoryLines.get(i));
 		i++;
-		ret += String.format("\n%s%-40s", foodMonitor, inventoryLines.get(i));
+		ret += String.format("\n%-20s%s", foodMonitor, inventoryLines.get(i));
 		i++;
-		ret += String.format("\n%s%-40s", waterMonitor, inventoryLines.get(i));
+		ret += String.format("\n%-20s%s", waterMonitor, inventoryLines.get(i));
 		i++;
 		
 		while(i < inventoryLines.size()) {
-			ret += String.format("\n%s%-40s", "", inventoryLines.get(i));
+			ret += String.format("\n%-20s%s", "", inventoryLines.get(i));
 			i++;
 		}
 		
