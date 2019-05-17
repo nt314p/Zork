@@ -17,12 +17,11 @@ import com.bayviewglen.zork.map.*;
 
 public class Game{
 
-	private static Parser parser;	
-	private static Player player;
-	private static ArrayList<Phase> phases;
-	private static ArrayList<Character> characters;
+	private Parser parser;	
+	private Player player;
+	private ArrayList<Phase> phases;
 
-	private static int turn;
+	private int turn;
 	
 
 	public Game() {
@@ -30,14 +29,14 @@ public class Game{
 		phases = new ArrayList<Phase>();
 		CommandWords.initialize();
 		Preset.initialize();
+		Inventory.initialize();
 		loadGame("data/gameTest.json");
-		player = new Player(100, null, new Inventory(), new MoveableLocation());
-		characters = Character.loadCharacters("data/characterTest.json");
+		player = new Player(100, null, new Inventory(), new MoveableLocation("Ice Ice Baby", new Coordinate(0.5, 0.5, 0.5)));
 		
 		turn = 0;
 	}
 	
-	public static void processCommand(Command cmd) {
+	public void processCommand(Command cmd) {
 		ArrayList<Item> interactableItems = player.getInteractableItems().toArrayList();
 		String[] params = cmd.getParameters();
 		ArrayList<Item> commandableItems = new ArrayList<Item>();
@@ -56,8 +55,8 @@ public class Game{
 			  catch (NoSuchMethodException e) { ... }*/
 	}
 	
-	public static String doTurn() {
-		Map.loadMap("data/TestMapV2.json");
+	public String doTurn() {
+		Map.loadMap("data/minesweeper2.json");
 		Location currLoc = player.getLocation();
 		String roomDesc = currLoc.getMap().getRoom(currLoc.getCoords()).getLongDescription();		
 		
@@ -87,7 +86,7 @@ public class Game{
 		
 
 		ArrayList<String> inventoryLines = player.getInventory().toStringArray();
-		for(int i = 0; inventoryLines.size()<3; i++) {
+		for(int i = 0; inventoryLines.size() < 3; i++) {
 			inventoryLines.add("");
 		}//give inventoryLines at least 3 to work with for-loop
 		
@@ -113,31 +112,31 @@ public class Game{
 		return ret;
 	}
 		
-	public static int getTurn() {
+	public int getTurn() {
 		return turn;
 	}
 	
-	public static void incrementTurn() {
+	public void incrementTurn() {
 		turn++;
 	}
 	
-	public static void setTurn(int turn) {
-		Game.turn = turn;
+	public void setTurn(int turn) {
+		this.turn = turn;
 	}
 	
-	public static ArrayList<Character> getCharacters() {
-		return characters;
-	}
+//	public ArrayList<Character> getCharacters() {
+//		return characters;
+//	}
 	
-	public static ArrayList<Phase> getPhases() {
+	public ArrayList<Phase> getPhases() {
 		return phases;
 	}
 	
-	public static Player getPlayer() {
+	public Player getPlayer() {
 		return player;
 	}
 	
-	public static void loadGame(String filePath) {
+	public void loadGame(String filePath) {
 		FileReader reader = new FileReader(filePath);
 		String[] lines = reader.getLines();
 		

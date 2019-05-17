@@ -24,14 +24,14 @@ public class Player extends Character{
 		return i;		
 	}
 	
-	public ArrayList<Character> getInteractableCharacters(){
-		ArrayList<Character> characters = new ArrayList<Character>();
-		for(Character c:Game.getCharacters()) {
-			if(c.getLocation().getRoom().equals(getLocation().getRoom()))
-				characters.add(c);
-		}
-		return characters;
-	}
+//	public ArrayList<Character> getInteractableCharacters(){
+//		ArrayList<Character> characters = new ArrayList<Character>();
+//		for(Character c:Game.getCharacters()) {
+//			if(c.getLocation().getRoom().equals(getLocation().getRoom()))
+//				characters.add(c);
+//		}
+//		return characters;
+//	}
 
 	/**
 	 * die - update death count, reset statistics, reset current room to the checkpoint

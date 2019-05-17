@@ -1,54 +1,58 @@
 {
-	"inventories": {
-		"inventoryName": [
-			{
-				"type": "weapon",
-				"damage": "0.67",
-				"name": "textbook",
-				"weight": "5.4",
-				"descriptions": [
-					"colour:green",
-					"size:large",
-					"shape:circle"
-				]
-			},
-			{
-				"type": "item",
-				"name": "table",
-				"weight": "53.8",
-				"descriptions": [
-				]
-			},
-			{
-				"type": "item",
-				"name": "textbook",
-				"weight": "5.4",
-				"descriptions": [
-					"colour:purple",
-					"size:small",
-					"shape:circle"
-				]
-			},
-			{
-				"type": "weapon",
-				"damage": "0.4",
-				"name": "textbook",
-				"weight": "5.7",
-				"descriptions": [
-					"colour:green",
-					"size:large",
-					"shape:circle",
-					"type:math book"
-				]
-			},
-			{
-				"type": "health",
-				"health": "0.9",
-				"name": "bandage",
-				"weight": "5.4",
-				"descriptions": [
-				]
-			}
-		]
-	}
+	"inventories": [
+		{
+			"name": "Test Inventory",
+			"maxWeight": "100",
+			"items": [
+				{
+					"type": "weapon",
+					"damage": "0.67",
+					"name": "textbook",
+					"weight": "5.4",
+					"descriptions": [
+						"colour:green",
+						"size:large",
+						"shape:circle"
+					]
+				},
+				{
+					"type": "item",
+					"name": "table",
+					"weight": "53.8",
+					"descriptions": [
+					]
+				},
+				{
+					"type": "item",
+					"name": "textbook",
+					"weight": "5.4",
+					"descriptions": [
+						"colour:purple",
+						"size:small",
+						"shape:circle"
+					]
+				},
+				{
+					"type": "weapon",
+					"damage": "0.4",
+					"name": "textbook",
+					"weight": "5.7",
+					"descriptions": [
+						"colour:green",
+						"size:large",
+						"shape:circle",
+						"type:math book"
+					]
+				},
+				{
+					"type": "health",
+					"health": "0.9",
+					"name": "bandage",
+					"weight": "5.4",
+					"descriptions": [
+					]
+				}
+			]
+		}
+	]
 }

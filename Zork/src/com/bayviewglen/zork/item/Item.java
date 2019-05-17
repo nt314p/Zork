@@ -174,11 +174,11 @@ public class Item implements Comparable<Item> {
 		str += ".";
 		return str;
 	}
-
-	public static Item loadItem(String filePath, String name) {
-		Inventory inventory = Inventory.loadInventory(filePath);
-		return inventory.getItem(name);
-	}
+//
+//	public static Item loadItem(String filePath, String name) {
+//		Inventory inventory = Inventory.loadInventory(filePath);
+//		return inventory.getItem(name);
+//	}
 
 	public static Item loadItem(JSONObject jObj) {
 		try {
@@ -193,9 +193,14 @@ public class Item implements Comparable<Item> {
 		try {
 			type = jObj.getString("type");
 			type = type.substring(0, 1).toUpperCase() + type.substring(1); // capitalizing
-			cls = Class.forName("com.bayviewglen.zork.map." + type);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			String[] pkgs = {"main", "item", "map"};
+			for (int i = 0; i < pkgs.length; i++) {
+				try {
+					cls = Class.forName("com.bayviewglen.zork." + pkgs[i] + "." + type);
+				} catch (ClassNotFoundException e){
+					
+				}
+			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -260,11 +265,11 @@ public class Item implements Comparable<Item> {
 		double weight = jObj.getDouble("weight");
 		
 		switch (type) {
-		case "key": return new Key(name, weight, descriptions, jObj.getString("code"));
-		case "weapon": return new Weapon(name, weight, descriptions, jObj.getDouble("damage"));
-		case "health": return new Health(name, weight, descriptions, jObj.getDouble("health"));
-		case "food": return new Food(name, weight, descriptions, jObj.getDouble("food"), jObj.getDouble("water"));
-		case "item": return new Item(name, weight, descriptions);
+		case "Key": return new Key(name, weight, descriptions, jObj.getString("code"));
+		case "Weapon": return new Weapon(name, weight, descriptions, jObj.getDouble("damage"));
+		case "Health": return new Health(name, weight, descriptions, jObj.getDouble("health"));
+		case "Food": return new Food(name, weight, descriptions, jObj.getDouble("food"), jObj.getDouble("water"));
+		case "Item": return new Item(name, weight, descriptions);
 		}
 		
 		return null;

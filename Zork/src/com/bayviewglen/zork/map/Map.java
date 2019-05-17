@@ -11,9 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.bayviewglen.zork.item.Item;
-import com.bayviewglen.zork.item.Key;
 import com.bayviewglen.zork.main.FileReader;
-import com.bayviewglen.zork.main.Inventory;
 
 public class Map {
 
@@ -326,16 +324,21 @@ public class Map {
 
 		for (int i = 0; i < jPlaces.length(); i++) { // looping through places
 			String coordsString = jPlaces.getJSONObject(i).getString("coords"); // getting coordinates
+			String type = Item.loadItem(jPlaces.getJSONObject(i)).getClass().getSimpleName(); // VERY BAD
+			double offset = 0; // if the type is a Room, there needs to be one more space for its surrounding sides
+			if ("WallOpeningDoor".indexOf(type) != -1) {
+				offset = 0.5;
+			}
 			Coordinate coords = Coordinate.readCoords(coordsString); // finding max coordinates
 
 			if (coords.getX() > maxCoords.getX())
-				maxCoords.setX(coords.getX());
+				maxCoords.setX(coords.getX() + offset);
 
 			if (coords.getY() > maxCoords.getY())
-				maxCoords.setY(coords.getY());
+				maxCoords.setY(coords.getY() + offset);
 
 			if (coords.getZ() > maxCoords.getZ())
-				maxCoords.setZ(coords.getZ());
+				maxCoords.setZ(coords.getZ() + offset);
 		}
 
 		Map tempMap = new Map(mapName, maxCoords); // creating map with max coords
@@ -346,48 +349,49 @@ public class Map {
 		
 		if (obj.has("default-side-vertical")) {
 			defaultSideV = (Side) Item.loadItem(obj.getJSONObject("default-side-vertical"));
+			
+			// filling vertical sides
+			for (int i = 1; i < tempMap.map.length; i += 2) { // x
+				for (int j = 0; j < tempMap.map[0].length; j += 2) { // y
+					for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
+						defaultSideV.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
+						tempMap.map[i][j][k] = defaultSideV;
+					}
+				}
+			}
+
+			// filling more vertical sides
+			for (int i = 0; i < tempMap.map.length; i += 2) { // x
+				for (int j = 1; j < tempMap.map[0].length; j += 2) { // y
+					for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
+						defaultSideV.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
+						tempMap.map[i][j][k] = defaultSideV;
+					}
+				}
+			}
 		}
 		
 		if (obj.has("default-side-horizontal")) {
 			defaultSideH = (Side) Item.loadItem(obj.getJSONObject("default-side-horizontal"));
+			// filling horizontal sides
+			for (int i = 1; i < tempMap.map.length; i += 2) { // x
+				for (int j = 1; j < tempMap.map[0].length; j += 2) { // y
+					for (int k = 0; k < tempMap.map[0][0].length; k += 2) { // z
+						defaultSideH.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
+						tempMap.map[i][j][k] = defaultSideH;
+					}
+				}
+			}
 		}
 		
 		if (obj.has("default-room")) {
 			defaultRoom = (Room) Item.loadItem(obj.getJSONObject("default-room"));
-		}
-
-		for (int i = 1; i < tempMap.map.length; i += 2) { // x
-			for (int j = 1; j < tempMap.map[0].length; j += 2) { // y
-				for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
-					tempMap.map[i][j][k] = defaultRoom;
-				}
-			}
-		}
-
-		// filling vertical sides
-		for (int i = 1; i < tempMap.map.length; i += 2) { // x
-			for (int j = 0; j < tempMap.map[0].length; j += 2) { // y
-				for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
-					tempMap.map[i][j][k] = defaultSideV;
-
-				}
-			}
-		}
-
-		// filling more vertical sides
-		for (int i = 0; i < tempMap.map.length; i += 2) { // x
-			for (int j = 1; j < tempMap.map[0].length; j += 2) { // y
-				for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
-					tempMap.map[i][j][k] = defaultSideV;
-				}
-			}
-		}
-
-		// filling horizontal sides
-		for (int i = 1; i < tempMap.map.length; i += 2) { // x
-			for (int j = 1; j < tempMap.map[0].length; j += 2) { // y
-				for (int k = 0; k < tempMap.map[0][0].length; k += 2) { // z
-					tempMap.map[i][j][k] = defaultSideH;
+			for (int i = 1; i < tempMap.map.length; i += 2) { // x
+				for (int j = 1; j < tempMap.map[0].length; j += 2) { // y
+					for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
+						defaultRoom.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
+						tempMap.map[i][j][k] = defaultRoom;
+					}
 				}
 			}
 		}
@@ -404,40 +408,40 @@ public class Map {
 
 		return tempMap;
 	}
-
-	public static ArrayList<Character> loadCharacters(String filePath) {
-		FileReader reader = new FileReader(filePath);
-		String[] lines = reader.getLines();
-		ArrayList<Character> characters = new ArrayList<Character>();
-
-		String concat = "";
-
-		for (String s : lines) {
-			concat += s + "\n";
-		}
-
-		JSONObject obj = new JSONObject(concat);
-		JSONArray textCharacters = obj.getJSONArray("characters");
-
-		for (int i = 0; i < textCharacters.length(); i++) {
-			JSONObject curr = textCharacters.getJSONObject(i);
-
-			// double[]coords = {curr.getDouble("phase"), curr.getDouble("map"),
-			// curr.getDouble("x"), curr.getDouble("y"), curr.getDouble("z")};
-			Coordinate coords = Coordinate.readCoords(curr.getString("coords"));
-			MoveableLocation location = new MoveableLocation(curr.getString("map"), coords);
-			Inventory inventory = Inventory.loadInventory(curr.getString("inventory"));
-
-			HashMap<String, String> descriptions = new HashMap<String, String>();
-			JSONArray JSONDescriptions = curr.getJSONArray("descriptions");
-			for (int j = 0; j < JSONDescriptions.length(); j++) {
-				String temp = JSONDescriptions.getString(j);
-				int index = temp.indexOf(":");
-				descriptions.put(temp.substring(0, index), temp.substring(index + 1));
-			}
-
-		}
-		return characters;
-	}
+//
+//	public static ArrayList<Character> loadCharacters(String filePath) {
+//		FileReader reader = new FileReader(filePath);
+//		String[] lines = reader.getLines();
+//		ArrayList<Character> characters = new ArrayList<Character>();
+//
+//		String concat = "";
+//
+//		for (String s : lines) {
+//			concat += s + "\n";
+//		}
+//
+//		JSONObject obj = new JSONObject(concat);
+//		JSONArray textCharacters = obj.getJSONArray("characters");
+//
+//		for (int i = 0; i < textCharacters.length(); i++) {
+//			JSONObject curr = textCharacters.getJSONObject(i);
+//
+//			// double[]coords = {curr.getDouble("phase"), curr.getDouble("map"),
+//			// curr.getDouble("x"), curr.getDouble("y"), curr.getDouble("z")};
+//			Coordinate coords = Coordinate.readCoords(curr.getString("coords"));
+//			MoveableLocation location = new MoveableLocation(curr.getString("map"), coords);
+//			Inventory inventory = Inventory.loadInventory(curr.getString("inventory"));
+//
+//			HashMap<String, String> descriptions = new HashMap<String, String>();
+//			JSONArray JSONDescriptions = curr.getJSONArray("descriptions");
+//			for (int j = 0; j < JSONDescriptions.length(); j++) {
+//				String temp = JSONDescriptions.getString(j);
+//				int index = temp.indexOf(":");
+//				descriptions.put(temp.substring(0, index), temp.substring(index + 1));
+//			}
+//
+//		}
+//		return characters;
+//	}
 
 }

@@ -6,7 +6,8 @@ import com.bayviewglen.zork.map.*;
 public class RoomTester {
 
 	public static void main(String[] args) {
-		Game.doTurn();
+		Game g = new Game();
+		g.doTurn();
 		
 	}
 

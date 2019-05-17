@@ -16,14 +16,14 @@ public class Zork {
 		//testRiddle();
 		//testSides();
 		//testInventory();
-		//testInventoryLoader();
+		testInventoryLoader();
 		//testMap();
 		//testRoomDescription();
 		//testPresets();
 		//testLink();
-		Item i = new Food("myItem", 17.9, null, 0, 0.9);
-		Item t = Item.copy(i);
-		System.out.println(i + "\n" + t);
+//		Item i = new Food("myItem", 17.9, null, 0, 0.9);
+//		Item t = Item.copy(i);
+//		System.out.println(i + "\n" + t);
 
 		
 	}
@@ -80,7 +80,8 @@ public class Zork {
 	}
 	
 	public static void testInventoryLoader() {
-		Inventory inventory = Inventory.loadInventory("data/inventoryTest.json");
+		Inventory.initialize();
+		Inventory inventory = Inventory.getInventory("Test Inventory");
 		System.out.println(inventory);
 		System.out.println(inventory.get(0));
 	}

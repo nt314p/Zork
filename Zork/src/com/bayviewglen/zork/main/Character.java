@@ -103,7 +103,7 @@ public class Character extends Item{
 		
 		return str;
 	}
-	
+	/*
 	public static ArrayList<Character> loadCharacters(String filePath){
 		FileReader reader = new FileReader(filePath);
 		String[] lines = reader.getLines();
@@ -141,5 +141,5 @@ public class Character extends Item{
 			characters.add(c);
 		}
 		return characters;
-	}
+	}*/
 }
