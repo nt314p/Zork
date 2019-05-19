@@ -30,6 +30,13 @@ public class Coordinate {
 		this.z = coords[2];
 	}
 
+	public Coordinate(String coords) {
+		Coordinate c = Coordinate.readCoords(coords);
+		this.x = c.x;
+		this.y = c.y;
+		this.z = c.z;
+	}
+
 	public double[] toArray() {
 		return new double[] { x, y, z };
 	}

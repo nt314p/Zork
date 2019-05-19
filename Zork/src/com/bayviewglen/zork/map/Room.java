@@ -9,7 +9,7 @@ import com.bayviewglen.zork.main.Inventory;
 
 public class Room extends Place {
 	private Inventory roomItems;
-	private Inventory roomCharacters = new Inventory();
+	//private Inventory roomCharacters = new Inventory();
 
 	private boolean isDeathRoom;
 
@@ -117,12 +117,16 @@ public class Room extends Place {
 		
 		return ret;
 	}
+	
+	public void setInventory(String name) {
+		roomItems = Inventory.getInventory(name);
+	}
 
 	public Inventory getRoomItems() {
 		return roomItems;
 	}
 
-	public Inventory getRoomCharacters() {
-		return roomCharacters;
-	}
+//	public Inventory getRoomCharacters() {
+//		return roomCharacters;
+//	}
 }

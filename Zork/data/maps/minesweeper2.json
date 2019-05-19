@@ -9,6 +9,7 @@
 	"places": [
 		{
 			"preset": "Thicc Ice",
+			"inventory": "TestRoomInv",
 			"coords": "1.5,1.5,0.5"
 		},
 		{
@@ -228,7 +229,11 @@
 			"coords": "3.5,8.5,0.5"
 		},
 		{
-			"preset": "Thicc Ice",
+			"type": "room",
+			"name": "Ice Start",
+			"descriptions": [
+				"short:A massive frozen lake expands to the horizon. Some patches look a bit thin..."
+			],			
 			"coords": "4.5,8.5,0.5"
 		},
 		{

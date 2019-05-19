@@ -30,7 +30,7 @@ public class Game{
 		CommandWords.initialize();
 		Preset.initialize();
 		Inventory.initialize();
-		loadGame("data/gameTest.json");
+		loadGame("data/game.json");
 		player = new Player(100, null, new Inventory(), new MoveableLocation("Ice Ice Baby", new Coordinate(0.5, 0.5, 0.5)));
 		
 		turn = 0;
@@ -56,7 +56,7 @@ public class Game{
 	}
 	
 	public String doTurn() {
-		Map.loadMap("data/minesweeper2.json");
+		Map.getMap("Ice Ice Baby");
 		Location currLoc = player.getLocation();
 		String roomDesc = currLoc.getMap().getRoom(currLoc.getCoords()).getLongDescription();		
 		
@@ -138,30 +138,16 @@ public class Game{
 	
 	public void loadGame(String filePath) {
 		FileReader reader = new FileReader(filePath);
-		String[] lines = reader.getLines();
 		
-		String concat = "";
-		
-		for (String s : lines) {
-			concat += s + "\n";
-		}
-		
-		JSONObject obj = new JSONObject(concat);
+		JSONObject obj = new JSONObject(reader.getLinesSingle());
 		JSONArray textPhases = obj.getJSONArray("phases");
 		
 
 		for (int i = 0; i < textPhases.length(); i++) {
-			JSONObject curr = textPhases.getJSONObject(i);
-			
-			ArrayList<Map> maps = new ArrayList<Map>();
-			JSONArray JSONMaps = curr.getJSONArray("maps");
-			
-			for(int j = 0; j<JSONMaps.length(); j++) {
-				maps.add(Map.loadMap(JSONMaps.getString(j)));
-			}
-			Phase phase = new Phase(curr.getString("name"), maps);
-			phases.add(phase);
+			phases.add(Phase.getPhase(textPhases.getString(i)));
 		}
+		
+		player.setLocation((MoveableLocation) Location.loadLocation(obj.getJSONObject("playerStart")));
 	}
 	
 }

@@ -16,7 +16,7 @@ public class MapDisplay extends PApplet {
 
 	public static void main(String[] args) {
 		Preset.initialize();
-		display(Map.loadMap("data/minesweeper2.json"));
+		display(Map.getMap("Ice Ice Baby"));
 	}
 
 	public static void display(Map m) {

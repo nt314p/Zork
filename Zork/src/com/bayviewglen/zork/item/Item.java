@@ -59,7 +59,7 @@ public class Item implements Comparable<Item> {
 		this.descriptions = item.getDescriptions();
 	}
 
-	public static Item copy(Item item) {
+	public static Item clone(Item item) {
 
 		Class<? extends Item> cls = item.getClass();
 		Constructor<? extends Item> cons;
@@ -183,7 +183,16 @@ public class Item implements Comparable<Item> {
 	public static Item loadItem(JSONObject jObj) {
 		try {
 			String presetName = jObj.getString("preset"); // checking for preset
-			return Item.copy(Preset.get(presetName)); // returning preset
+			Item preset = Item.clone(Preset.get(presetName)); // getting preset
+			if (preset instanceof Room) { // finding inventory and overriding preset inventory
+				try { 
+					String invName = jObj.getString("inventory"); // attempting to find inventory
+					((Room) preset).setInventory(invName);
+				} catch (JSONException e) {
+					// no inventory
+				}
+			}
+			return preset; // returning preset
 		} catch (JSONException e) {
 			// nothing to see here, just no preset
 		}
@@ -194,7 +203,7 @@ public class Item implements Comparable<Item> {
 			type = jObj.getString("type");
 			type = type.substring(0, 1).toUpperCase() + type.substring(1); // capitalizing
 			String[] pkgs = {"main", "item", "map"};
-			for (int i = 0; i < pkgs.length; i++) {
+			for (int i = 0; i < pkgs.length; i++) { // iterating through packages
 				try {
 					cls = Class.forName("com.bayviewglen.zork." + pkgs[i] + "." + type);
 				} catch (ClassNotFoundException e){
@@ -209,7 +218,6 @@ public class Item implements Comparable<Item> {
 				
 		HashMap<String, String> descriptions = new HashMap<String, String>();
 		
-		
 		JSONArray JSONDescriptions;
 		try {
 			JSONDescriptions = jObj.getJSONArray("descriptions");
@@ -222,7 +230,18 @@ public class Item implements Comparable<Item> {
 			// no descriptions
 		}
 		
-		if ("RoomWallOpening".indexOf(type) != -1) {
+		if (type.equals("Room")) {
+			Room r = new Room(name, descriptions);
+			try {
+				String invName = jObj.getString("inventory"); // attempting to find inventory
+				r.setInventory(invName);
+			} catch (JSONException e) {
+				// no inventory
+			}
+			return r;
+		}
+		
+		if ("WallOpening".indexOf(type) != -1) {
 			Constructor<?> cons;
 			try {
 				cons = cls.getConstructor(String.class, HashMap.class);
@@ -247,8 +266,8 @@ public class Item implements Comparable<Item> {
 			Door d;
 
 			try {
-				JSONObject keyInfo = jObj.getJSONObject("key");
-				key = (Key) Item.loadItem(keyInfo);
+				JSONObject jKey = jObj.getJSONObject("key");
+				key = (Key) Item.loadItem(jKey);
 			} catch (JSONException ex) {
 				key = null;
 			}

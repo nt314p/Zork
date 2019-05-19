@@ -1,6 +1,5 @@
 package com.bayviewglen.zork.map;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class Link {

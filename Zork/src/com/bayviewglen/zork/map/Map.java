@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
+import java.io.File;
 import java.lang.Character;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.bayviewglen.zork.item.Item;
@@ -45,6 +45,18 @@ public class Map {
 		// this.location = location;
 		map = new Place[x][y][z];
 		mapList.put(mapName, this);
+	}
+	
+	public static void initialize() {
+		mapList = new HashMap<String, Map>();
+		
+		File dir = new File("data/maps/");
+		File[] dirList = dir.listFiles();
+		if (dirList != null) {
+			for (File f : dirList) {
+				loadMap(f.getAbsolutePath());
+			}
+		}
 	}
 
 	/**
@@ -313,7 +325,7 @@ public class Map {
 		}
 	}
 
-	public static Map loadMap(String filePath) {
+	private static void loadMap(String filePath) {
 		FileReader mapReader = new FileReader(filePath);
 		Coordinate maxCoords = new Coordinate();
 
@@ -406,7 +418,7 @@ public class Map {
 			tempMap.set(p, coords);
 		}
 
-		return tempMap;
+		mapList.put(mapName, tempMap);
 	}
 //
 //	public static ArrayList<Character> loadCharacters(String filePath) {

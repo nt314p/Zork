@@ -1,5 +1,6 @@
 package com.bayviewglen.zork.main;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -10,9 +11,8 @@ import org.json.JSONObject;
 
 import com.bayviewglen.zork.item.*;
 
-
 public class Inventory {
-	
+
 	private static HashMap<String, Inventory> inventories;
 	private ArrayList<Item> items;
 	private double maxWeight;
@@ -21,39 +21,47 @@ public class Inventory {
 		items = new ArrayList<Item>();
 		maxWeight = Double.MAX_VALUE;
 	}
-	
+
 	public Inventory(double maxWeight) {
 		items = new ArrayList<Item>();
 		this.maxWeight = maxWeight;
 	}
-	
+
 	public Inventory(Inventory inventory) {
 		items = new ArrayList<Item>();
 		this.addAll(inventory);
 		maxWeight = inventory.maxWeight;
 	}
-	
+
 	public Inventory(ArrayList<Item> items) {
 		this.items = items;
 		this.maxWeight = Double.MAX_VALUE;
 	}
-	
+
 	public Inventory(ArrayList<Item> items, double maxWeight) {
 		this.items = items;
 		this.maxWeight = maxWeight;
 	}
-	
+
 	public static void initialize() {
 		inventories = new HashMap<String, Inventory>();
-		loadInventories("data/inventoryTest.json");
+		
+		File dir = new File("data/inventories/");
+		File[] dirList = dir.listFiles();
+		if (dirList != null) {
+			for (File f : dirList) {
+				loadInventory(f.getAbsolutePath());
+			}
+		}	
 	}
-	
+
 	public boolean isInfiniteWeight() {
 		return maxWeight == Double.MAX_VALUE;
 	}
 
 	/**
 	 * formats an inventory list as an arrayList
+	 * 
 	 * @param list the list you want to turn into an arrayList
 	 * @return the finished arrayList
 	 */
@@ -87,7 +95,7 @@ public class Inventory {
 		}
 		return -1;
 	}
-	
+
 	public Item getItem(String name) {
 		for (int i = 0; i < items.size(); i++) {
 			if (items.get(i).getName().equals(name)) {
@@ -144,26 +152,26 @@ public class Inventory {
 	public Item get(int index) {
 		return items.get(index);
 	}
-	
-	public ArrayList<String> toStringArray(){
+
+	public ArrayList<String> toStringArray() {
 		ArrayList<String> result = new ArrayList<String>();
 		Inventory usedItems = new Inventory();
 
-		for(int i = 0; i<items.size(); i++) {
+		for (int i = 0; i < items.size(); i++) {
 			Item j = items.get(i);
-			
-			if(usedItems.contains(j))
+
+			if (usedItems.contains(j))
 				continue;
-			
+
 			int num = getNumMultiples(j);
 			String itemName = j.getName();
-			String multiples = num>1 ? "(" + getNumMultiples(j) + "x):" : ":";
+			String multiples = num > 1 ? "(" + getNumMultiples(j) + "x):" : ":";
 			String weight = String.format("%.2f kg", j.getWeight());
-			String each = num>1? " each" : "";
-			
+			String each = num > 1 ? " each" : "";
+
 			String part1 = itemName + multiples;
 			String part2 = weight + each;
-			
+
 			result.add(String.format("%-15s%s", part1, part2));
 			usedItems.add(j);
 		}
@@ -179,25 +187,25 @@ public class Inventory {
 		String result = "";
 		Inventory usedItems = new Inventory();
 
-		for(int i = 0; i<items.size(); i++) {
+		for (int i = 0; i < items.size(); i++) {
 			Item j = items.get(i);
-			
-			if(usedItems.contains(j))
+
+			if (usedItems.contains(j))
 				continue;
-			
+
 			int num = getNumMultiples(j);
 			String itemName = j.getName();
-			String multiples = num>1 ? "(" + getNumMultiples(j) + "x):" : ":";
+			String multiples = num > 1 ? "(" + getNumMultiples(j) + "x):" : ":";
 			String weight = String.format("%.2f kg", j.getWeight());
-			String each = num>1? " each" : "";
-			
+			String each = num > 1 ? " each" : "";
+
 			String part1 = itemName + multiples;
 			String part2 = weight + each;
-			
+
 			result += String.format("%-15s%s\n", part1, part2);
 			usedItems.add(j);
 		}
-		result+=String.format("%-15s%.2f%s", "Total Weight:", getTotalWeight(), " kg");
+		result += String.format("%-15s%.2f%s", "Total Weight:", getTotalWeight(), " kg");
 		return result;
 	}
 
@@ -212,17 +220,17 @@ public class Inventory {
 		}
 		return count;
 	}
-	
+
 	public double getMaxWeight() {
 		return maxWeight;
 	}
-	
+
 	public void setMaxWeight(double maxWeight) {
 		this.maxWeight = maxWeight;
 	}
-	
+
 	public void increaseMaxWeight(double maxWeight) {
-		if(maxWeight == Double.MAX_VALUE)
+		if (maxWeight == Double.MAX_VALUE)
 			return;
 		this.maxWeight += maxWeight;
 	}
@@ -233,7 +241,7 @@ public class Inventory {
 	 * @param item the item you want to add to the list
 	 */
 	public boolean add(Item item) {
-		if(canAdd(item))
+		if (canAdd(item))
 			items.add(item);
 		return canAdd(item);
 	}
@@ -246,14 +254,14 @@ public class Inventory {
 	 */
 	public int add(Item item, int nCopies) {
 		int added = 0;
-		
+
 		for (int i = 0; i < nCopies; i++) {
-			if(add(item))
+			if (add(item))
 				added++;
 		}
 		return added;
 	}
-	
+
 	public boolean canAdd(Item item) {
 		return item.getWeight() + getTotalWeight() <= maxWeight;
 	}
@@ -287,9 +295,9 @@ public class Inventory {
 		}
 		return result;
 	}
-	
+
 	public void removeAll(Inventory inventory) {
-		for(Item i:inventory.toArrayList()) {
+		for (Item i : inventory.toArrayList()) {
 			remove(i);
 		}
 	}
@@ -310,20 +318,43 @@ public class Inventory {
 			items.remove(0);
 		}
 	}
-	
+
 	public void addAll(Inventory inventory) {
-		for(Item i:inventory.toArrayList()) {
+		for (Item i : inventory.toArrayList()) {
 			add(i);
 		}
 	}
-	
+
 	public static Inventory getInventory(String name) {
 		return inventories.get(name);
 	}
-	
+
+	private static void loadInventory(String filePath) {
+		FileReader reader = new FileReader(filePath);
+
+		Inventory inventory = new Inventory();
+		
+		JSONObject jInventory = new JSONObject(reader.getLinesSingle());
+		String name = jInventory.getString("name");
+		double maximumWeight;
+		try { // setting max weight
+			maximumWeight = jInventory.getDouble("maxWeight");
+		} catch (JSONException e) {
+			maximumWeight = Double.MAX_VALUE; // max weight doesn't exist, set to MAX_VALUE
+		}
+		inventory.setMaxWeight(maximumWeight);
+		JSONArray jItems = jInventory.getJSONArray("items");
+		for (int j = 0; j < jItems.length(); j++) { // iterating through items (json objects) in inventories
+			JSONObject item = jItems.getJSONObject(j);
+			inventory.add(Item.loadItem(item)); // adding items to inventory after they have been loaded
+		}
+		inventories.put(name, inventory); // adding inventory to master inventories hashmap
+	}
+
+	/*
 	private static void loadInventories(String filePath) {
 		FileReader reader = new FileReader(filePath);
-		
+
 		JSONArray jInventories = new JSONObject(reader.getLinesSingle()).getJSONArray("inventories");
 
 		for (int i = 0; i < jInventories.length(); i++) { // iterating through inventories
@@ -345,4 +376,5 @@ public class Inventory {
 			inventories.put(name, inventory); // adding inventory to master inventories hashmap
 		}
 	}
+	*/
 }

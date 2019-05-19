@@ -1,0 +1,24 @@
+{
+	"name": "TestRoomInv",
+	"maxWeight": "100",
+	"items": [
+		{
+			"type": "weapon",
+			"name": "Knowledge",
+			"weight": "0",
+			"damage": "1.0",
+			"descriptions": [
+				"look:The knowledge feels warm and powerful in your hand"
+			]
+		},
+		{
+			"type": "health",
+			"name": "Chug Jug",
+			"weight": "0.6",
+			"health": "1.0",
+			"descriptions": [
+				"look:The chug jug glows a faint blue-green"
+			]
+		}
+	]
+}

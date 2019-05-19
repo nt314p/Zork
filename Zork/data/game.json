@@ -1,0 +1,9 @@
+{
+	"playerStart": {
+		"map":"Ice Ice Baby",
+		"coords": "4.5,8.5,0.5"
+	},
+	"phases": [
+		"Phase One"
+	]
+}

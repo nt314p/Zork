@@ -1,0 +1,23 @@
+{
+	"name": "EvilAIOneInv",
+	"maxWeight": "300",
+	"items": [
+		{
+			"type": "item",
+			"name": "battery",
+			"weight":"3.5",
+			"descriptions": [
+				"look:The label on the battery reads: \"EE for BIG power!\""
+			]
+		},
+		{
+			"type": "key",
+			"name": "Access Card 3B",
+			"weight":"0.1",
+			"code":"ac3b",
+			"descriptions": [
+				"look:The card had a profile picture of a piece of metal on it."
+			]
+		}
+	]
+}

@@ -1,5 +1,7 @@
 package com.bayviewglen.zork.map;
 
+import org.json.JSONObject;
+
 public class Location {
 
 	private Map map;
@@ -119,5 +121,11 @@ public class Location {
 
 	public boolean equals(Location location) {
 		return map.equals(location.map) && coords.equals(location.coords);
+	}
+	
+	public static Location loadLocation(JSONObject jObj) {
+		String mapName = jObj.getString("map");
+		Coordinate coords = new Coordinate(jObj.getString("coords"));
+		return new Location(mapName, coords);
 	}
 }
