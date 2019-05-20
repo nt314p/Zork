@@ -8,7 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.bayviewglen.zork.main.FileReader;
-import com.bayviewglen.zork.main.Inventory;
 
 public class Phase {
 
@@ -48,6 +47,14 @@ public class Phase {
 
 	public boolean equals(Phase phase) {
 		return this.phaseName.equals(phase.getPhaseName());
+	}
+	
+	public Location getCheckpoint() {
+		return checkpoint;
+	}
+	
+	public Location getEndpoint() {
+		return endpoint;
 	}
 
 	public static Phase getPhase(String name) {

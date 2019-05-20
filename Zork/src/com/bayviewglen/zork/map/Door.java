@@ -2,9 +2,11 @@ package com.bayviewglen.zork.map;
 
 import java.util.HashMap;
 
+import com.bayviewglen.zork.command.Lockable;
+import com.bayviewglen.zork.command.Unlockable;
 import com.bayviewglen.zork.item.*;
 
-public class Door extends Side{
+public class Door extends Side implements Unlockable, Lockable{
 	
 	private boolean locked;
 	private Key key; // unlocked door = null key	

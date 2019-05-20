@@ -249,7 +249,7 @@ public class Map {
 	 * non-null neighboring room and 2) if the side in that direction is an opening
 	 * or a door
 	 * 
-	 * @param r the room
+	 * @param coords the coordinate
 	 * @return an arrayList of all exits
 	 */
 	public ArrayList<Character> getExits(Coordinate coords) {

@@ -18,6 +18,13 @@ public class Player extends Character{
 	
 	public Inventory getInteractableItems(){
 		Inventory i = new Inventory();
+		HashMap<java.lang.Character, Coordinate> cc = new HashMap<java.lang.Character, Coordinate>();
+		Map m = getLocation().getMap();
+		cc = m.getSurroundingSideCoords(getLocation().getCoords());
+		ArrayList<Coordinate> scoords = (ArrayList<Coordinate>) cc.values();
+		for (int j = 0; j < scoords.size(); j++) {
+			i.add(m.getSide(scoords.get(j)));
+		}
 		i.addAll(getLocation().getRoom().getRoomItems());
 		i.addAll(getInventory());
 		
