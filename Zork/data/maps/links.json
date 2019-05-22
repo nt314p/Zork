@@ -1,0 +1,20 @@
+{
+	"links": [
+		{
+			"dir": 0,
+			"map1": "Ice Ice Baby",
+			"coords1": "3.5,4.5,6.5",
+			"map2": "Ice Ice Baby",
+			"coords2": "1.5,3.5,5.5"
+		},
+		{
+			"dir": 1,
+			"map1": "Ice Ice Baby",
+			"coords1": "3.5,4.5,6.5",
+			"map2": "Ice Ice Baby",
+			"coords2": "1.5,3.5,5.5"
+		}
+	]
+
+
+}

@@ -2,6 +2,11 @@ package com.bayviewglen.zork.map;
 
 import java.util.HashMap;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.bayviewglen.zork.main.FileReader;
+
 public abstract class Link {
 	
 	private static HashMap<Location, Location> links = new HashMap<Location, Location>();
@@ -33,6 +38,27 @@ public abstract class Link {
 	
 	public static HashMap<Location, Location> getLinks() {
 		return links;
+	}
+	
+	public static void loadLinks(String filePath) {
+		FileReader reader = new FileReader(filePath);
+		JSONObject obj = new JSONObject(reader.getLinesSingle());
+		JSONArray textLinks = obj.getJSONArray("links");
+		
+		for(int i = 0; i<textLinks.length(); i++) {
+			JSONObject jObj = textLinks.getJSONObject(i);
+			int dir = jObj.getInt("dir");
+			
+			String mapNameA = jObj.getString("map1");
+			Coordinate coordsA = new Coordinate(jObj.getString("coords1"));
+			Location a = new Location(mapNameA, coordsA);
+			
+			String mapNameB = jObj.getString("map2");
+			Coordinate coordsB = new Coordinate(jObj.getString("coords2"));
+			Location b = new Location(mapNameB, coordsB);
+
+			Link.add(a, b, dir);
+		}
 	}
 	
 	

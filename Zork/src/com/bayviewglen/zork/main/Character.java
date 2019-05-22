@@ -20,25 +20,22 @@ public class Character extends Item {
 
 	private Inventory inventory;
 	private MoveableLocation location;
+	
+	private Coordinate startPoint;
+	private Coordinate endPoint;
 
 	public Character(String name, double weight, HashMap<String, String> descriptions, Inventory inventory,
-			MoveableLocation location, double[] stats) {
+			MoveableLocation location, double[] stats, Coordinate startPoint, Coordinate endPoint) {
 		super(name, weight, descriptions);
 		this.inventory = inventory;
 		this.location = location;
 		healthMonitor = new Monitor(stats[0]);
 		foodMonitor = new Monitor(stats[1]);
 		waterMonitor = new Monitor(stats[2]);
+		this.startPoint = startPoint;
+		this.endPoint = endPoint;
 	}
 
-	public Character(String name, double weight, HashMap<String, String> descriptions, Inventory inventory,
-			double[] stats) {
-		super(name, weight, descriptions);
-		this.inventory = inventory;
-		healthMonitor = new Monitor(stats[0]);
-		foodMonitor = new Monitor(stats[1]);
-		waterMonitor = new Monitor(stats[2]);
-	}
 
 	public Character(Character character) {
 		super(character.getName(), character.getWeight(), character.getDescriptions());
@@ -47,6 +44,8 @@ public class Character extends Item {
 		healthMonitor = character.getHealthMonitor();
 		foodMonitor = character.getFoodMonitor();
 		waterMonitor = character.getWaterMonitor();
+		startPoint  = character.getStartPoint();
+		endPoint = character.getEndPoint();
 	}
 
 	public static void initialize() {
@@ -60,6 +59,22 @@ public class Character extends Item {
 				loadCharacter(f.getAbsolutePath());
 			}
 		}
+	}
+	
+	public double getMoveableArea() {
+		double x = Math.abs(endPoint.getX() - startPoint.getX());
+		double y = Math.abs(endPoint.getY() - startPoint.getY());
+		double z = Math.abs(endPoint.getZ() - startPoint.getZ());
+		
+		return x * y * z;
+	}
+	
+	public Coordinate getRandomCoord() {
+		double x = (int)(Math.random() * (endPoint.getX() - startPoint.getX() + 1) + startPoint.getX()) / 2;
+		double y = (int)(Math.random() * (endPoint.getY() - startPoint.getY() + 1) + startPoint.getY()) / 2;		
+		double z = (int)(Math.random() * (endPoint.getZ() - startPoint.getZ() + 1) + startPoint.getZ()) / 2;
+	
+		return new Coordinate(x, y, z);
 	}
 
 	public MoveableLocation getLocation() {
@@ -84,6 +99,14 @@ public class Character extends Item {
 
 	public Monitor getFoodMonitor() {
 		return foodMonitor;
+	}
+	
+	public Coordinate getStartPoint() {
+		return startPoint;
+	}
+	
+	public Coordinate getEndPoint() {
+		return endPoint;
 	}
 
 	/**
@@ -165,10 +188,11 @@ public class Character extends Item {
 		} catch (JSONException e) {
 			// no descriptions
 		}
+		
+		MoveableLocation loc = (MoveableLocation) MoveableLocation.loadLocation(obj);
 
 		double[] stats = { obj.getDouble("health"), obj.getDouble("food"), obj.getDouble("water") };
-
-		Character c = new Character(obj.getString("name"), obj.getDouble("weight"), descriptions, inventory, stats);
+		Character c = new Character(obj.getString("name"), obj.getDouble("weight"), descriptions, inventory, loc, stats, new Coordinate(obj.getString("start")), new Coordinate(obj.getString("end")));
 		characters.put(obj.getString("name"), c);
 	}
 }

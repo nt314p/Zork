@@ -33,4 +33,8 @@ public abstract class Place extends Item{
 		location = loc;
 	}
 	
+	public boolean equals(Place place) {
+		return this.equals(place) && location.equals(place.getLocation());
+	}
+	
 }

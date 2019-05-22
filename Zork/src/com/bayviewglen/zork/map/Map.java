@@ -16,6 +16,7 @@ import com.bayviewglen.zork.main.FileReader;
 public class Map {
 
 	private static HashMap<String, Map> mapList = new HashMap<String, Map>();
+	private static final int NUM_SIDES = 6;
 
 	private Place[][][] map;
 	private String mapName;
@@ -226,6 +227,24 @@ public class Map {
 
 	public Room getNextRoom(char dir, Coordinate coords) {
 		return getRoom(getNextRoomCoords(dir, coords));
+	}
+	
+	/**
+	 * @param r1 room1
+	 * @param r2 room2
+	 * @return side between room1 and room2, null if there's no surrounding side
+	 */
+	public Side getSideBetween(Room r1, Room r2) {
+
+		for(int i = 0; i<NUM_SIDES; i++) {
+			for(int j = 0; j<NUM_SIDES; j++) {
+				Side a = this.getNextSide(directions[i], r1.getLocation().getCoords());
+				Side b = this.getNextSide(directions[j], r2.getLocation().getCoords());
+				if(a.equals(b))
+					return a;
+			}
+		}
+		return null;
 	}
 
 	/**

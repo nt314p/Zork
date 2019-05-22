@@ -13,7 +13,7 @@ public class Player extends Character{
 	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();
 
 	public Player(double weight, HashMap<String, String> descriptions, Inventory inventory, MoveableLocation location) {
-		super("Player", weight, descriptions, inventory, location, new double[] {1,1,1});
+		super("Player", weight, descriptions, inventory, location, new double[] {1,1,1}, null, null);
 	}
 	
 	public Inventory getInteractableItems(){
