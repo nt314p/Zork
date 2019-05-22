@@ -21,7 +21,7 @@ public abstract class Link {
 		if(dir == 1 || dir == 0)
 			links.put(loc1, loc2);
 		if (dir == -1 || dir == 0)
-			links.put(loc1, loc2);
+			links.put(loc2, loc1);
 	}
 	
 	public static boolean hasLink(Location loc) {
