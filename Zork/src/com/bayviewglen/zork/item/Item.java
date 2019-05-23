@@ -262,20 +262,19 @@ public class Item implements Comparable<Item> {
 		}
 		
 		if (type.equals("Door")) {
-			Key key;
+			String keycode = "";
 			Door d;
 
 			try {
-				JSONObject jKey = jObj.getJSONObject("key");
-				key = (Key) Item.loadItem(jKey);
+				keycode = jObj.getString("code");
 			} catch (JSONException ex) {
-				key = null;
+				// no keycode, door cannot be locked or unlocked
 			}
 
 			try {
-				d = new Door(name, descriptions, jObj.getBoolean("open"), jObj.getBoolean("locked"), key);
+				d = new Door(name, descriptions, jObj.getBoolean("open"), jObj.getBoolean("locked"), keycode);
 			} catch (JSONException ex) {
-				d = new Door(name, descriptions, jObj.getBoolean("open"), false, key);
+				d = new Door(name, descriptions, jObj.getBoolean("open"), false, keycode);
 			}
 			return d;
 		}

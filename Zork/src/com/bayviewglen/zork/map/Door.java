@@ -9,14 +9,14 @@ import com.bayviewglen.zork.item.*;
 public class Door extends Side implements Unlockable, Lockable{
 	
 	private boolean locked;
-	private Key key; // unlocked door = null key	
+	private String keycode;
 
-	public Door(String doorName, HashMap<String, String> descriptions, boolean open, boolean locked, Key key, Location location) {
+	public Door(String doorName, HashMap<String, String> descriptions, boolean open, boolean locked, String keycode, Location location) {
 		super(doorName, descriptions, open, location);
 		this.locked = locked;
-		this.key = key;
+		this.keycode = keycode;
 		
-		if(key == null && locked) {
+		if(keycode.equals("") && locked) {
 			System.out.println("You cannot lock a door that has no key");
 		}
 		
@@ -27,12 +27,12 @@ public class Door extends Side implements Unlockable, Lockable{
 		updateKey();
 	}
 	
-	public Door(String doorName, HashMap<String, String> descriptions, boolean open, boolean locked, Key key) {
+	public Door(String doorName, HashMap<String, String> descriptions, boolean open, boolean locked, String keycode) {
 		super(doorName, descriptions, open);
 		this.locked = locked;
-		this.key = key;
+		this.keycode = keycode;
 		
-		if(key == null && locked) {
+		if(keycode.equals("") && locked) {
 			System.out.println("You cannot lock a door that has no key");
 		}
 		
@@ -46,7 +46,7 @@ public class Door extends Side implements Unlockable, Lockable{
 	public Door(Door door) {
 		super(door.getName(), door.getDescriptions(), door.isOpen(), door.getLocation());
 		this.locked = door.locked;
-		this.key = door.key;
+		this.keycode = door.keycode;
 	}
 	
 	public String toString() {
@@ -83,13 +83,13 @@ public class Door extends Side implements Unlockable, Lockable{
 	}
 	
 	
-	public void updateKey() {
-		if(key == null)
+	private void updateKey() {
+		if(keycode.equals(""))
 			locked = false;
 	}
 	
 	public void lock() {
-		if(key != null) {
+		if(!keycode.equals("")) {
 			close();
 			locked = true;
 		}
@@ -101,7 +101,7 @@ public class Door extends Side implements Unlockable, Lockable{
 		if(!locked)
 			return false;
 		
-		if(this.key.equals(key)) {
+		if(this.keycode.equals(key.getCode())) {
 			locked = false;
 			return true;
 		}
@@ -109,8 +109,8 @@ public class Door extends Side implements Unlockable, Lockable{
 		return false;		
 	}
 	
-	public Key getKey() {
-		return key;
+	public String getKeycode() {
+		return keycode;
 	}
 	
 }
