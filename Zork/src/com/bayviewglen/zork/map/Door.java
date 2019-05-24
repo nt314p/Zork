@@ -2,31 +2,14 @@ package com.bayviewglen.zork.map;
 
 import java.util.HashMap;
 
-import com.bayviewglen.zork.command.Lockable;
-import com.bayviewglen.zork.command.Unlockable;
+import com.bayviewglen.zork.command.DoorCommands;
 import com.bayviewglen.zork.item.*;
 
-public class Door extends Side implements Unlockable, Lockable{
+public class Door extends Side implements DoorCommands{
 	
 	private boolean locked;
 	private String keycode;
 
-	public Door(String doorName, HashMap<String, String> descriptions, boolean open, boolean locked, String keycode, Location location) {
-		super(doorName, descriptions, open, location);
-		this.locked = locked;
-		this.keycode = keycode;
-		
-		if(keycode.equals("") && locked) {
-			System.out.println("You cannot lock a door that has no key");
-		}
-		
-		if(open && locked) {
-			System.out.println("A door cannot be open and locked");
-		}
-		
-		updateKey();
-	}
-	
 	public Door(String doorName, HashMap<String, String> descriptions, boolean open, boolean locked, String keycode) {
 		super(doorName, descriptions, open);
 		this.locked = locked;
@@ -53,17 +36,20 @@ public class Door extends Side implements Unlockable, Lockable{
 		return "Door: " + isOpen() + ", " + isLocked();
 	}
 	
-	public void open() {
+	public String open() {
 		if(!locked) {
 			setExit(true);
+			return getName() + " opened.";
 		}
+		return getName() + " is locked and cannot be opened.";
 	}
 
 	/**
 	 * close the door
 	 */
-	public void close() {
+	public String close() {
 		setExit(false);
+		return getName() + " closed.";
 	}	
 	
 	/**
@@ -88,25 +74,25 @@ public class Door extends Side implements Unlockable, Lockable{
 			locked = false;
 	}
 	
-	public void lock() {
+	public String lock() {
 		if(!keycode.equals("")) {
 			close();
 			locked = true;
+			return getName() + " locked.";
 		}
-		else
-			System.out.println("You cannot lock a door without a key");
+		return getName() + " cannot be locked because there is no key to unlock it.";
 	}
 	
-	public boolean unlock(Key key) {
+	public String unlock(String keycode) {
 		if(!locked)
-			return false;
+			return getName() + " is already unlocked";
 		
-		if(this.keycode.equals(key.getCode())) {
+		if(this.keycode.equals(keycode)) {
 			locked = false;
-			return true;
+			return getName() + " is successfully unlocked.";
 		}
 		
-		return false;		
+		return getName() + " did not have the correct key to unlock.";	
 	}
 	
 	public String getKeycode() {

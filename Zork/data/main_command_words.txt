@@ -9,6 +9,7 @@ restart:redo
 look:see
 commands:words
 
+getAllOf:show,get all,show all,see all, pick all
 inventory:i,stuff,things
 north:n
 east:e
@@ -21,3 +22,8 @@ enter:go in
 exit:leave,go away
 open
 close
+
+scream:yell
+fall
+breathe
+jump

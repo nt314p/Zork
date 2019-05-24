@@ -18,6 +18,14 @@ public class Monitor {
 	}
 	
 	/**
+	 * sets to a percentage (ex. 50% of current) --> pass in 0.5
+	 * @param percent
+	 */
+	public void setToPercent(double decimal) {
+		meter *= decimal;
+	}
+	
+	/**
 	 * to string method mentioning if low/critical
 	 * Format: start the string with "Health" + toString()"
 	 * This method adds in colons, percentages, etc.
