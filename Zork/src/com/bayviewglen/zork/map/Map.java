@@ -40,9 +40,9 @@ public class Map {
 	 */
 	public Map(String mapName, Coordinate maxCoords) {
 		this.mapName = mapName;
-		int x = (int) (maxCoords.getX() * 2) + 1;
-		int y = (int) (maxCoords.getY() * 2) + 1;
-		int z = (int) (maxCoords.getZ() * 2) + 1;
+		int x = (int) (maxCoords.getX() * 2) + 2;
+		int y = (int) (maxCoords.getY() * 2) + 2;
+		int z = (int) (maxCoords.getZ() * 2) + 2;
 		// this.location = location;
 		map = new Place[x][y][z];
 		mapList.put(mapName, this);

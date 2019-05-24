@@ -21,7 +21,7 @@
 			]
 		},
 		{
-			"type": "water",
+			"type": "food",
 			"name": "Water Gourd",
 			"weight": "0.3",
 			"water": "1.0",
