@@ -62,7 +62,6 @@ public class MapDisplay extends PApplet {
     				} else {
     					fill(255, 200, 0);
     				}
-    				fill(0, 255, 0); // side
     			} else {
     				fill(255, 255, 255); // empty
     			}
