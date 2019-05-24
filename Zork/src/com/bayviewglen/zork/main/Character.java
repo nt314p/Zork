@@ -122,9 +122,11 @@ public class Character extends Item {
 	 * eat the food
 	 * 
 	 * @param food the food you would like to eat
+	 * @return 
 	 */
-	public void eat(Food food) {
+	public String eat(Food food) {
 		foodMonitor.increase(food.getFoodValue());
+		return food.getName() + " has been eaten.";
 	}
 
 	/**
@@ -132,8 +134,9 @@ public class Character extends Item {
 	 * 
 	 * @param food the food you would like to drink
 	 */
-	public void drink(Food food) {
-		waterMonitor.increase(food.getWaterValue());
+	public String drink(Food water) {
+		waterMonitor.increase(water.getWaterValue());
+		return water.getName() + " has been drank";
 	}
 
 	/**
@@ -141,8 +144,9 @@ public class Character extends Item {
 	 * 
 	 * @param health the object you want to use to heal yourself
 	 */
-	public void heal(Health health) {
+	public String heal(Health health) {
 		healthMonitor.increase(health.getHealthValue());
+		return health.getName() + " has been used to heal yourself.";
 	}
 
 	public String toString() {

@@ -8,6 +8,8 @@ quit:stop,give up
 restart:redo
 look:see
 commands:words
+die
+hit:attack,fight
 
 getAllOf:show,get all,show all,see all, pick all
 inventory:i,stuff,things

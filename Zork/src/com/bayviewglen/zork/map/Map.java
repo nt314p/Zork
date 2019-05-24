@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.bayviewglen.zork.item.Item;
+import com.bayviewglen.zork.main.DirectionHelper;
 import com.bayviewglen.zork.main.FileReader;
 
 public class Map {
@@ -20,7 +21,6 @@ public class Map {
 
 	private Place[][][] map;
 	private String mapName;
-	private static final char[] directions = { 'n', 'e', 's', 'w', 'u', 'd' };
 	private static final HashMap<Character, Coordinate> dirCoords = new HashMap<>(
 			java.util.Map.of('n', new Coordinate(0, -1, 0), 's', new Coordinate(0, 1, 0), 'e', new Coordinate(1, 0, 0),
 					'w', new Coordinate(-1, 0, 0), 'u', new Coordinate(0, 0, 1), 'd', new Coordinate(0, 0, -1)));
@@ -244,8 +244,8 @@ public class Map {
 
 		for(int i = 0; i<NUM_SIDES; i++) {
 			for(int j = 0; j<NUM_SIDES; j++) {
-				Side a = this.getNextSide(directions[i], r1.getLocation().getCoords());
-				Side b = this.getNextSide(directions[j], r2.getLocation().getCoords());
+				Side a = this.getNextSide(DirectionHelper.DIRECTIONS[i], r1.getLocation().getCoords());
+				Side b = this.getNextSide(DirectionHelper.DIRECTIONS[j], r2.getLocation().getCoords());
 				if(a.equals(b))
 					return a;
 			}
@@ -280,7 +280,7 @@ public class Map {
 	public ArrayList<Character> getExits(Coordinate coords) {
 		ArrayList<Character> exits = new ArrayList<Character>();
 
-		for (char dir : directions) {
+		for (char dir : DirectionHelper.DIRECTIONS) {
 			Side side = (Side) getPlace(getNextSideCoords(dir, coords));
 			if (getNextRoomCoords(dir, coords) != null && (side.isExit()))
 				exits.add(dir);

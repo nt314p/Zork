@@ -19,26 +19,28 @@ import com.bayviewglen.zork.map.*;
 
 public class Game {
 
-	private Parser parser;
-	private Player player;
-	private ArrayList<Phase> phases;
+	private static Parser parser = new Parser();
+	private static Player player;
+	private static boolean gameOver = false;
+	private static boolean isPlaying = true;
 
-	private int turn;
-
-	public Game() {
+	private static int turn = 0;
+	
+	public static void initializeGame(String filePath, Player player) {
+		
 		parser = new Parser();
-		phases = new ArrayList<Phase>();
 		CommandWords.initialize();
 		Preset.initialize();
 		Inventory.initialize();
-		loadGame("data/game.json");
-		player = new Player(100, null, new Inventory(),
-				new MoveableLocation("Ice Ice Baby", new Coordinate(0.5, 0.5, 0.5)));
+		loadGame(filePath);
+		
+		Game.player = player;
+	//	player = new Player(100, null, new Inventory(),
+		//		new MoveableLocation("Ice Ice Baby", new Coordinate(0.5, 0.5, 0.5)));
 
-		turn = 0;
 	}
 
-	public void processCommand(Command cmd) {
+	public static void processCommand(Command cmd) {
 		ArrayList<Item> interactableItems = player.getInteractableItems().toArrayList();
 
 		String[] params = cmd.getParameters();
@@ -117,8 +119,20 @@ public class Game {
 			} 
 		}
 	}
+	
+	public static void setGameOver(boolean playWithoutAsking) {
+		gameOver = true;
+		isPlaying = playWithoutAsking;
+	}
+	
+	public static boolean gameOver() {
+		return gameOver;
+	}
 
-	public String doTurn() {
+	public static String doTurn() {
+		if(gameOver) {
+			return "Game is over.";
+		}
 		Map.getMap("Ice Ice Baby");
 		Location currLoc = player.getLocation();
 		String roomDesc = currLoc.getMap().getRoom(currLoc.getCoords()).getLongDescription();
@@ -179,31 +193,28 @@ public class Game {
 		return ret;
 	}
 
-	public int getTurn() {
+	public static int getTurn() {
 		return turn;
 	}
 
-	public void incrementTurn() {
+	public static void incrementTurn() {
 		turn++;
 	}
 
-	public void setTurn(int turn) {
-		this.turn = turn;
+	public static void setTurn(int turn) {
+		Game.turn = turn;
 	}
 
 //	public ArrayList<Character> getCharacters() {
 //		return characters;
 //	}
 
-	public ArrayList<Phase> getPhases() {
-		return phases;
-	}
 
-	public Player getPlayer() {
+	public static Player getPlayer() {
 		return player;
 	}
 
-	public void loadGame(String filePath) {
+	public static void loadGame(String filePath) {
 		FileReader reader = new FileReader(filePath);
 
 		JSONObject obj = new JSONObject(reader.getLinesSingle());

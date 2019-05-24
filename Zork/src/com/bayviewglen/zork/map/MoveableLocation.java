@@ -50,12 +50,12 @@ public class MoveableLocation extends Location{
 //			set(0, getPhaseNum()+1);
 //			set(1, 0);
 //			setRoom(getMap().getCheckpoint());
-//			}
+//		}
 //	}
 	
 	
 //	public void resetToCheckpoint() {
-//		setCoords(getMap().getCheckpoint());
+//		setCoords(getMap().getStartPoint());
 //	}
 	
 	

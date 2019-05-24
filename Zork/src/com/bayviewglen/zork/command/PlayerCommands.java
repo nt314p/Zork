@@ -1,6 +1,7 @@
 package com.bayviewglen.zork.command;
 
 import com.bayviewglen.zork.item.*;
+import com.bayviewglen.zork.main.Character;
 import com.bayviewglen.zork.map.*;
 
 public interface PlayerCommands {
@@ -28,5 +29,7 @@ public interface PlayerCommands {
 	public String pickUp(Item i);
 	public String give(Character c, Item i);
 	public String take(Character c, Item i);
+	
+	public String hit(Character c, Weapon w);
 
 }

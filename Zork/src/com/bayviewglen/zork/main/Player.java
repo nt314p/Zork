@@ -10,7 +10,6 @@ import com.bayviewglen.zork.map.*;
 
 public class Player extends Character implements NoEffectCommands, PlayerCommands{
 	
-	private static int deaths = 0;
 	private static String [] screams = {"Aaaaarrrrg", "Aahhhhh", "WHAAAAAAATTTT????", "NIICCKK TONG!!!!", "What the hell are you doing with your life???"};
 
 	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();
@@ -43,38 +42,7 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 //		return characters;
 //	}
 
-	/**
-	 * die - update death count, reset statistics, reset current room to the checkpoint
-	 */
-	public void die() {
-		deaths++;
-		getFoodMonitor().reset();
-		getWaterMonitor().reset();
-		getHealthMonitor().reset();
-	}
-	
-	public static int getDeaths() {
-		return deaths;
-	}
 
-	
-	public void take(Character character, Item item) {
-		if(getInventory().remove(item))
-			getInventory().add(item);
-		else
-			System.out.println(character.getName() + " does not have " + item.getName());
-	}
-	
-	public void give(Character character, Item item) {
-		if(getInventory().remove(item))
-			character.getInventory().add(item);
-		else
-			System.out.println("You do not have " + item.getName());
-	}
-	
-	public void hit(Character character, Weapon weapon) {
-		character.getHealthMonitor().decrease(weapon.getDamage());
-	}
 	
 	public void updateRoomsVisited() {
 		if(!hasVisited(getLocation().getRoom()))
@@ -92,12 +60,6 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	
 	public static ArrayList<Room> getRoomsVisited(){
 		return roomsVisited;
-	}
-	
-	public String toString() {
-		String str = super.toString() + "\n";
-		str+= "Deaths: " + deaths;
-		return str;
 	}
 
 	public String scream() {
@@ -119,118 +81,112 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 		return "You fell and are now bleeding.";
 	}
 
-	@Override
-	public String eat(Food food) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public String drink(Food water) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String heal(Health health) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String quit() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String restart() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public String die() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String north() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String south() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String east() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String west() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String up() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String down() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String move(char dir) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String enter(Door d) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String enter(Room r) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String drop(Item i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String pickUp(Item i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String give(java.lang.Character c, Item i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String take(java.lang.Character c, Item i) {
-		// TODO Auto-generated method stub
-		return null;
+		Game.setGameOver(false);
+		return "You died.";
 	}
 	
+	public String quit() {
+		Game.setGameOver(false);
+		return "Game quit.";
+	}
+	
+	public String restart() {
+		Game.setGameOver(true);
+		return "Game restarted.";
+	}
+	
+	public String take(Character c, Item i) {
+		if(c.getInventory().remove(i)) {
+			getInventory().add(i);
+			return i.getName() + " added to inventory.";
+		}
+		return c.getName() + " does not have " + i.getName() + ".";
+	}
+	
+	public String give(Character c, Item i) {
+		if(getInventory().remove(i)) {
+			c.getInventory().add(i);
+			return i.getName() + " removed from inventory and given to " + c.getName() + ".";
+		}
+		return "You do not have " + i.getName();
+	}
+	
+	public String hit(Character c, Weapon w) {
+		c.getHealthMonitor().decrease(w.getDamage());
+		return String.format("%s hit with %s.\n%sCurrent health%s", c.getName(), w.getName(), c.getName(), c.getHealthMonitor().toString());
+	}
+
+	public String north() {
+		return move('n');
+	}
+
+	public String south() {
+		return move('s');
+	}
+
+	public String east() {
+		return move('e');
+	}
+
+	public String west() {
+		return move('w');
+	}
+
+	public String up() {
+		return move('u');
+	}
+
+	public String down() {
+		return move('d');
+	}
+
+	public String move(char dir) {
+		getLocation().go(dir);
+		return "You went " + DirectionHelper.toString(dir);
+	}
+
+	public String enter(Door d) {
+		Coordinate temp = d.getLocation().getCoords();
+		HashMap<java.lang.Character, Coordinate> sides = getLocation().getMap().getSurroundingSideCoords(getLocation().getCoords());
+		
+		for(int i = 0; i<DirectionHelper.DIRECTIONS.length; i++) {
+			if(sides.get(DirectionHelper.DIRECTIONS[i]).equals(temp)) {
+				if(d.isOpen())
+					return move(DirectionHelper.DIRECTIONS[i]);
+				else
+					return d.getName() + " is closed.";
+			}
+		}
+		return d.getName() + " is not in your immediate surroundings.";
+	}
+
+	public String enter(Room r) {
+		HashMap<java.lang.Character, Coordinate> rooms = getLocation().getMap().getSurroundingRoomCoords(getLocation().getCoords());
+		
+		for(int i = 0; i<DirectionHelper.DIRECTIONS.length; i++) {
+			Room tempRoom = (Room)(r.getLocation().getMap().getPlace(rooms.get(DirectionHelper.DIRECTIONS[i])));
+			if(tempRoom.equals(r)) {
+				if(r.getLocation().getMap().getSideBetween(r,tempRoom).isExit())
+					return move(DirectionHelper.DIRECTIONS[i]);
+				else
+					return r.getName() + " is not an exit.";
+			}
+		}
+		return r.getName() + " is not in your immediate surroundings.";
+	}
+
+	public String drop(Item i) {
+		if(getInventory().remove(i))
+			return i.getName() + " dropped from inventory";
+			
+		return "You do not have " + i.getName();
+	}
+
+	public String pickUp(Item i) {
+		getInventory().add(i);
+		return "You picked up " + i.getName();
+	}
+
 }
