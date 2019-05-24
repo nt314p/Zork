@@ -3,12 +3,15 @@ package com.bayviewglen.zork.main;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.bayviewglen.zork.command.NoEffectCommands;
+import com.bayviewglen.zork.command.PlayerCommands;
 import com.bayviewglen.zork.item.*;
 import com.bayviewglen.zork.map.*;
 
-public class Player extends Character{
+public class Player extends Character implements NoEffectCommands, PlayerCommands{
 	
 	private static int deaths = 0;
+	private static String [] screams = {"Aaaaarrrrg", "Aahhhhh", "WHAAAAAAATTTT????", "NIICCKK TONG!!!!", "What the hell are you doing with your life???"};
 
 	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();
 
@@ -95,6 +98,139 @@ public class Player extends Character{
 		String str = super.toString() + "\n";
 		str+= "Deaths: " + deaths;
 		return str;
+	}
+
+	public String scream() {
+		int randIndex = (int)(Math.random()*screams.length);
+		return screams[randIndex];
+	}
+
+	public String breathe() {
+		return "...breath...breath...breath...";
+	}
+
+	public String jump() {
+		return "You jumped.";
+	}
+
+
+	public String fall() {
+		getHealthMonitor().setToPercent(0.5);
+		return "You fell and are now bleeding.";
+	}
+
+	@Override
+	public String eat(Food food) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String drink(Food water) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String heal(Health health) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String quit() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String restart() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String die() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String north() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String south() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String east() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String west() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String up() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String down() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String move(char dir) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String enter(Door d) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String enter(Room r) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String drop(Item i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String pickUp(Item i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String give(java.lang.Character c, Item i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String take(java.lang.Character c, Item i) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

@@ -54,6 +54,15 @@ public class Inventory {
 			}
 		}	
 	}
+	
+	public String getAllOf(String type) {
+		Inventory tempInv = new Inventory();
+		for(Item i: items) {
+			if(i.getClass().getSimpleName().equalsIgnoreCase(type))
+				tempInv.add(i);
+		}
+		return tempInv.toString();
+	}
 
 	public boolean isInfiniteWeight() {
 		return maxWeight == Double.MAX_VALUE;
