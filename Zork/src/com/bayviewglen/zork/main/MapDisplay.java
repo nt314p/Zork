@@ -6,6 +6,7 @@ import com.bayviewglen.zork.map.Door;
 import com.bayviewglen.zork.map.Map;
 import com.bayviewglen.zork.map.Opening;
 import com.bayviewglen.zork.map.Place;
+import com.bayviewglen.zork.map.Wall;
 
 import processing.core.PApplet;
 
@@ -59,8 +60,10 @@ public class MapDisplay extends PApplet {
     					fill(255, 255, 0);
     				} else if (p instanceof Opening) {
     					fill(0, 255, 0);
-    				} else {
+    				} else if (p instanceof Wall){
     					fill(255, 200, 0);
+    				} else {
+    					fill(255, 0, 0);
     				}
     			} else {
     				fill(255, 255, 255); // empty

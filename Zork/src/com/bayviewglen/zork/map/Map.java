@@ -40,9 +40,9 @@ public class Map {
 	 */
 	public Map(String mapName, Coordinate maxCoords) {
 		this.mapName = mapName;
-		int x = (int) (maxCoords.getX() * 2) + 2;
-		int y = (int) (maxCoords.getY() * 2) + 2;
-		int z = (int) (maxCoords.getZ() * 2) + 2;
+		int x = (int) ((maxCoords.getX() + 1) * 2);
+		int y = (int) ((maxCoords.getY() + 1) * 2);
+		int z = (int) ((maxCoords.getZ() + 1) * 2);
 		// this.location = location;
 		map = new Place[x][y][z];
 		mapList.put(mapName, this);
@@ -383,23 +383,16 @@ public class Map {
 		Side defaultSideV = null;
 		Side defaultSideH = null;
 		Room defaultRoom = null;
+		Side defaultBorder = null;
+		Side defaultGround = null;
 		
 		if (obj.has("default-side-vertical")) {
 			defaultSideV = (Side) Item.loadItem(obj.getJSONObject("default-side-vertical"));
 			
-			// filling vertical sides
-			for (int i = 1; i < tempMap.map.length; i += 2) { // x
-				for (int j = 0; j < tempMap.map[0].length; j += 2) { // y
-					for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
-						defaultSideV.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
-						tempMap.map[i][j][k] = defaultSideV;
-					}
-				}
-			}
 
-			// filling more vertical sides
-			for (int i = 0; i < tempMap.map.length; i += 2) { // x
-				for (int j = 1; j < tempMap.map[0].length; j += 2) { // y
+			// filling vertical sides
+			for (int i = 0; i < tempMap.map.length; i++) { // x
+				for (int j = (i + 1) % 2; j < tempMap.map[0].length; j += 2) { // y
 					for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
 						defaultSideV.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
 						tempMap.map[i][j][k] = defaultSideV;
@@ -416,6 +409,41 @@ public class Map {
 					for (int k = 0; k < tempMap.map[0][0].length; k += 2) { // z
 						defaultSideH.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
 						tempMap.map[i][j][k] = defaultSideH;
+					}
+				}
+			}
+		}
+		
+		if (obj.has("default-border")) {
+			defaultBorder = (Side) Item.loadItem(obj.getJSONObject("default-border"));
+			
+			for (int i = 0; i <= tempMap.map.length; i += tempMap.map.length-1) {
+				for (int j = 1; j < tempMap.map[0].length; j += 2) {
+					for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
+						defaultBorder.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
+						tempMap.map[i][j][k] = defaultBorder;
+					}
+				}
+			}
+			
+			for (int i = 1; i < tempMap.map.length; i += 2) {
+				for (int j = 0; j <= tempMap.map[0].length; j += tempMap.map[0].length-1) {
+					for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
+						defaultBorder.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
+						tempMap.map[i][j][k] = defaultBorder;
+					}
+				}
+			}
+		}
+		
+		if (obj.has("default-ground")) {
+			defaultGround = (Side) Item.loadItem(obj.getJSONObject("default-ground"));
+			
+			for (int i = 1; i < tempMap.map.length; i += 2) { // x
+				for (int j = 1; j < tempMap.map[0].length; j += 2) { // y
+					for (int k = 0; k <= tempMap.map[0][0].length; k += tempMap.map[0][0].length-1) { // z
+						defaultGround.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
+						tempMap.map[i][j][k] = defaultGround;
 					}
 				}
 			}

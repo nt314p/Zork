@@ -3,6 +3,9 @@
 	"default-side-vertical": {
 		"preset": "default-opening"
 	},
+	"default-border": {
+		"preset": "default-wall"
+	},
 	"default-room": {
 		"type": "room",
 		"name": "Empty room",
