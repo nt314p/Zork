@@ -1,0 +1,333 @@
+{
+	"name": "Mice Mice Baby",
+	"default-side-vertical": {
+		"preset": "default-opening"
+	},
+	"default-side-horizantal": {
+		"preset": "Ice Death"
+	},
+	"default-inventory": {
+		"inventory": "miceRoomInv"
+	},
+	"places": [
+		{
+			"preset": "Thin Ice",
+			"coords": "1.5,3.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "Ice End",
+			"descriptions": [
+				"short:A convenient fully functioning rover with inventory space of 200kg awaits you - keys inside"
+			],
+			"coords": "1.5,4.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "2.5,2.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "2.5,3.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "2.5,4.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "2.5,5.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "3.5,2.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "Ice Start",
+			"descriptions": [
+				"short:A massive frozen lake expands to the horizon. Some patches look a bit thin..."
+			],
+			"coords": "3.5,3.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "3.5,4.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "4.5,2.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "4.5,3.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "4.5,4.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "Orange Door",
+			"open": "false",
+			"locked": "true",
+			"code": "orange",
+			"description": [
+				"short:The orange door looms over you"
+			],
+			"coords": "1.5,4.0,0.5"
+		},
+		{
+			"type": "room",
+			"name": "Green Door",
+			"open": "false",
+			"locked": "true",
+			"code": "green",
+			"description": [
+				"short:A rusty keyhole is not the only thing that waits..."
+			],
+			"coords": "2.0,3.5,0.5"
+		},
+		{
+			"type": "wall",
+			"name": "wall",
+			"descriptions": [
+				"short:A solid steel wall"
+			],
+			"coords": "2,0,4.5,0.5"
+		},
+		{
+			"type": "door",
+			"name": "Blue Door",
+			"open": "false",
+			"locked": "true",
+			"code": "blue",
+			"coords": "3.0,2.5,0.5"
+		},
+		{
+			"type": "wall",
+			"name": "wall",
+			"description": [
+				"short:A solid steel wall"
+			],
+			"coords": "3.0,3.5,0.5"
+		},
+		{
+			"type": "wall",
+			"name": "wall",
+			"description": [
+				"short:A solid steel wall"
+			],
+			"coords": "3.0,4.5,0.5"
+		},
+		{
+			"type": "wall",
+			"name": "wall",
+			"description": [
+				"short:A solid steel wall"
+			],
+			"coords": "3.5,5.0,0.5"
+		},
+		{
+			"type": "room",
+			"name": "Purple Door",
+			"open": "false",
+			"locked": "true",
+			"code": "purple",
+			"description": [
+				"short:A key is needed to unlcok this door..."
+			],
+			"coords": "4.0,3.5,0.5"
+		},
+		{
+			"type": "wall",
+			"name": "wall",
+			"description": [
+				"short:A solid steel wall"
+			],
+			"coords": "4.0,4.5,0.5"
+		},
+		{
+			"type": "door",
+			"name": "open door",
+			"open": "true",
+			"locked": "false",
+			"description": [
+				"short:Interesting, a door with no key..."
+			],
+			"coords": "4.0,5.5,0.5"
+		},
+		{
+			"type": "wall",
+			"name": "wall",
+			"description": [
+				"short:A solid steel wall"
+			],
+			"coords": "4.5,3.0,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "1.5,3.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "Ice End",
+			"descriptions": [
+				"short:A convenient fully functioning rover with inventory space of 200kg awaits you - keys inside"
+			],
+			"coords": "1.5,4.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "2.5,2.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "2.5,3.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "2.5,4.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "2.5,5.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "3.5,2.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "Ice Start",
+			"descriptions": [
+				"short:A massive frozen lake expands to the horizon. Some patches look a bit thin..."
+			],
+			"coords": "3.5,3.5,0.5"
+		},
+		{
+			"preset": "Thicc Ice",
+			"coords": "3.5,4.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "4.5,2.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "4.5,3.5,0.5"
+		},
+		{
+			"preset": "Thin Ice",
+			"coords": "4.5,4.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "Orange Door",
+			"open": "false",
+			"locked": "true",
+			"code": "orange",
+			"description": [
+				"short:The orange door looms over you"
+			],
+			"coords": "1.5,4.0,0.5"
+		},
+		{
+			"type": "room",
+			"name": "Green Door",
+			"open": "false",
+			"locked": "true",
+			"code": "green",
+			"description": [
+				"short:A rusty keyhole is not the only thing that waits..."
+			],
+			"coords": "2.0,3.5,0.5"
+		},
+		{
+			"type": "wall",
+			"name": "wall",
+			"descriptions": [
+				"short:A solid steel wall"
+			],
+			"coords": "2,0,4.5,0.5"
+		},
+		{
+			"type": "door",
+			"name": "Blue Door",
+			"open": "false",
+			"locked": "true",
+			"code": "blue",
+			"coords": "3.0,2.5,0.5"
+		},
+		{
+			"type": "wall",
+			"name": "wall",
+			"description": [
+				"short:A solid steel wall"
+			],
+			"coords": "3.0,3.5,0.5"
+		},
+		{
+			"type": "wall",
+			"name": "wall",
+			"description": [
+				"short:A solid steel wall"
+			],
+			"coords": "3.0,4.5,0.5"
+			
+		},
+		{
+			"type": "wall",
+			"name": "wall",
+			"description": [
+				"short:A solid steel wall"
+			],
+			"coords": "3.5,5.0,0.5"
+		},
+		{
+			"type": "room",
+			"name": "Purple Door",
+			"open": "false",
+			"locked": "true",
+			"code": "purple",
+			"description": [
+				"short:A key is needed to unlcok this door..."
+			],
+			"coords": "4.0,3.5,0.5"
+		},
+		{
+			"type": "wall",
+			"name": "wall",
+			"description": [
+				"short:A solid steel wall"
+			],
+			"coords": "4.0,4.5,0.5"
+		},
+		{
+			"type": "door",
+			"name": "open door",
+			"open": "true",
+			"locked": "false",
+			"description": [
+				"short:Interesting, a door with no key..."
+			],
+			"coords": "4.0,5.5,0.5"
+		},
+		{
+			"type": "wall",
+			"name": "wall",
+			"description": [
+				"short:A solid steel wall"
+			],
+			"coords": "4.5,3.0,0.5"
+		},
+		{
+			"type": "wall",
+			"name": "wall",
+			"description": [
+				"short:A solid steel wall"
+			],
+			"coords": "4.5,5.0,0.5"
+		}
+	]
+}

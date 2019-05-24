@@ -34,7 +34,7 @@ public class CommandWords {
 	public static void initialize() {
 		String[] lines = fReader.getLines();
 
-		// initializing valid commands arraylist array
+		// initializing valid commands ArrayList array
 		validCommands = (ArrayList<String>[]) new ArrayList[lines.length];
 
 		for (int i = 0; i < lines.length; i++) {

@@ -1,0 +1,34 @@
+{
+	"name": "miceRoomInv",
+	"maxWeight": "100",
+	"items": [
+		{
+			"type": "weapon",
+			"name": "Icicle",
+			"weight": "0.5",
+			"damage": "2.0",
+			"descriptions": [
+				"look:The icicle is cold and sharp"
+			]
+		},
+		{
+			"type": "food",
+			"name": "Astronaut Food",
+			"weight": "0.2",
+			"food": "1.0",
+			"descriptions": [
+				"look:Dehydrated goodness from Earth"
+			]
+		},
+		{
+			"type": "water",
+			"name": "Water Gourd",
+			"weight": "0.3",
+			"water": "1.0",
+			"descriptions": [
+				"look:A precious gourd of fresh water"
+			]
+		}
+	]
+}
+
