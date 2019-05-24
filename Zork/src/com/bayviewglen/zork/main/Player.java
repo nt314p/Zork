@@ -33,6 +33,11 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 		return i;		
 	}
 	
+	public String displayInteractableItems() {
+		return getInteractableItems().toString();
+	}
+	
+	
 //	public ArrayList<Character> getInteractableCharacters(){
 //		ArrayList<Character> characters = new ArrayList<Character>();
 //		for(Character c:Game.getCharacters()) {

@@ -80,14 +80,16 @@ public class CommandWords {
 	/**
 	 * Print all valid commands to System.out.
 	 */
-	public static void showAll() {
+	public static String showAll() {
+		String result = "";
 		for (int i = 0; i < validCommands.length; i++) {
 			if(validCommands[i].get(0).equals(""))
-				System.out.println();
+				result += "\n";
 			else
-				System.out.print(validCommands[i].get(0) + "  "); // get main command word only
+				result += validCommands[i].get(0) + " ";// get main command word only
 		}
-		System.out.println();
+		result += "\n";
+		return result;
 	}
 	
 	/**

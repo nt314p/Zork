@@ -13,6 +13,7 @@ public interface PlayerCommands {
 	public String quit();
 	public String restart();
 	public String die();
+	public String displayInteractableItems();
 	
 	public String north();
 	public String south();

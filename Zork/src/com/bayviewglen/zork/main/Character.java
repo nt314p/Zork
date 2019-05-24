@@ -7,10 +7,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.bayviewglen.zork.command.DescribeCommands;
 import com.bayviewglen.zork.item.*;
 import com.bayviewglen.zork.map.*;
 
-public class Character extends Item {
+public class Character extends Item implements DescribeCommands {
 
 	private static HashMap<String, Character> characters;
 
@@ -198,5 +199,18 @@ public class Character extends Item {
 		double[] stats = { obj.getDouble("health"), obj.getDouble("food"), obj.getDouble("water") };
 		Character c = new Character(obj.getString("name"), obj.getDouble("weight"), descriptions, inventory, loc, stats, new Coordinate(obj.getString("start")), new Coordinate(obj.getString("end")));
 		characters.put(obj.getString("name"), c);
+	}
+
+
+	public String inventory() {
+		return inventory.toString();
+	}
+
+	public String look() {
+		return location.getRoom().getLongDescription();
+	}
+
+	public String getAllOf(String type) {
+		return inventory.getAllOf(type);
 	}
 }

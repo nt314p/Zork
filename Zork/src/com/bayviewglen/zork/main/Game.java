@@ -17,7 +17,7 @@ import com.bayviewglen.zork.map.*;
  *
  */
 
-public class Game {
+public class Game implements GameCommands {
 
 	private static Parser parser = new Parser();
 	private static Player player;
@@ -137,32 +137,31 @@ public class Game {
 		Location currLoc = player.getLocation();
 		String roomDesc = currLoc.getMap().getRoom(currLoc.getCoords()).getLongDescription();
 
+		
+		String ret = displayStatistics();
+
+		ret += "\nLOCATION:";
+		ret += "\n---------";
+		ret += "\n" + roomDesc + "\n" + displayExits() + "\n";
+		return ret;
+	}
+	
+	public static String displayExits() {
+		Location currLoc = player.getLocation();
 		String exits = "Exits: ";
-		boolean added = true;
 		for (java.lang.Character i : currLoc.getMap().getExits(currLoc.getCoords())) {
-			switch (i) {
-			case 'n':
-				exits += " North, ";
-			case 's':
-				exits += " South, ";
-			case 'e':
-				exits += " East, ";
-			case 'w':
-				exits += " West, ";
-			case 'u':
-				exits += " Up, ";
-			case 'd':
-				exits += " Down, ";
-			default:
-				added = false;
-			}
+			exits += DirectionHelper.toString(i) + ", ";
+			
 		}
-		if (added)
+		if (exits.indexOf(",")==-1)//nothing added
 			exits += "None";
 		else
-			exits = exits.substring(0, exits.length() - 2);// remove ", "
+			exits = exits.substring(0, exits.length() - 2);// remove ", " at end
 		exits = exits.substring(0, exits.length() - 2);
-
+		return exits;
+	}
+	
+	public static String displayStatistics() {
 		String healthMonitor = "Health" + player.getHealthMonitor().toString();
 		String foodMonitor = "Food" + player.getFoodMonitor().toString();
 		String waterMonitor = "Water" + player.getWaterMonitor().toString();
@@ -186,10 +185,6 @@ public class Game {
 			ret += String.format("\n%-20s%s", "", inventoryLines.get(i));
 			i++;
 		}
-
-		ret += "\nLOCATION:";
-		ret += "\n---------";
-		ret += "\n" + roomDesc + "\n" + exits + "\n";
 		return ret;
 	}
 
@@ -226,5 +221,6 @@ public class Game {
 
 		player.setLocation((MoveableLocation) Location.loadLocation(obj.getJSONObject("playerStart")));
 	}
+
 
 }

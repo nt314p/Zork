@@ -3,13 +3,14 @@ move:go,travel
 give:throw away
 pick up:take,grab
 
-help:assistance
+help:assistance,h
 quit:stop,give up
 restart:redo
 look:see
-commands:words
+commands:words,c
 die
 hit:attack,fight
+storyline:story,timeline
 
 getAllOf:show,get all,show all,see all, pick all
 inventory:i,stuff,things
