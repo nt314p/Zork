@@ -20,7 +20,7 @@ public class Map {
 
 	private Place[][][] map;
 	private String mapName;
-	private final char[] directions = { 'n', 'e', 's', 'w', 'u', 'd' };
+	private static final char[] directions = { 'n', 'e', 's', 'w', 'u', 'd' };
 	private static final HashMap<Character, Coordinate> dirCoords = new HashMap<>(
 			java.util.Map.of('n', new Coordinate(0, -1, 0), 's', new Coordinate(0, 1, 0), 'e', new Coordinate(1, 0, 0),
 					'w', new Coordinate(-1, 0, 0), 'u', new Coordinate(0, 0, 1), 'd', new Coordinate(0, 0, -1)));
@@ -46,6 +46,12 @@ public class Map {
 		// this.location = location;
 		map = new Place[x][y][z];
 		mapList.put(mapName, this);
+	}
+	
+	public Map(String mapName) {
+		Map m = Map.getMap(mapName);
+		this.map = m.map;
+		this.mapName = m.mapName;
 	}
 	
 	public static void initialize() {

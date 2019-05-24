@@ -286,7 +286,17 @@ public class Item implements Comparable<Item> {
 		case "Key": return new Key(name, weight, descriptions, jObj.getString("code"));
 		case "Weapon": return new Weapon(name, weight, descriptions, jObj.getDouble("damage"));
 		case "Health": return new Health(name, weight, descriptions, jObj.getDouble("health"));
-		case "Food": return new Food(name, weight, descriptions, jObj.getDouble("food"), jObj.getDouble("water"));
+		case "Food": {
+			double fval = 0;
+			double wval = 0;
+			if (jObj.has("food")) {
+				fval = jObj.getDouble("food");
+			}
+			if (jObj.has("water")) {
+				wval = jObj.getDouble("water");
+			}
+			return new Food(name, weight, descriptions, fval, wval);
+		}
 		case "Item": return new Item(name, weight, descriptions);
 		}
 		

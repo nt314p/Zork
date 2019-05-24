@@ -13,8 +13,9 @@ public class Zork {
 //		Game game = new Game();
 //		game.doTurn();
 
-		testCommandParse();
-
+		//testCommandParse();
+		testMyVerySmallMapBoi();
+		
 		// testRiddle();
 		// testSides();
 		// testInventory();
@@ -28,7 +29,14 @@ public class Zork {
 //		Item i = new Food("myItem", 17.9, null, 0, 0.9);
 //		Item t = Item.copy(i);
 //		System.out.println(i + "\n" + t);
-
+		
+	}
+	
+	public static void testMyVerySmallMapBoi() {
+		Inventory.initialize();
+		Preset.initialize();
+		Map.initialize();
+		Map m = new Map("TESTING TESTER");
 	}
 
 	public static void testCommandParse() {
