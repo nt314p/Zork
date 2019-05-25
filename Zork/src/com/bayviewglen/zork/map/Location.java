@@ -4,12 +4,12 @@ import org.json.JSONObject;
 
 public class Location {
 
-	private Map map;
+	private int mapIndex;
 	private Coordinate coords;
 	// private double[] location;
 
 	public Location(Map map, Coordinate coords) {
-		this.map = map;
+		mapIndex = Maps.getMapIndex(map.getName());
 		this.coords = coords;
 
 //		if (checkLocationErrors())
@@ -17,22 +17,32 @@ public class Location {
 	}
 	
 	public Location() {
-		this.map = null;
-		this.coords = null;
+		mapIndex = 0;
+		this.coords = new Coordinate(0.5,0.5,0.5);
 	}
 
 	public Location(String mapName, Coordinate coords) {
-		this.map = Map.getMap(mapName);
+		this.map = Maps.getMap(mapName);
 		this.coords = coords;
 	}
 
 	public Location(String mapName, double[] coords) {
-		this.map = Map.getMap(mapName);
+		this.map = Maps.getMap(mapName);
 		this.coords = new Coordinate(coords);
+	}
+	
+	public Location(int mapIndex, Coordinate coords) {
+		this.mapIndex = mapIndex;
+		this.coords = new Coordinate(coords);
+	}
+	
+	public Location(double[] location) {
+		location[0] = mapIndex;
+		coords = new Coordinate(location[1], location[2], location[3]);
 	}
 
 	public Map getMap() {
-		return map;
+		return Maps.getMap(mapIndex);
 	}
 
 	public Coordinate getCoords() {
@@ -61,12 +71,21 @@ public class Location {
 //	}
 
 	protected void set(Map map, Coordinate coords) {
-		this.map = map;
+		this.map = Maps.getMapIndex(map.getName());
 		this.coords = coords;
-	}	
+	}
+	
+	protected void set(int mapIndex, Coordinate coords) {
+		this.mapIndex = mapIndex;
+		this.coords = coords;
+	}
 	
 	protected void setMap(Map map) {
-		this.map = map;
+		this.map = Maps.getMapIndex(map.getName());
+	}
+	
+	protected void setMap(int mapIndex) {
+		this.mapIndex = mapIndex;
 	}
 	
 	protected void setCoords(double[] coords) {
@@ -114,18 +133,19 @@ public class Location {
 
 	public String toString() {
 		String str = "Location:";
-		str += "\n\tMap: " + map.getMapName();
+		str += "\n\tMap: " + getMap().getMapName();
 		str += "\n\tRoom: " + getRoom().getName();
 		return str;
 	}
 
 	public boolean equals(Location location) {
-		return map.equals(location.map) && coords.equals(location.coords);
+		return mapIndex == location.mapIndex && coords.equals(location.coords);
 	}
 	
 	public static Location loadLocation(JSONObject jObj) {
 		String mapName = jObj.getString("map");
+		int mapIndex = Maps.getMapIndex(mapName);
 		Coordinate coords = new Coordinate(jObj.getString("coords"));
-		return new Location(mapName, coords);
+		return new Location(mapIndex, coords);
 	}
 }

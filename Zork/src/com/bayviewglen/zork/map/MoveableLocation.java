@@ -18,16 +18,32 @@ public class MoveableLocation extends Location{
 		super();
 	}
 	
+	public MoveableLocation(int mapIndex, Coordinate coords) {
+		super(mapIndex, coords);
+	}
+	
+	public MoveableLocation(double[] location) {
+		super(location);
+	}
+	
 	public void set(Map map, Coordinate coords) {
 		super.set(map, coords);
+	}
+	
+	public void set(int mapIndex, Coordinate coords) {
+		super.set(mapIndex, coords);
 	}
 	
 	public void setMap(Map map) {
 		super.setMap(map);
 	}
 	
+	public void setMap(int mapIndex) {
+		super.setMap(mapIndex);
+	}
+	
 	public void setCoords(double[] coords) {
-		super.setCoords(coords);;
+		super.setCoords(coords);
 	}
 	
 	public void setCoords(Coordinate coords) {
