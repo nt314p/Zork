@@ -148,9 +148,9 @@ public class Game implements GameCommands {
 		String waterMonitor = "Water" + player.getWaterMonitor().toString();
 
 		ArrayList<String> inventoryLines = player.getInventory().toStringArray();
-		for (int i = 0; inventoryLines.size() < 3; i++) {
+		while(inventoryLines.size()<3){
 			inventoryLines.add("");
-		} // give inventoryLines at least 3 to work with for-loop
+		} // give inventoryLines at least 3 to work with for-loop (health, food, water)
 
 		int i = 0;
 		String ret = String.format("%-20s%s", "STATISTICS", "INVENTORY");

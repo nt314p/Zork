@@ -14,7 +14,8 @@ public class Zork {
 //		game.doTurn();
 
 		//testCommandParse();
-		testMyVerySmallMapBoi();
+		SlidePuzzle.play();
+		//testMyVerySmallMapBoi();
 		
 		// testRiddle();
 		// testSides();

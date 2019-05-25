@@ -4,15 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
-import java.io.File;
 import java.lang.Character;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import com.bayviewglen.zork.item.Item;
 import com.bayviewglen.zork.main.DirectionHelper;
-import com.bayviewglen.zork.main.FileReader;
 
 public class Map {
 
