@@ -10,12 +10,48 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import com.bayviewglen.zork.item.Item;
+
 public class Parser {
 	private int maxWordsInCommand = CommandWords.getMaxWordsInCommand();
 	private final String prompt = ">>";
 
 	public Parser() {
 		
+	}
+	
+	public ArrayList<Item> parseItems(ArrayList<Item> items, String str) {
+
+		String[] words = str.split("\\W");
+		ArrayList<Item> matches = new ArrayList<Item>();
+		
+		for (int i = 0; i < items.size(); i++) { // iterating over items
+			Item item = items.get(i);
+			for (int j = 0; j < words.length; j++) { // iterating over words
+				boolean found = false;
+				for (int k = 0; k < words.length - j; k++) { // how many words should the name be
+					String matchName = "";
+					for (int l = 0; l <= k; l++) { // adding words to matchName
+						matchName += words[j + l];
+						if (l != k)
+							matchName += " "; // adding a space to create phrases
+					}
+
+					if (item.getName().compareToIgnoreCase(matchName) == 0) { // does the name match
+						matches.add(item); // adding item to the matching items
+						matchName = "";          // because it was mentioned in the string
+						j += k; // skipping over j because word was added
+						i++; // incrementing 
+						found = true;
+						break;
+					}
+				}
+				if (found) {
+					break;
+				}
+			}
+		}
+		return matches;
 	}
 
 	/**

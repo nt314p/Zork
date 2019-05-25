@@ -1,5 +1,6 @@
 package com.bayviewglen.zork.map;
 
+import java.io.File;
 import java.util.HashMap;
 
 import org.json.JSONArray;
@@ -9,7 +10,19 @@ import com.bayviewglen.zork.main.FileReader;
 
 public abstract class Link {
 	
-	private static HashMap<Location, Location> links = new HashMap<Location, Location>();
+	private static HashMap<Location, Location> links;
+	
+	public static void initialize() {
+		links = new HashMap<Location, Location>();
+		
+		File dir = new File("data/links/");
+		File[] dirList = dir.listFiles();
+		if (dirList != null) {
+			for (File f : dirList) {
+				loadLink(f.getAbsolutePath());
+			}
+		}	
+	}
 	
 	/**
 	 * 
@@ -40,7 +53,7 @@ public abstract class Link {
 		return links;
 	}
 	
-	public static void loadLinks(String filePath) {
+	public static void loadLink(String filePath) {
 		FileReader reader = new FileReader(filePath);
 		JSONObject obj = new JSONObject(reader.getLinesSingle());
 		JSONArray textLinks = obj.getJSONArray("links");

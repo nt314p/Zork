@@ -37,6 +37,7 @@ public class Zork {
 		Preset.initialize();
 		Map.initialize();
 		Map m = new Map("TESTING TESTER");
+		m.getClass();
 	}
 
 	public static void testCommandParse() {

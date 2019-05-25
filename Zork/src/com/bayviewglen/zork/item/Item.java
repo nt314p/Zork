@@ -11,7 +11,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.bayviewglen.zork.main.*;
 import com.bayviewglen.zork.map.*;
 
 /* The parent class for everything - all objects in the game, ones that can be picked up and ones

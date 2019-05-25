@@ -2,9 +2,6 @@ package com.bayviewglen.zork.main;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.bayviewglen.zork.command.*;
@@ -32,6 +29,8 @@ public class Game implements GameCommands {
 		CommandWords.initialize();
 		Preset.initialize();
 		Inventory.initialize();
+		Map.initialize();
+		Link.initialize();
 		loadGame(filePath);
 		
 		Game.player = player;
@@ -41,45 +40,27 @@ public class Game implements GameCommands {
 	}
 
 	public static void processCommand(Command cmd) {
+		
 		ArrayList<Item> interactableItems = player.getInteractableItems().toArrayList();
+		ArrayList<Item> commandableItems = parser.parseItems(interactableItems, cmd.toSingleString());
 
-		String[] params = cmd.getParameters();
-		ArrayList<Item> commandableItems = new ArrayList<Item>();
-		for (int a = 0; a < interactableItems.size(); a++) { // iterating over items
-			Item i = interactableItems.get(a);
-			for (int j = 0; j < params.length; j++) { // iterating over parameters
-				boolean found = false;
-				for (int k = 0; k < params.length - j; k++) { // how many words should the name be
-					String matchName = "";
-					for (int l = 0; l <= k; l++) { // adding parameters to matchName
-						matchName += params[j + l];
-						if (l != k)
-							matchName += " "; // adding a space to create phrases
-					}
-
-					if (i.getName().compareToIgnoreCase(matchName) == 0) { // does the name match
-						commandableItems.add(i); // adding item to commandable items
-						matchName = "";          // because it was mentioned in the command
-						j += k; // skipping over j because word was added
-						a++; // incrementing 
-						found = true;
-						break;
-					}
-				}
-				if (found) {
-					break;
-				}
-			}
-		}
-
-		Class cls = null;
 		String mainCmd = cmd.getCommandWord();
 		mainCmd = mainCmd.substring(0, 1).toUpperCase() + mainCmd.substring(1); // capitalizing
 		
+		/* NEW - IMPLEMENT
+		for (all commandable items)
+			try to run main command on the current item
+			try all the other items as parameters	
+		 */
+		
+		Class<Item> cls = null;
+
 		try {
-			cls = Class.forName("com.bayviewglen.command." + mainCmd + "able");
+			cls = (Class<Item>) Class.forName("com.bayviewglen.command." + mainCmd + "able");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Cannot find class" + mainCmd + "able");
+			e.printStackTrace();
+		} catch (ClassCastException e) {
 			e.printStackTrace();
 		}
 		
@@ -211,14 +192,7 @@ public class Game implements GameCommands {
 
 	public static void loadGame(String filePath) {
 		FileReader reader = new FileReader(filePath);
-
 		JSONObject obj = new JSONObject(reader.getLinesSingle());
-		JSONArray textPhases = obj.getJSONArray("phases");
-
-		for (int i = 0; i < textPhases.length(); i++) {
-			phases.add(Phase.getPhase(textPhases.getString(i)));
-		}
-
 		player.setLocation((MoveableLocation) Location.loadLocation(obj.getJSONObject("playerStart")));
 	}
 

@@ -37,6 +37,15 @@ public class Command {
 
 		return ret;
 	}
+	
+	public String toSingleString() {
+		String ret = "";
+		ret += mainCommandWord;
+		for (String s : commandParameters) {
+			ret += " " + s;
+		}
+		return ret;
+	}
 
 	/**
 	 * @return the command word (first word) in the command, null if not understood

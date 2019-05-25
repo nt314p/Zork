@@ -3,7 +3,6 @@ package com.bayviewglen.zork.map;
 import java.util.HashMap;
 
 import com.bayviewglen.zork.command.DoorCommands;
-import com.bayviewglen.zork.item.*;
 
 public class Door extends Side implements DoorCommands{
 	
