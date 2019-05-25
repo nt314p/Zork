@@ -22,18 +22,18 @@ public class Location {
 	}
 
 	public Location(String mapName, Coordinate coords) {
-		this.map = Maps.getMap(mapName);
+		mapIndex = Maps.getMapIndex(mapName);
 		this.coords = coords;
 	}
 
 	public Location(String mapName, double[] coords) {
-		this.map = Maps.getMap(mapName);
+		mapIndex = Maps.getMapIndex(mapName);
 		this.coords = new Coordinate(coords);
 	}
 	
 	public Location(int mapIndex, Coordinate coords) {
 		this.mapIndex = mapIndex;
-		this.coords = new Coordinate(coords);
+		this.coords = coords;
 	}
 	
 	public Location(double[] location) {
@@ -50,7 +50,7 @@ public class Location {
 	}
 
 	public Room getRoom() {
-		return map.getRoom(coords);
+		return getMap().getRoom(coords);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class Location {
 //	}
 
 	protected void set(Map map, Coordinate coords) {
-		this.map = Maps.getMapIndex(map.getName());
+		mapIndex = Maps.getMapIndex(map.getName());
 		this.coords = coords;
 	}
 	
@@ -81,7 +81,7 @@ public class Location {
 	}
 	
 	protected void setMap(Map map) {
-		this.map = Maps.getMapIndex(map.getName());
+		mapIndex = Maps.getMapIndex(map.getName());
 	}
 	
 	protected void setMap(int mapIndex) {
@@ -127,13 +127,13 @@ public class Location {
 //		return Game.getPhases().indexOf(phase);
 //	}
 
-	public int getMapNum(Phase phase, Map map) {
-		return phase.getMaps().indexOf(map);
-	}
+//	public int getMapNum(Phase phase, Map map) {
+//		return phase.getMaps().indexOf(map);
+//	}
 
 	public String toString() {
 		String str = "Location:";
-		str += "\n\tMap: " + getMap().getMapName();
+		str += "\n\tMap: " + getMap().getName();
 		str += "\n\tRoom: " + getRoom().getName();
 		return str;
 	}

@@ -4,6 +4,7 @@ import com.bayviewglen.zork.item.Preset;
 import com.bayviewglen.zork.map.Coordinate;
 import com.bayviewglen.zork.map.Door;
 import com.bayviewglen.zork.map.Map;
+import com.bayviewglen.zork.map.Maps;
 import com.bayviewglen.zork.map.Opening;
 import com.bayviewglen.zork.map.Place;
 import com.bayviewglen.zork.map.Wall;
@@ -21,8 +22,8 @@ public class MapDisplay extends PApplet {
 	public static void main(String[] args) {
 		Inventory.initialize();
 		Preset.initialize();
-		Map.initialize();
-		display(Map.getMap("TESTING TESTER"));
+		Maps.initialize();
+		display(Maps.getMap("TESTING TESTER"));
 	}
 
 	public static void display(Map m) {

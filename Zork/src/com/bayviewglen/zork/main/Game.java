@@ -29,7 +29,7 @@ public class Game implements GameCommands {
 		CommandWords.initialize();
 		Preset.initialize();
 		Inventory.initialize();
-		Map.initialize();
+		Maps.initialize();
 		Link.initialize();
 		loadGame(filePath);
 		
@@ -114,7 +114,7 @@ public class Game implements GameCommands {
 		if(gameOver) {
 			return "Game is over.";
 		}
-		Map.getMap("Ice Ice Baby");
+		Maps.getMap("Ice Ice Baby");
 		Location currLoc = player.getLocation();
 		String roomDesc = currLoc.getMap().getRoom(currLoc.getCoords()).getLongDescription();
 

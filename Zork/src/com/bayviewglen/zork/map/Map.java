@@ -43,11 +43,11 @@ public class Map {
 		int z = (int) ((maxCoords.getZ() + 1) * 2);
 		// this.location = location;
 		map = new Place[x][y][z];
-		mapList.put(mapName, this);
+		Maps.add(this);
 	}
 	
 	public Map(String mapName) {
-		Map m = Map.getMap(mapName);
+		Map m = Maps.getMap(mapName);
 		this.map = m.map;
 		this.mapName = m.mapName;
 	}
@@ -309,7 +309,7 @@ public class Map {
 
 
 	public boolean equals(Map map) {
-		return this.mapName.equals(map.getMapName());
+		return this.mapName.equals(map.getName());
 	}
 
 	/**

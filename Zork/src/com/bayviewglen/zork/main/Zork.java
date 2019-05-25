@@ -35,7 +35,7 @@ public class Zork {
 	public static void testMyVerySmallMapBoi() {
 		Inventory.initialize();
 		Preset.initialize();
-		Map.initialize();
+		Maps.initialize();
 		Map m = new Map("TESTING TESTER");
 		m.getClass();
 	}
@@ -94,7 +94,7 @@ public class Zork {
 	public static void testPresetInventoryOverride() {
 		Inventory.initialize();
 		Preset.initialize();
-		Map m = Map.getMap("Ice Ice Baby");
+		Map m = Maps.getMap("Ice Ice Baby");
 		Room r = m.getRoom(new Coordinate(1.5, 1.5, 0.5));
 		System.out.println(r.getRoomItems());
 	}
@@ -161,8 +161,8 @@ public class Zork {
 	}
 
 	public static void testMap() { // OUTDATED
-		Map.initialize();
-		Map map = Map.getMap("Test Map");
+		Maps.initialize();
+		Map map = Maps.getMap("Test Map");
 		HashMap<String, String> h = new HashMap<String, String>();
 		h.put("short", "You are in a test room.");
 		Room r = new Room("Test room", h, new Location("TestMap", new Coordinate(0, 03.5, 6)));

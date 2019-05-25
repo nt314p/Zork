@@ -1,6 +1,13 @@
 package com.bayviewglen.zork.map;
 
+import java.io.File;
 import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.bayviewglen.zork.item.Item;
+import com.bayviewglen.zork.main.*;
 
 public class Maps {
 	
@@ -16,6 +23,10 @@ public class Maps {
 				loadMap(f.getAbsolutePath());
 			}
 		}
+	}
+	
+	public static void add(Map map) {
+		mapList.add(map);
 	}
 	
 
@@ -34,6 +45,14 @@ public class Maps {
 				return i;
 		}
 		return -1;
+	}
+	
+	public static Map getMap(String mapName) {
+		for(int i = 0; i<mapList.size(); i++) {
+			if(mapList.get(i).getName().equals(mapName))
+				return mapList.get(i);
+		}
+		return null;
 	}
 	
 	private static void loadMap(String filePath) {
@@ -77,11 +96,11 @@ public class Maps {
 			
 
 			// filling vertical sides
-			for (int i = 0; i < tempMap.map.length; i++) { // x
-				for (int j = (i + 1) % 2; j < tempMap.map[0].length; j += 2) { // y
-					for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
+			for (int i = 0; i < tempMap.getMap().length; i++) { // x
+				for (int j = (i + 1) % 2; j < tempMap.getMap()[0].length; j += 2) { // y
+					for (int k = 1; k < tempMap.getMap()[0][0].length; k += 2) { // z
 						defaultSideV.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
-						tempMap.map[i][j][k] = defaultSideV;
+						tempMap.getMap()[i][j][k] = defaultSideV;
 					}
 				}
 			}
@@ -90,11 +109,11 @@ public class Maps {
 		if (obj.has("default-side-horizontal")) {
 			defaultSideH = (Side) Item.loadItem(obj.getJSONObject("default-side-horizontal"));
 			// filling horizontal sides
-			for (int i = 1; i < tempMap.map.length; i += 2) { // x
-				for (int j = 1; j < tempMap.map[0].length; j += 2) { // y
-					for (int k = 0; k < tempMap.map[0][0].length; k += 2) { // z
+			for (int i = 1; i < tempMap.getMap().length; i += 2) { // x
+				for (int j = 1; j < tempMap.getMap()[0].length; j += 2) { // y
+					for (int k = 0; k < tempMap.getMap()[0][0].length; k += 2) { // z
 						defaultSideH.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
-						tempMap.map[i][j][k] = defaultSideH;
+						tempMap.getMap()[i][j][k] = defaultSideH;
 					}
 				}
 			}
@@ -103,20 +122,20 @@ public class Maps {
 		if (obj.has("default-border")) {
 			defaultBorder = (Side) Item.loadItem(obj.getJSONObject("default-border"));
 			
-			for (int i = 0; i <= tempMap.map.length; i += tempMap.map.length-1) {
-				for (int j = 1; j < tempMap.map[0].length; j += 2) {
-					for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
+			for (int i = 0; i <= tempMap.getMap().length; i += tempMap.getMap().length-1) {
+				for (int j = 1; j < tempMap.getMap()[0].length; j += 2) {
+					for (int k = 1; k < tempMap.getMap()[0][0].length; k += 2) { // z
 						defaultBorder.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
-						tempMap.map[i][j][k] = defaultBorder;
+						tempMap.getMap()[i][j][k] = defaultBorder;
 					}
 				}
 			}
 			
-			for (int i = 1; i < tempMap.map.length; i += 2) {
-				for (int j = 0; j <= tempMap.map[0].length; j += tempMap.map[0].length-1) {
-					for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
+			for (int i = 1; i < tempMap.getMap().length; i += 2) {
+				for (int j = 0; j <= tempMap.getMap()[0].length; j += tempMap.getMap()[0].length-1) {
+					for (int k = 1; k < tempMap.getMap()[0][0].length; k += 2) { // z
 						defaultBorder.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
-						tempMap.map[i][j][k] = defaultBorder;
+						tempMap.getMap()[i][j][k] = defaultBorder;
 					}
 				}
 			}
@@ -125,11 +144,11 @@ public class Maps {
 		if (obj.has("default-ground")) {
 			defaultGround = (Side) Item.loadItem(obj.getJSONObject("default-ground"));
 			
-			for (int i = 1; i < tempMap.map.length; i += 2) { // x
-				for (int j = 1; j < tempMap.map[0].length; j += 2) { // y
-					for (int k = 0; k <= tempMap.map[0][0].length; k += tempMap.map[0][0].length-1) { // z
+			for (int i = 1; i < tempMap.getMap().length; i += 2) { // x
+				for (int j = 1; j < tempMap.getMap()[0].length; j += 2) { // y
+					for (int k = 0; k <= tempMap.getMap()[0][0].length; k += tempMap.getMap()[0][0].length-1) { // z
 						defaultGround.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
-						tempMap.map[i][j][k] = defaultGround;
+						tempMap.getMap()[i][j][k] = defaultGround;
 					}
 				}
 			}
@@ -137,11 +156,11 @@ public class Maps {
 		
 		if (obj.has("default-room")) {
 			defaultRoom = (Room) Item.loadItem(obj.getJSONObject("default-room"));
-			for (int i = 1; i < tempMap.map.length; i += 2) { // x
-				for (int j = 1; j < tempMap.map[0].length; j += 2) { // y
-					for (int k = 1; k < tempMap.map[0][0].length; k += 2) { // z
+			for (int i = 1; i < tempMap.getMap().length; i += 2) { // x
+				for (int j = 1; j < tempMap.getMap()[0].length; j += 2) { // y
+					for (int k = 1; k < tempMap.getMap()[0][0].length; k += 2) { // z
 						defaultRoom.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
-						tempMap.map[i][j][k] = defaultRoom;
+						tempMap.getMap()[i][j][k] = defaultRoom;
 					}
 				}
 			}
