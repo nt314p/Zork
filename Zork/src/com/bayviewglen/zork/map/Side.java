@@ -31,6 +31,8 @@ public abstract class Side extends Place{
 		this.isExit = isExit;
 	}
 	
+	public abstract String moveThrough();
+	
 	public abstract String toString();
 	
 }

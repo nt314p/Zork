@@ -94,6 +94,13 @@ public class Door extends Side implements DoorCommands{
 		return getName() + " did not have the correct key to unlock.";	
 	}
 	
+	public String moveThrough() {
+		if (!isExit()) {
+			return getName() + " is closed.";
+		}
+		return ""; // Door is open, no need to return anything
+	}
+	
 	public String getKeycode() {
 		return keycode;
 	}

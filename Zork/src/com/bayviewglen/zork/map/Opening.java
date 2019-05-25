@@ -18,6 +18,10 @@ public class Opening extends Side {
 		super(opening.getName(), opening.getDescriptions(), opening.isExit());
 	}
 	
+	public String moveThrough() {
+		return ""; // Hardcoding at its finest
+	}
+	
 	public String toString() {
 		return getClass().getSimpleName();
 	}

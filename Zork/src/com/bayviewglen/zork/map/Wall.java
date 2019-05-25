@@ -18,6 +18,10 @@ public class Wall extends Side {
 		super(wall.getName(), wall.getDescriptions(), wall.isExit());
 	}
 	
+	public String moveThrough() {
+		return "You bumped into the " + getName();
+	}
+	
 	public String toString() {
 		return getClass().getSimpleName();
 	}

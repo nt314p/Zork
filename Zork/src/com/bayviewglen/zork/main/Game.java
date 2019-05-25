@@ -2,6 +2,8 @@ package com.bayviewglen.zork.main;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.json.JSONObject;
 
 import com.bayviewglen.zork.command.*;
@@ -20,11 +22,16 @@ public class Game implements GameCommands {
 	private static Player player;
 	private static boolean gameOver = false;
 	private static boolean isPlaying = true;
+	public static HashMap<String, String> directionWords = (HashMap<String, String>) java.util.Map.ofEntries(
+			java.util.Map.entry("north", "n"), java.util.Map.entry("south", "s"), java.util.Map.entry("east", "e"),
+			java.util.Map.entry("west", "w"), java.util.Map.entry("up", "u"), java.util.Map.entry("down", "d"),
+			java.util.Map.entry("n", "north"), java.util.Map.entry("s", "south"), java.util.Map.entry("e", "east"),
+			java.util.Map.entry("w", "west"), java.util.Map.entry("u", "up"), java.util.Map.entry("d", "down"));
 
 	private static int turn = 0;
-	
+
 	public static void initializeGame(String filePath, Player player) {
-		
+
 		parser = new Parser();
 		CommandWords.initialize();
 		Preset.initialize();
@@ -32,27 +39,26 @@ public class Game implements GameCommands {
 		Maps.initialize();
 		Link.initialize();
 		loadGame(filePath);
-		
+
 		Game.player = player;
-	//	player = new Player(100, null, new Inventory(),
-		//		new MoveableLocation("Ice Ice Baby", new Coordinate(0.5, 0.5, 0.5)));
+		// player = new Player(100, null, new Inventory(),
+		// new MoveableLocation("Ice Ice Baby", new Coordinate(0.5, 0.5, 0.5)));
 
 	}
 
 	public static void processCommand(Command cmd) {
-		
+
 		ArrayList<Item> interactableItems = player.getInteractableItems().toArrayList();
 		ArrayList<Item> commandableItems = parser.parseItems(interactableItems, cmd.toSingleString());
 
 		String mainCmd = cmd.getCommandWord();
 		mainCmd = mainCmd.substring(0, 1).toUpperCase() + mainCmd.substring(1); // capitalizing
-		
-		/* NEW - IMPLEMENT
-		for (all commandable items)
-			try to run main command on the current item
-			try all the other items as parameters	
+
+		/*
+		 * NEW - IMPLEMENT for (all commandable items) try to run main command on the
+		 * current item try all the other items as parameters
 		 */
-		
+
 		Class<Item> cls = null;
 
 		try {
@@ -63,7 +69,7 @@ public class Game implements GameCommands {
 		} catch (ClassCastException e) {
 			e.printStackTrace();
 		}
-		
+
 		Item commandItem = null;
 		ArrayList<Item> otherParamItems = new ArrayList<Item>();
 		for (int i = 0; i < commandableItems.size(); i++) {
@@ -76,9 +82,9 @@ public class Game implements GameCommands {
 				// command does not implement the command interface
 			}
 		}
-				
+
 		java.lang.reflect.Method method = null;
-		
+
 		try {
 			method = commandItem.getClass().getMethod(mainCmd);
 		} catch (NoSuchMethodException e) {
@@ -91,34 +97,33 @@ public class Game implements GameCommands {
 				}
 			}
 		}
-		
+
 		if (method != null) {
 			try {
 				method.invoke(commandItem, otherParamItems.get(0)); // there should be one param left
 			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 				e.printStackTrace(); // What? The command doesn't exist!
-			} 
+			}
 		}
 	}
-	
+
 	public static void setGameOver(boolean playWithoutAsking) {
 		gameOver = true;
 		isPlaying = playWithoutAsking;
 	}
-	
+
 	public static boolean gameOver() {
 		return gameOver;
 	}
 
 	public static String doTurn() {
-		if(gameOver) {
+		if (gameOver) {
 			return "Game is over.";
 		}
 		Maps.getMap("Ice Ice Baby");
 		Location currLoc = player.getLocation();
 		String roomDesc = currLoc.getMap().getRoom(currLoc.getCoords()).getLongDescription();
 
-		
 		String ret = displayStatistics();
 
 		ret += "\nLOCATION:";
@@ -126,29 +131,29 @@ public class Game implements GameCommands {
 		ret += "\n" + roomDesc + "\n" + displayExits() + "\n";
 		return ret;
 	}
-	
+
 	public static String displayExits() {
 		Location currLoc = player.getLocation();
 		String exits = "Exits: ";
 		for (java.lang.Character i : currLoc.getMap().getExits(currLoc.getCoords())) {
-			exits += DirectionHelper.toString(i) + ", ";
-			
+			exits += directionWords.get(i + "");
+
 		}
-		if (exits.indexOf(",")==-1)//nothing added
+		if (exits.indexOf(",") == -1)// nothing added
 			exits += "None";
 		else
 			exits = exits.substring(0, exits.length() - 2);// remove ", " at end
 		exits = exits.substring(0, exits.length() - 2);
 		return exits;
 	}
-	
+
 	public static String displayStatistics() {
 		String healthMonitor = "Health" + player.getHealthMonitor().toString();
 		String foodMonitor = "Food" + player.getFoodMonitor().toString();
 		String waterMonitor = "Water" + player.getWaterMonitor().toString();
 
 		ArrayList<String> inventoryLines = player.getInventory().toStringArray();
-		while(inventoryLines.size()<3){
+		while (inventoryLines.size() < 3) {
 			inventoryLines.add("");
 		} // give inventoryLines at least 3 to work with for-loop (health, food, water)
 
@@ -185,7 +190,6 @@ public class Game implements GameCommands {
 //		return characters;
 //	}
 
-
 	public static Player getPlayer() {
 		return player;
 	}
@@ -195,6 +199,5 @@ public class Game implements GameCommands {
 		JSONObject obj = new JSONObject(reader.getLinesSingle());
 		player.setLocation((MoveableLocation) Location.loadLocation(obj.getJSONObject("playerStart")));
 	}
-
 
 }

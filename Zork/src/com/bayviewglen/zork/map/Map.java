@@ -6,16 +6,21 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.lang.Character;
 
-import com.bayviewglen.zork.main.DirectionHelper;
+//import com.bayviewglen.zork.main.DirectionHelper;
 
 public class Map {
 
-
 	private Place[][][] map;
 	private String mapName;
-	private static final HashMap<Character, Coordinate> dirCoords = new HashMap<>(
-			java.util.Map.of('n', new Coordinate(0, -1, 0), 's', new Coordinate(0, 1, 0), 'e', new Coordinate(1, 0, 0),
-					'w', new Coordinate(-1, 0, 0), 'u', new Coordinate(0, 0, 1), 'd', new Coordinate(0, 0, -1)));
+
+	public static final char[] LETTER_AXES = { 'n', 's', 'u', 'd', 'e', 'w' };
+	public static final HashMap<Character, Coordinate> DIRECTIONS = (HashMap<Character, Coordinate>) (java.util.Map
+			.ofEntries(java.util.Map.entry('n', new Coordinate(0, -1, 0)),
+					java.util.Map.entry('s', new Coordinate(0, 1, 0)),
+					java.util.Map.entry('e', new Coordinate(1, 0, 0)),
+					java.util.Map.entry('w', new Coordinate(-1, 0, 0)),
+					java.util.Map.entry('u', new Coordinate(0, 0, 1)),
+					java.util.Map.entry('d', new Coordinate(0, 0, -1))));
 
 	// private Location location;//phase, map, maxcoords
 
@@ -39,13 +44,12 @@ public class Map {
 		map = new Place[x][y][z];
 		Maps.add(this);
 	}
-	
+
 	public Map(String mapName) {
 		Map m = Maps.getMap(mapName);
 		this.map = m.map;
 		this.mapName = m.mapName;
 	}
-	
 
 	/**
 	 * set's a place onto the map ***remember that rooms are on the half (.5) and
@@ -188,7 +192,7 @@ public class Map {
 
 		HashMap<Character, Coordinate> surroundingCoords = new HashMap<Character, Coordinate>();
 
-		Iterator<Entry<Character, Coordinate>> it = dirCoords.entrySet().iterator();
+		Iterator<Entry<Character, Coordinate>> it = DIRECTIONS.entrySet().iterator();
 		while (it.hasNext()) {
 			java.util.Map.Entry<Character, Coordinate> pair = (java.util.Map.Entry<Character, Coordinate>) it.next();
 			char key = (char) pair.getKey();
@@ -215,23 +219,14 @@ public class Map {
 	public Room getNextRoom(char dir, Coordinate coords) {
 		return getRoom(getNextRoomCoords(dir, coords));
 	}
-	
+
 	/**
 	 * @param r1 room1
 	 * @param r2 room2
 	 * @return side between room1 and room2, null if there's no surrounding side
 	 */
 	public Side getSideBetween(Room r1, Room r2) {
-
-		for(int i = 0; i<DirectionHelper.DIRECTIONS.length; i++) {
-			for(int j = 0; j<DirectionHelper.DIRECTIONS.length; j++) {
-				Side a = this.getNextSide(DirectionHelper.DIRECTIONS[i], r1.getLocation().getCoords());
-				Side b = this.getNextSide(DirectionHelper.DIRECTIONS[j], r2.getLocation().getCoords());
-				if(a.equals(b))
-					return a;
-			}
-		}
-		return null;
+		return getSide(r1.getLocation().getCoords().average(r2.getLocation().getCoords()));
 	}
 
 	/**
@@ -261,13 +256,11 @@ public class Map {
 	public ArrayList<Character> getExits(Coordinate coords) {
 		ArrayList<Character> exits = new ArrayList<Character>();
 
-		for (char dir : DirectionHelper.DIRECTIONS) {
-			Side side = (Side) getPlace(getNextSideCoords(dir, coords));
-			if (getNextRoomCoords(dir, coords) != null && (side.isExit()))
+		for (char dir : LETTER_AXES) {
+			if (getNextRoomCoords(dir, coords) != null && (getNextSide(dir, coords).isExit()))
 				exits.add(dir);
 		}
 		return exits;
-
 	}
 
 	public boolean isExit(char dir, Coordinate coords) {
@@ -301,7 +294,6 @@ public class Map {
 		return map;
 	}
 
-
 	public boolean equals(Map map) {
 		return this.mapName.equals(map.getName());
 	}
@@ -328,7 +320,6 @@ public class Map {
 		}
 	}
 
-	
 //
 //	public static ArrayList<Character> loadCharacters(String filePath) {
 //		FileReader reader = new FileReader(filePath);

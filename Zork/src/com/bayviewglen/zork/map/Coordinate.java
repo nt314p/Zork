@@ -1,5 +1,8 @@
 package com.bayviewglen.zork.map;
 
+import java.util.Iterator;
+import java.util.Map.Entry;
+
 public class Coordinate {
 
 	private double x, y, z;
@@ -9,12 +12,13 @@ public class Coordinate {
 		this.y = y;
 		this.z = z;
 	}
-	
-	public Coordinate(double x, double y, double z, boolean isDouble) { //true if the coordinates are double their actual val
+
+	public Coordinate(double x, double y, double z, boolean isDouble) { // true if the coordinates are double their
+																		// actual val
 		if (isDouble) {
-			this.x = x/2;
-			this.y = y/2;
-			this.z = z/2;
+			this.x = x / 2;
+			this.y = y / 2;
+			this.z = z / 2;
 		}
 	}
 
@@ -68,16 +72,45 @@ public class Coordinate {
 	public boolean equals(Coordinate coords) {
 		return (x == coords.x) && (y == coords.y) && (z == coords.z);
 	}
-	
-	public Coordinate add(Coordinate c) { 
+
+	public Coordinate add(Coordinate c) {
 		return new Coordinate(x + c.x, y + c.y, z + c.z);
 	}
 	
+	public char direction(Coordinate target) {
+		// only one axis should vary between this coordinate and the target coordinate
+		Coordinate absDiff = this.absoluteDifference(target);
+		
+		Iterator<Entry<Character, Coordinate>> it = Map.DIRECTIONS.entrySet().iterator();
+		while (it.hasNext()) {
+			java.util.Map.Entry<Character, Coordinate> pair = (java.util.Map.Entry<Character, Coordinate>) it.next();
+			char key = (char) pair.getKey();
+			Coordinate coord = ((Coordinate) pair.getValue()).normalize();
+			if (absDiff.equals(coord)) {
+				return key;
+			}
+		}
+		
+		return 0;		
+	}
+
 	public Coordinate multiply(double factor) {
 		return new Coordinate(x * factor, y * factor, z * factor);
 	}
+
+	public Coordinate absoluteDifference(Coordinate coords) {
+		return new Coordinate(Math.abs(x - coords.x), Math.abs(y - coords.y), Math.abs(z - coords.z));
+	}
 	
-	public static Coordinate readCoords (String line) {
+	public Coordinate average(Coordinate other) {
+		return new Coordinate((x + other.x) / 2, (y + other.y) / 2, (z + other.z) / 2);
+	}
+	
+	public Coordinate normalize() {
+		return new Coordinate(Math.signum(x), Math.signum(y), Math.signum(z));
+	}
+
+	public static Coordinate readCoords(String line) {
 		line.replaceAll("[ (){]", "");
 		String[] coordsString = line.split(","); // split on comma to extract coords
 		double[] coords = new double[3];
