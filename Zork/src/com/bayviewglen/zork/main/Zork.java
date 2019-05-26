@@ -18,11 +18,11 @@ public class Zork {
 		// testCommandParse();
 		// SlidePuzzle.play();
 		// testMyVerySmallMapBoi();
-		Game.initializeGame("data/game.json");
-		Parser p = new Parser();
-		while (true) {
-			System.out.println(testCommandExe(p.getCommand()));
-		}
+		//Game.initializeGame("data/game.json");
+		//Parser p = new Parser();
+		//while (true) {
+		//	System.out.println(testCommandExe(p.getCommand()));
+		//}
 		// testRiddle();
 		// testSides();
 		// testInventory();
@@ -36,6 +36,8 @@ public class Zork {
 //		Item i = new Food("myItem", 17.9, null, 0, 0.9);
 //		Item t = Item.copy(i);
 //		System.out.println(i + "\n" + t);
+		
+		Game.print(Game.intro());
 
 	}
 

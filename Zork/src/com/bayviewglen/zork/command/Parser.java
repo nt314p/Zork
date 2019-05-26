@@ -9,12 +9,14 @@ package com.bayviewglen.zork.command;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import com.bayviewglen.zork.item.Item;
 
 public class Parser {
 	private int maxWordsInCommand = CommandWords.getMaxWordsInCommand();
 	private final String prompt = ">>";
+	private static Scanner scanner = new Scanner(System.in);
 
 	public Parser() {
 		
@@ -140,5 +142,17 @@ public class Parser {
 	 */
 	public void showCommands() {
 		CommandWords.showAll();
+	}
+	
+	public static void pressAnyKey() {
+		scanner.nextLine();
+	}
+	
+	public static String startGame() {
+		String temp = scanner.nextLine();
+		if(temp != null && temp.length() > 0 && temp.substring(0,1).equalsIgnoreCase("y"))
+			return "You'll be regretting that soon. Let's play!";
+		else
+			return "I don't care what you say anyways. Let's play!";
 	}
 }

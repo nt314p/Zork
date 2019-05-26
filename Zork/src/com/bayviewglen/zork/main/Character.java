@@ -115,6 +115,10 @@ public class Character extends Item {
 		int randIndex = (int)(Math.random()*moves.size());
 		return moves.get(randIndex);
 	}
+	
+	public void move() {
+		location = getRandomMove();
+	}
 
 	public Location getLocation() {
 		return location;

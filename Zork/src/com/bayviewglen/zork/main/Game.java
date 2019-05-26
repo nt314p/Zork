@@ -17,12 +17,15 @@ import com.bayviewglen.zork.map.*;
  *
  */
 
-public class Game implements GameCommands {
+public class Game {
 
 	private static Parser parser = new Parser();
 	private static Player player;
 	private static boolean gameOver = false;
 	private static boolean isPlaying = true;
+
+	private static final String PROMPT_ANY_KEY = "~";
+	private static final String PROMPT_START_GAME = "`";
 
 	public static final HashMap<String, String> directionWords = new HashMap<String, String>() {
 		{
@@ -207,9 +210,9 @@ public class Game implements GameCommands {
 		}
 		return ret;
 	}
-	
-	public static String getRandom(String [] strings) {
-		int randIndex = (int)(Math.random() * strings.length);
+
+	public static String getRandom(String[] strings) {
+		int randIndex = (int) (Math.random() * strings.length);
 		return strings[randIndex];
 	}
 
@@ -238,6 +241,89 @@ public class Game implements GameCommands {
 		JSONObject obj = new JSONObject(reader.getLinesSingle());
 		Location loc = Location.loadLocation(obj.getJSONObject("playerStart"));
 		player.setLocation(loc);
+	}
+
+	public static String help() {
+		String result = "";
+		result += "Use 'c' to display all commands." + PROMPT_ANY_KEY;
+		result += "Write a command to play your turn." + PROMPT_ANY_KEY;
+		result += "Use cardinal directions to traverse the map." + PROMPT_ANY_KEY;
+		result += "Collect keys to open doors and hidden rooms." + PROMPT_ANY_KEY;
+		result += "Make it safely back to Earth to win.";
+		return result;
+	}
+
+	public static String outro() {
+		String result = "";
+		result += "Press any key to continue." + PROMPT_ANY_KEY;
+		result += "Thank you for playing Space Zork." + PROMPT_ANY_KEY;
+		result += "We hope you enjoyed." + PROMPT_ANY_KEY;
+		result += "Ending statistics:\n" + Game.displayStatistics() + "" + PROMPT_ANY_KEY;
+		result += "\n\nDevelopers:" + PROMPT_ANY_KEY + "\tEthan Elbaz" + PROMPT_ANY_KEY + "\tBen Merbaum"
+				+ PROMPT_ANY_KEY + "\tNick Tong" + PROMPT_ANY_KEY;
+		result += "Space awaits you..." + PROMPT_ANY_KEY;
+		result += "\n\"This is one small step for man..." + PROMPT_ANY_KEY;
+		result += "\none giant leap for manking\"" + PROMPT_ANY_KEY;
+		result += "\t- Neil Armstrong";
+		return result;
+	}
+
+	public static String storyline() {
+		String result = "";
+		result += "Welcome to space." + PROMPT_ANY_KEY;
+		result += "You don't know who you are, what you are, or where you are." + PROMPT_ANY_KEY;
+		result += "Are you in hell? Even hell sounds like a vacation to this place." + PROMPT_ANY_KEY;
+		result += "All you can see are the stars, but even those look like a ball of fire\n"
+				+ "ready to attack." + PROMPT_ANY_KEY;
+		result += "You fly through the universe, or are you even in the universe." + PROMPT_ANY_KEY;
+		result += "Who really cares anyway, because you're just going to die.";
+		return result;
+	}
+
+	public static String intro() {
+		String result = "";
+		result += "Press any key to continue." + PROMPT_ANY_KEY;
+		result += "Welcome to Space Zork, a completely dynamic adventure game." + PROMPT_ANY_KEY;
+		result += "WARNING: Zork has the potential to induce seizures\n"
+				+ "for people with photosensitive epilepsy. If you have photosensitive epilepsy\n"
+				+ "or feel you may be susceptible to a seizure, DO NOT PLAY ZORK.\n"
+				+ "You have been warned.\n"	+ PROMPT_ANY_KEY;
+
+		result += "HOW TO PLAY\n";
+		result += "-----------\n" + PROMPT_ANY_KEY;
+		result += help() + "\n" + PROMPT_ANY_KEY;
+		result += "Good luck on your adventure. Try not to die." + PROMPT_ANY_KEY;
+		result += "But if you do, that's okay as well." + PROMPT_ANY_KEY;
+		result += "Just do your best. Because that's all that matters. Right?" + PROMPT_ANY_KEY;
+		result += "And try not to rage. It'll be hard, I know." + PROMPT_ANY_KEY;
+		result += "Just keep on trying" + PROMPT_ANY_KEY;
+		result += "and trying" + PROMPT_ANY_KEY;
+		result += "and trying\n" + PROMPT_ANY_KEY;
+		result += "And remember: you can quit whenever you feel like it." + PROMPT_ANY_KEY;
+		result += "You just won't get the satisfaction of knowing that you beat Zork." + PROMPT_ANY_KEY;
+		result += "Shall we get started? ";
+		result += PROMPT_START_GAME;
+		result += "\n" + storyline() + "\n" + PROMPT_ANY_KEY;
+		return result;
+	}
+
+	public static String commands() {
+		return CommandWords.showAll();
+	}
+
+	public static void print(String message) {
+		String[] lines = message.split(PROMPT_ANY_KEY);
+		for (String s : lines) {
+			
+			if(s.indexOf(PROMPT_START_GAME) != -1) {
+				System.out.println(s.substring(0,s.indexOf(PROMPT_START_GAME)));
+				System.out.println(Parser.startGame());
+				continue;
+			}
+			
+			System.out.print(s);
+			Parser.pressAnyKey();
+		}
 	}
 
 }

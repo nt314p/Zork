@@ -143,8 +143,13 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 
 	public String hit(Character c, Weapon w) {
 		c.getHealthMonitor().decrease(w.getDamage());
-		return String.format("%s hit with %s.\n%sCurrent health%s", c.getName(), w.getName(), c.getName(),
+		return String.format("You hit %s with %s.\n%s current health%s", c.getName(), w.getName(), c.getName(),
 				c.getHealthMonitor().toString());
+	}
+	
+	public String getHit(Character c, Weapon w) {
+		getHealthMonitor().decrease(w.getDamage());
+		return String.format("%s hit you with %s.\nYour current health%s", c.getName(), w.getName(), getHealthMonitor().toString());
 	}
 
 	public String north() {
