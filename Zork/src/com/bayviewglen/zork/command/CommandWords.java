@@ -83,12 +83,10 @@ public class CommandWords {
 	public static String showAll() {
 		String result = "";
 		for (int i = 0; i < validCommands.length; i++) {
-			if(validCommands[i].get(0).equals(""))
-				result += "\n";
-			else
-				result += validCommands[i].get(0) + " ";// get main command word only
+			String s = validCommands[i].get(0);
+			s = s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
+			result += s + "\n";// get main command word only
 		}
-		result += "\n";
 		return result;
 	}
 	

@@ -26,6 +26,8 @@ public class Game {
 
 	private static final String PROMPT_ANY_KEY = "~";
 	private static final String PROMPT_START_GAME = "`";
+	
+	private static String [] failedCommands = {"You can't even do that.", "I don't understand what you want to say.", "Nope, you can't do that.", "Not possible. Try another command.", "That's not a command. Press 'c' to view all valid commands."}; 
 
 	public static final HashMap<String, String> directionWords = new HashMap<String, String>() {
 		{
@@ -64,7 +66,7 @@ public class Game {
 	public static String processCommand(Command cmd) {
 		
 		if (cmd.getCommandWord() == null) {
-			return "You can't even do that.";
+			return Game.getRandom(failedCommands);
 		}
 		
 		ArrayList<Item> interactableItems = player.getInteractableItems().toArrayList();
@@ -77,7 +79,7 @@ public class Game {
 		Object instance = null;
 		Method method = null;
 
-		String[] classNames = { "main.Game", "main.Player", "map.Door" }; // where the methods can run?
+		String[] classNames = { "main.Game", "main.Player", "main.Character", "map.Door" }; // where the methods can run?
 
 		for (String className : classNames) {
 			Class tempCls = null;
@@ -96,7 +98,7 @@ public class Game {
 		}
 
 		if (cls == null) {
-			return "You can't even do that";
+			return Game.getRandom(failedCommands);
 		}
 
 		Class<Item>[] paramTypes = (Class<Item>[]) method.getParameterTypes();
@@ -144,7 +146,7 @@ public class Game {
 				}
 			}
 		}
-		return "You can't even do that.";
+		return Game.getRandom(failedCommands);
 	}
 
 	public static void setGameOver(boolean playWithoutAsking) {
@@ -176,14 +178,15 @@ public class Game {
 		Location currLoc = player.getLocation();
 		String exits = "Exits: ";
 		for (java.lang.Character i : currLoc.getMap().getExits(currLoc.getCoords())) {
-			exits += directionWords.get(i + "");
+			String s = directionWords.get(i + "") + ", ";
+			s = s.substring(0,1).toUpperCase() + s.substring(1);
+			exits += s;
 
 		}
 		if (exits.indexOf(",") == -1)// nothing added
 			exits += "None";
 		else
 			exits = exits.substring(0, exits.length() - 2);// remove ", " at end
-		exits = exits.substring(0, exits.length() - 2);
 		return exits;
 	}
 
@@ -306,7 +309,7 @@ public class Game {
 		result += "You just won't get the satisfaction of knowing that you beat Zork." + PROMPT_ANY_KEY;
 		result += "Shall we get started? ";
 		result += PROMPT_START_GAME;
-		result += "\n" + storyline() + "\n" + PROMPT_ANY_KEY;
+		result += "\n\n" + storyline() + "\n" + PROMPT_ANY_KEY;
 		return result;
 	}
 
@@ -319,7 +322,7 @@ public class Game {
 		for (String s : lines) {
 
 			if (s.indexOf(PROMPT_START_GAME) != -1) {
-				System.out.println(s.substring(0, s.indexOf(PROMPT_START_GAME)));
+				System.out.print(s.substring(0, s.indexOf(PROMPT_START_GAME)));
 				System.out.println(Parser.startGame());
 				continue;
 			}

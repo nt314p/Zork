@@ -100,7 +100,7 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	}
 
 	public String jump() {
-		return "You jumped." + Game.getRandom(jumping);
+		return "You jumped. " + Game.getRandom(jumping);
 	}
 
 	public String fall() {
