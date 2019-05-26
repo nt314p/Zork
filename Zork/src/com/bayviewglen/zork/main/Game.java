@@ -1,6 +1,7 @@
 package com.bayviewglen.zork.main;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,15 +23,27 @@ public class Game implements GameCommands {
 	private static Player player;
 	private static boolean gameOver = false;
 	private static boolean isPlaying = true;
-	public static HashMap<String, String> directionWords = (HashMap<String, String>) java.util.Map.ofEntries(
-			java.util.Map.entry("north", "n"), java.util.Map.entry("south", "s"), java.util.Map.entry("east", "e"),
-			java.util.Map.entry("west", "w"), java.util.Map.entry("up", "u"), java.util.Map.entry("down", "d"),
-			java.util.Map.entry("n", "north"), java.util.Map.entry("s", "south"), java.util.Map.entry("e", "east"),
-			java.util.Map.entry("w", "west"), java.util.Map.entry("u", "up"), java.util.Map.entry("d", "down"));
 
+	public static final HashMap<String, String> directionWords = new HashMap<String, String>() {
+		{
+
+			put("north", "n");
+			put("south", "s");
+			put("east", "e");
+			put("west", "w");
+			put("up", "u");
+			put("down", "d");
+			put("n", "north");
+			put("s", "south");
+			put("e", "east");
+			put("w", "west");
+			put("u", "up");
+			put("d", "down");
+		}
+	};
 	private static int turn = 0;
 
-	public static void initializeGame(String filePath, Player player) {
+	public static void initializeGame(String filePath) {
 
 		parser = new Parser();
 		CommandWords.initialize();
@@ -38,71 +51,92 @@ public class Game implements GameCommands {
 		Inventory.initialize();
 		Maps.initialize();
 		Link.initialize();
+
+		Game.player = new Player(100, null, new Inventory(),
+				new Location("Ice Ice Baby", new Coordinate(0.5, 0.5, 0.5)));
+
 		loadGame(filePath);
-
-		Game.player = player;
-		// player = new Player(100, null, new Inventory(),
-		// new MoveableLocation("Ice Ice Baby", new Coordinate(0.5, 0.5, 0.5)));
-
 	}
 
-	public static void processCommand(Command cmd) {
+	public static String processCommand(Command cmd) {
 
 		ArrayList<Item> interactableItems = player.getInteractableItems().toArrayList();
-		ArrayList<Item> commandableItems = parser.parseItems(interactableItems, cmd.toSingleString());
 
 		String mainCmd = cmd.getCommandWord();
-		mainCmd = mainCmd.substring(0, 1).toUpperCase() + mainCmd.substring(1); // capitalizing
 
-		/*
-		 * NEW - IMPLEMENT for (all commandable items) try to run main command on the
-		 * current item try all the other items as parameters
-		 */
+		Class cls = null;
+		Object instance = null;
+		Method method = null;
 
-		Class<Item> cls = null;
+		String[] classNames = { "main.Game", "main.Player", "map.Door" }; // where the methods can run?
 
-		try {
-			cls = (Class<Item>) Class.forName("com.bayviewglen.command." + mainCmd + "able");
-		} catch (ClassNotFoundException e) {
-			System.out.println("Cannot find class" + mainCmd + "able");
-			e.printStackTrace();
-		} catch (ClassCastException e) {
-			e.printStackTrace();
-		}
-
-		Item commandItem = null;
-		ArrayList<Item> otherParamItems = new ArrayList<Item>();
-		for (int i = 0; i < commandableItems.size(); i++) {
-			Item temp = commandableItems.get(i);
+		for (String className : classNames) {
+			Class tempCls = null;
 			try {
-				cls.cast(temp);
-				commandItem = temp;
-			} catch (ClassCastException e) {
-				otherParamItems.add(temp);
-				// command does not implement the command interface
+				tempCls = Class.forName("com.bayviewglen.zork." + className);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
 			}
-		}
-
-		java.lang.reflect.Method method = null;
-
-		try {
-			method = commandItem.getClass().getMethod(mainCmd);
-		} catch (NoSuchMethodException e) {
-			for (int i = 0; i < otherParamItems.size(); i++) { // checking which parameters it fits
-				try {
-					method = commandItem.getClass().getMethod(mainCmd, otherParamItems.get(i).getClass());
-				} catch (NoSuchMethodException ex) {
-					otherParamItems.remove(i); // removing incorrect parameters
-					i--;
+			Method[] methods = tempCls.getMethods();
+			for (Method m : methods) {
+				if (m.getName().equals(mainCmd)) {
+					cls = tempCls;
+					method = m;
 				}
 			}
 		}
 
-		if (method != null) {
+		if (cls == null) {
+			System.out.println("The command method was not found! Does the command txt have it?");
+			double n = 0 / 0;
+		}
+
+		if (cls.getSimpleName().equals("Door")) {
+			Class<Item>[] doorClsArr = new Class[1];
+			doorClsArr[0] = cls;
+			ArrayList<Item> commandableItems = parser.filterItems(interactableItems, doorClsArr);
+
+			if (commandableItems.size() != 1) { // there should only be one door
+				return "Please be more specific.";
+			}
+
+			instance = commandableItems.get(0);
+
+			Class<Item>[] paramTypes = (Class<Item>[]) method.getParameterTypes();
+			interactableItems = parser.filterItems(interactableItems, paramTypes);
+
+			if (interactableItems.size() != 1) { // no command has no more than one parameter
+				return "Please be more specific.";
+			}
+		}
+
+		if (cls.getSimpleName().equals("Player")) {
+			instance = player;
+		}
+
+		if (cls.getSimpleName().equals("Game")) {
+			instance = null;
+		}
+
+		try {
+			return (String) method.invoke(instance, interactableItems.get(0));
+		} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
+				| IndexOutOfBoundsException e) {
 			try {
-				method.invoke(commandItem, otherParamItems.get(0)); // there should be one param left
-			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-				e.printStackTrace(); // What? The command doesn't exist!
+				return (String) method.invoke(instance);
+			} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
+					| IndexOutOfBoundsException ea) {
+				try {
+					return (String) method.invoke(interactableItems.get(0));
+				} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
+						| IndexOutOfBoundsException eb) {
+					try {
+						return (String) method.invoke(null);
+					} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
+							| IndexOutOfBoundsException ec) {
+						return "You can't even do that.";
+					}
+				}
 			}
 		}
 	}
@@ -197,7 +231,8 @@ public class Game implements GameCommands {
 	public static void loadGame(String filePath) {
 		FileReader reader = new FileReader(filePath);
 		JSONObject obj = new JSONObject(reader.getLinesSingle());
-		player.setLocation((MoveableLocation) Location.loadLocation(obj.getJSONObject("playerStart")));
+		Location loc = Location.loadLocation(obj.getJSONObject("playerStart"));
+		player.setLocation(loc);
 	}
 
 }

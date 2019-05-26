@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import com.bayviewglen.zork.command.Command;
+import com.bayviewglen.zork.command.Parser;
 import com.bayviewglen.zork.item.*;
 import com.bayviewglen.zork.map.*;
 
@@ -13,10 +15,14 @@ public class Zork {
 //		Game game = new Game();
 //		game.doTurn();
 
-		//testCommandParse();
-		SlidePuzzle.play();
-		//testMyVerySmallMapBoi();
-		
+		// testCommandParse();
+		// SlidePuzzle.play();
+		// testMyVerySmallMapBoi();
+		Game.initializeGame("data/game.json");
+		Parser p = new Parser();
+		while (true) {
+			System.out.println(testCommandExe(p.getCommand()));
+		}
 		// testRiddle();
 		// testSides();
 		// testInventory();
@@ -30,9 +36,13 @@ public class Zork {
 //		Item i = new Food("myItem", 17.9, null, 0, 0.9);
 //		Item t = Item.copy(i);
 //		System.out.println(i + "\n" + t);
-		
+
 	}
-	
+
+	public static String testCommandExe(Command cmd) {
+		return Game.processCommand(cmd);
+	}
+
 	public static void testMyVerySmallMapBoi() {
 		Inventory.initialize();
 		Preset.initialize();
@@ -44,12 +54,8 @@ public class Zork {
 	public static void testCommandParse() {
 		// Player player = new Player(100, null, new Inventory(), new
 		// MoveableLocation("Ice Ice Baby", new Coordinate(0.5, 0.5, 0.5)));
-		ArrayList<Item> interactableItems = new ArrayList<Item>(
-				Arrays.asList(
-						new Item("Green Lantern", 30), 
-						new Item("Batman", 50),
-						new Item("Wonder Woman", 40),
-						new Item("Spider Man", 14)));
+		ArrayList<Item> interactableItems = new ArrayList<Item>(Arrays.asList(new Item("Green Lantern", 30),
+				new Item("Batman", 50), new Item("Wonder Woman", 40), new Item("Spider Man", 14)));
 
 		// player.getInteractableItems().toArrayList();
 		String s = "I want to see Green Lantern fight Spider Man, that would be a Wonder Man!";
@@ -63,7 +69,8 @@ public class Zork {
 					String matchName = "";
 					for (int l = 0; l <= k; l++) {
 						matchName += params[j + l];
-						if (l != k) matchName += " ";
+						if (l != k)
+							matchName += " ";
 					}
 
 					if (i.getName().compareToIgnoreCase(matchName) == 0) {

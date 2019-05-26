@@ -20,6 +20,32 @@ public class Parser {
 		
 	}
 	
+	public ArrayList<Item> filterItems(ArrayList<Item> items, Class<Item>[] classes) {
+		
+		ArrayList<Item> temp = new ArrayList<Item>();
+		
+		for (Item i : items) {
+			temp.add(i);
+		}
+		
+		for (int i = 0; i < items.size(); i++) {
+			int removeIndex = i;
+			for (Class<Item> cls : classes) {
+				try { // is the item one of the class types
+					cls.cast(items.get(i)); // cast attempt
+					removeIndex = -1; // cast successful, don't remove from items
+				} catch (ClassCastException e) {
+					
+				}
+			}
+			if (removeIndex != -1) {
+				items.remove(removeIndex); // item type doesn't match class type
+			}
+		}
+		
+		return items;
+	}
+	
 	public ArrayList<Item> parseItems(ArrayList<Item> items, String str) {
 
 		String[] words = str.split("\\W");

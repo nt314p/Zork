@@ -1,30 +1,42 @@
-drop:dump,discard
-move:go,travel
-give:throw away
-pick up:take,grab
+eat
+drink
+heal
 
-help:assistance,h
-quit:stop,give up
+quit
 restart:redo
-look:see
-commands:words,c
-die
-hit:attack,fight
-storyline:story,timeline
+die:suicide
+show all
 
-getAllOf:show,get all,show all,see all, pick all
-inventory:i,stuff,things
 north:n
 east:e
 south:s
 west:w
 up:u
 down:d
+move:go,travel
 
 enter:go in
-exit:leave,go away
+
+drop:dump,discard
+pickUp,pick up,take,grab
+give:throw away
+take
+
+hit:attack,fight
+
+look:see
+getAllOf:show,get all,show all,see all, pick all
+inventory:i,stuff,things
+
+help:assistance,h
+storyline:story,timeline
+quit:stop,give up
+commands:words,c
+
 open
 close
+unlock
+lock
 
 scream:yell
 fall

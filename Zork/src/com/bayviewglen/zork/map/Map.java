@@ -14,13 +14,17 @@ public class Map {
 	private String mapName;
 
 	public static final char[] LETTER_AXES = { 'n', 's', 'u', 'd', 'e', 'w' };
-	public static final HashMap<Character, Coordinate> DIRECTIONS = (HashMap<Character, Coordinate>) (java.util.Map
-			.ofEntries(java.util.Map.entry('n', new Coordinate(0, -1, 0)),
-					java.util.Map.entry('s', new Coordinate(0, 1, 0)),
-					java.util.Map.entry('e', new Coordinate(1, 0, 0)),
-					java.util.Map.entry('w', new Coordinate(-1, 0, 0)),
-					java.util.Map.entry('u', new Coordinate(0, 0, 1)),
-					java.util.Map.entry('d', new Coordinate(0, 0, -1))));
+	public static final HashMap<Character, Coordinate> DIRECTIONS = new HashMap<Character, Coordinate>() {
+		{
+
+			put('n', new Coordinate(0, -1, 0));
+			put('s', new Coordinate(0, 1, 0));
+			put('e', new Coordinate(1, 0, 0));
+			put('w', new Coordinate(-1, 0, 0));
+			put('u', new Coordinate(0, 0, 1));
+			put('d', new Coordinate(0, 0, -1));
+		}
+	};
 
 	// private Location location;//phase, map, maxcoords
 

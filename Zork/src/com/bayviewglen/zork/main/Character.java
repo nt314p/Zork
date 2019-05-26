@@ -7,11 +7,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.bayviewglen.zork.command.DescribeCommands;
 import com.bayviewglen.zork.item.*;
 import com.bayviewglen.zork.map.*;
 
-public class Character extends Item implements DescribeCommands {
+public class Character extends Item {
 
 	private static HashMap<String, Character> characters;
 
@@ -20,13 +19,13 @@ public class Character extends Item implements DescribeCommands {
 	private Monitor waterMonitor;
 
 	private Inventory inventory;
-	private MoveableLocation location;
+	private Location location;
 	
 	private Coordinate startPoint;
 	private Coordinate endPoint;
 
 	public Character(String name, double weight, HashMap<String, String> descriptions, Inventory inventory,
-			MoveableLocation location, double[] stats, Coordinate startPoint, Coordinate endPoint) {
+			Location location, double[] stats, Coordinate startPoint, Coordinate endPoint) {
 		super(name, weight, descriptions);
 		this.inventory = inventory;
 		this.location = location;
@@ -78,11 +77,11 @@ public class Character extends Item implements DescribeCommands {
 		return new Coordinate(x, y, z);
 	}
 
-	public MoveableLocation getLocation() {
+	public Location getLocation() {
 		return location;
 	}
 
-	public void setLocation(MoveableLocation loc) {
+	public void setLocation(Location loc) {
 		location = loc;
 	}
 
@@ -194,23 +193,10 @@ public class Character extends Item implements DescribeCommands {
 			// no descriptions
 		}
 		
-		MoveableLocation loc = (MoveableLocation) MoveableLocation.loadLocation(obj);
+		Location loc = Location.loadLocation(obj);
 
 		double[] stats = { obj.getDouble("health"), obj.getDouble("food"), obj.getDouble("water") };
 		Character c = new Character(obj.getString("name"), obj.getDouble("weight"), descriptions, inventory, loc, stats, new Coordinate(obj.getString("start")), new Coordinate(obj.getString("end")));
 		characters.put(obj.getString("name"), c);
-	}
-
-
-	public String inventory() {
-		return inventory.toString();
-	}
-
-	public String look() {
-		return location.getRoom().getLongDescription();
-	}
-
-	public String getAllOf(String type) {
-		return inventory.getAllOf(type);
 	}
 }

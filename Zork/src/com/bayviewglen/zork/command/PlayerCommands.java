@@ -32,5 +32,9 @@ public interface PlayerCommands {
 	public String take(Character c, Item i);
 	
 	public String hit(Character c, Weapon w);
+	
+	public String inventory();
+	public String look(Item i);
+	public String getAllOf(String type);
 
 }

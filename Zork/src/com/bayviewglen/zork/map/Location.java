@@ -70,29 +70,29 @@ public class Location {
 //		// throw new IllegalArgumentException("This location is invalid.");
 //	}
 
-	protected void set(Map map, Coordinate coords) {
+	public void set(Map map, Coordinate coords) {
 		mapIndex = Maps.getMapIndex(map.getName());
 		this.coords = coords;
 	}
 	
-	protected void set(int mapIndex, Coordinate coords) {
+	public void set(int mapIndex, Coordinate coords) {
 		this.mapIndex = mapIndex;
 		this.coords = coords;
 	}
 	
-	protected void setMap(Map map) {
+	public void setMap(Map map) {
 		mapIndex = Maps.getMapIndex(map.getName());
 	}
 	
-	protected void setMap(int mapIndex) {
+	public void setMap(int mapIndex) {
 		this.mapIndex = mapIndex;
 	}
 	
-	protected void setCoords(double[] coords) {
+	public void setCoords(double[] coords) {
 		this.coords = new Coordinate(coords);
 	}
 	
-	protected void setCoords(Coordinate coords) {
+	public void setCoords(Coordinate coords) {
 		this.coords = coords;
 	}
 
@@ -144,8 +144,7 @@ public class Location {
 	
 	public static Location loadLocation(JSONObject jObj) {
 		String mapName = jObj.getString("map");
-		int mapIndex = Maps.getMapIndex(mapName);
 		Coordinate coords = new Coordinate(jObj.getString("coords"));
-		return new Location(mapIndex, coords);
+		return new Location(mapName, coords);
 	}
 }

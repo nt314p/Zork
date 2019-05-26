@@ -15,7 +15,7 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 
 	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();
 
-	public Player(double weight, HashMap<String, String> descriptions, Inventory inventory, MoveableLocation location) {
+	public Player(double weight, HashMap<String, String> descriptions, Inventory inventory, Location location) {
 		super("Player", weight, descriptions, inventory, location, new double[] { 1, 1, 1 }, null, null);
 	}
 
@@ -24,10 +24,14 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 		HashMap<java.lang.Character, Coordinate> cc = new HashMap<java.lang.Character, Coordinate>();
 		Map m = getLocation().getMap();
 		cc = m.getSurroundingSideCoords(getLocation().getCoords());
-		ArrayList<Coordinate> scoords = (ArrayList<Coordinate>) cc.values();
-		for (int j = 0; j < scoords.size(); j++) {
-			i.add(m.getSide(scoords.get(j)));
+
+		for (char dir : Map.LETTER_AXES) {
+			Side s = m.getNextSide(dir, getLocation().getCoords());
+			if (s != null) {
+				i.add(s);
+			}
 		}
+
 		i.addAll(getLocation().getRoom().getRoomItems());
 		i.addAll(getInventory());
 
@@ -145,7 +149,7 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	}
 
 	public String move(char dir) {
-		getLocation().go(dir);
+		getLocation().setCoords(getLocation().getCoords().add(Map.DIRECTIONS.get(dir)));
 		return "You went " + Game.directionWords.get(dir + "");
 	}
 
@@ -189,6 +193,21 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	public String pickUp(Item i) {
 		getInventory().add(i);
 		return "You picked up " + i.getName();
+	}
+
+	public String inventory() {
+		return getInventory().toString();
+	}
+
+	public String look(Item i) {
+		if (i instanceof Room) {
+			return ((Room) i).getLongDescription();
+		}
+		return i.getDescription("look");
+	}
+
+	public String getAllOf(String type) {
+		return getInventory().getAllOf(type);
 	}
 
 }
