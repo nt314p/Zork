@@ -14,7 +14,11 @@ import com.bayviewglen.zork.map.*;
 public class Character extends Item {
 
 	private static HashMap<String, Character> characters;
+	private static String [] eating = {"It was delicious.", "Yummy!", "Very flavourful!", "The food tasted bad but at least your eating", "Disgusting!"};
+	private static String [] drinking = {"Mmm, water...", "It tasted delicious (if water can have taste).", "Isn't water amazing?"};
+	private static String [] healing = {"No more blood!", "You might survive!!!", "Nice.", "Let's try not to get injured next time.", "Congrats on not dying."};
 
+	
 	private Monitor healthMonitor;
 	private Monitor foodMonitor;
 	private Monitor waterMonitor;
@@ -161,7 +165,7 @@ public class Character extends Item {
 	 */
 	public String eat(Food food) {
 		foodMonitor.increase(food.getFoodValue());
-		return food.getName() + " has been eaten.";
+		return food.getName() + " has been eaten. " + Game.getRandom(eating);
 	}
 
 	/**
@@ -171,7 +175,7 @@ public class Character extends Item {
 	 */
 	public String drink(Food water) {
 		waterMonitor.increase(water.getWaterValue());
-		return water.getName() + " has been drank";
+		return water.getName() + " has been drank. " + Game.getRandom(drinking);
 	}
 
 	/**
@@ -181,7 +185,7 @@ public class Character extends Item {
 	 */
 	public String heal(Health health) {
 		healthMonitor.increase(health.getHealthValue());
-		return health.getName() + " has been used to heal yourself.";
+		return health.getName() + " has been used to heal yourself. " +  Game.getRandom(healing);
 	}
 
 	public String toString() {

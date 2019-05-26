@@ -207,6 +207,11 @@ public class Game implements GameCommands {
 		}
 		return ret;
 	}
+	
+	public static String getRandom(String [] strings) {
+		int randIndex = (int)(Math.random() * strings.length);
+		return strings[randIndex];
+	}
 
 	public static int getTurn() {
 		return turn;

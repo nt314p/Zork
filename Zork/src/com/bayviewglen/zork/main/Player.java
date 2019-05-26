@@ -10,8 +10,24 @@ import com.bayviewglen.zork.map.*;
 
 public class Player extends Character implements NoEffectCommands, PlayerCommands {
 
-	private static String[] screams = { "Aaaaarrrrg", "Aahhhhh", "WHAAAAAAATTTT????", "NIICCKK TONG!!!!",
+	private static String[] screaming = { "Aaaaarrrrg", "Aahhhhh", "WHAAAAAAATTTT????", "NIICCKK TONG!!!!",
 			"What the hell are you doing with your life???" };
+	private static String[] breathing = { "...breath...breath...breath", "You forgot how to breathe lol",
+			"Congrats, do you want an award for breathing?", "Breath", "Wow you are so cool" };
+	private static String[] jumping = { "Careful, don't fall.",
+			"Careful not to break the floorboards (oh wait you're in space)",
+			"If you jump too far you'll go out of orbit next time!",
+			"Careful - don't get sucked into the space vacuum!" };
+	private static String[] falling = { "Stop being so clumsy!", "Be careful next time.", "Good job (sarcasm)",
+			"Bleeding sucks." };
+	private static String[] dying = { "Noooo, don't die", "You're too young for this", "You're family misses you",
+			"Nooo", "..", "." };
+	private static String[] taking = { "You're becoming rich.", "It's so precious!", "Isn't that cool?",
+			"That's amazing", "You are making great progress!" };
+	private static String[] giving = { "What? You're giving up the item :(", "Noooo :(", "You're becoming broke.",
+			"You're losing so many items!!!" };
+
+	private static final int ODDS_OF_DISPLAYING = 3;
 
 	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();
 
@@ -70,26 +86,30 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	}
 
 	public String scream() {
-		int randIndex = (int) (Math.random() * screams.length);
-		return screams[randIndex];
+		return Game.getRandom(screaming);
 	}
 
 	public String breathe() {
-		return "...breath...breath...breath...";
+		return Game.getRandom(breathing);
 	}
 
 	public String jump() {
-		return "You jumped.";
+		return "You jumped." + Game.getRandom(jumping);
 	}
 
 	public String fall() {
 		getHealthMonitor().setToPercent(0.5);
-		return "You fell and are now bleeding.";
+		return "You fell and are now bleeding. " + Game.getRandom(falling);
 	}
 
 	public String die() {
 		Game.setGameOver(false);
-		return "You died.";
+		String result = "";
+		for (String s : dying) {
+			result += s + "\n\n...\n\n";
+		}
+		result += "You died. Game over.";
+		return result;
 	}
 
 	public String quit() {
@@ -104,8 +124,10 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 
 	public String take(Character c, Item i) {
 		if (c.getInventory().remove(i)) {
-			getInventory().add(i);
-			return i.getName() + " added to inventory.";
+			if(getInventory().add(i))
+				return i.getName() + " added to inventory."
+					+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(taking) : "");// one in 3																							// description
+			return "This item is too heavy for you to pick up.";
 		}
 		return c.getName() + " does not have " + i.getName() + ".";
 	}
@@ -113,7 +135,8 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	public String give(Character c, Item i) {
 		if (getInventory().remove(i)) {
 			c.getInventory().add(i);
-			return i.getName() + " removed from inventory and given to " + c.getName() + ".";
+			return i.getName() + " removed from inventory and given to " + c.getName() + "." 
+					+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(giving) : "");// one in 3		
 		}
 		return "You do not have " + i.getName();
 	}
@@ -185,14 +208,17 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 
 	public String drop(Item i) {
 		if (getInventory().remove(i))
-			return i.getName() + " dropped from inventory";
+			return i.getName() + " dropped from inventory."
+			+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(giving) : "");// one in 3		;
 
 		return "You do not have " + i.getName();
 	}
 
 	public String pickUp(Item i) {
-		getInventory().add(i);
-		return "You picked up " + i.getName();
+		if(getInventory().add(i))
+			return "You picked up " + i.getName() + "." + ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(taking) : "");// one in 3		
+	
+		return "This item is too heavy for you to pick up.";
 	}
 
 	public String inventory() {
