@@ -78,7 +78,7 @@ public class Inventory {
 		ArrayList<Item> temp = new ArrayList<Item>();
 
 		for (int i = 0; i < items.size(); i++) {
-			temp.add(new Item(items.get(i)));
+			temp.add(Item.clone(items.get(i)));
 		}
 
 		return temp;
@@ -250,7 +250,7 @@ public class Inventory {
 	 * @param item the item you want to add to the list
 	 */
 	public boolean add(Item item) {
-		if (canAdd(item))
+		if (isInfiniteWeight() || canAdd(item))
 			items.add(item);
 		return canAdd(item);
 	}

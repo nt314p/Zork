@@ -33,6 +33,9 @@ storyline:story,timeline
 quit:stop,give up
 commands:words,c
 
+displayStatistics:stats,stat
+displayExits:exits
+
 open
 close
 unlock

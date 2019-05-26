@@ -9,7 +9,7 @@ import com.bayviewglen.zork.main.Inventory;
 
 public class Room extends Place {
 	private Inventory roomItems;
-	//private Inventory roomCharacters = new Inventory();
+	// private Inventory roomCharacters = new Inventory();
 
 	private boolean isDeathRoom;
 
@@ -23,7 +23,7 @@ public class Room extends Place {
 		this.isDeathRoom = false;
 		this.roomItems = new Inventory();
 	}
-	
+
 	public Room(String roomName, HashMap<String, String> descriptions) {
 		super(roomName, descriptions);
 		this.isDeathRoom = false;
@@ -36,12 +36,13 @@ public class Room extends Place {
 		this.roomItems = new Inventory();
 	}
 
-	public Room(String roomName, HashMap<String, String> descriptions, Location location, boolean isDeathRoom, Inventory inventory) {
+	public Room(String roomName, HashMap<String, String> descriptions, Location location, boolean isDeathRoom,
+			Inventory inventory) {
 		super(roomName, descriptions, location);
 		this.isDeathRoom = isDeathRoom;
 		this.roomItems = inventory;
 	}
-	
+
 	public Room(Room room) {
 		super(room.getName(), room.getDescriptions(), room.getLocation());
 		this.isDeathRoom = room.isDeathRoom;
@@ -91,6 +92,7 @@ public class Room extends Place {
 
 	/**
 	 * Get the long description of the room
+	 * 
 	 * @return the string description of the room
 	 */
 	public String getLongDescription() {
@@ -102,22 +104,26 @@ public class Room extends Place {
 			ret += " " + currItem.getDescription("location") + ". ";
 		}
 		ret += "Exits:\n";
-		
+
 		Map map = getLocation().getMap();
 		Coordinate coords = getLocation().getCoords();
 		HashMap<java.lang.Character, Coordinate> sideCoords = map.getSurroundingSideCoords(coords);
-		
+
 		Iterator<Entry<java.lang.Character, Coordinate>> it = sideCoords.entrySet().iterator();
 		java.util.Map.Entry<java.lang.Character, Coordinate> pair;
-		
+
 		while (it.hasNext()) {
-			pair = (java.util.Map.Entry<java.lang.Character, Coordinate>) it.next();	
-			ret += pair.getKey() + ": " + map.getSide(pair.getValue()).toString();
+			pair = (java.util.Map.Entry<java.lang.Character, Coordinate>) it.next();
+			try {
+				ret += pair.getKey() + ": " + map.getSide(pair.getValue()).toString();
+			} catch (NullPointerException e) {
+
+			}
 		}
-		
+
 		return ret;
 	}
-	
+
 	public void setInventory(String name) {
 		roomItems = Inventory.getInventory(name);
 	}

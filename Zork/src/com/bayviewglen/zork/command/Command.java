@@ -12,8 +12,10 @@ public class Command {
 
 	/**
 	 * Create a command object
+	 * 
 	 * @param mainCommand the command to be created as an object
-	 * @param params all the parameters of each individual command (can be null - indicates not defined command)
+	 * @param params      all the parameters of each individual command (can be null
+	 *                    - indicates not defined command)
 	 */
 	public Command(String mainCommand, String[] params) {
 		mainCommandWord = mainCommand;
@@ -37,12 +39,13 @@ public class Command {
 
 		return ret;
 	}
-	
+
 	public String toSingleString() {
 		String ret = "";
-		ret += mainCommandWord;
-		for (String s : commandParameters) {
-			ret += " " + s;
+		for (int i = 0; i < commandParameters.length; i++) {
+			ret += commandParameters[i];
+			if (i != commandParameters.length - 1)
+				ret += " ";
 		}
 		return ret;
 	}
@@ -53,11 +56,11 @@ public class Command {
 	public String getCommandWord() {
 		return mainCommandWord;
 	}
-	
+
 	/**
 	 * @return a string array of all the parameters
 	 */
-	
+
 	public String[] getParameters() {
 		return commandParameters;
 	}

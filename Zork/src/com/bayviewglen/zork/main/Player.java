@@ -48,7 +48,13 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 			}
 		}
 
-		i.addAll(getLocation().getRoom().getRoomItems());
+		try {
+			Room r = getLocation().getRoom();
+			i.add(r);
+			i.addAll(r.getRoomItems());
+		} catch (NullPointerException e) {
+
+		}
 		i.addAll(getInventory());
 
 		return i;
@@ -124,9 +130,12 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 
 	public String take(Character c, Item i) {
 		if (c.getInventory().remove(i)) {
-			if(getInventory().add(i))
+			if (getInventory().add(i))
 				return i.getName() + " added to inventory."
-					+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(taking) : "");// one in 3																							// description
+						+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(taking) : "");// one
+																												// in 3
+																												// //
+																												// description
 			return "This item is too heavy for you to pick up.";
 		}
 		return c.getName() + " does not have " + i.getName() + ".";
@@ -135,8 +144,8 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	public String give(Character c, Item i) {
 		if (getInventory().remove(i)) {
 			c.getInventory().add(i);
-			return i.getName() + " removed from inventory and given to " + c.getName() + "." 
-					+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(giving) : "");// one in 3		
+			return i.getName() + " removed from inventory and given to " + c.getName() + "."
+					+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(giving) : "");// one in 3
 		}
 		return "You do not have " + i.getName();
 	}
@@ -146,10 +155,11 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 		return String.format("You hit %s with %s.\n%s current health%s", c.getName(), w.getName(), c.getName(),
 				c.getHealthMonitor().toString());
 	}
-	
+
 	public String getHit(Character c, Weapon w) {
 		getHealthMonitor().decrease(w.getDamage());
-		return String.format("%s hit you with %s.\nYour current health%s", c.getName(), w.getName(), getHealthMonitor().toString());
+		return String.format("%s hit you with %s.\nYour current health%s", c.getName(), w.getName(),
+				getHealthMonitor().toString());
 	}
 
 	public String north() {
@@ -177,8 +187,13 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	}
 
 	public String move(char dir) {
-		getLocation().setCoords(getLocation().getCoords().add(Map.DIRECTIONS.get(dir)));
-		return "You went " + Game.directionWords.get(dir + "");
+		Side s = getLocation().getMap().getNextSide(dir, getLocation().getCoords());
+		if (s.isExit()) {
+			getLocation().setCoords(getLocation().getCoords().add(Map.DIRECTIONS.get(dir)));
+			return "You went " + Game.directionWords.get(dir + "") + ".\n" + getLocation().getRoom().getDescription("short");
+		} else {
+			return s.moveThrough();
+		}
 	}
 
 	public String enter(Side s) {
@@ -214,15 +229,17 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	public String drop(Item i) {
 		if (getInventory().remove(i))
 			return i.getName() + " dropped from inventory."
-			+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(giving) : "");// one in 3		;
+					+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(giving) : "");// one in 3
+																											// ;
 
 		return "You do not have " + i.getName();
 	}
 
 	public String pickUp(Item i) {
-		if(getInventory().add(i))
-			return "You picked up " + i.getName() + "." + ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(taking) : "");// one in 3		
-	
+		if (getInventory().add(i))
+			return "You picked up " + i.getName() + "."
+					+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(taking) : "");// one in 3
+
 		return "This item is too heavy for you to pick up.";
 	}
 

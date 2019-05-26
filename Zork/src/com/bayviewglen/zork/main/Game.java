@@ -62,9 +62,15 @@ public class Game {
 	}
 
 	public static String processCommand(Command cmd) {
-
+		
+		if (cmd.getCommandWord() == null) {
+			return "You can't even do that.";
+		}
+		
 		ArrayList<Item> interactableItems = player.getInteractableItems().toArrayList();
-
+		if (cmd.getParameters().length == 0 || !cmd.getParameters()[0].equals("all")) {
+			interactableItems = parser.parseItems(interactableItems, cmd.toSingleString());
+		}
 		String mainCmd = cmd.getCommandWord();
 
 		Class cls = null;
@@ -90,9 +96,11 @@ public class Game {
 		}
 
 		if (cls == null) {
-			System.out.println("The command method was not found! Does the command txt have it?");
-			double n = 0 / 0;
+			return "You can't even do that";
 		}
+
+		Class<Item>[] paramTypes = (Class<Item>[]) method.getParameterTypes();
+		interactableItems = parser.filterItems(interactableItems, paramTypes);
 
 		if (cls.getSimpleName().equals("Door")) {
 			Class<Item>[] doorClsArr = new Class[1];
@@ -104,14 +112,11 @@ public class Game {
 			}
 
 			instance = commandableItems.get(0);
-
-			Class<Item>[] paramTypes = (Class<Item>[]) method.getParameterTypes();
-			interactableItems = parser.filterItems(interactableItems, paramTypes);
-
-			if (interactableItems.size() != 1) { // no command has no more than one parameter
-				return "Please be more specific.";
-			}
 		}
+
+//		if (interactableItems.size() != method.getParameterCount()) { // no command has no more than one parameter
+//			return "Please be more specific.";
+//		}
 
 		if (cls.getSimpleName().equals("Player")) {
 			instance = player;
@@ -122,26 +127,24 @@ public class Game {
 		}
 
 		try {
-			return (String) method.invoke(instance, interactableItems.get(0));
+			return (String) method.invoke(instance);
 		} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
-				| IndexOutOfBoundsException e) {
+				| IndexOutOfBoundsException eb) {
+		}
+
+		for (int i = 0; i < interactableItems.size(); i++) {
 			try {
-				return (String) method.invoke(instance);
+				return (String) method.invoke(instance, interactableItems.get(i));
 			} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
-					| IndexOutOfBoundsException ea) {
+					| IndexOutOfBoundsException e) {
 				try {
-					return (String) method.invoke(interactableItems.get(0));
+					return (String) method.invoke(interactableItems.get(i));
 				} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
-						| IndexOutOfBoundsException eb) {
-					try {
-						return (String) method.invoke(null);
-					} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
-							| IndexOutOfBoundsException ec) {
-						return "You can't even do that.";
-					}
+						| IndexOutOfBoundsException ea) {
 				}
 			}
 		}
+		return "You can't even do that.";
 	}
 
 	public static void setGameOver(boolean playWithoutAsking) {
@@ -273,8 +276,8 @@ public class Game {
 		result += "Welcome to space." + PROMPT_ANY_KEY;
 		result += "You don't know who you are, what you are, or where you are." + PROMPT_ANY_KEY;
 		result += "Are you in hell? Even hell sounds like a vacation to this place." + PROMPT_ANY_KEY;
-		result += "All you can see are the stars, but even those look like a ball of fire\n"
-				+ "ready to attack." + PROMPT_ANY_KEY;
+		result += "All you can see are the stars, but even those look like a ball of fire\n" + "ready to attack."
+				+ PROMPT_ANY_KEY;
 		result += "You fly through the universe, or are you even in the universe." + PROMPT_ANY_KEY;
 		result += "Who really cares anyway, because you're just going to die.";
 		return result;
@@ -286,8 +289,8 @@ public class Game {
 		result += "Welcome to Space Zork, a completely dynamic adventure game." + PROMPT_ANY_KEY;
 		result += "WARNING: Zork has the potential to induce seizures\n"
 				+ "for people with photosensitive epilepsy. If you have photosensitive epilepsy\n"
-				+ "or feel you may be susceptible to a seizure, DO NOT PLAY ZORK.\n"
-				+ "You have been warned.\n"	+ PROMPT_ANY_KEY;
+				+ "or feel you may be susceptible to a seizure, DO NOT PLAY ZORK.\n" + "You have been warned.\n"
+				+ PROMPT_ANY_KEY;
 
 		result += "HOW TO PLAY\n";
 		result += "-----------\n" + PROMPT_ANY_KEY;
@@ -314,13 +317,13 @@ public class Game {
 	public static void print(String message) {
 		String[] lines = message.split(PROMPT_ANY_KEY);
 		for (String s : lines) {
-			
-			if(s.indexOf(PROMPT_START_GAME) != -1) {
-				System.out.println(s.substring(0,s.indexOf(PROMPT_START_GAME)));
+
+			if (s.indexOf(PROMPT_START_GAME) != -1) {
+				System.out.println(s.substring(0, s.indexOf(PROMPT_START_GAME)));
 				System.out.println(Parser.startGame());
 				continue;
 			}
-			
+
 			System.out.print(s);
 			Parser.pressAnyKey();
 		}

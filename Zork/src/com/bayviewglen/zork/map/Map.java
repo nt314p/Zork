@@ -157,7 +157,7 @@ public class Map {
 	public HashMap<Character, Coordinate> getSurroundingSideCoords(Coordinate coords) {
 
 		HashMap<Character, Coordinate> surroundingSideCoords = new HashMap<Character, Coordinate>();
-		HashMap<Character, Coordinate> surroundingCoords = getSurroundingCoords(coords, 1);
+		HashMap<Character, Coordinate> surroundingCoords = getSurroundingCoords(coords, 0.5);
 
 		Iterator<Entry<Character, Coordinate>> it = surroundingCoords.entrySet().iterator();
 		while (it.hasNext()) {
@@ -201,7 +201,7 @@ public class Map {
 			java.util.Map.Entry<Character, Coordinate> pair = (java.util.Map.Entry<Character, Coordinate>) it.next();
 			char key = (char) pair.getKey();
 			Coordinate dirCoord = (Coordinate) pair.getValue();
-			surroundingCoords.put(key, dirCoord.add(coords.multiply(factor)));
+			surroundingCoords.put(key, coords.add(dirCoord.multiply(factor)));
 		}
 
 		return surroundingCoords;
@@ -261,8 +261,15 @@ public class Map {
 		ArrayList<Character> exits = new ArrayList<Character>();
 
 		for (char dir : LETTER_AXES) {
-			if (getNextRoomCoords(dir, coords) != null && (getNextSide(dir, coords).isExit()))
-				exits.add(dir);
+			try {
+				getNextRoomCoords(dir, coords);
+				if (getNextSide(dir, coords).isExit()) {
+					exits.add(dir);
+				}
+
+			} catch (NullPointerException e) {
+				
+			}
 		}
 		return exits;
 	}
