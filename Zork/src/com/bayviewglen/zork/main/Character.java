@@ -1,6 +1,7 @@
 package com.bayviewglen.zork.main;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.json.JSONArray;
@@ -75,6 +76,40 @@ public class Character extends Item {
 		double z = (int)(Math.random() * (endPoint.getZ() - startPoint.getZ() + 1) + startPoint.getZ()) / 2;
 	
 		return new Coordinate(x, y, z);
+	}
+	
+	public boolean isInCoordinateArea(Coordinate c) {
+		if(c.getX()<startPoint.getX() || c.getX()>endPoint.getX())
+			return false;
+		
+		if(c.getY()<startPoint.getY() || c.getY()>endPoint.getY())
+			return false;
+		
+		if(c.getZ()<startPoint.getZ() || c.getZ()>endPoint.getZ())
+			return false;
+		
+		return true;
+	}
+	
+	public Location getRandomMove() {
+		Coordinate c = location.getCoords();
+		Map m = location.getMap();
+		
+		ArrayList<java.lang.Character> exits = m.getExits(c);
+		ArrayList<Location> moves = new ArrayList<Location>();
+		
+		for(int i = 0; i<exits.size(); i++) {
+			Coordinate temp = m.getNextRoomCoords(exits.get(i), c);
+			
+			if(isInCoordinateArea(temp))
+				moves.add(m.getRoom(temp).getLocation());
+		}
+		
+		if(exits.size()==0)
+			return null;
+		
+		int randIndex = (int)(Math.random()*moves.size());
+		return moves.get(randIndex);
 	}
 
 	public Location getLocation() {
