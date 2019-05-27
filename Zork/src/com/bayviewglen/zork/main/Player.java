@@ -246,6 +246,10 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	public String inventory() {
 		return getInventory().toString();
 	}
+	
+	public String look() {
+		return "You looked with no parameters!";
+	}
 
 	public String look(Item i) {
 		if (i instanceof Room) {

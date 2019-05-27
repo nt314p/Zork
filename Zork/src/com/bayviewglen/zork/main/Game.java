@@ -26,8 +26,10 @@ public class Game {
 
 	private static final String PROMPT_ANY_KEY = "~";
 	private static final String PROMPT_START_GAME = "`";
-	
-	private static String [] failedCommands = {"You can't even do that.", "I don't understand what you want to say.", "Nope, you can't do that.", "Not possible. Try another command.", "That's not a command. Press 'c' to view all valid commands."}; 
+
+	private static String[] failedCommands = { "You can't even do that.", "I don't understand what you want to say.",
+			"Nope, you can't do that.", "Not possible. Try another command.",
+			"That's not a command. Press 'c' to view all valid commands." };
 
 	public static final HashMap<String, String> directionWords = new HashMap<String, String>() {
 		{
@@ -64,11 +66,11 @@ public class Game {
 	}
 
 	public static String processCommand(Command cmd) {
-		
+
 		if (cmd.getCommandWord() == null) {
 			return Game.getRandom(failedCommands);
 		}
-		
+
 		ArrayList<Item> interactableItems = player.getInteractableItems().toArrayList();
 		if (cmd.getParameters().length == 0 || !cmd.getParameters()[0].equals("all")) {
 			interactableItems = parser.parseItems(interactableItems, cmd.toSingleString());
@@ -78,8 +80,12 @@ public class Game {
 		Class cls = null;
 		Object instance = null;
 		Method method = null;
+		ArrayList<Method> runMethods = new ArrayList<Method>();
+		runMethods.add(null);
+		runMethods.add(null);
 
-		String[] classNames = { "main.Game", "main.Player", "main.Character", "map.Door" }; // where the methods can run?
+		String[] classNames = { "main.Game", "main.Player", "main.Character", "map.Door" }; // where the methods can
+																							// run?
 
 		for (String className : classNames) {
 			Class tempCls = null;
@@ -92,7 +98,7 @@ public class Game {
 			for (Method m : methods) {
 				if (m.getName().equals(mainCmd)) {
 					cls = tempCls;
-					method = m;
+					runMethods.set(m.getParameterCount(), m);
 				}
 			}
 		}
@@ -100,9 +106,10 @@ public class Game {
 		if (cls == null) {
 			return Game.getRandom(failedCommands);
 		}
-
-		Class<Item>[] paramTypes = (Class<Item>[]) method.getParameterTypes();
-		interactableItems = parser.filterItems(interactableItems, paramTypes);
+		if (runMethods.get(1) != null) {
+			Class<Item>[] paramTypes = (Class<Item>[]) runMethods.get(1).getParameterTypes();
+			interactableItems = parser.filterItems(interactableItems, paramTypes);
+		}
 
 		if (cls.getSimpleName().equals("Door")) {
 			Class<Item>[] doorClsArr = new Class[1];
@@ -127,25 +134,47 @@ public class Game {
 		if (cls.getSimpleName().equals("Game")) {
 			instance = null;
 		}
-
-		try {
-			return (String) method.invoke(instance);
-		} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
-				| IndexOutOfBoundsException eb) {
+		int startIndex = 0;
+		if (runMethods.get(1) != null && interactableItems.size() != 0) {
+			startIndex = 1;
 		}
 
-		for (int i = 0; i < interactableItems.size(); i++) {
-			try {
-				return (String) method.invoke(instance, interactableItems.get(i));
-			} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
-					| IndexOutOfBoundsException e) {
+		for (int i = startIndex; i < runMethods.size(); i++) {
+			if (runMethods.get(i) != null) {
 				try {
-					return (String) method.invoke(interactableItems.get(i));
+					return (String) runMethods.get(i).invoke(instance);
+
 				} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
 						| IndexOutOfBoundsException ea) {
 				}
+				for (int j = 0; j < interactableItems.size(); j++) {
+					try {
+						return (String) runMethods.get(i).invoke(instance, interactableItems.get(j));
+					} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
+							| IndexOutOfBoundsException ea) {
+					}
+				}
 			}
 		}
+
+//		try {
+//			return (String) method.invoke(instance);
+//		} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
+//				| IndexOutOfBoundsException eb) {
+//		}
+//
+//		for (int i = 0; i < interactableItems.size(); i++) {
+//			try {
+//				return (String) method.invoke(instance, interactableItems.get(i));
+//			} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
+//					| IndexOutOfBoundsException e) {
+//				try {
+//					return (String) method.invoke(interactableItems.get(i));
+//				} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
+//						| IndexOutOfBoundsException ea) {
+//				}
+//			}
+//		}
 		return Game.getRandom(failedCommands);
 	}
 
@@ -179,7 +208,7 @@ public class Game {
 		String exits = "Exits: ";
 		for (java.lang.Character i : currLoc.getMap().getExits(currLoc.getCoords())) {
 			String s = directionWords.get(i + "") + ", ";
-			s = s.substring(0,1).toUpperCase() + s.substring(1);
+			s = s.substring(0, 1).toUpperCase() + s.substring(1);
 			exits += s;
 
 		}
