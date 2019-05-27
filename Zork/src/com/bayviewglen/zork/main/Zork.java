@@ -20,6 +20,7 @@ public class Zork {
 		// testMyVerySmallMapBoi();
 		Game.initializeGame("data/game.json");
 		Parser p = new Parser();
+		Game.commands();
 		while (true) {
 			System.out.println(testCommandExe(p.getCommand()));
 		}

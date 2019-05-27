@@ -1,5 +1,6 @@
 package com.bayviewglen.zork.command;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.bayviewglen.zork.main.FileReader;
 
@@ -36,7 +37,6 @@ public class CommandWords {
 
 		// initializing valid commands ArrayList array
 		validCommands = (ArrayList<String>[]) new ArrayList[lines.length];
-
 		for (int i = 0; i < lines.length; i++) {
 			// splitting string on : or ,
 			String[] phrases = lines[i].split("[,:]");
@@ -84,8 +84,15 @@ public class CommandWords {
 		String result = "";
 		for (int i = 0; i < validCommands.length; i++) {
 			String s = validCommands[i].get(0);
+			
+			for(int j = 1; j<s.length(); j++) {
+				if(s.charAt(j)>='A' && s.charAt(j)<= 'Z')
+					s = s.substring(0,j) + " " + s.substring(j);
+			}
+			
 			s = s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
-			result += s + "\n";// get main command word only
+			String d = validCommands[i].get(validCommands[i].size() - 1);
+			result += s + ": " + d + "\n";// get main command word only
 		}
 		return result;
 	}
