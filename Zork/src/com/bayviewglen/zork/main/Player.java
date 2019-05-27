@@ -44,7 +44,7 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 		for (char dir : Map.LETTER_AXES) {
 			Side s = m.getNextSide(dir, getLocation().getCoords());
 			if (s != null) {
-				i.add(s);
+				i.add(Item.clone(s));
 			}
 		}
 
@@ -188,7 +188,8 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 
 	public String move(char dir) {
 		Side s = getLocation().getMap().getNextSide(dir, getLocation().getCoords());
-		if (s.isExit()) {
+		Room r = getLocation().getMap().getNextRoom(dir, getLocation().getCoords());
+		if (s.isExit() && r != null) {
 			getLocation().setCoords(getLocation().getCoords().add(Map.DIRECTIONS.get(dir)));
 			return "You went " + Game.directionWords.get(dir + "") + ".\n" + getLocation().getRoom().getDescription("short");
 		} else {
@@ -236,7 +237,7 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	}
 
 	public String pickUp(Item i) {
-		if (getInventory().add(i))
+		if (getInventory().canAdd(i))
 			return "You picked up " + i.getName() + "."
 					+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(taking) : "");// one in 3
 
@@ -248,7 +249,7 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	}
 	
 	public String look() {
-		return "You looked with no parameters!";
+		return getLocation().getRoom().getLongDescription();
 	}
 
 	public String look(Item i) {

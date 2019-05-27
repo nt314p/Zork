@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 
 import com.bayviewglen.zork.item.Item;
+import com.bayviewglen.zork.main.Game;
 import com.bayviewglen.zork.main.Inventory;
 
 public class Room extends Place {
@@ -103,7 +104,7 @@ public class Room extends Place {
 			ret += currItem.getName();
 			ret += " " + currItem.getDescription("location") + ". ";
 		}
-		ret += "Exits:\n";
+		ret += "\nSurrounding Sides:";
 
 		Map map = getLocation().getMap();
 		Coordinate coords = getLocation().getCoords();
@@ -115,7 +116,7 @@ public class Room extends Place {
 		while (it.hasNext()) {
 			pair = (java.util.Map.Entry<java.lang.Character, Coordinate>) it.next();
 			try {
-				ret += pair.getKey() + ": " + map.getSide(pair.getValue()).toString();
+				ret += "\n" + Game.directionWords.get(pair.getKey()+"") + ": " + map.getSide(pair.getValue()).getName();
 			} catch (NullPointerException e) {
 
 			}

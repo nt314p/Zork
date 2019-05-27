@@ -9,6 +9,20 @@
 			"name": "default-wall"
 		},
 		{
+			"type": "opening",
+			"name": "opening",
+			"descriptions": [
+				"look:You see an opening."
+			]
+		},
+		{
+			"type": "wall",
+			"name": "ice wall",
+			"descriptions": [
+				"look:You see your reflection in the wall of ice."
+			]
+		},
+		{
 			"type": "room",
 			"name": "Thicc Ice",
 			"descriptions": [

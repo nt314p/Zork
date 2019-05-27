@@ -33,7 +33,6 @@ public class Game {
 
 	public static final HashMap<String, String> directionWords = new HashMap<String, String>() {
 		{
-
 			put("north", "n");
 			put("south", "s");
 			put("east", "e");
@@ -59,7 +58,7 @@ public class Game {
 		Maps.initialize();
 		Link.initialize();
 
-		Game.player = new Player(100, null, new Inventory(),
+		Game.player = new Player(100, null, new Inventory(100),
 				new Location("Ice Ice Baby", new Coordinate(0.5, 0.5, 0.5)));
 
 		loadGame(filePath);
@@ -123,10 +122,6 @@ public class Game {
 			instance = commandableItems.get(0);
 		}
 
-//		if (interactableItems.size() != method.getParameterCount()) { // no command has no more than one parameter
-//			return "Please be more specific.";
-//		}
-
 		if (cls.getSimpleName().equals("Player")) {
 			instance = player;
 		}
@@ -134,9 +129,14 @@ public class Game {
 		if (cls.getSimpleName().equals("Game")) {
 			instance = null;
 		}
+		
+		
 		int startIndex = 0;
 		if (runMethods.get(1) != null && interactableItems.size() != 0) {
 			startIndex = 1;
+		}
+		if (runMethods.get(1) != null && runMethods.get(0) == null && interactableItems.size() == 0) {
+			return "Please be more specific.";
 		}
 
 		for (int i = startIndex; i < runMethods.size(); i++) {
@@ -156,25 +156,6 @@ public class Game {
 				}
 			}
 		}
-
-//		try {
-//			return (String) method.invoke(instance);
-//		} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
-//				| IndexOutOfBoundsException eb) {
-//		}
-//
-//		for (int i = 0; i < interactableItems.size(); i++) {
-//			try {
-//				return (String) method.invoke(instance, interactableItems.get(i));
-//			} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
-//					| IndexOutOfBoundsException e) {
-//				try {
-//					return (String) method.invoke(interactableItems.get(i));
-//				} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
-//						| IndexOutOfBoundsException ea) {
-//				}
-//			}
-//		}
 		return Game.getRandom(failedCommands);
 	}
 

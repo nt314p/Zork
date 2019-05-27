@@ -1,10 +1,13 @@
 {
 	"name": "Ice Ice Baby",
 	"default-side-vertical": {
-		"preset": "default-opening"
+		"preset": "opening"
 	},
 	"default-room": {
 		"preset": "Ice Death"
+	},
+	"default-border": {
+		"preset": "ice wall"
 	},
 	"places": [
 		{
