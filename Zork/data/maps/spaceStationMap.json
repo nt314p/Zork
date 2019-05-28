@@ -75,12 +75,61 @@
 		},
 		{
 			"type": "room",
-			"name": "docking port",
-			"inventory": "dockingInv",
+			"name": "hybernation room",
+			"inventory": "hybernationInv",
 			"descriptions": [
-				"short:This is the dockign port of the space station. You climbed out of "
+				"short:This appears to be the hybernation room. There are hundreds of pods stacked against the walls in here. Everybody else is dead, their pod with stab mark and a red X on it"
 			],
 			"coords": "2.5,2.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "canteen",
+			"inventory": "kitchenInv",
+			"descriptions": [
+				"short:This appears to be the canteen of the space station. There is more food and water in here."
+			],
+			"coords": "2.5,3.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "entry to level 2",
+			"descriptions": [
+				"short:It is an empty room, and there is a corridor leading to level two above you. It is blocked by some debris."
+			],
+			"coords": "2.5,4.5,0.5"
+		},
+		{
+			"type": "door",
+			"name": "level 2 door",
+			"open": "false",
+			"locked": "true",
+			"code": "lvl2",
+			"description": [
+				"short:There is a pile of debris blocking the corridor to level two of the station. You would need some kind of high power torch to bust through it."
+			],
+			"coords": "2.5,4.5,1.0"
+		},
+		{
+			"type": "room",
+			"name": "map room",
+			"descriptions": [
+				"short:There appears to be a big hologram of the space station first level in the center of the room."
+			],
+			"coords": "3.5,2.5,0.5"
+		},
+		{
+			"preset": "Corridor",
+			"coords": "3.5,3.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "electrical room",
+			"inventory": "electricalInv",
+			"descriptions": [
+				"short:This is the electrical room of the space station. There are lots of panels and some electrical equipment in here."
+			],
+			"coords": "3.5,6.5,0.5"
 		}
 	]
 }

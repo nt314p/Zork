@@ -1,0 +1,15 @@
+{
+	"name": "hybernationInv",
+	"items": [
+		{
+			"type": "item",
+			"name": "e-paper",
+			"weight": "0.1",
+			"descriptions": [
+				"look:It appears to be a small divice that has somebody's logs written on it.",
+				"read:Sol: 3548./nTo whom it may concern, my name is Isenhower Hindinberg. I am this ship's computer scientist./nI just finished coding Zoink AI, an artificial intelligence robot./nMy hope is that he will be able to keep me and the crew safe during our hundred or so year hyperspace travel to planet primus, to start the new research settelment./nMy only worry is that if he attains super-intelligence levels, only God may help us then...",
+				"location:on the ground"
+			]
+		}
+	]
+}

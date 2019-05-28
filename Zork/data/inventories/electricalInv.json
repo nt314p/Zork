@@ -1,0 +1,23 @@
+{
+	"name": "electricalInv",
+	"items": [
+		{
+			"type": "item",
+			"name": "battery",
+			"weight": "5",
+			"descriptions": [
+				"look:It looks like a large battery that would be used to start a rocket engine, or power something big.",
+				"location:on the ground"
+			]
+		},
+		{
+			"type": "item",
+			"name": "battery",
+			"weight": "5",
+			"descriptions": [
+				"look:It looks like a large battery that would be used to start a rocket engine, or power something big.",
+				"location:on the ground"
+			]
+		}
+	]
+}
