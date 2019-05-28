@@ -9,6 +9,9 @@
 	"default-border": {
 		"preset": "ice wall"
 	},
+	"default-ground": {
+		"preset": "default-wall"
+	},
 	"places": [
 		{
 			"preset": "Thicc Ice",

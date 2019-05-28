@@ -128,7 +128,6 @@ public class Character extends Item {
 		this.location.getRoom().getRoomItems().remove(this);
 		location = getRandomMove();
 		this.location.getRoom().getRoomItems().add(this);
-
 	}
 
 	public Location getLocation() {

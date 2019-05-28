@@ -45,20 +45,20 @@ public class Inventory {
 
 	public static void initialize() {
 		inventories = new HashMap<String, Inventory>();
-		
+
 		File dir = new File("data/inventories/");
 		File[] dirList = dir.listFiles();
 		if (dirList != null) {
 			for (File f : dirList) {
 				loadInventory(f.getAbsolutePath());
 			}
-		}	
+		}
 	}
-	
+
 	public String getAllOf(String type) {
 		Inventory tempInv = new Inventory();
-		for(Item i: items) {
-			if(i.getClass().getSimpleName().equalsIgnoreCase(type))
+		for (Item i : items) {
+			if (i.getClass().getSimpleName().equalsIgnoreCase(type))
 				tempInv.add(i);
 		}
 		return tempInv.toString();
@@ -81,7 +81,9 @@ public class Inventory {
 		}
 		ArrayList<Item> tempTwo = new ArrayList<Item>();
 		for (Item item : temp) {
-			tempTwo.add(item);
+			if (item != null) {
+				tempTwo.add(item);
+			}
 		}
 
 		return tempTwo;
@@ -345,7 +347,7 @@ public class Inventory {
 		FileReader reader = new FileReader(filePath);
 
 		Inventory inventory = new Inventory();
-		
+
 		JSONObject jInventory = new JSONObject(reader.getLinesSingle());
 		String name = jInventory.getString("name");
 		double maximumWeight;
@@ -364,29 +366,22 @@ public class Inventory {
 	}
 
 	/*
-	private static void loadInventories(String filePath) {
-		FileReader reader = new FileReader(filePath);
-
-		JSONArray jInventories = new JSONObject(reader.getLinesSingle()).getJSONArray("inventories");
-
-		for (int i = 0; i < jInventories.length(); i++) { // iterating through inventories
-			Inventory inventory = new Inventory();
-			JSONObject jInventory = jInventories.getJSONObject(i);
-			String name = jInventory.getString("name");
-			double maximumWeight;
-			try { // setting max weight
-				maximumWeight = jInventory.getDouble("maxWeight");
-			} catch (JSONException e) {
-				maximumWeight = Double.MAX_VALUE;
-			}
-			inventory.setMaxWeight(maximumWeight);
-			JSONArray jItems = jInventory.getJSONArray("items");
-			for (int j = 0; j < jItems.length(); j++) { // iterating through items (json objects) in inventories
-				JSONObject item = jItems.getJSONObject(j);
-				inventory.add(Item.loadItem(item)); // adding items to inventory after they have been loaded
-			}
-			inventories.put(name, inventory); // adding inventory to master inventories hashmap
-		}
-	}
-	*/
+	 * private static void loadInventories(String filePath) { FileReader reader =
+	 * new FileReader(filePath);
+	 * 
+	 * JSONArray jInventories = new
+	 * JSONObject(reader.getLinesSingle()).getJSONArray("inventories");
+	 * 
+	 * for (int i = 0; i < jInventories.length(); i++) { // iterating through
+	 * inventories Inventory inventory = new Inventory(); JSONObject jInventory =
+	 * jInventories.getJSONObject(i); String name = jInventory.getString("name");
+	 * double maximumWeight; try { // setting max weight maximumWeight =
+	 * jInventory.getDouble("maxWeight"); } catch (JSONException e) { maximumWeight
+	 * = Double.MAX_VALUE; } inventory.setMaxWeight(maximumWeight); JSONArray jItems
+	 * = jInventory.getJSONArray("items"); for (int j = 0; j < jItems.length(); j++)
+	 * { // iterating through items (json objects) in inventories JSONObject item =
+	 * jItems.getJSONObject(j); inventory.add(Item.loadItem(item)); // adding items
+	 * to inventory after they have been loaded } inventories.put(name, inventory);
+	 * // adding inventory to master inventories hashmap } }
+	 */
 }

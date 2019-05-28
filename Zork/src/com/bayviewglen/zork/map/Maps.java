@@ -146,10 +146,8 @@ public class Maps {
 			
 			for (int i = 1; i < tempMap.getMap().length; i += 2) { // x
 				for (int j = 1; j < tempMap.getMap()[0].length; j += 2) { // y
-					for (int k = 0; k <= tempMap.getMap()[0][0].length; k += tempMap.getMap()[0][0].length-1) { // z
-						defaultGround.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
-						tempMap.getMap()[i][j][k] = defaultGround;
-					}
+						defaultGround.setLocation(new Location(mapName, new Coordinate(i, j, 0, true)));
+						tempMap.getMap()[i][j][0] = defaultGround;
 				}
 			}
 		}

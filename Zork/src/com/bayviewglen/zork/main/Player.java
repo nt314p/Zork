@@ -199,12 +199,16 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	public String move(char dir) {
 		Side s = getLocation().getMap().getNextSide(dir, getLocation().getCoords());
 		Room r = getLocation().getMap().getNextRoom(dir, getLocation().getCoords());
-		if (s.isExit() && r != null) {
+		if (s != null && s.isExit() && r != null) {
 			getLocation().setCoords(getLocation().getCoords().add(Map.DIRECTIONS.get(dir)));
 			return "You went " + Game.directionWords.get(dir + "") + ".\n" + getLocation().getRoom().getDescription("short");
 		} else {
 			return s.moveThrough();
 		}
+	}
+	
+	public void move() {
+
 	}
 
 	public String enter(Side s) {

@@ -63,6 +63,8 @@ public class Item implements Comparable<Item> {
 		Class<? extends Item> cls = item.getClass();
 		Constructor<? extends Item> cons;
 		try {
+			if (cls.getSimpleName().equals("Player"))
+				return null;
 			cons = cls.getConstructor(cls);
 			return cons.newInstance(cls.cast(item));
 		} catch (NoSuchMethodException e) {
