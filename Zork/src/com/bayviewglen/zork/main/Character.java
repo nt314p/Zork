@@ -166,10 +166,17 @@ public class Character extends Item {
 	/**
 	 * check if healthMonitor/foodMonitor/waterMonitor is 0
 	 * 
-	 * @return if you're dead
+	 * @return the monitor that dies or none if they're all intact
 	 */
-	public boolean checkDeath() {
-		return healthMonitor.isDead() || foodMonitor.isDead() || waterMonitor.isDead();
+	public Monitor checkDeath() {
+		if(healthMonitor.isDead())
+			return healthMonitor;
+		else if(foodMonitor.isDead())
+			return foodMonitor;
+		else if(waterMonitor.isDead())
+			return waterMonitor;
+
+		return null;
 	}
 
 	/**

@@ -18,11 +18,10 @@ public class Zork {
 		// testCommandParse();
 		// SlidePuzzle.play();
 		// testMyVerySmallMapBoi();
-		Game.initializeGame("data/game.json");
-		Parser p = new Parser();
-		while (true) {
-			System.out.println(testCommandExe(p.getCommand()));
-		}
+		
+		//Music.play("data/music/door_open.mp3");
+		
+		
 		// testRiddle();
 		// testSides();
 		// testInventory();
