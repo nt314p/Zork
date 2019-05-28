@@ -1,0 +1,86 @@
+{
+	"name": "Space Station",
+	"default-side-vertical": {
+		"preset": "opening"
+	},
+	"default-border": {
+		"preset": "steel wall"
+	},
+	"places": [
+		{
+			"type": "room",
+			"name": "Kitchen",
+			"inventory": "kitchenInv",
+			"descriptions": [
+				"short:This appears to be the kitchen of the space station, and there is lots of food and water in here"
+			],
+			"coords": "0.5,3.5,0.5"
+		},
+		{
+			"preset": "Corridor",
+			"coords": "0.5,4.5,0.5"
+		},
+		{
+			"preset": "airlock",
+			"coords": "0.5,5.5,0.5"
+		},
+		{
+			"preset": "hatch",
+			"coords": "0.5,6.0,0.5"
+		},
+		{
+			"type": "room",
+			"name": "Radial Thruster",
+			"description": [
+				"short:The fuel and oxygen tanks look to be empty. It looks like you need to find fuel and oxygen tanks."
+			],
+			"coords": "1.5,1.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "corridor with leak",
+			"description": [
+				"short:You hear a small hissing. There might be a leak in this corridor."
+			],
+			"coords": "1.5,2.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "canteen",
+			"inventory": "kitchenInv",
+			"descriptions": [
+				"short:This appears to be the canteen of the space station. There is more food and water in here."
+			],
+			"coords": "1.5,3.5,0.5"
+		},
+		{
+			"type": "door",
+			"name": "pantry door",
+			"open": "false",
+			"locked": "true",
+			"code": "pantry",
+			"description": [
+				"short:There is a solid door stopping you from entering the pantry. There is likely more food, or perhaps other things, inside."
+			],
+			"coords": "1.5,4.0,0.5"
+		},
+		{
+			"type": "room",
+			"name": "pantry",
+			"inventory": "pantryInv",
+			"descriptions": [
+				"short:This is the pantry of the space station. There are lots of reserve food stocks in here."
+			],
+			"coords": "1.5,4.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "docking port",
+			"inventory": "dockingInv",
+			"descriptions": [
+				"short:This is the dockign port of the space station. You climbed out of "
+			],
+			"coords": "2.5,2.5,0.5"
+		}
+	]
+}

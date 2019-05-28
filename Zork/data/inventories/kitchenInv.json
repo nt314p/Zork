@@ -1,0 +1,82 @@
+{
+	"name": "kitchenInv",
+	"items": [
+		{
+			"type": "food",
+			"name": "solami",
+			"weight": "1",
+			"food": "0.4",
+			"water": "0.05",
+			"descriptions": [
+				"look:You feel the slimy goodness of actual meat in your hands.",
+				"location:velcroed to a table."
+			]
+		},
+		{
+			"type": "food",
+			"name": "sausage",
+			"weight": "0.5",
+			"food": "0.3",
+			"water": "0.05",
+			"descriptions": [
+				"look:You see a long, meaty sausage, and it reminds you of when you had real food."
+			]
+		},
+		{
+			"type": "food",
+			"name": "spam",
+			"weight": "1",
+			"food": "0.3",
+			"water": "0.05",
+			"descriptions": [
+				"look:You see the clasic can of spam sitting in front of you, and you wonder what kind of meat is in this one."
+			]
+		},
+		{
+			"type": "food",
+			"name": "water jug",
+			"weight": "3",
+			"water": "0.3",
+			"descriptions": [
+				"look:You see some water in a strange looking jug, it feels cool."
+			]
+		},
+		{
+			"type": "food",
+			"name": "plastic water bottle",
+			"weight": "1",
+			"water": "0.1",
+			"descriptions": [
+				"look:This plastic watter bottle appears to be a waste of valuble materials."
+			]
+		},
+		{
+			"type": "food",
+			"name": "small water bottle",
+			"weight": "1",
+			"water": "0.1",
+			"descriptions": [
+				"look:This watter bottle is small, and slightly cool."
+			]
+		},
+		{
+			"type": "food",
+			"name": "freeze dried fruits",
+			"weight": "0.2",
+			"food": "0.2",
+			"water": "-0.15",
+			"descriptions": [
+				"look:The freeze dried fruits look sweet, but they are very dry and crumbly."
+			]
+		},
+		{
+			"type": "food",
+			"name": "cereal",
+			"weight": "0.2",
+			"food": "0.1",
+			"descriptions": [
+				"look:Light, crispy cereal runs through your fingers."
+			]
+		}
+	]
+}

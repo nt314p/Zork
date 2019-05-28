@@ -6,7 +6,10 @@
 		},
 		{
 			"type": "wall",
-			"name": "default-wall"
+			"name": "steel wall",
+			"descriptions": [
+				"look:You see the industrial steel wall of the space station."
+			]
 		},
 		{
 			"type": "opening",
@@ -83,6 +86,20 @@
 			"name": "Potato farm",
 			"descriptions": [
 				"short:There are potatoes everywhere. Delicious!"
+			]
+		},
+		{
+			"type": "room",
+			"name": "airlock",
+			"descriptions": [
+				"short:The room around you looks to be an airlock, with a steel hatch in front of you."
+			]
+		},
+		{
+			"type": "door",
+			"name": "hatch",
+			"descriptions": [
+				"short:It is a steel hatch that looks like it can be opened."
 			]
 		}
 	]
