@@ -3,6 +3,7 @@ package com.bayviewglen.zork.map;
 import java.util.HashMap;
 
 import com.bayviewglen.zork.command.DoorCommands;
+import com.bayviewglen.zork.main.Music;
 
 public class Door extends Side implements DoorCommands{
 	
@@ -38,8 +39,10 @@ public class Door extends Side implements DoorCommands{
 	public String open() {
 		if(!locked) {
 			setExit(true);
+			Music.play("data/music/door_open.mp3");
 			return getName() + " opened.";
 		}
+		Music.play("data/music/door_knock.mp3");
 		return getName() + " is locked and cannot be opened.";
 	}
 
@@ -48,6 +51,7 @@ public class Door extends Side implements DoorCommands{
 	 */
 	public String close() {
 		setExit(false);
+		Music.play("data/music/door_close.mp3");
 		return getName() + " closed.";
 	}	
 	
@@ -77,6 +81,7 @@ public class Door extends Side implements DoorCommands{
 		if(!keycode.equals("")) {
 			close();
 			locked = true;
+			Music.play("data/door_lock.mp3");
 			return getName() + " locked.";
 		}
 		return getName() + " cannot be locked because there is no key to unlock it.";
@@ -91,6 +96,7 @@ public class Door extends Side implements DoorCommands{
 			return getName() + " is successfully unlocked.";
 		}
 		
+		Music.play("data/door_knock.mp3");
 		return getName() + " did not have the correct key to unlock.";	
 	}
 	

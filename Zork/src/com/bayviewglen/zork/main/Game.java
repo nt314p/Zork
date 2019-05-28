@@ -21,11 +21,12 @@ public class Game {
 
 	private static Parser parser = new Parser();
 	private static Player player;
-	private static boolean gameOver = false;
-	private static boolean isPlaying = true;
+	private static boolean gameOver = false;//the current game
+	private static boolean isPlaying = true;//the overall game
 
 	private static final String PROMPT_ANY_KEY = "~";
 	private static final String PROMPT_START_GAME = "`";
+	private static final String ROCKET = "data/rocket.mp3";
 
 	private static String[] failedCommands = { "You can't even do that.", "I don't understand what you want to say.",
 			"Nope, you can't do that.", "Not possible. Try another command.",
@@ -49,6 +50,29 @@ public class Game {
 	};
 	private static int turn = 0;
 
+	public static void play(String filePath) {
+		Game.initializeGame(filePath);
+		while (isPlaying) {
+			System.out.println(Game.processCommand(parser.getCommand()));
+			
+			player.checkRoomDeath();
+			System.out.println(player.checkAirlockDeath());
+			
+			System.out.println(player.checkDeath());
+			
+			if(!gameOver)
+				System.out.println(displayTurn());
+			else {
+				if(isPlaying || playAgain()) {
+					Game.initializeGame(filePath);
+					gameOver = false;
+					isPlaying = true;
+				} else
+					isPlaying = false;
+			}
+		}
+		outro();
+	}
 	public static void initializeGame(String filePath) {
 
 		parser = new Parser();
@@ -63,6 +87,10 @@ public class Game {
 				new Location("Ice Ice Baby", new Coordinate(0.5, 0.5, 0.5)));
 
 		loadGame(filePath);
+	}
+	
+	public static boolean playAgain() {
+		return Parser.playAgain();
 	}
 
 	public static String processCommand(Command cmd) {
@@ -188,11 +216,8 @@ public class Game {
 		return gameOver;
 	}
 
-	public static String doTurn() {
-		if (gameOver) {
-			return "Game is over.";
-		}
-		Maps.getMap("Ice Ice Baby");
+	public static String displayTurn() {
+
 		Location currLoc = player.getLocation();
 		String roomDesc = currLoc.getMap().getRoom(currLoc.getCoords()).getLongDescription();
 
@@ -318,6 +343,7 @@ public class Game {
 
 	public static String intro() {
 		String result = "";
+		result += ROCKET;
 		result += "Press any key to continue." + PROMPT_ANY_KEY;
 		result += "Welcome to Space Zork, a completely dynamic adventure game." + PROMPT_ANY_KEY;
 		result += "WARNING: Zork has the potential to induce seizures\n"
@@ -355,6 +381,11 @@ public class Game {
 				System.out.print(s.substring(0, s.indexOf(PROMPT_START_GAME)));
 				System.out.println(Parser.startGame());
 				continue;
+			}
+			
+			if (s.indexOf(ROCKET) != -1) {
+				System.out.print(s.substring(0, s.indexOf(ROCKET)));
+				Music.play(ROCKET);
 			}
 
 			System.out.print(s);

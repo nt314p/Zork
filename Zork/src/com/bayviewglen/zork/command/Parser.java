@@ -155,4 +155,6 @@ public class Parser {
 		else
 			return "I don't care what you say anyways. Let's play!";
 	}
+	
+	public static boolean 
 }
