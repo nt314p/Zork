@@ -169,6 +169,7 @@ public class Character extends Item {
 	 */
 	public boolean checkDeath() {
 		return healthMonitor.isDead() || foodMonitor.isDead() || waterMonitor.isDead();
+
 	}
 
 	/**

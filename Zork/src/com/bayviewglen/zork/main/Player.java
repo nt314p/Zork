@@ -276,5 +276,38 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	public String getAllOf(String type) {
 		return getInventory().getAllOf(type);
 	}
+	
+	public void checkRoomDeath() {
+		HashMap<String, String> roomDescriptions = getLocation().getRoom().getDescriptions();
+		if(roomDescriptions.containsKey("death") || roomDescriptions.containsValue("death"))
+			die();
+	}
+	
+	public String checkAirlockDeath() {
+		Room r = getLocation().getRoom();
+		Map m = getLocation().getMap();
+		if(r.getName().indexOf("airlock") != -1) {
+			HashMap<java.lang.Character, Coordinate> h = m.getSurroundingSideCoords(r.getLocation().getCoords());
+			
+			for(int i = 0; i<Map.LETTER_AXES.length; i++) {
+				Side s = m.getSide(h.get(Map.LETTER_AXES[i]));
+				if(s.getName().equals("hatch") && s.isExit())
+					return "You got sucked out of an airlock. " + die();
+				
+			}
+		}
+		return "";
+	}
+	
+	public String checkMonitorDeath() {
+		if(getHealthMonitor().isDead())
+			return "You ran out of health.";
+		else if(getFoodMonitor().isDead())
+			return "You ran out of food.";
+		else if(getWaterMonitor().isDead())
+			return "You ran out of water.";
+		else
+			return "";
+	}
 
 }
