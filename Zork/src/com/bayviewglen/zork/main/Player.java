@@ -111,6 +111,7 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	public String die() {
 		Game.setGameOver(false);
 		String result = "";
+		Music.play("data/music/loud_siren.mp3");
 		for (String s : dying) {
 			result += s + "\n\n...\n\n";
 		}

@@ -19,12 +19,12 @@ public class MapDisplay extends PApplet {
 	private static int blockW = 40;
 	private static int blockH = 40;
 
-	public static void main(String[] args) {
-		Inventory.initialize();
-		Preset.initialize();
-		Maps.initialize();
-		display(Maps.getMap("TESTING TESTER"));
-	}
+//	public static void main(String[] args) {
+//		Inventory.initialize();
+//		Preset.initialize();
+//		Maps.initialize();
+//		display(Maps.getMap("TESTING TESTER"));
+//	}
 
 	public static void display(Map m) {
 		map = m;

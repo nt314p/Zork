@@ -12,6 +12,8 @@ import com.bayviewglen.zork.map.*;
 public class Zork {
 	public static void main(String[] args) {
 
+		SlidePuzzle.play();
+		//Game.play("data/game.json");
 //		Game game = new Game();
 //		game.doTurn();
 

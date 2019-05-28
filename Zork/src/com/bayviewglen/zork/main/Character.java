@@ -3,6 +3,8 @@ package com.bayviewglen.zork.main;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -118,7 +120,7 @@ public class Character extends Item {
 		}
 		
 		if(exits.size()==0)
-			return null;
+			return location;
 		
 		int randIndex = (int)(Math.random()*moves.size());
 		return moves.get(randIndex);
@@ -230,6 +232,12 @@ public class Character extends Item {
 
 	public static Character getCharacter(String name) {
 		return characters.get(name);
+	}
+	
+	public static void moveAll() {
+		for (java.util.Map.Entry<String, Character> characters : characters.entrySet()) {
+			characters.getValue().move();
+	    }
 	}
 
 	private static void loadCharacter(String filePath) {

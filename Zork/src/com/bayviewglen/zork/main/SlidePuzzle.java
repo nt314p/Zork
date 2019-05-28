@@ -6,10 +6,10 @@ public class SlidePuzzle {
 	
 	static final char SHUFFLE = '~';
 	static final char QUIT = '`';
-	static final int GAME_X = 3;
-	static final int GAME_Y = 3;
+	static final int GAME_X = 4;
+	static final int GAME_Y = 4;
 
-	public static void play(){
+	public static boolean play(){
 		Scanner scanner = new Scanner(System.in);
 		boolean isPlaying = true;
 		
@@ -34,10 +34,13 @@ public class SlidePuzzle {
 			if(isPlaying) {			
 				System.out.println(SlidePuzzleBoard.display());
 				System.out.println("You won in " + i + " turns!");
-				isPlaying = playAgain(scanner);
+				return true;
+				//isPlaying = playAgain(scanner);
 			}
 		}
-		System.out.println("Thanks for playing.");
+		System.out.println("Good luck next time.");
+		return false;
+		
 	}
 
 	public static boolean playAgain(Scanner scanner) {

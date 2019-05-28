@@ -24,9 +24,11 @@ public class Game {
 	private static boolean gameOver = false;//the current game
 	private static boolean isPlaying = true;//the overall game
 
+	private static ArrayList<String> characters;//WE NEED TO DO SOMETHING WITH THIS
+
 	private static final String PROMPT_ANY_KEY = "~";
 	private static final String PROMPT_START_GAME = "`";
-	private static final String ROCKET = "data/rocket.mp3";
+	private static final String ROCKET = "data/music/rocket.mp3";
 
 	private static String[] failedCommands = { "You can't even do that.", "I don't understand what you want to say.",
 			"Nope, you can't do that.", "Not possible. Try another command.",
@@ -53,12 +55,17 @@ public class Game {
 	public static void play(String filePath) {
 		Game.initializeGame(filePath);
 		while (isPlaying) {
+			for(int i = 0; i<characters.size(); i++) {
+				Character.getCharacter(characters.get(i)).move();
+			}
+			Character.moveAll();
 			System.out.println(Game.processCommand(parser.getCommand()));
 			
 			player.checkRoomDeath();
 			System.out.println(player.checkAirlockDeath());
-			
 			System.out.println(player.checkDeath());
+			
+			print(checkSlidePuzzle());
 			
 			if(!gameOver)
 				System.out.println(displayTurn());
@@ -383,10 +390,46 @@ public class Game {
 				System.out.print(s.substring(0, s.indexOf(ROCKET)));
 				Music.play(ROCKET);
 			}
+			
+			if(s.indexOf("SlidePuzzle.play()") != -1) {
+				boolean gameWon = SlidePuzzle.play();
+				if(gameWon)
+					MapDisplay.display(player.getLocation().getMap());
+			}
 
 			System.out.print(s);
 			Parser.pressAnyKey();
 		}
+	}
+	
+	public static String checkSlidePuzzle() {
+		String str = "";
+		if(player.getLocation().getRoom().getName().equals("map room")) {
+			str += "Press any key to continue." + PROMPT_ANY_KEY;
+			str += "Welcome to the Slide Puzzle Mini-Game." + PROMPT_ANY_KEY;
+			str += "In front of you stands the Golden Map." + PROMPT_ANY_KEY;
+			str += "This map gives you access to view all the rooms and corridors of this floor." + PROMPT_ANY_KEY;
+			str += "This is the ultimate prize." + PROMPT_ANY_KEY;
+			str += "Your opportunity to traverse the ship and finally make it out of space." + PROMPT_ANY_KEY;
+			str += "\nAnd all you have to do" + PROMPT_ANY_KEY;
+			str += "Is defeat this Slide Puzzle." + PROMPT_ANY_KEY;
+			
+			str += "\nHOW TO PLAY";
+			str += "\n-----------" + PROMPT_ANY_KEY;
+			
+			str += "UP: 'w'" + PROMPT_ANY_KEY;
+			str += "DOWN: 's'" + PROMPT_ANY_KEY;
+			str += "LEFT: 'a'" + PROMPT_ANY_KEY;
+			str += "RIGHT: 'd'" + PROMPT_ANY_KEY;
+			str += "To quit, type 'quit'." + PROMPT_ANY_KEY;
+			str += "To shuffle, type 'shuffle'." + PROMPT_ANY_KEY;
+			str += "\nOrder the numbers in row-major order to win." + PROMPT_ANY_KEY;
+			str += "Achieve this, and the Golden Map is all yours." + PROMPT_ANY_KEY;
+			str +=  "Ready?" + PROMPT_START_GAME;
+			str += "SlidePuzzle.play()";
+		}
+		return str;
+		
 	}
 
 }

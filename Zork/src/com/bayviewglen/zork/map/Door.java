@@ -81,7 +81,7 @@ public class Door extends Side implements DoorCommands{
 		if(!keycode.equals("")) {
 			close();
 			locked = true;
-			Music.play("data/door_lock.mp3");
+			Music.play("data/music/door_lock.mp3");
 			return getName() + " locked.";
 		}
 		return getName() + " cannot be locked because there is no key to unlock it.";
@@ -96,7 +96,7 @@ public class Door extends Side implements DoorCommands{
 			return getName() + " is successfully unlocked.";
 		}
 		
-		Music.play("data/door_knock.mp3");
+		Music.play("data/music/door_knock.mp3");
 		return getName() + " did not have the correct key to unlock.";	
 	}
 	
