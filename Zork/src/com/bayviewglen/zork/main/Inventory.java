@@ -75,13 +75,16 @@ public class Inventory {
 	 * @return the finished arrayList
 	 */
 	public ArrayList<Item> toArrayList() {
-		ArrayList<Item> temp = new ArrayList<Item>();
-
-		for (int i = 0; i < items.size(); i++) {
-			temp.add(Item.clone(items.get(i)));
+		Item[] temp = new Item[items.size()];
+		for (int i = 0; i < temp.length; i++) {
+			temp[i] = Item.clone(items.get(i));
+		}
+		ArrayList<Item> tempTwo = new ArrayList<Item>();
+		for (Item item : temp) {
+			tempTwo.add(item);
 		}
 
-		return temp;
+		return tempTwo;
 	}
 
 	/**

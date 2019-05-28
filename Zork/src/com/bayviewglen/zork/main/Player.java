@@ -127,19 +127,21 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 		Game.setGameOver(true);
 		return "Game restarted.";
 	}
-
-	public String take(Character c, Item i) {
-		if (c.getInventory().remove(i)) {
-			if (getInventory().add(i))
-				return i.getName() + " added to inventory."
-						+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(taking) : "");// one
-																												// in 3
-																												// //
-																												// description
-			return "This item is too heavy for you to pick up.";
-		}
-		return c.getName() + " does not have " + i.getName() + ".";
-	}
+	
+	
+	// Characters DROP items into the room inventory for the player to take
+//	public String take(Character c, Item i) {
+//		if (c.getInventory().remove(i)) {
+//			if (getInventory().add(i))
+//				return i.getName() + " added to inventory."
+//						+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(taking) : "");// one
+//																												// in 3
+//																												// //
+//																												// description
+//			return "This item is too heavy for you to pick up.";
+//		}
+//		return c.getName() + " does not have " + i.getName() + ".";
+//	}
 
 	public String give(Character c, Item i) {
 		if (getInventory().remove(i)) {
@@ -149,11 +151,19 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 		}
 		return "You do not have " + i.getName();
 	}
+	
+	public String give(Item i, Character c) {
+		return give(c, i);
+	}
 
 	public String hit(Character c, Weapon w) {
 		c.getHealthMonitor().decrease(w.getDamage());
 		return String.format("You hit %s with %s.\n%s current health%s", c.getName(), w.getName(), c.getName(),
 				c.getHealthMonitor().toString());
+	}
+	
+	public String hit(Weapon w, Character c) {
+		return hit(c, w);
 	}
 
 	public String getHit(Character c, Weapon w) {
@@ -233,7 +243,7 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 					+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(giving) : "");// one in 3
 																											// ;
 
-		return "You do not have " + i.getName();
+		return "You do not have " + i.getName() + ".";
 	}
 
 	public String pickUp(Item i) {

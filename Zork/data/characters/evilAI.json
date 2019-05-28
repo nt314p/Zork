@@ -6,6 +6,11 @@
 	"health": "1.0",
 	"inventory": "EvilAIOneInv",
 	"descriptions": [
-		"look:Elvis AI is about 6 ft tall, with a single large photoreceptor on its face, looking into your soul"
-	]
+		"look:Elvis AI is about 6 ft tall, with a single large photoreceptor on its face, looking into your soul",
+		"location:hanging on a rope. Dead"
+	],
+	"map": "Ice Ice Baby",
+	"coords": "4.5,8.5,0.5",
+	"start": "4.5,7.5,0.5",
+	"end": "3.5,9.5,0.5"
 }

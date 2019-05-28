@@ -34,6 +34,7 @@ public class Character extends Item {
 		super(name, weight, descriptions);
 		this.inventory = inventory;
 		this.location = location;
+		addToRoom();
 		healthMonitor = new Monitor(stats[0]);
 		foodMonitor = new Monitor(stats[1]);
 		waterMonitor = new Monitor(stats[2]);
@@ -46,11 +47,18 @@ public class Character extends Item {
 		super(character.getName(), character.getWeight(), character.getDescriptions());
 		this.inventory = character.getInventory();
 		this.location = character.getLocation();
+		addToRoom();
 		healthMonitor = character.getHealthMonitor();
 		foodMonitor = character.getFoodMonitor();
 		waterMonitor = character.getWaterMonitor();
 		startPoint  = character.getStartPoint();
 		endPoint = character.getEndPoint();
+	}
+	
+	public void addToRoom() {
+		if (!this.location.getRoom().getRoomItems().contains(this)) {
+			this.location.getRoom().getRoomItems().add(this);
+		}
 	}
 
 	public static void initialize() {
@@ -117,7 +125,10 @@ public class Character extends Item {
 	}
 	
 	public void move() {
+		this.location.getRoom().getRoomItems().remove(this);
 		location = getRandomMove();
+		this.location.getRoom().getRoomItems().add(this);
+
 	}
 
 	public Location getLocation() {

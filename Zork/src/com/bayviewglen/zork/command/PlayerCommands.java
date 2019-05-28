@@ -28,9 +28,7 @@ public interface PlayerCommands {
 	
 	public String drop(Item i);
 	public String pickUp(Item i);
-	public String give(Character c, Item i);
-	public String take(Character c, Item i);
-	
+	public String give(Character c, Item i);	
 	public String hit(Character c, Weapon w);
 	
 	public String inventory();

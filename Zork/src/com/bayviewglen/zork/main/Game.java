@@ -56,6 +56,7 @@ public class Game {
 		Preset.initialize();
 		Inventory.initialize();
 		Maps.initialize();
+		Character.initialize();
 		Link.initialize();
 
 		Game.player = new Player(100, null, new Inventory(100),
@@ -80,6 +81,7 @@ public class Game {
 		Object instance = null;
 		Method method = null;
 		ArrayList<Method> runMethods = new ArrayList<Method>();
+		runMethods.add(null);
 		runMethods.add(null);
 		runMethods.add(null);
 
@@ -129,13 +131,16 @@ public class Game {
 		if (cls.getSimpleName().equals("Game")) {
 			instance = null;
 		}
-		
-		
+
 		int startIndex = 0;
 		if (runMethods.get(1) != null && interactableItems.size() != 0) {
 			startIndex = 1;
 		}
 		if (runMethods.get(1) != null && runMethods.get(0) == null && interactableItems.size() == 0) {
+			return "Please be more specific.";
+		}
+		
+		if (runMethods.get(2) != null && interactableItems.size() != 2) {
 			return "Please be more specific.";
 		}
 
@@ -147,12 +152,27 @@ public class Game {
 				} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
 						| IndexOutOfBoundsException ea) {
 				}
-				for (int j = 0; j < interactableItems.size(); j++) {
-					try {
-						return (String) runMethods.get(i).invoke(instance, interactableItems.get(j));
-					} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
-							| IndexOutOfBoundsException ea) {
+				if (interactableItems.size() == 1) {
+					for (int j = 0; j < interactableItems.size(); j++) {
+						try {
+							return (String) runMethods.get(i).invoke(instance, interactableItems.get(j));
+						} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
+								| IndexOutOfBoundsException ea) {
+						}
 					}
+				} else if (interactableItems.size() == 2) {
+					for (int j = 0; j < interactableItems.size() - 1; j++) {
+						ArrayList<Item> args = new ArrayList<Item>();
+						for(int k = j + 1; k < interactableItems.size(); k++) {
+							args.add(interactableItems.get(j));
+							args.add(interactableItems.get(k));
+							try {
+								return (String) runMethods.get(i).invoke(instance, args);
+							} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
+									| IndexOutOfBoundsException ea) {
+							}
+						}
+					}				
 				}
 			}
 		}

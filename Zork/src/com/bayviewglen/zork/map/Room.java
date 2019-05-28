@@ -100,11 +100,9 @@ public class Room extends Place {
 		String ret = getShortDescription() + " ";
 		for (int i = 0; i < roomItems.size(); i++) {
 			Item currItem = roomItems.get(i);
-			ret += "There is a" + ("aeiou".indexOf(currItem.getName().charAt(0)) != -1 ? "n " : " ");
-			ret += currItem.getName();
+			ret += "There is " + appendArticle(currItem.getName());
 			ret += " " + currItem.getDescription("location") + ". ";
 		}
-		ret += "\nSurrounding Sides:";
 
 		Map map = getLocation().getMap();
 		Coordinate coords = getLocation().getCoords();
@@ -116,13 +114,31 @@ public class Room extends Place {
 		while (it.hasNext()) {
 			pair = (java.util.Map.Entry<java.lang.Character, Coordinate>) it.next();
 			try {
-				ret += "\n" + Game.directionWords.get(pair.getKey()+"") + ": " + map.getSide(pair.getValue()).getName();
+				String sideName = map.getSide(pair.getValue()).getName();
+				if (sideName.equals("")) {
+					continue;
+				}
+				String direction = Game.directionWords.get(pair.getKey() + "");
+				if ("updown".indexOf(direction) == -1) {
+					ret += "To the " + direction;
+				} else if (direction.equals("up")) {
+					ret += "Above you";
+				} else if (direction.equals("down")) {
+					ret += "Below you";
+				}
+				ret += ", there is ";
+				ret += appendArticle(sideName);
+				ret += ". ";
 			} catch (NullPointerException e) {
 
 			}
 		}
 
 		return ret;
+	}
+
+	private String appendArticle(String str) {
+		return ("aeiou".indexOf(str.charAt(0)) != -1 ? "an " + str : "a " + str);
 	}
 
 	public void setInventory(String name) {
