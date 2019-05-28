@@ -1,13 +1,13 @@
 {
-	"name": "Elvis AI",
+	"name": "Zoink AI",
 	"weight": "350",
 	"food": "1.0",
 	"water": "1.0",
 	"health": "1.0",
 	"inventory": "EvilAIOneInv",
 	"descriptions": [
-		"look:Elvis AI is about 6 ft tall, with a single large photoreceptor on its face, looking into your soul",
-		"location:hanging on a rope. Dead"
+		"look:Zoink AI stares back, with a single large photoreceptor on its face.",
+		"location:with you"
 	],
 	"map": "Ice Ice Baby",
 	"coords": "4.5,8.5,0.5",
