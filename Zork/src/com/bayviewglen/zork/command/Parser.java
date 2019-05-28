@@ -156,5 +156,9 @@ public class Parser {
 			return "I don't care what you say anyways. Let's play!";
 	}
 	
-	public static boolean 
+	public static boolean playAgain() {
+		System.out.print("Would you like to play again?" );
+		String temp = scanner.nextLine();
+		return temp != null && temp.length() > 0 && temp.substring(0, 1).equalsIgnoreCase("y");
+	}
 }

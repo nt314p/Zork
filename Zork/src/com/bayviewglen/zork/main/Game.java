@@ -63,7 +63,7 @@ public class Game {
 			if(!gameOver)
 				System.out.println(displayTurn());
 			else {
-				if(isPlaying || playAgain()) {
+				if(isPlaying || Parser.playAgain()) {
 					Game.initializeGame(filePath);
 					gameOver = false;
 					isPlaying = true;
@@ -89,10 +89,6 @@ public class Game {
 		loadGame(filePath);
 	}
 	
-	public static boolean playAgain() {
-		return Parser.playAgain();
-	}
-
 	public static String processCommand(Command cmd) {
 
 		if (cmd.getCommandWord() == null) {
