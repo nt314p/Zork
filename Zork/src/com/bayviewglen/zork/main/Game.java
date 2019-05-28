@@ -54,6 +54,7 @@ public class Game {
 
 	public static void play(String filePath) {
 		Game.initializeGame(filePath);
+		print(intro());
 		while (isPlaying) {
 			for(int i = 0; i<characters.size(); i++) {
 				Character.getCharacter(characters.get(i)).move();
@@ -78,7 +79,7 @@ public class Game {
 					isPlaying = false;
 			}
 		}
-		outro();
+		print(outro());
 	}
 	public static void initializeGame(String filePath) {
 
@@ -320,6 +321,23 @@ public class Game {
 	public static String outro() {
 		String result = "";
 		result += "Press any key to continue." + PROMPT_ANY_KEY;
+		result += "Congrats, you made it to the escape pod!" + PROMPT_ANY_KEY;
+		result += "You can now steer your way back to Earth and live again!" + PROMPT_ANY_KEY;
+		result += "Although it is great to return, you have learned so much through this journey..." + PROMPT_ANY_KEY;
+		result += "You have learned how to persevere" + PROMPT_ANY_KEY;
+		result += "How to accomplish tasks with grit" + PROMPT_ANY_KEY;
+		result += "And most importantly..." + PROMPT_ANY_KEY;
+		result += "How to solve slide puzzles." + PROMPT_ANY_KEY;
+		result += "\nThe AIs will miss you as you embark on this new chapter of your life." + PROMPT_ANY_KEY;
+		result += "Best of luck on your descent" + PROMPT_ANY_KEY;
+		result += "And thank you for your service at the space station." + PROMPT_ANY_KEY;
+		result += "The world wouldn't be the same without you." + PROMPT_ANY_KEY;
+		result += "\n\n" + credits();
+		return result;
+	}
+	
+	public static String credits() {
+		String result = "";
 		result += "Thank you for playing Space Zork." + PROMPT_ANY_KEY;
 		result += "We hope you enjoyed." + PROMPT_ANY_KEY;
 		result += "Ending statistics:\n" + Game.displayStatistics() + "" + PROMPT_ANY_KEY;
@@ -331,6 +349,7 @@ public class Game {
 		result += "\t- Neil Armstrong";
 		return result;
 	}
+	
 
 	public static String storyline() {
 		String result = "";
@@ -340,7 +359,13 @@ public class Game {
 		result += "All you can see are the stars, but even those look like a ball of fire\n" + "ready to attack."
 				+ PROMPT_ANY_KEY;
 		result += "You fly through the universe, or are you even in the universe." + PROMPT_ANY_KEY;
-		result += "Who really cares anyway, because you're just going to die.";
+		result += "Who really cares anyway, because you're just going to die." + PROMPT_ANY_KEY;
+		result += "You open your eyes to a room." + PROMPT_ANY_KEY;
+		result += "A room!" + PROMPT_ANY_KEY;
+		result += "But where is there a room in the middle of space?" + PROMPT_ANY_KEY;
+		result += "Maybe there will be an escape pod somewhere near..." + PROMPT_ANY_KEY;
+		result += "To finally get out of this stupid hellhole." + PROMPT_ANY_KEY;
+		result += "It's time to find out and go explore.";
 		return result;
 	}
 
