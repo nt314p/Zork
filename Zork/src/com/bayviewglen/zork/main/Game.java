@@ -456,5 +456,17 @@ public class Game {
 		return str;
 		
 	}
+	public static void die() {
+		Game.setGameOver(false);
+		String result = "";
+		result += "Noooo, don't die...\n" + PROMPT_ANY_KEY;
+		result += "You're too young for this...\n" + PROMPT_ANY_KEY;
+		result += "Your family misses you...\n" + PROMPT_ANY_KEY;
+		result += "Please don't fade away...\n" + PROMPT_ANY_KEY;
+		result += "...\n" + PROMPT_ANY_KEY;
+		result += "..\n" + PROMPT_ANY_KEY;
+		result += ".";
+		print(result);
+	}
 
 }
