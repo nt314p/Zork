@@ -78,7 +78,7 @@
 			"name": "hybernation room",
 			"inventory": "hybernationInv",
 			"descriptions": [
-				"short:This appears to be the hybernation room. There are hundreds of pods stacked against the walls in here. Everybody else is dead, their pod with stab mark and a red X on it"
+				"short:This appears to be the hibernation room. There are hundreds of pods stacked against the walls in here. Everybody else is dead, their pods have a stab mark and a red X on it"
 			],
 			"coords": "2.5,2.5,0.5"
 		},

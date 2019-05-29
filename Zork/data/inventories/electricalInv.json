@@ -18,6 +18,51 @@
 				"look:It looks like a large battery that would be used to start a rocket engine, or power something big.",
 				"location:on the ground"
 			]
+		},
+		{
+			"type": "item",
+			"name": "wire",
+			"weight": "0.2",
+			"descriptions": [
+				"look:It looks like some tangly wires curled up on the floor.",
+				"location:on the ground"
+			]
+		},
+		{
+			"type": "item",
+			"name": "wire",
+			"weight": "0.2",
+			"descriptions": [
+				"look:It looks like some tangly wires curled up on the floor.",
+				"location:on the ground"
+			]
+		},
+		{
+			"type": "item",
+			"name": "wire",
+			"weight": "0.2",
+			"descriptions": [
+				"look:It looks like some tangly wires curled up on the floor.",
+				"location:on the ground"
+			]
+		},
+		{
+			"type": "item",
+			"name": "wire",
+			"weight": "0.2",
+			"descriptions": [
+				"look:It looks like some tangly wires curled up on the floor.",
+				"location:on the ground"
+			]
+		},
+		{
+			"type": "item",
+			"name": "wire",
+			"weight": "0.2",
+			"descriptions": [
+				"look:It looks like some tangly wires curled up on the floor.",
+				"location:on the ground"
+			]
 		}
 	]
 }
