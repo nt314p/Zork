@@ -10,23 +10,27 @@ import com.bayviewglen.zork.map.*;
 
 public class Player extends Character implements NoEffectCommands, PlayerCommands {
 
-	private static String[] screaming = { "Aaaaarrrrg", "Aahhhhh", "WHAAAAAAATTTT????", "NIICCKK TONG!!!!",
+	private static final String[] SCREAMING = { "Aaaaarrrrg", "Aahhhhh", "WHAAAAAAATTTT????", "NIICCKK TONG!!!!",
 			"What the hell are you doing with your life???" };
-	private static String[] breathing = { "...breath...breath...breath", "You forgot how to breathe lol",
+	private static final String[] BREATHING = { "...breath...breath...breath", "You forgot how to breathe lol",
 			"Congrats, do you want an award for breathing?", "Breath", "Wow you are so cool" };
-	private static String[] jumping = { "Careful, don't fall.",
+	private static final String[] JUMPING = { "Careful, don't fall.",
 			"Careful not to break the floorboards (oh wait you're in space)",
 			"If you jump too far you'll go out of orbit next time!",
 			"Careful - don't get sucked into the space vacuum!" };
-	private static String[] falling = { "Stop being so clumsy!", "Be careful next time.", "Good job (sarcasm)",
+	private static final String[] FALLING = {"You hurt yourself in your own confusion!", "You hurt yourself in your own confusion!", "Stop being so clumsy!", "Be careful next time.", "Good job (sarcasm)",
 			"Bleeding sucks." };
-	private static String[] dying = { "Noooo, don't die", "You're too young for this", "You're family misses you",
+	private static final String[] DYING = { "Noooo, don't die", "You're too young for this", "You're family misses you",
 			"Nooo", "..", "." };
-	private static String[] taking = { "You're becoming rich.", "It's so precious!", "Isn't that cool?",
+	private static final String[] TAKING = { "You're becoming rich.", "It's so precious!", "Isn't that cool?",
 			"That's amazing", "You are making great progress!" };
-	private static String[] giving = { "What? You're giving up the item :(", "Noooo :(", "You're becoming broke.",
+	private static final String[] GIVING = { "What? You're giving up the item :(", "Noooo :(", "You're becoming broke.",
 			"You're losing so many items!!!" };
-
+	private static final String [] HELLO = {"Hi.", "Hello.", "Good morning."};
+	private static final String [] SWEARING = {"Such language is prohibited in Zork.", "Please don't swear.", "That is extremely rude.", "Don't say that! The AIs are disappointed in you."};
+	private static final String [] SMELLING = {"Smells delicious.", "A beautiful odor surrounds the room.", "It smells of stench and sweat.", "It smells like space!"};
+	private static final String [] PRAYING = {"You prayed.", "May the force be with you.", "May you live through this crisis, may you survive space.", "The AIs join you in your prayer."};
+	
 	private static final int ODDS_OF_DISPLAYING = 3;
 
 	private static ArrayList<Room> roomsVisited = new ArrayList<Room>();
@@ -92,27 +96,27 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	}
 
 	public String scream() {
-		return Game.getRandom(screaming);
+		return Game.getRandom(SCREAMING);
 	}
 
 	public String breathe() {
-		return Game.getRandom(breathing);
+		return Game.getRandom(BREATHING);
 	}
 
 	public String jump() {
-		return "You jumped. " + Game.getRandom(jumping);
+		return "You jumped. " + Game.getRandom(JUMPING);
 	}
 
 	public String fall() {
 		getHealthMonitor().setToPercent(0.5);
-		return "You fell and are now bleeding. " + Game.getRandom(falling);
+		return "You fell and are now bleeding. " + Game.getRandom(FALLING);
 	}
 
 	public String die() {
 		Game.setGameOver(false);
 		String result = "";
 		Music.play("data/music/loud_siren.mp3");
-		for (String s : dying) {
+		for (String s : DYING) {
 			result += s + "\n\n...\n\n";
 		}
 		result += "You died. Game over.";
@@ -309,6 +313,22 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 			return "You ran out of water.";
 		else
 			return "";
+	}
+
+	public String hi() {
+		return Game.getRandom(HELLO);
+	}
+
+	public String swear() {
+		return Game.getRandom(SWEARING);
+	}
+
+	public String smell() {
+		return Game.getRandom(SMELLING);
+	}
+
+	public String pray() {
+		return Game.getRandom(PRAYING);
 	}
 
 }
