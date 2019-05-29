@@ -1,0 +1,159 @@
+{
+	"name": "The Mountain",
+	"default-side-vertical": {
+		"preset": "default-opening"
+	},
+	"default-room": {
+		"preset": "Rock Death"
+	},
+	"default-border": {
+		"preset": "rock wall"
+	},
+	"default-ground": {
+		"preset": "rock ground"
+	},
+	"places": [
+		{
+			"preset": "rock room",
+			"coords": "2.5,1.5,0.5"
+		},
+		{
+			"preset": "rock room",
+			"coords": "2.5,2.5,0.5"
+		},
+		{
+			"preset": "rock room",
+			"coords": "2.5,3.5,0.5"
+		},
+		{
+			"preset": "rock room",
+			"coords": "2.5,4.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "Mountain End",
+			"inventory": "TestRoomInv",
+			"descriptions": [
+				"short:Back at the rover again, load up the battery and get moving!!!"
+			],
+			"coords": "2.5,5.5,0.5"
+		},
+		{
+			"preset": "rock room",
+			"coords": "3.5,1.5,0.5"
+		},
+		{
+			"preset": "rock room",
+			"coords": "3.5,2.5,0.5"
+		},
+		{
+			"preset": "rock room",
+			"coords": "3.5,3.5,0.5"
+		},
+		{
+			"preset": "rock room",
+			"coords": "3.5,4.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "Mountain Start",
+			"inventory": "TestRoomInv",
+			"descriptions": [
+				"short:You have arrived at a giant mountain. It seems like this is an entrance to an abandoned mineshaft."
+			],
+			"coords": "3.5,5.5,0.5"
+		},
+		{
+			"preset": "rock room",
+			"coords": "4.5,1.5,0.5"
+		},
+		{
+			"preset": "rock room",
+			"coords": "4.5,2.5,0.5"
+		},
+		{
+			"preset": "rock room",
+			"coords": "4.5,3.5,0.5"
+		},
+		{
+			"preset": "rock room",
+			"coords": "4.5,4.5,0.5"
+		},
+		{
+			"preset": "rock room",
+			"coords": "4.5,5.5,0.5"
+		},
+		{
+			"preset": "rock room",
+			"coords": "5.5,4.5,0.5"
+		},
+		{
+			"type": "door",
+			"name": "Pink Door",
+			"open": "false",
+			"locked": "true",
+			"code": "pink",
+			"descriptions": [
+				"short:A key is needed to unlock this door..."
+			],
+			"coords": "2.5,5.0,0.5"
+		},
+		{
+			"preset": "rock wall",
+			"coords": "3.0,1.5,0.5"
+		},
+		{
+			"preset": "rock wall",
+			"coords": "3.0,3.5,0.5"
+		},
+		{
+			"preset": "rock wall",
+			"coords": "3.0,5.5,0.5"
+		},
+		{
+			"type": "door",
+			"name": "Red Door",
+			"open": "false",
+			"locked": "true",
+			"code": "red",
+			"descriptions": [
+				"short:A key is needed to unlock this door..."
+			],
+			"coords": "3.5,2.0,0.5"
+		},
+		{
+			"preset": "rock wall",
+			"coords": "4.0,1.5,0.5"
+		},
+		{
+			"preset": "rock wall",
+			"coords": "4.0,3.5,0.5"
+		},
+		{
+			"preset": "rock wall",
+			"coords": "4.0,5.5,0.5"
+		},
+		{
+			"type": "door",
+			"name": "Grey Door",
+			"open": "false",
+			"locked": "true",
+			"code": "grey",
+			"descriptions": [
+				"short:A key is needed to unlock this door..."
+			],
+			"coords": "4.5,2.0,0.5"
+		},
+		{
+			"type": "door",
+			"name": "Yellow door",
+			"open": "false",
+			"locked": "true",
+			"code": "yellow",
+			"descriptions": [
+				"short:A key is needed to unlock this door..."
+			],
+			"coords": "5.0,4.5,0.5"
+		}
+	]
+}

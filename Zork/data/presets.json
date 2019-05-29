@@ -101,6 +101,32 @@
 			"descriptions": [
 				"short:It is a steel hatch that looks like it can be opened."
 			]
+		},
+		{
+			"type": "wall",
+			"name": "rock wall",
+			"descriptions": [
+				"short:You see a solid wall of rock."
+			]
+		},
+		{
+			"type": "room",
+			"name": "Rock Death",
+			"descriptions": "short:You were impaled by a falling stagalamite and then brutally crushed by rocks. :)"
+		},
+		{
+			"type": "room",
+			"name": "rock room",
+			"descriptions": [
+				"short:You are in a dimly lit room, surrounded by rock and stone."
+			]
+		},
+		{
+			"type": "wall",
+			"name": "rock ground",
+			"descriptions": [
+				"short:A bumpy rocky surface"
+			]
 		}
 	]
 }
