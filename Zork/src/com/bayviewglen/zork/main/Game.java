@@ -26,7 +26,7 @@ public class Game {
 
 	private static ArrayList<String> characters;//WE NEED TO DO SOMETHING WITH THIS
 
-	private static final String PROMPT_ANY_KEY = "~";
+	private static final String PROMPT_ENTER = "~";
 	private static final String PROMPT_START_GAME = "`";
 	private static final String ROCKET = "data/music/rocket.mp3";
 
@@ -310,42 +310,42 @@ public class Game {
 
 	public static String help() {
 		String result = "";
-		result += "Use 'c' to display all commands." + PROMPT_ANY_KEY;
-		result += "Write a command to play your turn." + PROMPT_ANY_KEY;
-		result += "Use cardinal directions to traverse the map." + PROMPT_ANY_KEY;
-		result += "Collect keys to open doors and hidden rooms." + PROMPT_ANY_KEY;
+		result += "Use 'c' to display all commands." + PROMPT_ENTER;
+		result += "Write a command to play your turn." + PROMPT_ENTER;
+		result += "Use cardinal directions to traverse the map." + PROMPT_ENTER;
+		result += "Collect keys to open doors and hidden rooms." + PROMPT_ENTER;
 		result += "Make it safely back to Earth to win.";
 		return result;
 	}
 
 	public static String outro() {
 		String result = "";
-		result += "Press any key to continue." + PROMPT_ANY_KEY;
-		result += "Congrats, you made it to the escape pod!" + PROMPT_ANY_KEY;
-		result += "You can now steer your way back to Earth and live again!" + PROMPT_ANY_KEY;
-		result += "Although it is great to return, you have learned so much through this journey..." + PROMPT_ANY_KEY;
-		result += "You have learned how to persevere" + PROMPT_ANY_KEY;
-		result += "How to accomplish tasks with grit" + PROMPT_ANY_KEY;
-		result += "And most importantly..." + PROMPT_ANY_KEY;
-		result += "How to solve slide puzzles." + PROMPT_ANY_KEY;
-		result += "\nThe AIs will miss you as you embark on this new chapter of your life." + PROMPT_ANY_KEY;
-		result += "Best of luck on your descent" + PROMPT_ANY_KEY;
-		result += "And thank you for your service at the space station." + PROMPT_ANY_KEY;
-		result += "The world wouldn't be the same without you." + PROMPT_ANY_KEY;
+		result += "Press 'enter' to continue." + PROMPT_ENTER;
+		result += "Congrats, you made it to the escape pod!" + PROMPT_ENTER;
+		result += "You can now steer your way back to Earth and live again!" + PROMPT_ENTER;
+		result += "Although it is great to return, you have learned so much through this journey..." + PROMPT_ENTER;
+		result += "You have learned how to persevere" + PROMPT_ENTER;
+		result += "How to accomplish tasks with grit" + PROMPT_ENTER;
+		result += "And most importantly..." + PROMPT_ENTER;
+		result += "How to solve slide puzzles." + PROMPT_ENTER;
+		result += "\nThe AIs will miss you as you embark on this new chapter of your life." + PROMPT_ENTER;
+		result += "Best of luck on your descent" + PROMPT_ENTER;
+		result += "And thank you for your service at the space station." + PROMPT_ENTER;
+		result += "The world wouldn't be the same without you." + PROMPT_ENTER;
 		result += "\n\n" + credits();
 		return result;
 	}
 	
 	public static String credits() {
 		String result = "";
-		result += "Thank you for playing Space Zork." + PROMPT_ANY_KEY;
-		result += "We hope you enjoyed." + PROMPT_ANY_KEY;
-		result += "Ending statistics:\n" + Game.displayStatistics() + "" + PROMPT_ANY_KEY;
-		result += "\n\nDevelopers:" + PROMPT_ANY_KEY + "\tEthan Elbaz" + PROMPT_ANY_KEY + "\tBen Merbaum"
-				+ PROMPT_ANY_KEY + "\tNick Tong" + PROMPT_ANY_KEY;
-		result += "Space awaits you..." + PROMPT_ANY_KEY;
-		result += "\n\"This is one small step for man..." + PROMPT_ANY_KEY;
-		result += "\none giant leap for manking\"" + PROMPT_ANY_KEY;
+		result += "Thank you for playing Space Zork." + PROMPT_ENTER;
+		result += "We hope you enjoyed." + PROMPT_ENTER;
+		result += "Ending statistics:\n" + Game.displayStatistics() + "" + PROMPT_ENTER;
+		result += "\n\nDevelopers:" + PROMPT_ENTER + "\tEthan Elbaz" + PROMPT_ENTER + "\tBen Merbaum"
+				+ PROMPT_ENTER + "\tNick Tong" + PROMPT_ENTER;
+		result += "Space awaits you..." + PROMPT_ENTER;
+		result += "\n\"This is one small step for man..." + PROMPT_ENTER;
+		result += "\none giant leap for manking\"" + PROMPT_ENTER;
 		result += "\t- Neil Armstrong";
 		return result;
 	}
@@ -353,18 +353,18 @@ public class Game {
 
 	public static String storyline() {
 		String result = "";
-		result += "Welcome to space." + PROMPT_ANY_KEY;
-		result += "You don't know who you are, what you are, or where you are." + PROMPT_ANY_KEY;
-		result += "Are you in hell? Even hell sounds like a vacation to this place." + PROMPT_ANY_KEY;
+		result += "Welcome to space." + PROMPT_ENTER;
+		result += "You don't know who you are, what you are, or where you are." + PROMPT_ENTER;
+		result += "Are you in hell? Even hell sounds like a vacation to this place." + PROMPT_ENTER;
 		result += "All you can see are the stars, but even those look like a ball of fire\n" + "ready to attack."
-				+ PROMPT_ANY_KEY;
-		result += "You fly through the universe, or are you even in the universe." + PROMPT_ANY_KEY;
-		result += "Who really cares anyway, because you're just going to die." + PROMPT_ANY_KEY;
-		result += "You open your eyes to a room." + PROMPT_ANY_KEY;
-		result += "A room!" + PROMPT_ANY_KEY;
-		result += "But where is there a room in the middle of space?" + PROMPT_ANY_KEY;
-		result += "Maybe there will be an escape pod somewhere near..." + PROMPT_ANY_KEY;
-		result += "To finally get out of this stupid hellhole." + PROMPT_ANY_KEY;
+				+ PROMPT_ENTER;
+		result += "You fly through the universe, or are you even in the universe." + PROMPT_ENTER;
+		result += "Who really cares anyway, because you're just going to die." + PROMPT_ENTER;
+		result += "You open your eyes to a room." + PROMPT_ENTER;
+		result += "A room!" + PROMPT_ENTER;
+		result += "But where is there a room in the middle of space?" + PROMPT_ENTER;
+		result += "Maybe there will be an escape pod somewhere near..." + PROMPT_ENTER;
+		result += "To finally get out of this stupid hellhole." + PROMPT_ENTER;
 		result += "It's time to find out and go explore.";
 		return result;
 	}
@@ -372,28 +372,28 @@ public class Game {
 	public static String intro() {
 		String result = "";
 		result += ROCKET;
-		result += "Press any key to continue." + PROMPT_ANY_KEY;
-		result += "Welcome to Space Zork, a completely dynamic adventure game." + PROMPT_ANY_KEY;
+		result += "Press 'enter' to continue." + PROMPT_ENTER;
+		result += "Welcome to Space Zork, a completely dynamic adventure game." + PROMPT_ENTER;
 		result += "WARNING: Zork has the potential to induce seizures\n"
 				+ "for people with photosensitive epilepsy. If you have photosensitive epilepsy\n"
 				+ "or feel you may be susceptible to a seizure, DO NOT PLAY ZORK.\n" + "You have been warned.\n"
-				+ PROMPT_ANY_KEY;
+				+ PROMPT_ENTER;
 
 		result += "HOW TO PLAY\n";
-		result += "-----------\n" + PROMPT_ANY_KEY;
-		result += help() + "\n" + PROMPT_ANY_KEY;
-		result += "Good luck on your adventure. Try not to die." + PROMPT_ANY_KEY;
-		result += "But if you do, that's okay as well." + PROMPT_ANY_KEY;
-		result += "Just do your best. Because that's all that matters. Right?" + PROMPT_ANY_KEY;
-		result += "And try not to rage. It'll be hard, I know." + PROMPT_ANY_KEY;
-		result += "Just keep on trying" + PROMPT_ANY_KEY;
-		result += "and trying" + PROMPT_ANY_KEY;
-		result += "and trying\n" + PROMPT_ANY_KEY;
-		result += "And remember: you can quit whenever you feel like it." + PROMPT_ANY_KEY;
-		result += "You just won't get the satisfaction of knowing that you beat Zork." + PROMPT_ANY_KEY;
+		result += "-----------\n" + PROMPT_ENTER;
+		result += help() + "\n" + PROMPT_ENTER;
+		result += "Good luck on your adventure. Try not to die." + PROMPT_ENTER;
+		result += "But if you do, that's okay as well." + PROMPT_ENTER;
+		result += "Just do your best. Because that's all that matters. Right?" + PROMPT_ENTER;
+		result += "And try not to rage. It'll be hard, I know." + PROMPT_ENTER;
+		result += "Just keep on trying" + PROMPT_ENTER;
+		result += "and trying" + PROMPT_ENTER;
+		result += "and trying\n" + PROMPT_ENTER;
+		result += "And remember: you can quit whenever you feel like it." + PROMPT_ENTER;
+		result += "You just won't get the satisfaction of knowing that you beat Zork." + PROMPT_ENTER;
 		result += "Shall we get started? ";
 		result += PROMPT_START_GAME;
-		result += "\n\n" + storyline() + "\n" + PROMPT_ANY_KEY;
+		result += "\n\n" + storyline() + "\n" + PROMPT_ENTER;
 		return result;
 	}
 
@@ -402,7 +402,7 @@ public class Game {
 	}
 
 	public static void print(String message) {
-		String[] lines = message.split(PROMPT_ANY_KEY);
+		String[] lines = message.split(PROMPT_ENTER);
 		for (String s : lines) {
 
 			if (s.indexOf(PROMPT_START_GAME) != -1) {
@@ -430,26 +430,26 @@ public class Game {
 	public static String checkSlidePuzzle() {
 		String str = "";
 		if(player.getLocation().getRoom().getName().equals("map room")) {
-			str += "Press any key to continue." + PROMPT_ANY_KEY;
-			str += "Welcome to the Slide Puzzle Mini-Game." + PROMPT_ANY_KEY;
-			str += "In front of you stands the Golden Map." + PROMPT_ANY_KEY;
-			str += "This map gives you access to view all the rooms and corridors of this floor." + PROMPT_ANY_KEY;
-			str += "This is the ultimate prize." + PROMPT_ANY_KEY;
-			str += "Your opportunity to traverse the ship and finally make it out of space." + PROMPT_ANY_KEY;
-			str += "\nAnd all you have to do" + PROMPT_ANY_KEY;
-			str += "Is defeat this Slide Puzzle." + PROMPT_ANY_KEY;
+			str += "Press 'enter' to continue." + PROMPT_ENTER;
+			str += "Welcome to the Slide Puzzle Mini-Game." + PROMPT_ENTER;
+			str += "In front of you stands the Golden Map." + PROMPT_ENTER;
+			str += "This map gives you access to view all the rooms and corridors of this floor." + PROMPT_ENTER;
+			str += "This is the ultimate prize." + PROMPT_ENTER;
+			str += "Your opportunity to traverse the ship and finally make it out of space." + PROMPT_ENTER;
+			str += "\nAnd all you have to do" + PROMPT_ENTER;
+			str += "Is defeat this Slide Puzzle." + PROMPT_ENTER;
 			
 			str += "\nHOW TO PLAY";
-			str += "\n-----------" + PROMPT_ANY_KEY;
+			str += "\n-----------" + PROMPT_ENTER;
 			
-			str += "UP: 'w'" + PROMPT_ANY_KEY;
-			str += "DOWN: 's'" + PROMPT_ANY_KEY;
-			str += "LEFT: 'a'" + PROMPT_ANY_KEY;
-			str += "RIGHT: 'd'" + PROMPT_ANY_KEY;
-			str += "To quit, type 'quit'." + PROMPT_ANY_KEY;
-			str += "To shuffle, type 'shuffle'." + PROMPT_ANY_KEY;
-			str += "\nOrder the numbers in row-major order to win." + PROMPT_ANY_KEY;
-			str += "Achieve this, and the Golden Map is all yours." + PROMPT_ANY_KEY;
+			str += "UP: 'w'" + PROMPT_ENTER;
+			str += "DOWN: 's'" + PROMPT_ENTER;
+			str += "LEFT: 'a'" + PROMPT_ENTER;
+			str += "RIGHT: 'd'" + PROMPT_ENTER;
+			str += "To quit, type 'quit'." + PROMPT_ENTER;
+			str += "To shuffle, type 'shuffle'." + PROMPT_ENTER;
+			str += "\nOrder the numbers in row-major order to win." + PROMPT_ENTER;
+			str += "Achieve this, and the Golden Map is all yours." + PROMPT_ENTER;
 			str +=  "Ready?" + PROMPT_START_GAME;
 			str += "SlidePuzzle.play()";
 		}
@@ -459,12 +459,12 @@ public class Game {
 	public static void die() {
 		Game.setGameOver(false);
 		String result = "";
-		result += "Noooo, don't die...\n" + PROMPT_ANY_KEY;
-		result += "You're too young for this...\n" + PROMPT_ANY_KEY;
-		result += "Your family misses you...\n" + PROMPT_ANY_KEY;
-		result += "Please don't fade away...\n" + PROMPT_ANY_KEY;
-		result += "...\n" + PROMPT_ANY_KEY;
-		result += "..\n" + PROMPT_ANY_KEY;
+		result += "Noooo, don't die...\n" + PROMPT_ENTER;
+		result += "You're too young for this...\n" + PROMPT_ENTER;
+		result += "Your family misses you...\n" + PROMPT_ENTER;
+		result += "Please don't fade away...\n" + PROMPT_ENTER;
+		result += "...\n" + PROMPT_ENTER;
+		result += "..\n" + PROMPT_ENTER;
 		result += ".";
 		print(result);
 	}

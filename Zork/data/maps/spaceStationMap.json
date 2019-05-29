@@ -114,7 +114,7 @@
 			"type": "room",
 			"name": "map room",
 			"descriptions": [
-				"short:There appears to be a big hologram of the space station first level in the center of the room."
+				"short:There appears to be a projected hologram of the space station first level in the center of the room."
 			],
 			"coords": "3.5,2.5,0.5"
 		},

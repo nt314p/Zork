@@ -27,7 +27,7 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 			"You're losing so many items!!!" };
 	private static final String[] HELLO = { "Hi.", "Hello.", "Good morning."};
 	private static final String[] SWEARING = { "Such language is prohibited in Zork.", "Please don't swear.",
-			"That is extremely rude.", "Don't say that! The AIs are disappointed in you." };
+			"That language is extremely rude.", "Oops, please don't use that language.", "Don't say that! The AIs are disappointed in you." };
 	private static final String[] SMELLING = { "Smells delicious.", "A beautiful odor surrounds the room.",
 			"It smells of stench and sweat.", "It smells like space!" };
 	private static final String[] PRAYING = { "You prayed.", "May the force be with you.",
@@ -155,6 +155,12 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 
 	public String give(Item i, Character c) {
 		return give(c, i);
+	}
+	
+	public String destroy(Item i) {
+		if(getInventory().remove(i)) 
+			return i.getName() + " was removed from inventory and broken. Good job.";
+		return "You do not have " + i.getName();
 	}
 
 	public String hit(Character c, Weapon w) {

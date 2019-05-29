@@ -28,10 +28,12 @@ public interface PlayerCommands {
 	
 	public String drop(Item i);
 	public String pickUp(Item i);
+	public String destroy(Item i);
 	public String give(Character c, Item i);	
 	public String hit(Character c, Weapon w);
 	
 	public String inventory();
+	public String look();
 	public String look(Item i);
 	public String getAllOf(String type);
 

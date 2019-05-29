@@ -8,7 +8,7 @@ north:n,Go north
 east:e,Go east
 south:s,Go south
 west:w,Go west
-up:u,Go up
+up:u,climb,Go up
 down:d,Go down
 move:go,travel,Move in a chosen direction
 enter:go in,Enter a room or door
@@ -16,14 +16,15 @@ drop:dump,discard, throw away,Drop an item from your inventory
 pickUp:pick up,take,grab,Add an item to your inventory
 give:give away,Give an item from your inventory to a character
 take:steal,Take an item from a character with their permission
+destroy:smash,break,Destroy an item from your inventory
 hit:attack,fight,Attack a character with a weapon
-look:see,View your surroundings
+look:see,examineView your room/item
 getAllOf:show,get all,show all,see all, pick all,View all your items of one type in your inventory
 inventory:i,stuff,things,View your inventory
 help:assistance,h,Get assistance with gameplay
 storyline:story,timeline,View the game storyline
 commands:words,c,View all commands allowed
-displayStatistics:stats,stat,Display your game statistics
+displayStatistics:stats,stat,statistics,Display your game statistics
 displayExits:exits,Display your current room's exits
 open:Open a door
 close:Close a door
@@ -33,3 +34,7 @@ scream:yell,Say something loudly
 fall:Trip on the ground
 breathe:Always remember to breathe
 jump:Jump into the air with a chance of winning the game
+pray:Pray to the Gods for good luck
+hi:Say hello
+swear:crap,Nick Tong,freedom,Try not to use this feature
+smell:scent,Smell the aura in the room
