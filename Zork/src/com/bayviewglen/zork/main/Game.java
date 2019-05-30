@@ -13,7 +13,7 @@ import com.bayviewglen.zork.map.*;
 
 /**
  * 
- * @authors bmerbaum, ntong, eelbaz
+ * @authors bmerbaum, ntong, eelbaz, rhui
  *
  */
 
@@ -348,7 +348,7 @@ public class Game {
 		result += "Thank you for playing Space Zork." + PROMPT_ENTER;
 		result += "We hope you enjoyed." + PROMPT_ENTER;
 		result += "Ending statistics:\n" + Game.displayStatistics() + "" + PROMPT_ENTER;
-		result += "\n\nDevelopers:" + PROMPT_ENTER + "\tEthan Elbaz" + PROMPT_ENTER + "\tBen Merbaum" + PROMPT_ENTER
+		result += "\n\nDevelopers:" + PROMPT_ENTER + "\tEthan Elbaz" + PROMPT_ENTER + "\tBen Merbaum" + PROMPT_ENTER + "\tRyan Hui" + PROMPT_ENTER
 				+ "\tNick Tong" + PROMPT_ENTER;
 		result += "Space awaits you..." + PROMPT_ENTER;
 		result += "\n\"This is one small step for man..." + PROMPT_ENTER;
