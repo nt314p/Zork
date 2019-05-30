@@ -6,8 +6,15 @@
 		},
 		{
 			"type": "wall",
-			"name": "default-wall"
+			"name": "wall"
 		},
+		{
+			"type": "wall",
+			"name": "ice sheet",
+			"descriptions": [
+				"look:The ice sheet below you is as clear as glass."
+			]
+		},			
 		{
 			"type": "wall",
 			"name": "steel wall",

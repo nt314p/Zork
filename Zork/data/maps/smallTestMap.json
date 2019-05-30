@@ -1,10 +1,10 @@
 {
 	"name": "TESTING TESTER",
 	"default-side-vertical": {
-		"preset": "default-opening"
+		"preset": "opening"
 	},
 	"default-border": {
-		"preset": "default-wall"
+		"preset": "wall"
 	},
 	"default-room": {
 		"type": "room",

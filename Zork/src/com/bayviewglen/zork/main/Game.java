@@ -96,10 +96,24 @@ public class Game {
 			return Game.getRandom(failedCommands);
 		}
 
-		ArrayList<Item> interactableItems = player.getInteractableItems().toArrayList();
+		ArrayList<Item> interactableItems = new ArrayList<Item>();
+		ArrayList<Item> pInteract = player.getInteractableItems().toArrayList();
 		if (cmd.getParameters().length == 0 || !cmd.getParameters()[0].equals("all")) {
-			interactableItems = parser.parseItems(interactableItems, cmd.toSingleString());
+			pInteract = parser.parseItems(pInteract, cmd.toSingleString());
 		}
+		
+		for (int i = 0; i < pInteract.size(); i++) {
+			boolean found = false;
+			for (int j = 0; j < interactableItems.size(); j++) {
+				if (pInteract.get(i).equals(interactableItems.get(j))) {
+					found = true;
+				}
+			}
+			if (!found) {
+				interactableItems.add(pInteract.get(i));
+			}
+		}
+		
 		String mainCmd = cmd.getCommandWord();
 
 		Class cls = null;

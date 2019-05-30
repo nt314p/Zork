@@ -10,7 +10,7 @@
 		"preset": "ice wall"
 	},
 	"default-ground": {
-		"preset": "default-wall"
+		"preset": "ice sheet"
 	},
 	"places": [
 		{

@@ -1,7 +1,7 @@
 {
 	"name": "Mice Mice Baby",
 	"default-side-vertical": {
-		"preset": "default-opening"
+		"preset": "opening"
 	},
 	"default-side-horizantal": {
 		"preset": "Ice Death"

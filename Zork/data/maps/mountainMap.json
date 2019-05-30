@@ -1,7 +1,7 @@
 {
 	"name": "The Mountain",
 	"default-side-vertical": {
-		"preset": "default-opening"
+		"preset": "opening"
 	},
 	"default-room": {
 		"preset": "Rock Death"

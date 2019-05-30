@@ -59,8 +59,10 @@ public class Character extends Item {
 	}
 
 	public void addToRoom() {
-		if (!this.location.getRoom().getRoomItems().contains(this)) {
-			this.location.getRoom().getRoomItems().add(this);
+		if (!(this instanceof Player)) {
+			if (!this.location.getRoom().getRoomItems().contains(this)) {
+				this.location.getRoom().getRoomItems().add(this);
+			}
 		}
 	}
 

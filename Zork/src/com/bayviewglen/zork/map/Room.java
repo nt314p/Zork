@@ -138,7 +138,7 @@ public class Room extends Place {
 	}
 
 	private String appendArticle(String str) {
-		return ("aeiou".indexOf(str.charAt(0)) != -1 ? "an " + str : "a " + str);
+		return ("aeiouAEIOU".indexOf(str.charAt(0)) != -1 ? "an " + str : "a " + str);
 	}
 
 	public void setInventory(String name) {
