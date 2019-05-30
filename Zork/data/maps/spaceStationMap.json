@@ -32,7 +32,7 @@
 			"type": "room",
 			"name": "Radial Thruster",
 			"description": [
-				"short:The fuel and oxygen tanks look to be empty. It looks like you need to find fuel and oxygen tanks."
+				"short:The fuel and oxygen tanks look to be empty. /nThey need to be filled in order to work..."
 			],
 			"coords": "1.5,1.5,0.5"
 		},
@@ -60,7 +60,7 @@
 			"locked": "true",
 			"code": "pantry",
 			"description": [
-				"short:There is a solid door stopping you from entering the pantry. There is likely more food, or perhaps other things, inside."
+				"short:There is a locked door stopping you from entering the pantry. /nThere is likely more food and water, or perhaps other things..."
 			],
 			"coords": "1.5,4.0,0.5"
 		},
@@ -69,7 +69,7 @@
 			"name": "pantry",
 			"inventory": "pantryInv",
 			"descriptions": [
-				"short:This is the pantry of the space station. There are lots of reserve food stocks in here."
+				"short:This is the pantry of the space station. /nThere are tons of food and water in here."
 			],
 			"coords": "1.5,4.5,0.5"
 		},
@@ -78,7 +78,7 @@
 			"name": "hybernation room",
 			"inventory": "hybernationInv",
 			"descriptions": [
-				"short:This appears to be the hibernation room. There are hundreds of pods stacked against the walls in here. Everybody else is dead, their pods have a stab mark and a red X on it"
+				"short:This appears to be the hibernation room. /nThere are hundreds of pods stacked against the walls in here. /nEveryone is dead, their pods have a stab mark and a red X on it..."
 			],
 			"coords": "2.5,2.5,0.5"
 		},
@@ -87,7 +87,7 @@
 			"name": "canteen",
 			"inventory": "kitchenInv",
 			"descriptions": [
-				"short:This appears to be the canteen of the space station. There is more food and water in here."
+				"short:This appears to be the canteen of the space station. /nThere is more food and water in here."
 			],
 			"coords": "2.5,3.5,0.5"
 		},
@@ -95,7 +95,7 @@
 			"type": "room",
 			"name": "entry to level 2",
 			"descriptions": [
-				"short:It is an empty room, and there is a corridor leading to level two above you. It is blocked by some debris."
+				"short:It is an empty room, and there is a corridor leading to level two above you. /nIt is blocked by some debris."
 			],
 			"coords": "2.5,4.5,0.5"
 		},
@@ -106,7 +106,7 @@
 			"locked": "true",
 			"code": "lvl2",
 			"description": [
-				"short:There is a pile of debris blocking the corridor to level two of the station. You would need some kind of high power torch to bust through it."
+				"short:There is a pile of debris blocking the corridor to level two of the station. /nYou need some kind of high power torch to bust through it."
 			],
 			"coords": "2.5,4.5,1.0"
 		},
@@ -114,7 +114,7 @@
 			"type": "room",
 			"name": "map room",
 			"descriptions": [
-				"short:There appears to be a projected hologram of the space station first level in the center of the room."
+				"short:There appears to be hologram of the first level of the space station. "
 			],
 			"coords": "3.5,2.5,0.5"
 		},
@@ -127,7 +127,7 @@
 			"name": "electrical room",
 			"inventory": "electricalInv",
 			"descriptions": [
-				"short:This is the electrical room of the space station. There are lots of panels and some electrical equipment in here."
+				"short:This is the electrical room of the space station. /nThere are lots of panels and some electrical equipment in here."
 			],
 			"coords": "3.5,6.5,0.5"
 		},
@@ -138,7 +138,7 @@
 			"locked": "true",
 			"code": "electricalroom",
 			"description": [
-				"short:There is a lock on the door to the elecrtical room. You might need a keycard to get in."
+				"short:There is a lock on the door to the electrical room. /nYou might need a keycard to get in."
 			],
 			"coords": "4.0,6.5,0.5"
 		},
@@ -146,7 +146,7 @@
 			"type": "room",
 			"name": "north west control room",
 			"descriptions": [
-				"short:This appears to be part of the control room for the space station, the north west quadrant. There are lots of broken moniters in here, all with red Xs..."
+				"short:North West Quandrant /nThis appears to be part of the control room for the space station. /nThere are lots of broken monitors in here, all marked with red Xs..."
 			],
 			"coords": "4.5,3.5,0.5"
 		},
@@ -154,7 +154,7 @@
 			"type": "room",
 			"name": "south west control room",
 			"descriptions": [
-				"short:This is another part of the control room for the space station, the south west quadrant. There are lots of weapon moniters in here. Curiously, they are fully functional and unharmed."
+				"short:South West Quandrant /nThis is another part of the control room for the space station. /nThere are lots of weapon monitors in here. /nCuriously, they are fully functional and unharmed."
 			],
 			"coords": "4.5,4.5,0.5"
 		},
@@ -165,8 +165,9 @@
 		{
 			"type": "room",
 			"name": "fitness room",
+			"inventory": "fitnessInv",
 			"descriptions": [
-				"short:It definatly looks like a space fitness room in here. There are lots of bungees for resistance strength training, and treadmills with elastics to pull you back down after your stride."
+				"short:It definitely looks like a space fitness room in here. /nThere are lots of bungees for strength training, and space treadmills."
 			],
 			"coords": "4.5,6.5,0.5"
 		},
@@ -174,7 +175,7 @@
 			"type": "room",
 			"name": "engine room",
 			"descriptions": [
-				"short:This appears to be the engineering part of the space station, where all the engineers make the thrusters work. This room might be useful to reenable the thrusters..."
+				"short:This appears to be the engineering part of the space station. /nThis room might be useful to re-enable the thrusters..."
 			],
 			"coords": "5.5,1.5,0.5"
 		},
@@ -189,7 +190,7 @@
 			"locked": "true",
 			"code": "engineroom",
 			"description": [
-				"short:This door appears to be blocking the way to the engine room. You might need a keycard to get in there to learn more about the thrusters..."
+				"short:This door appears to be blocking the way to the engine room. /nYou might need a keycard to enter and learn more about the thrusters..."
 			],
 			"coords": "5.5,3.0,0.5"
 		},
@@ -197,7 +198,7 @@
 			"type": "room",
 			"name": "north east control room",
 			"descriptions": [
-				"short:This is another part of the control room for the space station, the north east quadrant. There are more moniters in here, presumably for controlling life support. They are damaged, but still functional."
+				"short:North East Quadrant /nThis is another part of the control room for the space station. /nThere are more monitors in here, presumably for controlling life support. /nThey are damaged, but still functional."
 			],
 			"coords": "5.5,3.5,0.5"
 		}

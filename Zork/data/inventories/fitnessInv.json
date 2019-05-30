@@ -1,0 +1,37 @@
+{
+	"name": "fitnessInv",
+	"items": [
+		{
+			"type": "item",
+			"name": "green bungee",
+			"weight": "0.1",
+			"descriptions": [
+				"look:A stretchy green bungee cord, least resistance."
+			]
+		},
+		{
+			"type": "item",
+			"name": "yellow bungee",
+			"weight": "0.1",
+			"descriptions": [
+				"look:A stretchy yellow bungee cord, medium resistance."
+			]
+		},
+		{
+			"type": "item",
+			"name": "red bungee",
+			"weight": "0.1",
+			"descriptions": [
+				"look:A stretchy red bungee cord, most resistance."
+			]
+		},
+		{
+			"type": "item",
+			"name": "space treadmill",
+			"weight": "50.0",
+			"descriptions": [
+				"look: A large metal treadmill fitted with elastics to compensate for low gravity."
+			]
+		}
+	]
+}
