@@ -21,10 +21,8 @@ public class Game {
 
 	private static Parser parser = new Parser();
 	private static Player player;
-	private static boolean gameOver = false;//the current game
-	private static boolean isPlaying = true;//the overall game
-
-	private static ArrayList<String> characters;//WE NEED TO DO SOMETHING WITH THIS
+	private static boolean gameOver = false;// the current game
+	private static boolean isPlaying = true;// the overall game
 
 	private static final String PROMPT_ENTER = "~";
 	private static final String PROMPT_START_GAME = "`";
@@ -54,24 +52,18 @@ public class Game {
 
 	public static void play(String filePath) {
 		Game.initializeGame(filePath);
-		print(intro());
+		//print(intro());
 		while (isPlaying) {
-			for(int i = 0; i<characters.size(); i++) {
-				Character.getCharacter(characters.get(i)).move();
-			}
 			Character.moveAll();
 			System.out.println(Game.processCommand(parser.getCommand()));
-			
+
 			player.checkRoomDeath();
-			System.out.println(player.checkAirlockDeath());
-			System.out.println(player.checkDeath());
-			
-			print(checkSlidePuzzle());
-			
-			if(!gameOver)
-				System.out.println(displayTurn());
-			else {
-				if(isPlaying || Parser.playAgain()) {
+
+//			if (!gameOver)
+//				System.out.println(displayTurn());
+//			else {
+			if (gameOver) {
+				if (isPlaying || Parser.playAgain()) {
 					Game.initializeGame(filePath);
 					gameOver = false;
 					isPlaying = true;
@@ -81,10 +73,11 @@ public class Game {
 		}
 		print(outro());
 	}
+
 	public static void initializeGame(String filePath) {
 
-		parser = new Parser();
 		CommandWords.initialize();
+		parser = new Parser();
 		Preset.initialize();
 		Inventory.initialize();
 		Maps.initialize();
@@ -96,7 +89,7 @@ public class Game {
 
 		loadGame(filePath);
 	}
-	
+
 	public static String processCommand(Command cmd) {
 
 		if (cmd.getCommandWord() == null) {
@@ -171,7 +164,7 @@ public class Game {
 		if (runMethods.get(1) != null && runMethods.get(0) == null && interactableItems.size() == 0) {
 			return "Please be more specific.";
 		}
-		
+
 		if (runMethods.get(2) != null && interactableItems.size() != 2) {
 			return "Please be more specific.";
 		}
@@ -195,7 +188,7 @@ public class Game {
 				} else if (interactableItems.size() == 2) {
 					for (int j = 0; j < interactableItems.size() - 1; j++) {
 						ArrayList<Item> args = new ArrayList<Item>();
-						for(int k = j + 1; k < interactableItems.size(); k++) {
+						for (int k = j + 1; k < interactableItems.size(); k++) {
 							args.add(interactableItems.get(j));
 							args.add(interactableItems.get(k));
 							try {
@@ -204,7 +197,7 @@ public class Game {
 									| IndexOutOfBoundsException ea) {
 							}
 						}
-					}				
+					}
 				}
 			}
 		}
@@ -335,21 +328,20 @@ public class Game {
 		result += "\n\n" + credits();
 		return result;
 	}
-	
+
 	public static String credits() {
 		String result = "";
 		result += "Thank you for playing Space Zork." + PROMPT_ENTER;
 		result += "We hope you enjoyed." + PROMPT_ENTER;
 		result += "Ending statistics:\n" + Game.displayStatistics() + "" + PROMPT_ENTER;
-		result += "\n\nDevelopers:" + PROMPT_ENTER + "\tEthan Elbaz" + PROMPT_ENTER + "\tBen Merbaum"
-				+ PROMPT_ENTER + "\tNick Tong" + PROMPT_ENTER;
+		result += "\n\nDevelopers:" + PROMPT_ENTER + "\tEthan Elbaz" + PROMPT_ENTER + "\tBen Merbaum" + PROMPT_ENTER
+				+ "\tNick Tong" + PROMPT_ENTER;
 		result += "Space awaits you..." + PROMPT_ENTER;
 		result += "\n\"This is one small step for man..." + PROMPT_ENTER;
 		result += "\none giant leap for manking\"" + PROMPT_ENTER;
 		result += "\t- Neil Armstrong";
 		return result;
 	}
-	
 
 	public static String storyline() {
 		String result = "";
@@ -410,15 +402,15 @@ public class Game {
 				System.out.println(Parser.startGame());
 				continue;
 			}
-			
+
 			if (s.indexOf(ROCKET) != -1) {
 				System.out.print(s.substring(0, s.indexOf(ROCKET)));
 				Music.play(ROCKET);
 			}
-			
-			if(s.indexOf("SlidePuzzle.play()") != -1) {
+
+			if (s.indexOf("SlidePuzzle.play()") != -1) {
 				boolean gameWon = SlidePuzzle.play();
-				if(gameWon)
+				if (gameWon)
 					MapDisplay.display(player.getLocation().getMap());
 			}
 
@@ -426,10 +418,10 @@ public class Game {
 			Parser.pressAnyKey();
 		}
 	}
-	
+
 	public static String checkSlidePuzzle() {
 		String str = "";
-		if(player.getLocation().getRoom().getName().equals("map room")) {
+		if (player.getLocation().getRoom().getName().equals("map room")) {
 			str += "Press 'enter' to continue." + PROMPT_ENTER;
 			str += "Welcome to the Slide Puzzle Mini-Game." + PROMPT_ENTER;
 			str += "In front of you stands the Golden Map." + PROMPT_ENTER;
@@ -438,10 +430,10 @@ public class Game {
 			str += "Your opportunity to traverse the ship and finally make it out of space." + PROMPT_ENTER;
 			str += "\nAnd all you have to do" + PROMPT_ENTER;
 			str += "Is defeat this Slide Puzzle." + PROMPT_ENTER;
-			
+
 			str += "\nHOW TO PLAY";
 			str += "\n-----------" + PROMPT_ENTER;
-			
+
 			str += "UP: 'w'" + PROMPT_ENTER;
 			str += "DOWN: 's'" + PROMPT_ENTER;
 			str += "LEFT: 'a'" + PROMPT_ENTER;
@@ -450,12 +442,13 @@ public class Game {
 			str += "To shuffle, type 'shuffle'." + PROMPT_ENTER;
 			str += "\nOrder the numbers in row-major order to win." + PROMPT_ENTER;
 			str += "Achieve this, and the Golden Map is all yours." + PROMPT_ENTER;
-			str +=  "Ready?" + PROMPT_START_GAME;
+			str += "Ready?" + PROMPT_START_GAME;
 			str += "SlidePuzzle.play()";
 		}
 		return str;
-		
+
 	}
+
 	public static void die() {
 		Game.setGameOver(false);
 		String result = "";

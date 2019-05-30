@@ -49,7 +49,7 @@ public class CommandWords {
 				int wordsInCommand = currentCommand.split(" ").length;
 				if (wordsInCommand > maxWordsInCommand) {
 					maxWordsInCommand = wordsInCommand; // setting max words in command
-				}
+				}	
 				validCommands[i].add(currentCommand);
 			}
 		}

@@ -181,10 +181,16 @@ public class Item implements Comparable<Item> {
 //		return inventory.getItem(name);
 //	}
 
-	public static Item loadItem(JSONObject jObj) {
+	public static Item loadItem(JSONObject jObj) throws JSONException {
 		try {
 			String presetName = jObj.getString("preset"); // checking for preset
-			Item preset = Item.clone(Preset.get(presetName)); // getting preset
+			Item preset = Preset.get(presetName); // getting preset
+			try {
+				preset = Item.clone(preset);
+			} catch (NullPointerException e) {
+				System.out.println("Error with " + presetName);
+				e.printStackTrace();
+			}
 			if (preset instanceof Room) { // finding inventory and overriding preset inventory
 				try { 
 					String invName = jObj.getString("inventory"); // attempting to find inventory
@@ -264,7 +270,7 @@ public class Item implements Comparable<Item> {
 		
 		if (type.equals("Door")) {
 			String keycode = "";
-			Door d;
+			Door d = null;
 
 			try {
 				keycode = jObj.getString("code");

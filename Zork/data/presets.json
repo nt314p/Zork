@@ -6,6 +6,10 @@
 		},
 		{
 			"type": "wall",
+			"name": "default-wall"
+		},
+		{
+			"type": "wall",
 			"name": "steel wall",
 			"descriptions": [
 				"look:You see the industrial steel wall of the space station."
@@ -98,6 +102,7 @@
 		{
 			"type": "door",
 			"name": "hatch",
+			"open": "false",
 			"descriptions": [
 				"short:It is a steel hatch that looks like it can be opened."
 			]
