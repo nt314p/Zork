@@ -43,9 +43,8 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 
 	public Inventory getInteractableItems() {
 		Inventory i = new Inventory();
-		HashMap<java.lang.Character, Coordinate> cc = new HashMap<java.lang.Character, Coordinate>();
 		Map m = getLocation().getMap();
-		cc = m.getSurroundingSideCoords(getLocation().getCoords());
+		HashMap<java.lang.Character, Coordinate> cc = m.getSurroundingSideCoords(getLocation().getCoords());
 
 		for (char dir : Map.LETTER_AXES) {
 			Side s = m.getNextSide(dir, getLocation().getCoords());

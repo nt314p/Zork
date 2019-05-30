@@ -452,7 +452,7 @@ public class Game {
 	public static void die() {
 		Game.setGameOver(false);
 		String result = "";
-		result += "Noooo, don't die...\n" + PROMPT_ENTER;
+		result += "Noooo, don't die... (press enter)\n" + PROMPT_ENTER;
 		result += "You're too young for this...\n" + PROMPT_ENTER;
 		result += "Your family misses you...\n" + PROMPT_ENTER;
 		result += "Please don't fade away...\n" + PROMPT_ENTER;

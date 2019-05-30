@@ -19,6 +19,8 @@ public class CommandWords {
 	private static final String commandFile = "data/main_command_words.txt";
 	private static FileReader fReader = new FileReader(commandFile);
 	
+	private static final int [] COMMAND_WORDS_BREAKS = {7,11,18,21,26,32};
+	
 	private static int maxWordsInCommand = 0;
 
 	/**
@@ -86,11 +88,16 @@ public class CommandWords {
 			String s = validCommands[i].get(0);
 			
 			for(int j = 1; j<s.length(); j++) {
-				if(s.charAt(j)>='A' && s.charAt(j)<= 'Z')
+				if(s.charAt(j)>='A' && s.charAt(j)<= 'Z') {
 					s = s.substring(0,j) + " " + s.substring(j);
+					j++;
+				}
+				
 			}
 			
-			s = s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
+			s = s.substring(0, 1).toUpperCase() + s.substring(1);
+			if(isCommandWordBreak(i))
+				s = "\n" + s;
 			String d = validCommands[i].get(validCommands[i].size() - 1);
 			result += s + ": " + d + "\n";// get main command word only
 		}
@@ -102,5 +109,13 @@ public class CommandWords {
 	 */
 	public static int getMaxWordsInCommand() {
 		return maxWordsInCommand;
+	}
+	
+	public static boolean isCommandWordBreak(int num) {
+		for(int i:COMMAND_WORDS_BREAKS) {
+			if(i == num)
+				return true;
+		}
+		return false;
 	}
 }
