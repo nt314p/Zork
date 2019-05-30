@@ -130,6 +130,76 @@
 				"short:This is the electrical room of the space station. There are lots of panels and some electrical equipment in here."
 			],
 			"coords": "3.5,6.5,0.5"
+		},
+				{
+			"type": "door",
+			"name": "electrical room door",
+			"open": "false",
+			"locked": "true",
+			"code": "electricalroom",
+			"description": [
+				"short:There is a lock on the door to the elecrtical room. You might need a keycard to get in."
+			],
+			"coords": "4.0,6.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "north west control room",
+			"descriptions": [
+				"short:This appears to be part of the control room for the space station, the north west quadrant. There are lots of broken moniters in here, all with red Xs..."
+			],
+			"coords": "4.5,3.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "south west control room",
+			"descriptions": [
+				"short:This is another part of the control room for the space station, the south west quadrant. There are lots of weapon moniters in here. Curiously, they are fully functional and unharmed."
+			],
+			"coords": "4.5,4.5,0.5"
+		},
+		{
+			"preset": "Corridor",
+			"coords": "4.5,5.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "fitness room",
+			"descriptions": [
+				"short:It definatly looks like a space fitness room in here. There are lots of bungees for resistance strength training, and treadmills with elastics to pull you back down after your stride."
+			],
+			"coords": "4.5,6.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "engine room",
+			"descriptions": [
+				"short:This appears to be the engineering part of the space station, where all the engineers make the thrusters work. This room might be useful to reenable the thrusters..."
+			],
+			"coords": "5.5,1.5,0.5"
+		},
+		{
+			"preset": "Corridor",
+			"coords": "5.5,2.5,0.5"
+		},
+		{
+			"type": "door",
+			"name": "engine room door",
+			"open": "false",
+			"locked": "true",
+			"code": "engineroom",
+			"description": [
+				"short:This door appears to be blocking the way to the engine room. You might need a keycard to get in there to learn more about the thrusters..."
+			],
+			"coords": "5.5,3.0,0.5"
+		},
+		{
+			"type": "room",
+			"name": "north east control room",
+			"descriptions": [
+				"short:This is another part of the control room for the space station, the north east quadrant. There are more moniters in here, presumably for controlling life support. They are damaged, but still functional."
+			],
+			"coords": "5.5,3.5,0.5"
 		}
 	]
 }
