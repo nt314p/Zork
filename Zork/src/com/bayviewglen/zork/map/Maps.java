@@ -90,6 +90,7 @@ public class Maps {
 		Room defaultRoom = null;
 		Side defaultBorder = null;
 		Side defaultGround = null;
+		Side defaultTop = null;
 		
 		if (obj.has("default-side-vertical")) {
 			defaultSideV = (Side) Item.loadItem(obj.getJSONObject("default-side-vertical"));
@@ -148,6 +149,18 @@ public class Maps {
 				for (int j = 1; j < tempMap.getMap()[0].length; j += 2) { // y
 						defaultGround.setLocation(new Location(mapName, new Coordinate(i, j, 0, true)));
 						tempMap.getMap()[i][j][0] = (Place) Item.clone(defaultGround);
+				}
+			}
+		}
+		
+		if (obj.has("default-top")) {
+			defaultTop = (Side) Item.loadItem(obj.getJSONObject("default-top"));
+			int zee = tempMap.getMap()[0][0].length - 1;
+			
+			for (int i = 1; i < tempMap.getMap().length; i += 2) { // x
+				for (int j = 1; j < tempMap.getMap()[0].length; j += 2) { // y
+						defaultGround.setLocation(new Location(mapName, new Coordinate(i, j, zee, true)));
+						tempMap.getMap()[i][j][zee] = (Place) Item.clone(defaultTop);
 				}
 			}
 		}

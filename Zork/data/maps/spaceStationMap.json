@@ -6,6 +6,12 @@
 	"default-border": {
 		"preset": "steel wall"
 	},
+	"default-ground": {
+		"preset": "plexiglass window"
+	},
+	"default-top": {
+		"preset": "plexiglass window"
+	},
 	"places": [
 		{
 			"type": "room",
