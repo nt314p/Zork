@@ -131,7 +131,7 @@
 			],
 			"coords": "3.5,6.5,0.5"
 		},
-				{
+		{
 			"type": "door",
 			"name": "electrical room door",
 			"open": "false",
@@ -145,6 +145,7 @@
 		{
 			"type": "room",
 			"name": "north west control room",
+			"inventory": "nwControlRoomInv",
 			"descriptions": [
 				"short:This appears to the North West Control Room for the space station. There are lots of broken monitors in here, all marked with red Xs..."
 			],
@@ -153,6 +154,7 @@
 		{
 			"type": "room",
 			"name": "south west control room",
+			"inventory": "swControlRoomInv",
 			"descriptions": [
 				"short:This is the South West Control Room. There are lots of weapon monitors in here. Curiously, they are fully functional and unharmed."
 			],
@@ -197,6 +199,7 @@
 		{
 			"type": "room",
 			"name": "north east control room",
+			"inventory": "neControlRoomInv",
 			"descriptions": [
 				"short:This is the North East Control Room. There are more monitors in here, presumably for controlling life support. They are damaged, but still functional."
 			],
@@ -205,6 +208,7 @@
 		{
 			"type": "room",
 			"name": "south east control room",
+			"inventory": "seControlRoomInv",
 			"descriptions": [
 				"short:This is the South East Control Room. There is a big screen on the wall, it used to be used for displaying what the station's sensors detect, but it is too heavily damaged to be used."
 			],
@@ -213,6 +217,7 @@
 		{
 			"type": "room",
 			"name": "washroom",
+			"inventory": "washroomInv",
 			"descriptions": [
 				"short:It looks like a washroom in here. There appears to be a cupboard with some first aid materials in it."
 			],
@@ -233,6 +238,7 @@
 		{
 			"type": "room",
 			"name": "sketchy spacesuit room",
+			"inventory": "dmgSpacesuitInv",
 			"description": [
 				"short:This room looks like it used to be one of the spacesuit rooms of the space station. However, everything in here looks somewhat damaged..."
 			],
@@ -262,10 +268,6 @@
 			"preset": "hatch",
 			"coords": "0.5,6.0,0.5"
 		},
-		
-		
-		
-		
 		{
 			"type": "room",
 			"name": "level 2 corridor",
@@ -274,21 +276,19 @@
 			],
 			"coords": "2.5,4.5,1.5"
 		},
-		
-		
-		
-		
 		{
 			"type": "room",
 			"name": "washroom",
+			"inventory": "washroomInv",
 			"descriptions": [
-				"short:It looks like a washroom in here. There appears to be a cupboard with some first aid materials in it, maybe some gloves too."
+				"short:It looks like a washroom in here. There appears to be a shelf with some first aid materials in it."
 			],
 			"coords": "1.5,6.5,2.5"
 		},
 		{
 			"type": "room",
 			"name": "spacesuit room",
+			"inventory": "spacesuitInv",
 			"description": [
 				"short:This is the spacesuit room of the space station. Most of the spacesuits appear to be undamaged and functional."
 			],
@@ -297,8 +297,9 @@
 		{
 			"type": "room",
 			"name": "west sleeping quarters",
+			"inventory": "sleepingInv",
 			"description": [
-				"short:These used to be the sleeping quarters for the crew of the space station. All the beds look like they've never been used in a hundred years. Judging by what you saw in the hibernation room, nobody will be needing them."
+				"short:These used to be the sleeping quarters for the crew of the space station. All the beds look like they've never been used in a hundred years..."
 			],
 			"coords": "2.5,2.5,2.5"
 		},
@@ -333,6 +334,7 @@
 			],
 			"coords": "2.5,5.5,2.5"
 		},
+		{
 			"type": "room",
 			"name": "viewing room",
 			"descriptions": [
