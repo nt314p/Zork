@@ -52,6 +52,7 @@ public class Game {
 
 	public static void play(String filePath) {
 		Game.initializeGame(filePath);
+		MapDisplay.display("Space Station");
 		//print(intro());
 		while (isPlaying) {
 			Character.moveAll();
@@ -134,7 +135,6 @@ public class Game {
 
 		String[] classNames = { "main.Game", "main.Player", "main.Character", "map.Door" }; // where the methods can
 																							// run?
-
 		for (String className : classNames) {
 			Class tempCls = null;
 			try {
@@ -154,28 +154,32 @@ public class Game {
 		if (cls == null) {
 			return Game.getRandom(failedCommands);
 		}
-		if (runMethods.get(1) != null) {
+		
+		String simpleName = cls.getSimpleName();
+		
+		if (runMethods.get(1) != null && !simpleName.equals("Door")) {
 			Class<Item>[] paramTypes = (Class<Item>[]) runMethods.get(1).getParameterTypes();
-			interactableItems = parser.filterItems(interactableItems, paramTypes);
+			interactableItems = parser.filterItems(interactableItems, paramTypes, false);
 		}
 
-		if (cls.getSimpleName().equals("Door")) {
+		if (simpleName.equals("Door")) {
 			Class<Item>[] doorClsArr = new Class[1];
 			doorClsArr[0] = cls;
-			ArrayList<Item> commandableItems = parser.filterItems(interactableItems, doorClsArr);
+			ArrayList<Item> commandableItems = parser.filterItems(interactableItems, doorClsArr, false);
 
 			if (commandableItems.size() != 1) { // there should only be one door
 				return "Please be more specific.";
 			}
 
 			instance = commandableItems.get(0);
+			interactableItems = parser.filterItems(interactableItems, new Class[]{Door.class}, true);
 		}
 
-		if (cls.getSimpleName().equals("Player")) {
+		if (simpleName.equals("Player")) {
 			instance = player;
 		}
 
-		if (cls.getSimpleName().equals("Game")) {
+		if (simpleName.equals("Game")) {
 			instance = null;
 		}
 
@@ -433,7 +437,7 @@ public class Game {
 			if (s.indexOf("SlidePuzzle.play()") != -1) {
 				boolean gameWon = SlidePuzzle.play();
 				if (gameWon)
-					MapDisplay.display(player.getLocation().getMap());
+					MapDisplay.display(player.getLocation().getMap().getName());
 			}
 
 			System.out.print(s);

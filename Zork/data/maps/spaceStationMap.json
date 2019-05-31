@@ -55,7 +55,7 @@
 		},
 		{
 			"type": "door",
-			"name": "pantry door",
+			"name": "steel door",
 			"open": "false",
 			"locked": "true",
 			"code": "pantry",
@@ -105,7 +105,7 @@
 		},
 		{
 			"type": "door",
-			"name": "level 2 door",
+			"name": "steel door",
 			"open": "false",
 			"locked": "true",
 			"code": "lvl2",
@@ -137,7 +137,7 @@
 		},
 		{
 			"type": "door",
-			"name": "electrical room door",
+			"name": "steel door",
 			"open": "false",
 			"locked": "true",
 			"code": "electricalroom",
@@ -192,7 +192,7 @@
 		},
 		{
 			"type": "door",
-			"name": "engine room door",
+			"name": "steel door",
 			"open": "false",
 			"locked": "true",
 			"code": "engineroom",
@@ -274,11 +274,6 @@
 			"preset": "hatch",
 			"coords": "0.5,6.0,0.5"
 		},
-		
-		
-		
-		
-		
 		{
 			"type": "room",
 			"name": "level 2 corridor",
@@ -287,11 +282,6 @@
 			],
 			"coords": "2.5,4.5,1.5"
 		},
-		
-		
-		
-		
-		
 		{
 			"type": "room",
 			"name": "washroom",
@@ -312,7 +302,7 @@
 		},
 		{
 			"type": "door",
-			"name": "spacesuit room door",
+			"name": "steel door",
 			"open": "false",
 			"locked": "true",
 			"code": "spacesuitroom",
@@ -344,7 +334,7 @@
 		},
 		{
 			"type": "door",
-			"name": "escape pod door",
+			"name": "steel door",
 			"open": "false",
 			"locked": "true",
 			"code": "escapepod",
@@ -432,7 +422,7 @@
 		},
 		{
 			"type": "door",
-			"name": "second engine room door",
+			"name": "steel door",
 			"open": "false",
 			"locked": "true",
 			"code": "engineroom2",

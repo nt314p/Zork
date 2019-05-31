@@ -19,40 +19,51 @@ public class Parser {
 	private static Scanner scanner = new Scanner(System.in);
 
 	public Parser() {
-		
+
 	}
-	
-	public ArrayList<Item> filterItems(ArrayList<Item> items, Class<Item>[] classes) {
-		
+
+	public ArrayList<Item> filterItems(ArrayList<Item> items, Class<Item>[] classes, boolean invert) {
+
 		ArrayList<Item> temp = new ArrayList<Item>();
-		
+
 		for (Item i : items) {
 			temp.add(i);
 		}
-		
-		for (int i = 0; i < items.size(); i++) {
-			int removeIndex = i;
-			for (Class<Item> cls : classes) {
-				try { // is the item one of the class types
-					cls.cast(items.get(i)); // cast attempt
-					removeIndex = -1; // cast successful, don't remove from items
-				} catch (ClassCastException e) {
-					
+
+		for (int i = 0; i < temp.size(); i++) {
+			if (!invert) {
+				int removeIndex = i;
+				for (Class<Item> cls : classes) {
+					try { // is the item one of the class types
+						cls.cast(temp.get(i)); // cast attempt
+						removeIndex = -1; // cast successful, don't remove from items
+					} catch (ClassCastException e) {
+
+					}
+				}
+				if (removeIndex != -1) {
+					temp.remove(removeIndex); // item type doesn't match class type
+				}
+			} else {
+				for (Class<Item> cls : classes) {
+					try { // is the item one of the class types
+						cls.cast(temp.get(i)); // cast attempt
+						temp.remove(i); // cast successful, invert true, remove from items
+					} catch (ClassCastException e) {
+
+					}
 				}
 			}
-			if (removeIndex != -1) {
-				items.remove(removeIndex); // item type doesn't match class type
-			}
 		}
-		
-		return items;
+
+		return temp;
 	}
-	
+
 	public ArrayList<Item> parseItems(ArrayList<Item> items, String str) {
 
 		String[] words = str.split("\\W");
 		ArrayList<Item> matches = new ArrayList<Item>();
-		
+
 		for (int i = 0; i < items.size(); i++) { // iterating over items
 			Item item = items.get(i);
 			for (int j = 0; j < words.length; j++) { // iterating over words
@@ -67,9 +78,9 @@ public class Parser {
 
 					if (item.getName().compareToIgnoreCase(matchName) == 0) { // does the name match
 						matches.add(item); // adding item to the matching items
-						matchName = "";          // because it was mentioned in the string
+						matchName = ""; // because it was mentioned in the string
 						j += k; // skipping over j because word was added
-						i++; // incrementing 
+						i++; // incrementing
 						found = true;
 						break;
 					}
@@ -114,11 +125,13 @@ public class Parser {
 				commandPhrase += " ";
 			}
 			commandPhrase += words[i - 1]; // add the next word in the input
-			
+
 			String tmpCommand = CommandWords.isCommand(commandPhrase);
 			if (tmpCommand != null) {
-				// a command match is found, set the main command to the match, but do not exit loop
-				// this allows the program to match as many words as possible ("give up" overrides "give")
+				// a command match is found, set the main command to the match, but do not exit
+				// loop
+				// this allows the program to match as many words as possible ("give up"
+				// overrides "give")
 				paramStartIndex = i;
 				mainCommand = tmpCommand;
 			}
@@ -131,7 +144,6 @@ public class Parser {
 		for (int i = paramStartIndex; i < words.length; i++) {
 			params.add(words[i]);
 		}
-		
 
 		// returning command object, casting params to an array of strings
 		return new Command(mainCommand, params.toArray(new String[params.size()]));
@@ -143,21 +155,21 @@ public class Parser {
 	public void showCommands() {
 		CommandWords.showAll();
 	}
-	
+
 	public static void pressAnyKey() {
 		scanner.nextLine();
 	}
-	
+
 	public static String startGame() {
 		String temp = scanner.nextLine();
-		if(temp != null && temp.length() > 0 && temp.substring(0,1).equalsIgnoreCase("y"))
+		if (temp != null && temp.length() > 0 && temp.substring(0, 1).equalsIgnoreCase("y"))
 			return "You'll be regretting that soon. Let's play!";
 		else
 			return "I don't care what you say anyways. Let's play!";
 	}
-	
+
 	public static boolean playAgain() {
-		System.out.print("Would you like to play again?" );
+		System.out.print("Would you like to play again?");
 		String temp = scanner.nextLine();
 		return temp != null && temp.length() > 0 && temp.substring(0, 1).equalsIgnoreCase("y");
 	}

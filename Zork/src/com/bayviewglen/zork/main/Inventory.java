@@ -77,7 +77,7 @@ public class Inventory {
 	public ArrayList<Item> toArrayList() {
 		Item[] temp = new Item[items.size()];
 		for (int i = 0; i < temp.length; i++) {
-			temp[i] = Item.clone(items.get(i));
+			temp[i] = items.get(i);
 		}
 		ArrayList<Item> tempTwo = new ArrayList<Item>();
 		for (Item item : temp) {

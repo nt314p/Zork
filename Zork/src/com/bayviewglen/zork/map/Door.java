@@ -3,6 +3,7 @@ package com.bayviewglen.zork.map;
 import java.util.HashMap;
 
 import com.bayviewglen.zork.command.DoorCommands;
+import com.bayviewglen.zork.item.Key;
 import com.bayviewglen.zork.main.Music;
 
 public class Door extends Side implements DoorCommands{
@@ -87,11 +88,11 @@ public class Door extends Side implements DoorCommands{
 		return getName() + " cannot be locked because there is no key to unlock it.";
 	}
 	
-	public String unlock(String keycode) {
+	public String unlock(Key key) {
 		if(!locked)
 			return getName() + " is already unlocked";
 		
-		if(this.keycode.equals(keycode)) {
+		if(this.keycode.equals(key.getCode())) {
 			locked = false;
 			return getName() + " is successfully unlocked.";
 		}

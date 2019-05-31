@@ -45,7 +45,7 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 		for (char dir : Map.LETTER_AXES) {
 			Side s = m.getNextSide(dir, getLocation().getCoords());
 			if (s != null) {
-				i.add(Item.clone(s));
+				i.add(s);
 			}
 		}
 
