@@ -1,0 +1,50 @@
+{
+	"name": "neControlRoomInv",
+	"items": [
+		{
+			"type": "item",
+			"name": "table",
+			"weight": "10.0",
+			"descriptions": [
+				"look:A nice wooden table.",
+				"location:on the ground"
+			]
+		},
+		{
+			"type": "item",
+			"name": "water monitor",
+			"weight": "1.0",
+			"descriptions": [
+				"look:This monitor is labeled hydration levels...",
+				"location:on the table"
+			]
+		},
+		{
+			"type": "item",
+			"name": "food monitor",
+			"weight": "1.0",
+			"descriptions": [
+				"look:This monitor is labeled nutrition levels...",
+				"location:on the table"
+			]
+		},
+		{
+			"type": "item",
+			"name": "life monitor",
+			"weight": "1.0",
+			"descriptions": [
+				"look:This monitor is labeled vitals... It is the only one that isn't covered in dust...",
+				"location:on the table"
+			]
+		},
+		{
+			"type": "item",
+			"name": "chair",
+			"weight": "1.5",
+			"descriptions": [
+				"look:It appears to be a comfy desk chair... With wheels!!!",
+				"location:on the floor"
+			]
+		}
+	]
+}

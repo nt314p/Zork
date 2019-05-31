@@ -219,7 +219,7 @@
 			"name": "washroom",
 			"inventory": "washroomInv",
 			"descriptions": [
-				"short:It looks like a washroom in here. There appears to be a cupboard with some first aid materials in it."
+				"short:It looks like a washroom in here. There appears to be a cupboard with some stuff in it."
 			],
 			"coords": "5.5,6.5,0.5"
 		},
@@ -338,9 +338,108 @@
 			"type": "room",
 			"name": "viewing room",
 			"descriptions": [
-				"short:This room has lots of windows in it. All you can see. It looks mostly intact, but there is only enough fuel in it to land it from orbit, and there is no obvious way to refuel it. You will get stranded if you use it in deep space."
+				"short:This room has lots of windows in it. All you can see are millions of stars very far away. The crate on the ground looks somewhat suspicious..."
 			],
-			"coords": "2.5,5.5,2.5"
+			"coords": "3.5,0.5,2.5"
+		},
+		{
+			"preset": "corridor",
+			"coords": "3.5,1.5,2.5"
+		},	
+		{
+			"type": "room",
+			"name": "east sleeping quarters",
+			"description": [
+				"short:These used to be the sleeping quarters for the crew of the space station. All the beds look like they've never been used in a hundred years. Judging by what you saw in the hibernation room, nobody will be needing them."
+			],
+			"coords": "3.5,2.5,2.5"
+		},
+		{
+			"preset": "corridor",
+			"coords": "4.5,2.5,2.5"
+		},	
+		{
+			"type": "room",
+			"name": "Radial Thruster",
+			"description": [
+				"short:The fuel and oxygen tanks look to be empty. They need to be filled in order to work..."
+			],
+			"coords": "5.5,0.5,2.5"
+		},
+		{
+			"preset": "corridor",
+			"coords": "5.5,1.5,2.5"
+		},	
+		{
+			"type": "room",
+			"name": "science lab west",
+			"description": [
+				"short:This looks like part of the science lab of the space station. There is scientific equipment everywhere in here, but most of it is damaged and not functional."
+			],
+			"coords": "5.5,2.5,2.5"
+		},
+		{
+			"preset": "corridor",
+			"coords": "5.5,3.5,2.5"
+		},
+		{
+			"type": "room",
+			"name": "observation deck",
+			"descriptions": [
+				"short:This room has more of windows in it. All you can see are millions of stars very far away. There are some moniters for exterior scanners, but they are all broken."
+			],
+			"coords": "5.5,4.5,2.5"
+		},
+		{
+			"type": "room",
+			"name": "science lab east",
+			"description": [
+				"short:This looks like the other part of the science lab of the space station. There are lots of plants behind windows in here. There used to be lots of experiments being carried out on them, but now they are all overgrown."
+			],
+			"coords": "6.5,2.5,2.5"
+		},
+		{
+			"preset": "corridor",
+			"coords": "7.5,3.5,2.5"
+		},
+		{
+			"type": "door",
+			"name": "second engine room door",
+			"open": "false",
+			"locked": "true",
+			"code": "engineroom2",
+			"description": [
+				"short:The door to the second engineering room and the oxygen room appears to be broken. You need an axe or something to break through it..."
+			],
+			"coords": "7.0,2.5,2.5"
+		},
+		{
+			"type": "room",
+			"name": "music room",
+			"description": [
+				"short:There is a jukebox and a record player in here, and it looks like some crew recreation was done in here. You have it all to yourself now, with no arguments over what song to play."
+			],
+			"coords": "8.5,1.5,2.5"
+		},
+		{
+			"type": "room",
+			"name": "engine room",
+			"descriptions": [
+				"short:This appears to be another engineering part of the space station. There are lots of moniters and equipment in here regulating the thrusters. They all appear to be broken except for one, which says that the thrusters are out of fuel and oxygen and badly damaged, but still functional."
+			],
+			"coords": "8.5,2.5,2.5"
+		},
+		{
+			"preset": "corridor",
+			"coords": "8.5,3.5,2.5"
+		},
+		{
+			"type": "room",
+			"name": "oxygen room",
+			"descriptions": [
+				"short:There is an oxygen reclaimer in here, as well as a mysterious piece of equipment that says 'space oxygen collecter'."
+			],
+			"coords": "8.5,4.5,2.5"
 		}
 	]
 }

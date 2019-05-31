@@ -1,0 +1,35 @@
+{
+	"name": "washroomInv",
+	"items": [
+		{
+			"type": "health",
+			"name": "first aid kit",
+			"health": "4.0",
+			"weight": "2.0",
+			"descriptions": [
+				"look:It appears to be a first aid kit with a label.",
+				"read:Boo Boo Box",
+				"location:on the shelf"
+			]
+		},
+		{
+			"type": "health",
+			"name": "band-aid box",
+			"health": "2.0",
+			"weight": "1.0",
+			"descriptions": [
+				"look:It appears to be a small box of band-aids.",
+				"location:on the shelf"
+			]
+		},
+		{
+			"type": "item",
+			"name": "space toilet",
+			"weight": "20.0",
+			"descriptions": [
+				"look: It appears to be a regular toilet attached to a tube with extreme suction power."
+				"location:on the ground"
+			]
+		}
+	]
+}

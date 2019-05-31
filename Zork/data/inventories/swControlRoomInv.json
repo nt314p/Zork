@@ -1,0 +1,41 @@
+{
+	"name": "swControlRoomInv",
+	"items": [
+		{
+			"type": "item",
+			"name": "metal table",
+			"weight": "20.0",
+			"descriptions": [
+				"look:A cold steel table.",
+				"location:on the ground"
+			]
+		},
+		{
+			"type": "item",
+			"name": "weapon monitor",
+			"weight": "50.0",
+			"descriptions": [
+				"look:A weapons monitor is bolted to the table. Somebody doesn't want you touching it...",
+				"location:on the table"
+			]
+		},
+		{
+			"type": "item",
+			"name": "weapon monitor",
+			"weight": "50.0",
+			"descriptions": [
+				"look:A weapons monitor is bolted to the table. Somebody doesn't want you touching it...",
+				"location:on the table"
+			]
+		},
+		{
+			"type": "item",
+			"name": "weapon monitor",
+			"weight": "50.0",
+			"descriptions": [
+				"look:A weapons monitor is bolted to the table. Somebody doesn't want you touching it...",
+				"location:on the table"
+			]
+		}
+	]
+}

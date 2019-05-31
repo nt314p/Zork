@@ -101,7 +101,7 @@
 			"name": "pita",
 			"weight": "0.2",
 			"food": "0.5",
-			"descriptiions": [
+			"descriptions": [
 				"look:It looks like some sort of flatbread."
 			]
 		}

@@ -1,0 +1,41 @@
+{
+	"name": "nwControlRoomInv",
+	"items": [
+		{
+			"type": "item",
+			"name": "table",
+			"weight": "10.0",
+			"descriptions": [
+				"look:A heavy metal table.",
+				"location:on the ground"
+			]
+		},
+		{
+			"type": "item",
+			"name": "monitor X",
+			"weight": "1.0",
+			"descriptions": [
+				"look:A broken monitor marked with a red X. Be carefull of the glass...",
+				"location:on the table"
+			]
+		},
+		{
+			"type": "item",
+			"name": "monitor X",
+			"weight": "1.0",
+			"descriptions": [
+				"look:A broken monitor marked with a red X. Be carefull of the glass...",
+				"location:on the table"
+			]
+		},
+		{
+			"type": "item",
+			"name": "monitor X",
+			"weight": "1.0",
+			"descriptions": [
+				"look:A broken monitor marked with a red X. Be carefull of the glass...",
+				"location:on the table"
+			]
+		}
+	]
+}

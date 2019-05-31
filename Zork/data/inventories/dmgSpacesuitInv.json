@@ -1,0 +1,41 @@
+{
+	"name": "dmgSpacesuitInv",
+	"items": [
+		{
+			"type": "item",
+			"name": "damaged spacesuit",
+			"weight": "3.0",
+			"descriptions": [
+				"look:This spacesuit has some tears in it...",
+				"location:on a hook"
+			]
+		},
+		{
+			"type": "item",
+			"name": "smashed spacesuit",
+			"weight": "2.0",
+			"descriptions": [
+				"look:This spacesuit's helmet has been smashed in...",
+				"location:on a hook"
+			]
+		},
+		{
+			"type": "item",
+			"name": "damaged spacesuit",
+			"weight": "3.0",
+			"descriptions": [
+				"look:It looks like some pumps have been cut on this spacesuit...",
+				"location:on a hook"
+			]
+		},
+		{
+			"type": "item",
+			"name": "smashed spacesuit",
+			"weight": "2.0",
+			"descriptions": [
+				"look:This spacesuit's helmet has been smashed in...",
+				"location:on a hook"
+			]
+		}
+	]
+}

@@ -1,0 +1,50 @@
+{
+	"name": "spacesuitInv",
+	"items": [
+		{
+			"type": "item",
+			"name": "spacesuit",
+			"weight": "5.0",
+			"descriptions": [
+				"look:A fully functional spacesuit",
+				"location:on a hook"
+			]
+		},
+		{
+			"type": "item",
+			"name": "spacesuit",
+			"weight": "5.0",
+			"descriptions": [
+				"look:A fully functional spacesuit",
+				"location:on a hook"
+			]
+		},
+		{
+			"type": "item",
+			"name": "spacesuit",
+			"weight": "5.0",
+			"descriptions": [
+				"look:A fully functional spacesuit",
+				"location:on a hook"
+			]
+		},
+		{
+			"type": "item",
+			"name": "damaged spacesuit",
+			"weight": "3.0",
+			"descriptions": [
+				"look:This spacesuit has multiple stab marks forming a bloody red X...",
+				"location:on a hook"
+			]
+		},
+		{
+			"type": "item",
+			"name": "smashed spacesuit",
+			"weight": "2.0",
+			"descriptions": [
+				"look:This spacesuit's helmet has been smashed in...",
+				"location:on a hook"
+			]
+		}
+	]
+}

@@ -1,0 +1,40 @@
+{
+	"name": "sleepingInv",
+	"items": [
+		{
+			"type": "item",
+			"name": "bed",
+			"weight": "20.0",
+			"descriptions": [
+				"look:It looks like a bed bolted against the wall.",
+				"location:on the ground"
+			]
+		},
+		{
+			"type": "item",
+			"name": "mattress",
+			"weight": "1.5",
+			"descriptions": [
+				"look:A soft thin mattress.",
+				"location:on the bed"
+			]
+		},
+		{
+			"type": "item",
+			"name": "pillow",
+			"weight": "0.2",
+			"descriptions": [
+				"look:A nice fluffy pillow. Who knew space life was so comfy!",
+				"location:on the mattress"
+			]
+		},
+		{
+			"type": "item",
+			"name": "blanket",
+			"weight": "0.2",
+			"descriptions": [
+				"look:A warm fuzzy blanket. Want to live here yet?"
+			]
+		}
+	]
+}

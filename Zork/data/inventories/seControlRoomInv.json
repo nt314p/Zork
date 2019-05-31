@@ -1,0 +1,33 @@
+{
+	"name": "seControlRoomInv",
+	"items": [
+		{
+			"type": "item",
+			"name": "table",
+			"weight": "10.0",
+			"descriptions": [
+				"look:A nice wooden table.",
+				"location:on the ground"
+			]
+		},
+		{
+			"type": "item",
+			"name": "television",
+			"weight": "1.0",
+			"descriptions": [
+				"look:A smashed flat-screen TV... No more 4K... ",
+				"location:on the table"
+			]
+		},
+		{
+			"type": "item",
+			"name": "chair",
+			"weight": "1.5",
+			"descriptions": [
+				"look:It appears to be a comfy black office chair... With wheels!!!",
+				"location:on the ground"
+				
+			]
+		}
+	]
+}
