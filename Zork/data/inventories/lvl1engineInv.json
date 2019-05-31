@@ -10,6 +10,16 @@
 				"look:A small card with a magnetic barcode on the back and 'electrical' written on it",
 				"location:on a desk"
 			]
+		},
+		{
+			"type": "key",
+			"name": "fire axe",
+			"weight": "2",
+			"code": "engineroom2",
+			"descriptions": [
+				"look:A sturdy axe that can be used to break through some light debris",
+				"location:in a case"
+			]
 		}
 	]
 }

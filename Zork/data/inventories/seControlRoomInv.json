@@ -13,7 +13,7 @@
 		{
 			"type": "item",
 			"name": "television",
-			"weight": "1.0",
+			"weight": "10.0",
 			"descriptions": [
 				"look:A smashed flat-screen TV... No more 4K... ",
 				"location:on the table"
@@ -22,11 +22,21 @@
 		{
 			"type": "item",
 			"name": "chair",
-			"weight": "1.5",
+			"weight": "5",
 			"descriptions": [
 				"look:It appears to be a comfy black office chair... With wheels!!!",
 				"location:on the ground"
 				
+			]
+		},
+		{
+			"type": "key",
+			"name": "escape pod keycard",
+			"weight": "0.1",
+			"code": "escapepod",
+			"descriptions": [
+				"look:A keycard with 'ESCAPE' written on it",
+				"location:in a small box"
 			]
 		}
 	]
