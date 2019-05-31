@@ -374,7 +374,7 @@
 			"type": "room",
 			"name": "east sleeping quarters",
 			"description": [
-				"short:These used to be the sleeping quarters for the crew of the space station. All the beds look like they've never been used in a hundred years. Judging by what you saw in the hibernation room, nobody will be needing them."
+				"short:These used to be the sleeping quarters for the crew of the space station. All the beds are untouched. Judging by what you saw in the hibernation room, nobody will be needing them..."
 			],
 			"coords": "3.5,2.5,2.5"
 		},
@@ -418,7 +418,7 @@
 			"type": "room",
 			"name": "science lab east",
 			"description": [
-				"short:This looks like the other part of the science lab of the space station. There are lots of plants behind windows in here. There used to be lots of experiments being carried out on them, but now they are all overgrown."
+				"short:This looks like the other part of the science lab. There are lots of plants behind windows in here. There used to be lots of experiments being carried out on them, but now they are all overgrown and wilting..."
 			],
 			"coords": "6.5,2.5,2.5"
 		},
@@ -441,7 +441,7 @@
 			"type": "room",
 			"name": "music room",
 			"description": [
-				"short:There is a jukebox and a record player in here, and it looks like some crew recreation was done in here. You have it all to yourself now, with no arguments over what song to play."
+				"short:There is a jukebox and a record player in here. It looks like it was a recreation area. You have it all to yourself now. No arguments over what song to play. Nobody to play it with..."
 			],
 			"coords": "8.5,1.5,2.5"
 		},
@@ -449,7 +449,7 @@
 			"type": "room",
 			"name": "engine room",
 			"descriptions": [
-				"short:This appears to be another engineering part of the space station. There are lots of moniters and equipment in here regulating the thrusters. They all appear to be broken except for one, which says that the thrusters are out of fuel and oxygen and badly damaged, but still functional."
+				"short:This appears to be another engineering part of the space station. There are lots of monitors and equipment in here regulating the thrusters. They all appear to be broken except for one. It says the thrusters are out of fuel and oxygen and badly damaged, but still functional."
 			],
 			"coords": "8.5,2.5,2.5"
 		},
@@ -462,7 +462,7 @@
 			"name": "oxygen room",
 			"inventory": "oxygenInv",
 			"descriptions": [
-				"short:There is an oxygen reclaimer in here, as well as a mysterious piece of equipment that says 'space oxygen collecter'."
+				"short:There is an oxygen reclaimer in here, as well as a mysterious piece of equipment that says: 'oxygen collector'."
 			],
 			"coords": "8.5,4.5,2.5"
 		}
