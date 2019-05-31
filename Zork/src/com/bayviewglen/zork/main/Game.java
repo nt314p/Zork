@@ -75,6 +75,7 @@ public class Game {
 	}
 
 	public static void initializeGame(String filePath) {
+		Music.play("data/music/space_main_theme.mp3");
 
 		CommandWords.initialize();
 		parser = new Parser();
@@ -86,7 +87,7 @@ public class Game {
 
 		Game.player = new Player(100, null, new Inventory(100),
 				new Location("Ice Ice Baby", new Coordinate(0.5, 0.5, 0.5)));
-
+		
 		loadGame(filePath);
 	}
 
