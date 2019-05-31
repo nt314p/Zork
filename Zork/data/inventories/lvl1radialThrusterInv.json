@@ -10,6 +10,15 @@
 				"look:A small card with a magnetic barcode on the back and 'engineering' written on it",
 				"location:on a desk"
 			]
+		},
+		{
+			"type": "item",
+			"name": "desk",
+			"weight": "10.0",
+			"descriptions": [
+				"look:A brown desk...",
+				"location:on the ground"
+			]
 		}
 	]
 }

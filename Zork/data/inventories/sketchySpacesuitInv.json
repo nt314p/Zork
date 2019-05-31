@@ -7,12 +7,21 @@
 			"weight": "25.0",
 			"descriptions": [
 				"look:A somewhat intact spacesuit",
-				"location:on a rack",
+				"location:on a hook",
 				"death:The spacesuit grabbed your wrists and wrapped itself around your neck, choking you to death. As you suffocate, you hear a robot whisper 'die'."
 			]
 		},
 		{
-		"type": "key",
+			"type": "item",
+			"name": "desk",
+			"weight": "10.0",
+			"descriptions": [
+				"look:A brown desk...",
+				"location:on the ground"
+			]
+		},
+		{
+			"type": "key",
 			"name": "spacesuit room keycard",
 			"weight": "0.1",
 			"code": "spacesuitroom",

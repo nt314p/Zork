@@ -1,5 +1,5 @@
 {
-	"name": "washroomInv",
+	"name": "washroom2Inv",
 	"items": [
 		{
 			"type": "health",
@@ -7,27 +7,27 @@
 			"weight": "0.5",
 			"health": "0.2",
 			"descriptions": [
-				"look:A small box with some gauze and medical tape",
+				"look:A small box with some gauze and medical tape.",
 				"location:in a cupboard"
 			]
 		},
 		{
 			"type": "health",
 			"name": "large first aid kit",
-			"weight": "1",
+			"weight": "1.0",
 			"health": "0.4",
 			"descriptions": [
-				"look:A medium sized box with some gauze, medical tape, and disinfectant",
+				"look:A medium sized box with some gauze, medical tape, and disinfectant.",
 				"location:in a cupboard"
 			]
 		},
 		{
 			"type": "health",
-			"name": "star wars bandaid",
+			"name": "star wars band-aid",
 			"weight": "0.2",
 			"health": "0.1",
 			"descriptions": [
-				"look:A cute bandaid with Chewbacca staring at you on it",
+				"look:A cute band-aid with a Chewbacca staring at you.",
 				"location:in a box in the cupboard"
 			]
 		},
@@ -37,7 +37,7 @@
 			"weight": "0.2",
 			"health": "0.1",
 			"descriptions": [
-				"look:A cute bandaid with a lion you vaguely recognize on it",
+				"look:A cute band-aid with a lion you vaguely recognize.",
 				"location:in a box in the cupboard"
 			]
 		},
@@ -79,6 +79,16 @@
 				"look:Some protective, yellow, rubber gloves that could protect you hands from toxic items",
 				"location:on the table"
 			]
+		},
+		{
+			"type": "item",
+			"name": "space toilet",
+			"weight": "20.0",
+			"descriptions": [
+				"look: It appears to be a regular toilet attached to a tube with extreme suction power.",
+				"location:on the ground"
+			]
 		}
+		
 	]
 }

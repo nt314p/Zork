@@ -12,6 +12,15 @@
 			]
 		},
 		{
+			"type": "item",
+			"name": "desk",
+			"weight": "10.0",
+			"descriptions": [
+				"look:A brown desk...",
+				"location:on the ground"
+			]
+		},
+		{
 			"type": "key",
 			"name": "fire axe",
 			"weight": "2",

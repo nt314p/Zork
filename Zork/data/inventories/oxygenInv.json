@@ -1,5 +1,5 @@
 {
-	"name": "electricalInv",
+	"name": "oxygenInv",
 	"items": [
 		{
 			"type": "item",
@@ -36,7 +36,8 @@
 				"look:A large compressed air tank, with O2 written on it",
 				"location:on the ground"
 			]
-		},{
+		},
+		{
 			"type": "item",
 			"name": "oxygen tank",
 			"weight": "5",
