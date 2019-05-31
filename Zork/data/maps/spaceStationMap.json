@@ -17,7 +17,7 @@
 			"coords": "0.5,3.5,0.5"
 		},
 		{
-			"preset": "Corridor",
+			"preset": "corridor",
 			"coords": "0.5,4.5,0.5"
 		},
 		{
@@ -119,7 +119,7 @@
 			"coords": "3.5,2.5,0.5"
 		},
 		{
-			"preset": "Corridor",
+			"preset": "corridor",
 			"coords": "3.5,3.5,0.5"
 		},
 		{
@@ -159,7 +159,7 @@
 			"coords": "4.5,4.5,0.5"
 		},
 		{
-			"preset": "Corridor",
+			"preset": "corridor",
 			"coords": "4.5,5.5,0.5"
 		},
 		{
@@ -180,7 +180,7 @@
 			"coords": "5.5,1.5,0.5"
 		},
 		{
-			"preset": "Corridor",
+			"preset": "corridor",
 			"coords": "5.5,2.5,0.5"
 		},
 		{
@@ -219,7 +219,7 @@
 			"coords": "5.5,6.5,0.5"
 		},
 		{
-			"Preset": "Corridor",
+			"Preset": "corridor",
 			"coords": "6.5,3.5,0.5"
 		},
 		{
@@ -239,7 +239,7 @@
 			"coords": "7.5,1.5,0.5"
 		},
 		{
-			"Preset": "Corridor",
+			"Preset": "corridor",
 			"coords": "7.5,2.5,0.5"
 		},
 		{
@@ -251,7 +251,7 @@
 			"coords": "7.5,3.5,0.5"
 		},
 		{
-			"Preset": "Corridor",
+			"Preset": "corridor",
 			"coords": "7.5,4.5,0.5"
 		},
 		{
@@ -261,6 +261,84 @@
 		{
 			"preset": "hatch",
 			"coords": "0.5,6.0,0.5"
+		},
+		
+		
+		
+		
+		{
+			"type": "room",
+			"name": "level 2 corridor",
+			"description": [
+				"short:This is the corridor that leads to level two."
+			],
+			"coords": "2.5,4.5,1.5"
+		},
+		
+		
+		
+		
+		{
+			"type": "room",
+			"name": "washroom",
+			"descriptions": [
+				"short:It looks like a washroom in here. There appears to be a cupboard with some first aid materials in it, maybe some gloves too."
+			],
+			"coords": "1.5,6.5,2.5"
+		},
+		{
+			"type": "room",
+			"name": "spacesuit room",
+			"description": [
+				"short:This is the spacesuit room of the space station. Most of the spacesuits appear to be undamaged and functional."
+			],
+			"coords": "2.5,1.5,2.5"
+		},
+		{
+			"type": "room",
+			"name": "west sleeping quarters",
+			"description": [
+				"short:These used to be the sleeping quarters for the crew of the space station. All the beds look like they've never been used in a hundred years. Judging by what you saw in the hibernation room, nobody will be needing them."
+			],
+			"coords": "2.5,2.5,2.5"
+		},
+		{
+			"preset": "corridor",
+			"coords": "2.5,3.5,2.5"
+		},
+		{
+			"type": "room",
+			"name": "entry to level 1",
+			"descriptions": [
+				"short:It is an empty room, and there is a corridor leading to level one below you."
+			],
+			"coords": "2.5,4.5,2.5"
+		},
+		{
+			"type": "door",
+			"name": "escape pod door",
+			"open": "false",
+			"locked": "true",
+			"code": "escapepod",
+			"description": [
+				"short:There is a door blocking the way to the escape pod. You will need a keycard if you want to enter."
+			],
+			"coords": "2.5,5.0,2.5"
+		},
+		{
+			"type": "room",
+			"name": "escape pod",
+			"descriptions": [
+				"short:This is the escape pod of the space station. It looks mostly intact, but there is only enough fuel in it to land it from orbit, and there is no obvious way to refuel it. You will get stranded if you use it in deep space."
+			],
+			"coords": "2.5,5.5,2.5"
+		},
+			"type": "room",
+			"name": "viewing room",
+			"descriptions": [
+				"short:This room has lots of windows in it. All you can see. It looks mostly intact, but there is only enough fuel in it to land it from orbit, and there is no obvious way to refuel it. You will get stranded if you use it in deep space."
+			],
+			"coords": "2.5,5.5,2.5"
 		}
 	]
 }
