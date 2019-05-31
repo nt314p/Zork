@@ -100,7 +100,7 @@ public class Maps {
 				for (int j = (i + 1) % 2; j < tempMap.getMap()[0].length; j += 2) { // y
 					for (int k = 1; k < tempMap.getMap()[0][0].length; k += 2) { // z
 						defaultSideV.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
-						tempMap.getMap()[i][j][k] = defaultSideV;
+						tempMap.getMap()[i][j][k] = (Place) Item.clone(defaultSideV);
 					}
 				}
 			}
@@ -113,7 +113,7 @@ public class Maps {
 				for (int j = 1; j < tempMap.getMap()[0].length; j += 2) { // y
 					for (int k = 0; k < tempMap.getMap()[0][0].length; k += 2) { // z
 						defaultSideH.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
-						tempMap.getMap()[i][j][k] = defaultSideH;
+						tempMap.getMap()[i][j][k] = (Place) Item.clone(defaultSideH);
 					}
 				}
 			}
@@ -126,7 +126,7 @@ public class Maps {
 				for (int j = 1; j < tempMap.getMap()[0].length; j += 2) {
 					for (int k = 1; k < tempMap.getMap()[0][0].length; k += 2) { // z
 						defaultBorder.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
-						tempMap.getMap()[i][j][k] = defaultBorder;
+						tempMap.getMap()[i][j][k] = (Place) Item.clone(defaultBorder);
 					}
 				}
 			}
@@ -135,7 +135,7 @@ public class Maps {
 				for (int j = 0; j <= tempMap.getMap()[0].length; j += tempMap.getMap()[0].length-1) {
 					for (int k = 1; k < tempMap.getMap()[0][0].length; k += 2) { // z
 						defaultBorder.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
-						tempMap.getMap()[i][j][k] = defaultBorder;
+						tempMap.getMap()[i][j][k] = (Place) Item.clone(defaultBorder);
 					}
 				}
 			}
@@ -147,7 +147,7 @@ public class Maps {
 			for (int i = 1; i < tempMap.getMap().length; i += 2) { // x
 				for (int j = 1; j < tempMap.getMap()[0].length; j += 2) { // y
 						defaultGround.setLocation(new Location(mapName, new Coordinate(i, j, 0, true)));
-						tempMap.getMap()[i][j][0] = defaultGround;
+						tempMap.getMap()[i][j][0] = (Place) Item.clone(defaultGround);
 				}
 			}
 		}
@@ -158,7 +158,7 @@ public class Maps {
 				for (int j = 1; j < tempMap.getMap()[0].length; j += 2) { // y
 					for (int k = 1; k < tempMap.getMap()[0][0].length; k += 2) { // z
 						defaultRoom.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
-						tempMap.getMap()[i][j][k] = defaultRoom;
+						tempMap.getMap()[i][j][k] = (Place) Item.clone(defaultRoom);
 					}
 				}
 			}

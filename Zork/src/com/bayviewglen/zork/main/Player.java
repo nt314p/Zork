@@ -246,12 +246,18 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	}
 
 	public String pickUp(Item i) {
-		if (getInventory().canAdd(i))
+		Room r = getLocation().getRoom();
+		if (getInventory().canAdd(i)) {
+			if (!r.getRoomItems().contains(i)) {
+				return "You cannot find " + i.getName() + ".";
+			}
+			getInventory().add(i);
+			getLocation().getRoom().getRoomItems().remove(i);
 			return "You picked up " + i.getName() + ".";
-
+		}
 		return "This item is too heavy for you to pick up.";
 	}
-
+	
 	public String inventory() {
 		return getInventory().toString();
 	}

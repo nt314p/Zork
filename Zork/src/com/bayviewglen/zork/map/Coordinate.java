@@ -118,5 +118,8 @@ public class Coordinate {
 			coords[i] = Double.parseDouble(coordsString[i]);
 		return new Coordinate(coords);
 	}
+	public String toString() {
+		return x + ", " + y + ", " + z;
+	}
 
 }
