@@ -129,7 +129,7 @@ public class Character extends Item {
 		return moves.get(randIndex);
 	}
 
-	public void move() {
+	public void moveCharacter() {
 		this.location.getRoom().getRoomItems().remove(this);
 		location = getRandomMove();
 		this.location.getRoom().getRoomItems().add(this);
@@ -239,7 +239,7 @@ public class Character extends Item {
 
 	public static void moveAll() {
 		for (java.util.Map.Entry<String, Character> characters : characters.entrySet()) {
-			characters.getValue().move();
+			characters.getValue().moveCharacter();
 		}
 	}
 

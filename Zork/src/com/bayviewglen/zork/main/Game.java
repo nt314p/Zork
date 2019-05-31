@@ -29,8 +29,7 @@ public class Game {
 	private static final String ROCKET = "data/music/rocket.mp3";
 
 	private static String[] failedCommands = { "You can't even do that.", "I don't understand what you want to say.",
-			"Nope, you can't do that.", "Not possible. Try another command.",
-			"That's not a command. Press 'c' to view all valid commands." };
+			"Not possible. Try another command.", "That's not a command. Press 'c' to view all valid commands." };
 
 	public static final HashMap<String, String> directionWords = new HashMap<String, String>() {
 		{

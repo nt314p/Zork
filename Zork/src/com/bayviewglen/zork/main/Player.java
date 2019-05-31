@@ -21,10 +21,6 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	private static final String[] FALLING = { "You hurt yourself in your own confusion!",
 			"You hurt yourself in your own confusion!", "Stop being so clumsy!", "Be careful next time.",
 			"Good job (sarcasm)", "Bleeding sucks." };
-	private static final String[] TAKING = { "You're becoming rich.", "It's so precious!", "Isn't that cool?",
-			"That's amazing", "You are making great progress!" };
-	private static final String[] GIVING = { "What? You're giving up the item :(", "Noooo :(", "You're becoming broke.",
-			"You're losing so many items!!!" };
 	private static final String[] HELLO = { "Hi.", "Hello.", "Good morning."};
 	private static final String[] SWEARING = { "Such language is prohibited in Zork.", "Please don't swear.",
 			"That language is extremely rude.", "Oops, please don't use that language.", "Don't say that! The AIs are disappointed in you." };
@@ -146,8 +142,7 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 	public String give(Character c, Item i) {
 		if (getInventory().remove(i)) {
 			c.getInventory().add(i);
-			return i.getName() + " removed from inventory and given to " + c.getName() + "."
-					+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(GIVING) : "");// one in 3
+			return i.getName() + " removed from inventory and given to " + c.getName() + ".";
 		}
 		return "You do not have " + i.getName();
 	}
@@ -213,11 +208,6 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 			return s.moveThrough();
 		}
 	}
-
-	public void move() {
-
-	}
-
 	public String enter(Side s) {
 		char sideDirection = getLocation().getCoords().direction(s.getLocation().getCoords());
 
@@ -250,17 +240,14 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 
 	public String drop(Item i) {
 		if (getInventory().remove(i))
-			return i.getName() + " dropped from inventory."
-					+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(GIVING) : "");// one in 3
-																											// ;
+			return i.getName() + " dropped from inventory.";
 
 		return "You do not have " + i.getName() + ".";
 	}
 
 	public String pickUp(Item i) {
 		if (getInventory().canAdd(i))
-			return "You picked up " + i.getName() + "."
-					+ ((int) (Math.random() * ODDS_OF_DISPLAYING) == 0 ? " " + Game.getRandom(TAKING) : "");// one in 3
+			return "You picked up " + i.getName() + ".";
 
 		return "This item is too heavy for you to pick up.";
 	}
