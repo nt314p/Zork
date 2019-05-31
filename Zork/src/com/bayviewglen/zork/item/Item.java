@@ -218,6 +218,7 @@ public class Item implements Comparable<Item> {
 				}
 			}
 		} catch (JSONException e) {
+			System.out.println(jObj);
 			e.printStackTrace();
 		}
 		

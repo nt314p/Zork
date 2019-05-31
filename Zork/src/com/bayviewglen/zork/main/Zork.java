@@ -13,7 +13,7 @@ public class Zork {
 	public static void main(String[] args) {
 
 		//SlidePuzzle.play();
-		Game.play("data/game.json");
+//		Game.play("data/game.json");
 //		Game game = new Game();
 //		game.doTurn();
 
@@ -21,8 +21,8 @@ public class Zork {
 		// SlidePuzzle.play();
 		// testMyVerySmallMapBoi();
 		
-		//Music.play("data/music/door_open.mp3");
-		
+		Music.play("data/music/door_open.mp3");
+		System.out.println("If you see this and the music is still playing, it works!");
 		
 		// testRiddle();
 		// testSides();

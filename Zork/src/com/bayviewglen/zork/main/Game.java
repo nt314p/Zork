@@ -56,8 +56,8 @@ public class Game {
 			Character.moveAll();
 			System.out.println(Game.processCommand(parser.getCommand()));
 
-			System.out.println(player.checkRoomDeath());
-			System.out.println(player.checkInventoryDeath());
+//			System.out.println(player.checkRoomDeath());
+//			System.out.println(player.checkInventoryDeath());
 
 //			if (!gameOver)
 //				System.out.println(displayTurn());
