@@ -74,6 +74,10 @@
 			"coords": "1.5,4.5,0.5"
 		},
 		{
+			"preset": "steel wall",
+			"coords": "2.0,4.5,0.5"
+		},
+		{
 			"type": "room",
 			"name": "hybernation room",
 			"inventory": "hybernationInv",
