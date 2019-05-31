@@ -201,6 +201,66 @@
 				"short:This is the North East Control Room. There are more monitors in here, presumably for controlling life support. They are damaged, but still functional."
 			],
 			"coords": "5.5,3.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "south east control room",
+			"descriptions": [
+				"short:This is the South East Control Room. There is a big screen on the wall, it used to be used for displaying what the station's sensors detect, but it is too heavily damaged to be used."
+			],
+			"coords": "5.5,4.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "washroom",
+			"descriptions": [
+				"short:It looks like a washroom in here. There appears to be a cupboard with some first aid materials in it."
+			],
+			"coords": "5.5,6.5,0.5"
+		},
+		{
+			"Preset": "Corridor",
+			"coords": "6.5,3.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "Radial Thruster",
+			"description": [
+				"short:The fuel and oxygen tanks look to be empty. They need to be filled in order to work..."
+			],
+			"coords": "7.5,0.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "sketchy spacesuit room",
+			"description": [
+				"short:This room looks like it used to be one of the spacesuit rooms of the space station. However, everything in here looks somewhat damaged..."
+			],
+			"coords": "7.5,1.5,0.5"
+		},
+		{
+			"Preset": "Corridor",
+			"coords": "7.5,2.5,0.5"
+		},
+		{
+			"type": "room",
+			"name": "map room",
+			"descriptions": [
+				"short:There appears to be hologram of the first level of the space station. "
+			],
+			"coords": "7.5,3.5,0.5"
+		},
+		{
+			"Preset": "Corridor",
+			"coords": "7.5,4.5,0.5"
+		},
+		{
+			"preset": "airlock",
+			"coords": "7.5,5.5,0.5"
+		},
+		{
+			"preset": "hatch",
+			"coords": "0.5,6.0,0.5"
 		}
 	]
 }
