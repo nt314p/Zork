@@ -19,7 +19,7 @@ public class CommandWords {
 	private static final String commandFile = "data/main_command_words.txt";
 	private static FileReader fReader = new FileReader(commandFile);
 	
-	private static final int [] COMMAND_WORDS_BREAKS = {7,11,18,21,26,32};
+	private static final int [] COMMAND_WORDS_BREAKS = {6,10,17,20,25,31};
 	
 	private static int maxWordsInCommand = 0;
 

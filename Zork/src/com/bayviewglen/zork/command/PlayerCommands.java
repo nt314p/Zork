@@ -21,7 +21,6 @@ public interface PlayerCommands {
 	public String west();
 	public String up();
 	public String down();
-	public String move(char dir);
 	
 	public String enter(Side s);
 	public String enter(Room r);
