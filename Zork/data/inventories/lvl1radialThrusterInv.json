@@ -1,0 +1,15 @@
+{
+	"name": "lvl1radialThrusterInv",
+	"items": [
+		{
+			"type": "key",
+			"name": "engine room keycard",
+			"weight": "0.1",
+			"code": "engineroom",
+			"descriptions": [
+				"look:A small card with a magnetic barcode on the back and 'engineering' written on it",
+				"location:on a desk"
+			]
+		}
+	]
+}

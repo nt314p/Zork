@@ -1,0 +1,15 @@
+{
+	"name": "lvl1engineInv",
+	"items": [
+		{
+			"type": "key",
+			"name": "electrical room keycard",
+			"weight": "0.1",
+			"code": "electricalroom",
+			"descriptions": [
+				"look:A small card with a magnetic barcode on the back and 'electrical' written on it",
+				"location:on a desk"
+			]
+		}
+	]
+}

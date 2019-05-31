@@ -1,0 +1,25 @@
+{
+	"name": "sketchySpacesuitInv",
+	"items": [
+		{
+			"type": "item",
+			"name": "sketchy spacesuit",
+			"weight": "25.0",
+			"descriptions": [
+				"look:A somewhat intact spacesuit",
+				"location:on a rack",
+				"death:The spacesuit grabbed your wrists and wrapped itself around your neck, choking you to death. As you suffocate, you hear a robot whisper 'die'."
+			]
+		},
+		{
+		"type": "key",
+			"name": "spacesuit room keycard",
+			"weight": "0.1",
+			"code": "spacesuitroom",
+			"descriptions": [
+				"look:A small card with 'spacesuit' written on it, probably for the other spacesuit room",
+				"location:on a desk"
+			]
+		}
+	]
+}

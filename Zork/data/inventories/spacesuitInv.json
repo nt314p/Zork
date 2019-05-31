@@ -4,25 +4,7 @@
 		{
 			"type": "item",
 			"name": "spacesuit",
-			"weight": "5.0",
-			"descriptions": [
-				"look:A fully functional spacesuit",
-				"location:on a hook"
-			]
-		},
-		{
-			"type": "item",
-			"name": "spacesuit",
-			"weight": "5.0",
-			"descriptions": [
-				"look:A fully functional spacesuit",
-				"location:on a hook"
-			]
-		},
-		{
-			"type": "item",
-			"name": "spacesuit",
-			"weight": "5.0",
+			"weight": "20.0",
 			"descriptions": [
 				"look:A fully functional spacesuit",
 				"location:on a hook"

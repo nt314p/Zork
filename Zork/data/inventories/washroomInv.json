@@ -3,23 +3,73 @@
 	"items": [
 		{
 			"type": "health",
-			"name": "first aid kit",
-			"health": "4.0",
-			"weight": "2.0",
+			"name": "large first aid kit",
+			"health": "0.4",
+			"weight": "1.0",
 			"descriptions": [
-				"look:It appears to be a first aid kit with a label.",
+				"look:A medium sized box with some gauze, medical tape, and disinfectant",
 				"read:Boo Boo Box",
 				"location:on the shelf"
 			]
 		},
 		{
 			"type": "health",
-			"name": "band-aid box",
-			"health": "2.0",
-			"weight": "1.0",
+			"name": "small first aid kit",
+			"health": "0.2",
+			"weight": "0.5",
 			"descriptions": [
-				"look:It appears to be a small box of band-aids.",
+				"look:A small box with some gauze and medical tape",
 				"location:on the shelf"
+			]
+		},
+				{
+			"type": "health",
+			"name": "star wars bandaid",
+			"weight": "0.2",
+			"health": "0.1",
+			"descriptions": [
+				"look:A cute bandaid with Chewbacca staring at you on it",
+				"location:in a box in the cupboard"
+			]
+		},
+		{
+			"type": "health",
+			"name": "narnia bandaid",
+			"weight": "0.2",
+			"health": "0.1",
+			"descriptions": [
+				"look:A cute bandaid with a lion you vaguely recognize on it",
+				"location:in a box in the cupboard"
+			]
+		},
+		{
+			"type": "health",
+			"name": "hitchhikers guide to the galaxy towel",
+			"weight": "0.2",
+			"health": "0.1",
+			"descriptions": [
+				"look:A somewhat yellow towel that you might be able to use to heal yourself",
+				"location:on a towel rack"
+			]
+		},
+		{
+			"type": "health",
+			"name": "enders game bandaid",
+			"weight": "0.2",
+			"health": "0.1",
+			"descriptions": [
+				"look:A cute bandaid with a picture of a large space station on it",
+				"location:in a box in the cupboard"
+			]
+		},
+		{
+			"type": "health",
+			"name": "indiana jones bandaid",
+			"weight": "0.2",
+			"health": "0.1",
+			"descriptions": [
+				"look:A cute bandaid with a golden idle on it",
+				"location:in a box in the cupboard"
 			]
 		},
 		{
@@ -27,7 +77,7 @@
 			"name": "space toilet",
 			"weight": "20.0",
 			"descriptions": [
-				"look: It appears to be a regular toilet attached to a tube with extreme suction power."
+				"look: It appears to be a regular toilet attached to a tube with extreme suction power.",
 				"location:on the ground"
 			]
 		}

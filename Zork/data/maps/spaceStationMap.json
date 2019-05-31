@@ -176,6 +176,7 @@
 		{
 			"type": "room",
 			"name": "engine room",
+			"inventory": "lvl1engineInv",
 			"descriptions": [
 				"short:This appears to be the engineering part of the space station. This room might be useful to re-enable the thrusters..."
 			],
@@ -219,7 +220,7 @@
 			"name": "washroom",
 			"inventory": "washroomInv",
 			"descriptions": [
-				"short:It looks like a washroom in here. There appears to be a cupboard with some stuff in it."
+				"short:It looks like a washroom in here. There appears to have a cupboard with some stuff in it."
 			],
 			"coords": "5.5,6.5,0.5"
 		},
@@ -230,6 +231,7 @@
 		{
 			"type": "room",
 			"name": "Radial Thruster",
+			"inventory": "lvl1radialThrusterInv",
 			"description": [
 				"short:The fuel and oxygen tanks look to be empty. They need to be filled in order to work..."
 			],
@@ -238,7 +240,7 @@
 		{
 			"type": "room",
 			"name": "sketchy spacesuit room",
-			"inventory": "dmgSpacesuitInv",
+			"inventory": "sketchySpacesuitInv",
 			"description": [
 				"short:This room looks like it used to be one of the spacesuit rooms of the space station. However, everything in here looks somewhat damaged..."
 			],
@@ -268,6 +270,11 @@
 			"preset": "hatch",
 			"coords": "0.5,6.0,0.5"
 		},
+		
+		
+		
+		
+		
 		{
 			"type": "room",
 			"name": "level 2 corridor",
@@ -276,12 +283,17 @@
 			],
 			"coords": "2.5,4.5,1.5"
 		},
+		
+		
+		
+		
+		
 		{
 			"type": "room",
 			"name": "washroom",
-			"inventory": "washroomInv",
+			"inventory": "washroom2Inv",
 			"descriptions": [
-				"short:It looks like a washroom in here. There appears to be a shelf with some first aid materials in it."
+				"short:It looks like a washroom in here. There appears to have a shelf with some first aid materials in it."
 			],
 			"coords": "1.5,6.5,2.5"
 		},
@@ -293,6 +305,17 @@
 				"short:This is the spacesuit room of the space station. Most of the spacesuits appear to be undamaged and functional."
 			],
 			"coords": "2.5,1.5,2.5"
+		},
+		{
+			"type": "door",
+			"name": "spacesuit room door",
+			"open": "false",
+			"locked": "true",
+			"code": "spacesuitroom",
+			"description": [
+				"short:This door appears to be blocking the way to the spacesuit room. You might need a keycard to enter..."
+			],
+			"coords": "2.5,2.0,2.5"
 		},
 		{
 			"type": "room",
@@ -337,6 +360,7 @@
 		{
 			"type": "room",
 			"name": "viewing room",
+			"inventory": "viewingRoomInv",
 			"descriptions": [
 				"short:This room has lots of windows in it. All you can see are millions of stars very far away. The crate on the ground looks somewhat suspicious..."
 			],
@@ -436,6 +460,7 @@
 		{
 			"type": "room",
 			"name": "oxygen room",
+			"inventory": "oxygenInv",
 			"descriptions": [
 				"short:There is an oxygen reclaimer in here, as well as a mysterious piece of equipment that says 'space oxygen collecter'."
 			],

@@ -1,0 +1,49 @@
+{
+	"name": "electricalInv",
+	"items": [
+		{
+			"type": "item",
+			"name": "battery",
+			"weight": "5",
+			"descriptions": [
+				"look:A large battery that would be used to start a rocket engine, or power something big.",
+				"location:on the ground"
+			]
+		},
+		{
+			"type": "item",
+			"name": "battery",
+			"weight": "5",
+			"descriptions": [
+				"look:A large battery that would be used to start a rocket engine, or power something big.",
+				"location:on the ground"
+			]
+		},
+		{
+			"type": "item",
+			"name": "oxygen tank",
+			"weight": "5",
+			"descriptions": [
+				"look:A large compressed air tank, with O2 written on it",
+				"location:on the ground"
+			]
+		},
+		{
+			"type": "item",
+			"name": "oxygen tank",
+			"weight": "5",
+			"descriptions": [
+				"look:A large compressed air tank, with O2 written on it",
+				"location:on the ground"
+			]
+		},{
+			"type": "item",
+			"name": "oxygen tank",
+			"weight": "5",
+			"descriptions": [
+				"look:A large compressed air tank, with O2 written on it",
+				"location:on the ground"
+			]
+		}
+	]
+}

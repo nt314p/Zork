@@ -1,0 +1,84 @@
+{
+	"name": "washroomInv",
+	"items": [
+		{
+			"type": "health",
+			"name": "small first aid kit",
+			"weight": "0.5",
+			"health": "0.2",
+			"descriptions": [
+				"look:A small box with some gauze and medical tape",
+				"location:in a cupboard"
+			]
+		},
+		{
+			"type": "health",
+			"name": "large first aid kit",
+			"weight": "1",
+			"health": "0.4",
+			"descriptions": [
+				"look:A medium sized box with some gauze, medical tape, and disinfectant",
+				"location:in a cupboard"
+			]
+		},
+		{
+			"type": "health",
+			"name": "star wars bandaid",
+			"weight": "0.2",
+			"health": "0.1",
+			"descriptions": [
+				"look:A cute bandaid with Chewbacca staring at you on it",
+				"location:in a box in the cupboard"
+			]
+		},
+		{
+			"type": "health",
+			"name": "narnia bandaid",
+			"weight": "0.2",
+			"health": "0.1",
+			"descriptions": [
+				"look:A cute bandaid with a lion you vaguely recognize on it",
+				"location:in a box in the cupboard"
+			]
+		},
+		{
+			"type": "health",
+			"name": "hitchhikers guide to the galaxy towel",
+			"weight": "0.2",
+			"health": "0.1",
+			"descriptions": [
+				"look:A somewhat yellow towel that you might be able to use to heal yourself",
+				"location:on a towel rack"
+			]
+		},
+		{
+			"type": "health",
+			"name": "enders game bandaid",
+			"weight": "0.2",
+			"health": "0.1",
+			"descriptions": [
+				"look:A cute bandaid with a picture of a large space station on it",
+				"location:in a box in the cupboard"
+			]
+		},
+		{
+			"type": "health",
+			"name": "indiana jones bandaid",
+			"weight": "0.2",
+			"health": "0.1",
+			"descriptions": [
+				"look:A cute bandaid with a golden idle on it",
+				"location:in a box in the cupboard"
+			]
+		},
+		{
+			"type": "item",
+			"name": "rubber gloves",
+			"weight": "3",
+			"descriptions": [
+				"look:Some protective, yellow, rubber gloves that could protect you hands from toxic items",
+				"location:on the table"
+			]
+		}
+	]
+}

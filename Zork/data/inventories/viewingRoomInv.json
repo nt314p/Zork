@@ -1,0 +1,15 @@
+{
+	"name": "viewingRoomInv",
+	"items": [
+		{
+			"type": "item",
+			"name": "suspicious crate",
+			"weight": "20.0",
+			"descriptions": [
+				"look:A suspicious looking crate",
+				"location:on the ground",
+				"death:As soon as you try to pick up the crate, you hear a robot say 'have fun on your trip'. The crate then violently explodes, instantly killing you."
+			]
+		}
+	]
+}

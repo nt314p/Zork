@@ -19,7 +19,8 @@
 			"food": "0.3",
 			"water": "0.05",
 			"descriptions": [
-				"look:You see a long, meaty sausage, and it reminds you of when you had real food."
+				"look:You see a long, meaty sausage, and it reminds you of when you had real food.",
+				"location:strapped to a table"
 			]
 		},
 		{
@@ -29,7 +30,8 @@
 			"food": "0.3",
 			"water": "0.05",
 			"descriptions": [
-				"look:You see the classic can of spam sitting in front of you, and you wonder what kind of meat is in this one."
+				"look:You see the classic can of spam sitting in front of you, and you wonder what kind of meat is in this one.",
+				"location:in a cupboard"
 			]
 		},
 		{
@@ -38,7 +40,8 @@
 			"weight": "3",
 			"water": "0.3",
 			"descriptions": [
-				"look:You see some water in a strange looking jug, it feels cool."
+				"look:You see some water in a strange looking jug, it feels cool.",
+				"location:strapped to a table"
 			]
 		},
 		{
@@ -47,7 +50,8 @@
 			"weight": "1",
 			"water": "0.1",
 			"descriptions": [
-				"look:This plastic water bottle appears to be a waste of valuble materials."
+				"look:This plastic water bottle appears to be a waste of valuble materials.",
+				"location:strapped to a table"
 			]
 		},
 		{
@@ -56,7 +60,8 @@
 			"weight": "1",
 			"water": "0.1",
 			"descriptions": [
-				"look:This water bottle is small, and slightly cool."
+				"look:This water bottle is small, and slightly cool.",
+				"location:strapped to a table"
 			]
 		},
 		{
@@ -66,7 +71,8 @@
 			"food": "0.2",
 			"water": "-0.15",
 			"descriptions": [
-				"look:The freeze dried fruits look sweet, but they are very dry and crumbly."
+				"look:The freeze dried fruits look sweet, but they are very dry and crumbly.",
+				"location:in a bowl velcro-ed to a table"
 			]
 		},
 		{
@@ -75,7 +81,8 @@
 			"weight": "0.2",
 			"food": "0.1",
 			"descriptions": [
-				"look:Light, crispy cereal runs through your fingers."
+				"look:Light, crispy cereal runs through your fingers.",
+				"location:in a cupboard"
 			]
 		},
 		{
@@ -84,7 +91,8 @@
 			"weight": "4.0",
 			"damage": "4.0",
 			"descriptions": [
-				"look:A cool solid steel cast-iron pan."
+				"look:A cool solid steel cast-iron pan.",
+				"location:on a table"
 			]
 		},
 		{
@@ -93,7 +101,18 @@
 			"weight": "0.1",
 			"damage": "0.3",
 			"descriptions": [
-				"look:A nice four-pronged fork."
+				"look:A nice four-pronged fork.",
+				"location:in a drawer"
+			]
+		},
+		{
+			"type": "key",
+			"name": "pantry keycard",
+			"weight": "0.1",
+			"code": "pantry",
+			"descriptions": [
+				"look:A small card with a magnetic barcode on the back",
+				"location:in a drawer"
 			]
 		}
 	]

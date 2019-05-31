@@ -63,6 +63,16 @@
 				"look:It looks like some tangly wires curled up on the floor.",
 				"location:on the ground"
 			]
+		},
+		{
+			"type": "key",
+			"name": "plasma torch",
+			"weight": "3",
+			"code": "lvl2",
+			"descriptions": [
+				"look:A high power plasma torch that can cut through debris like butter",
+				"location:on a desk"
+			]
 		}
 	]
 }
