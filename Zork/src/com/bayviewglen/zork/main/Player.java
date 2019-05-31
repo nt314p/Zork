@@ -337,4 +337,22 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 		return Game.getRandom(PRAYING);
 	}
 
+	public boolean checkGameWon() {
+		Room yourRoom = getLocation().getRoom();
+		if(!yourRoom.getName().equals("Escape Pod"))
+			return false;
+		
+		if(!yourRoom.getRoomItems().contains("Fuel"))
+			return false;
+		
+		if(!yourRoom.getRoomItems().contains("Oxygen"))
+			return false;
+		
+		if(!yourRoom.getRoomItems().contains("Battery"))
+			return false;
+		
+		return true;
+		
+	}
+
 }
