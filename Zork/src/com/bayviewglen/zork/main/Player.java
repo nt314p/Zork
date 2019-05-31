@@ -277,10 +277,21 @@ public class Player extends Character implements NoEffectCommands, PlayerCommand
 		return getInventory().getAllOf(type);
 	}
 
-	public void checkRoomDeath() {
+	public String checkRoomDeath() {
 		HashMap<String, String> roomDescriptions = getLocation().getRoom().getDescriptions();
-		if (roomDescriptions.containsKey("death") || roomDescriptions.containsValue("death"))
-			die();
+		if (roomDescriptions.containsKey("death") || roomDescriptions.containsValue("death")) {
+			return "This room, it seems to be killing you.\n" + die();
+		}
+		return "";
+			
+	}
+	
+	public String checkInventoryDeath() {
+		for(Item i:getInventory().toArrayList()) {
+			if (i.getDescriptions().containsKey("death") || i.getDescriptions().containsValue("death"))
+				return "The " + i.getName() + ", it seems to be killing you.\n" + die();
+		}
+		return "";
 	}
 
 	public String checkAirlockDeath() {
