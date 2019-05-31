@@ -156,6 +156,14 @@ public class Inventory {
 		}
 		return true;
 	}
+	
+	public boolean contains(String itemName) {
+		for(Item i:items) {
+			if(i.getName().equals(itemName))
+				return true;
+		}
+		return false;
+	}
 
 	/**
 	 * get method

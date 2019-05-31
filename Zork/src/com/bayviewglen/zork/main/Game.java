@@ -23,6 +23,7 @@ public class Game {
 	private static Player player;
 	private static boolean gameOver = false;// the current game
 	private static boolean isPlaying = true;// the overall game
+	private static boolean gameWon = false;
 
 	private static final String PROMPT_ENTER = "~";
 	private static final String PROMPT_START_GAME = "`";
@@ -58,6 +59,12 @@ public class Game {
 
 //			System.out.println(player.checkRoomDeath());
 //			System.out.println(player.checkInventoryDeath());
+			
+			gameWon = player.checkGameWon();
+			if(gameWon) {
+				print(outro());
+				setGameOver(false);
+			}
 
 //			if (!gameOver)
 //				System.out.println(displayTurn());
@@ -71,7 +78,7 @@ public class Game {
 					isPlaying = false;
 			}
 		}
-		print(outro());
+		print(credits());
 	}
 
 	public static void initializeGame(String filePath) {
