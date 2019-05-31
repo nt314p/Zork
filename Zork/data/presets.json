@@ -73,7 +73,7 @@
 		},
 		{
 			"type": "room",
-			"name": "Corridor",
+			"name": "corridor",
 			"descriptions": [
 				"short:You are in an empty corridor."
 			]
