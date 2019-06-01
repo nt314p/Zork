@@ -69,7 +69,7 @@
 		{
 			"type": "room",
 			"name": "corridor with leak",
-			"description": [
+			"descriptions": [
 				"short:You hear a small hissing. There might be a leak in this corridor."
 			],
 			"coords": "1.5,2.5,0.5"
