@@ -14,6 +14,10 @@
 	},
 	"places": [
 		{
+			"preset": "steel wall",
+			"coords": "0.5,3.0,0.5"
+		},
+		{
 			"type": "room",
 			"name": "Kitchen",
 			"inventory": "kitchenInv",
@@ -33,6 +37,26 @@
 		{
 			"preset": "hatch",
 			"coords": "0.5,6.0,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "1.0,1.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "1.0,2.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "1.0,4.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "1.5,1.0,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "2.0,1.5,0.5"
 		},
 		{
 			"type": "room",
@@ -96,6 +120,10 @@
 			"coords": "7.5,2.5,2.5"
 		},
 		{
+			"preset": "steel wall",
+			"coords": "2.5,2.0,0.5"
+		},
+		{
 			"type": "room",
 			"name": "hybernation room",
 			"inventory": "hybernationInv",
@@ -133,6 +161,22 @@
 			"coords": "2.5,4.5,1.0"
 		},
 		{
+			"preset": "steel wall",
+			"coords": "2.5,5.0,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "3.0,4.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "3.5,2.0,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "4.0,2.5,0.5"
+		},
+		{
 			"type": "room",
 			"name": "map room",
 			"descriptions": [
@@ -143,6 +187,18 @@
 		{
 			"preset": "corridor",
 			"coords": "3.5,3.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "3.5,4.0,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "3.0,6.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "3.5,6.0,0.5"
 		},
 		{
 			"type": "room",
@@ -165,6 +221,10 @@
 			"coords": "4.0,6.5,0.5"
 		},
 		{
+			"preset": "steel wall",
+			"coords": "4.5,3.0,0.5"
+		},
+		{
 			"type": "room",
 			"name": "north west control room",
 			"inventory": "nwControlRoomInv",
@@ -183,8 +243,20 @@
 			"coords": "4.5,4.5,0.5"
 		},
 		{
+			"preset": "steel wall",
+			"coords": "4.0,5.5,0.5"
+		},
+		{
 			"preset": "corridor",
 			"coords": "4.5,5.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "5.0,5.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "5.5,6.0,0.5"
 		},
 		{
 			"type": "room",
@@ -194,6 +266,34 @@
 				"short:It definitely looks like a space fitness room in here. There are lots of bungees for strength training, and a space treadmill."
 			],
 			"coords": "4.5,6.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "5.0,1.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "5.0,2.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "5.5,1.0,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "6.0,1.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "6.0,2.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "6.0,4.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "6.0,4.5,0.5"
 		},
 		{
 			"type": "room",
@@ -238,6 +338,10 @@
 			"coords": "5.5,4.5,0.5"
 		},
 		{
+			"preset": "steel wall",
+			"coords": "5.5,5.0,0.5"
+		},
+		{
 			"type": "room",
 			"name": "washroom",
 			"inventory": "washroomInv",
@@ -247,8 +351,64 @@
 			"coords": "5.5,6.5,0.5"
 		},
 		{
+			"preset": "steel wall",
+			"coords": "6.5,3.0,0.5"
+		},
+		{
 			"preset": "corridor",
 			"coords": "6.5,3.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "6.5,4.0,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "7.0,0.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "7.0,1.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "7.0,2.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "7.0,4.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "7.0,5.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "7.5,6.0,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "8.0,0.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "8.0,1.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "8.0,2.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "8.0,3.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "8.0,4.5,0.5"
+		},
+		{
+			"preset": "steel wall",
+			"coords": "8.0,5.5,0.5"
 		},
 		{
 			"type": "room",
@@ -299,6 +459,10 @@
 				"short:This is the corridor that leads to level two."
 			],
 			"coords": "2.5,4.5,1.5"
+		},
+		{
+			"preset": "opening",
+			"coords": "2.5,4.5,2.0"
 		},
 		{
 			"type": "room",
