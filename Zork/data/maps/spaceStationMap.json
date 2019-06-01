@@ -61,7 +61,7 @@
 		{
 			"type": "room",
 			"name": "Radial Thruster",
-			"description": [
+			"descriptions": [
 				"short:The fuel and oxygen tanks look to be empty. They need to be filled in order to work..."
 			],
 			"coords": "1.5,1.5,0.5"
@@ -89,7 +89,7 @@
 			"open": "false",
 			"locked": "true",
 			"code": "pantry",
-			"description": [
+			"descriptions": [
 				"short:There is a locked door stopping you from entering the pantry. There is likely more food and water, or perhaps other things..."
 			],
 			"coords": "1.5,4.0,0.5"
@@ -155,7 +155,7 @@
 			"open": "false",
 			"locked": "true",
 			"code": "lvl2",
-			"description": [
+			"descriptions": [
 				"short:There is a pile of debris blocking the corridor to level two of the station. You need some kind of high power torch to bust through it."
 			],
 			"coords": "2.5,4.5,1.0"
@@ -215,7 +215,7 @@
 			"open": "false",
 			"locked": "true",
 			"code": "electricalroom",
-			"description": [
+			"descriptions": [
 				"short:There is a lock on the door to the electrical room. You might need a keycard to get in."
 			],
 			"coords": "4.0,6.5,0.5"
@@ -314,7 +314,7 @@
 			"open": "false",
 			"locked": "true",
 			"code": "engineroom",
-			"description": [
+			"descriptions": [
 				"short:This door appears to be blocking the way to the engine room. You might need a keycard to enter..."
 			],
 			"coords": "5.5,3.0,0.5"
@@ -414,7 +414,7 @@
 			"type": "room",
 			"name": "Radial Thruster",
 			"inventory": "lvl1radialThrusterInv",
-			"description": [
+			"descriptions": [
 				"short:The fuel and oxygen tanks look to be empty. They need to be filled in order to work..."
 			],
 			"coords": "7.5,0.5,0.5"
@@ -423,7 +423,7 @@
 			"type": "room",
 			"name": "sketchy spacesuit room",
 			"inventory": "sketchySpacesuitInv",
-			"description": [
+			"descriptions": [
 				"short:This room looks like it used to be one of the spacesuit rooms of the space station. However, everything in here looks somewhat damaged..."
 			],
 			"coords": "7.5,1.5,0.5"
@@ -455,7 +455,7 @@
 		{
 			"type": "room",
 			"name": "level 2 corridor",
-			"description": [
+			"descriptions": [
 				"short:This is the corridor that leads to level two."
 			],
 			"coords": "2.5,4.5,1.5"
@@ -477,7 +477,7 @@
 			"type": "room",
 			"name": "spacesuit room",
 			"inventory": "spacesuitInv",
-			"description": [
+			"descriptions": [
 				"short:This is the spacesuit room of the space station. Most of the spacesuits appear to be undamaged and functional."
 			],
 			"coords": "2.5,1.5,2.5"
@@ -488,7 +488,7 @@
 			"open": "false",
 			"locked": "true",
 			"code": "spacesuitroom",
-			"description": [
+			"descriptions": [
 				"short:This door appears to be blocking the way to the spacesuit room. You might need a keycard to enter..."
 			],
 			"coords": "2.5,2.0,2.5"
@@ -497,7 +497,7 @@
 			"type": "room",
 			"name": "west sleeping quarters",
 			"inventory": "sleepingInv",
-			"description": [
+			"descriptions": [
 				"short:These used to be the sleeping quarters for the crew of the space station. All the beds look like they've never been used in a hundred years..."
 			],
 			"coords": "2.5,2.5,2.5"
@@ -520,7 +520,7 @@
 			"open": "false",
 			"locked": "true",
 			"code": "escapepod",
-			"description": [
+			"descriptions": [
 				"short:There is a door blocking the way to the escape pod. You will need a keycard if you want to enter."
 			],
 			"coords": "2.5,5.0,2.5"
@@ -549,7 +549,7 @@
 		{
 			"type": "room",
 			"name": "east sleeping quarters",
-			"description": [
+			"descriptions": [
 				"short:These used to be the sleeping quarters for the crew of the space station. All the beds are untouched. Judging by what you saw in the hibernation room, nobody will be needing them..."
 			],
 			"coords": "3.5,2.5,2.5"
@@ -561,7 +561,7 @@
 		{
 			"type": "room",
 			"name": "Radial Thruster",
-			"description": [
+			"descriptions": [
 				"short:The fuel and oxygen tanks look to be empty. They need to be filled in order to work..."
 			],
 			"coords": "5.5,0.5,2.5"
@@ -573,7 +573,7 @@
 		{
 			"type": "room",
 			"name": "science lab west",
-			"description": [
+			"descriptions": [
 				"short:This looks like part of the science lab of the space station. There is scientific equipment everywhere in here, but most of it is damaged and not functional."
 			],
 			"coords": "5.5,2.5,2.5"
@@ -593,7 +593,7 @@
 		{
 			"type": "room",
 			"name": "science lab east",
-			"description": [
+			"descriptions": [
 				"short:This looks like the other part of the science lab. There are lots of plants behind windows in here. There used to be lots of experiments being carried out on them, but now they are all overgrown and wilting..."
 			],
 			"coords": "6.5,2.5,2.5"
@@ -608,7 +608,7 @@
 			"open": "false",
 			"locked": "true",
 			"code": "engineroom2",
-			"description": [
+			"descriptions": [
 				"short:The door to the second engineering room and the oxygen room appears to be broken. You need an axe or something to break through it..."
 			],
 			"coords": "7.0,2.5,2.5"
@@ -616,7 +616,7 @@
 		{
 			"type": "room",
 			"name": "music room",
-			"description": [
+			"descriptions": [
 				"short:There is a jukebox and a record player in here. It looks like it was a recreation area. You have it all to yourself now. No arguments over what song to play. Nobody to play it with..."
 			],
 			"coords": "8.5,1.5,2.5"
