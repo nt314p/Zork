@@ -307,7 +307,7 @@
 			"descriptions": [
 				"short:It looks like a washroom in here. There appears to have a shelf with some first aid materials in it."
 			],
-			"coords": "1.5,6.5,2.5"
+			"coords": "1.5,2.5,2.5"
 		},
 		{
 			"type": "room",
@@ -436,7 +436,7 @@
 		},
 		{
 			"preset": "corridor",
-			"coords": "7.5,3.5,2.5"
+			"coords": "7.5,2.5,2.5"
 		},
 		{
 			"type": "door",
