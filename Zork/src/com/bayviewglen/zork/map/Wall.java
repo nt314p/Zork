@@ -15,7 +15,7 @@ public class Wall extends Side {
 	}
 	
 	public Wall(Wall wall) {
-		super(wall.getName(), wall.getDescriptions(), wall.isExit());
+		super(wall.getName(), wall.getDescriptions(), wall.isExit(), wall.getLocation());
 	}
 	
 	public String moveThrough() {

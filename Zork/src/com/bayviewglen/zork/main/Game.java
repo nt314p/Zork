@@ -52,11 +52,18 @@ public class Game {
 
 	public static void play(String filePath) {
 		Game.initializeGame(filePath);
-		MapDisplay.display("Space Station");
-		//print(intro());
+		// MapDisplay.display("Space Station");
+		print(intro());
 		while (isPlaying) {
 			Character.moveAll();
-			System.out.println(Game.processCommand(parser.getCommand()));
+			try {
+				System.out.println(Game.processCommand(parser.getCommand()));
+			} catch (Exception ex) {
+				System.out.println("Something flashes before your eyes. You suddenly can only see black and you are falling, falling, falling...");
+				System.out.println("You died.");
+				gameOver = true;
+				isPlaying = false;
+			}
 
 //			System.out.println(player.checkRoomDeath());
 //			System.out.println(player.checkInventoryDeath());
@@ -80,6 +87,7 @@ public class Game {
 			}
 		}
 		print(credits());
+		parser.close();
 	}
 
 	public static void initializeGame(String filePath) {
@@ -364,7 +372,7 @@ public class Game {
 				+ "\tNick Tong" + PROMPT_ENTER;
 		result += "Space awaits you..." + PROMPT_ENTER;
 		result += "\n\"This is one small step for man..." + PROMPT_ENTER;
-		result += "\none giant leap for manking\"" + PROMPT_ENTER;
+		result += "\none giant leap for mankind\"" + PROMPT_ENTER;
 		result += "\t- Neil Armstrong";
 		return result;
 	}
@@ -378,9 +386,6 @@ public class Game {
 				+ PROMPT_ENTER;
 		result += "You fly through the universe, or are you even in the universe." + PROMPT_ENTER;
 		result += "Who really cares anyway, because you're just going to die." + PROMPT_ENTER;
-		result += "You open your eyes to a room." + PROMPT_ENTER;
-		result += "A room!" + PROMPT_ENTER;
-		result += "But where is there a room in the middle of space?" + PROMPT_ENTER;
 		result += "Maybe there will be an escape pod somewhere near..." + PROMPT_ENTER;
 		result += "To finally get out of this stupid hellhole." + PROMPT_ENTER;
 		result += "It's time to find out and go explore.";
@@ -389,7 +394,7 @@ public class Game {
 
 	public static String intro() {
 		String result = "";
-		result += ROCKET;
+		Music.play(ROCKET);
 		result += "Press 'enter' to continue." + PROMPT_ENTER;
 		result += "Welcome to Space Zork, a completely dynamic adventure game." + PROMPT_ENTER;
 		result += "WARNING: Zork has the potential to induce seizures\n"

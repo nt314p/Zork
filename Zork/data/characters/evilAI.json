@@ -9,8 +9,8 @@
 		"look:Zoink AI stares back, with a single large photoreceptor on its face.",
 		"location:with you"
 	],
-	"map": "Ice Ice Baby",
-	"coords": "4.5,8.5,0.5",
-	"start": "4.5,7.5,0.5",
-	"end": "3.5,9.5,0.5"
+	"map": "Space Station",
+	"coords": "2.5,3.5,0.5",
+	"start": "1.5,3.5,0.5",
+	"end": "3.5,3.5,0.5"
 }

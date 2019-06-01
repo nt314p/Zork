@@ -15,7 +15,7 @@ public class Opening extends Side {
 	}
 	
 	public Opening(Opening opening) {
-		super(opening.getName(), opening.getDescriptions(), opening.isExit());
+		super(opening.getName(), opening.getDescriptions(), opening.isExit(), opening.getLocation());
 	}
 	
 	public String moveThrough() {

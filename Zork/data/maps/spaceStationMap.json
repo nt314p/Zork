@@ -1,7 +1,7 @@
 {
 	"name": "Space Station",
 	"default-side-vertical": {
-		"preset": "opening"
+		"preset": "steel wall"
 	},
 	"default-border": {
 		"preset": "steel wall"
@@ -80,8 +80,20 @@
 			"coords": "1.5,4.5,0.5"
 		},
 		{
-			"preset": "steel wall",
+			"type": "wall",
+			"name": "steel wall with window",
+			"descriptions": [
+				"look:You look through the window and see food inside the opposing room."
+			],
 			"coords": "2.0,4.5,0.5"
+		},
+		{
+			"preset": "opening",
+			"coords": "2.5,4.5,2"
+		},
+		{
+			"preset": "corridor",
+			"coords": "7.5,2.5,2.5"
 		},
 		{
 			"type": "room",

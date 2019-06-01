@@ -21,6 +21,10 @@ public class Parser {
 	public Parser() {
 
 	}
+	
+	public void close() {
+		scanner.close();
+	}
 
 	public ArrayList<Item> filterItems(ArrayList<Item> items, Class<Item>[] classes, boolean invert) {
 

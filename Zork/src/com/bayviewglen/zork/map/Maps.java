@@ -7,54 +7,55 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.bayviewglen.zork.item.Item;
+import com.bayviewglen.zork.item.Preset;
 import com.bayviewglen.zork.main.*;
 
 public class Maps {
-	
+
 	private static ArrayList<Map> mapList;
-	
+
 	public static void initialize() {
 		mapList = new ArrayList<Map>();
-		
+
 		File dir = new File("data/maps/");
 		File[] dirList = dir.listFiles();
 		if (dirList != null) {
 			for (File f : dirList) {
-				loadMap(f.getAbsolutePath());
+				if (f.getName().equals("spaceStationMap.json")) {
+					loadMap(f.getAbsolutePath());
+				}
 			}
 		}
 	}
-	
+
 	public static void add(Map map) {
 		mapList.add(map);
 	}
-	
 
 	public static Map getMap(int mapIndex) {
 		return mapList.get(mapIndex);
 	}
-	
-	
-	public static ArrayList<Map> getMaps(){
+
+	public static ArrayList<Map> getMaps() {
 		return mapList;
 	}
-	
+
 	public static int getMapIndex(String mapName) {
-		for(int i = 0; i<mapList.size(); i++) {
-			if(mapList.get(i).getName().equals(mapName))
+		for (int i = 0; i < mapList.size(); i++) {
+			if (mapList.get(i).getName().equals(mapName))
 				return i;
 		}
 		return -1;
 	}
-	
+
 	public static Map getMap(String mapName) {
-		for(int i = 0; i<mapList.size(); i++) {
-			if(mapList.get(i).getName().equals(mapName))
+		for (int i = 0; i < mapList.size(); i++) {
+			if (mapList.get(i).getName().equals(mapName))
 				return mapList.get(i);
 		}
 		return null;
 	}
-	
+
 	private static void loadMap(String filePath) {
 		FileReader mapReader = new FileReader(filePath);
 		Coordinate maxCoords = new Coordinate();
@@ -67,7 +68,8 @@ public class Maps {
 		for (int i = 0; i < jPlaces.length(); i++) { // looping through places
 			String coordsString = jPlaces.getJSONObject(i).getString("coords"); // getting coordinates
 			String type = Item.loadItem(jPlaces.getJSONObject(i)).getClass().getSimpleName(); // VERY BAD
-			double offset = 0; // if the type is a Room, there needs to be one more space for its surrounding sides
+			double offset = 0; // if the type is a Room, there needs to be one more space for its surrounding
+								// sides
 			if ("WallOpeningDoor".indexOf(type) != -1) {
 				offset = 0.5;
 			}
@@ -84,17 +86,16 @@ public class Maps {
 		}
 
 		Map tempMap = new Map(mapName, maxCoords); // creating map with max coords
-		
+
 		Side defaultSideV = null;
 		Side defaultSideH = null;
 		Room defaultRoom = null;
 		Side defaultBorder = null;
 		Side defaultGround = null;
 		Side defaultTop = null;
-		
+
 		if (obj.has("default-side-vertical")) {
 			defaultSideV = (Side) Item.loadItem(obj.getJSONObject("default-side-vertical"));
-			
 
 			// filling vertical sides
 			for (int i = 0; i < tempMap.getMap().length; i++) { // x
@@ -106,7 +107,7 @@ public class Maps {
 				}
 			}
 		}
-		
+
 		if (obj.has("default-side-horizontal")) {
 			defaultSideH = (Side) Item.loadItem(obj.getJSONObject("default-side-horizontal"));
 			// filling horizontal sides
@@ -119,11 +120,11 @@ public class Maps {
 				}
 			}
 		}
-		
+
 		if (obj.has("default-border")) {
 			defaultBorder = (Side) Item.loadItem(obj.getJSONObject("default-border"));
-			
-			for (int i = 0; i <= tempMap.getMap().length; i += tempMap.getMap().length-1) {
+
+			for (int i = 0; i <= tempMap.getMap().length; i += tempMap.getMap().length - 1) {
 				for (int j = 1; j < tempMap.getMap()[0].length; j += 2) {
 					for (int k = 1; k < tempMap.getMap()[0][0].length; k += 2) { // z
 						defaultBorder.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
@@ -131,9 +132,9 @@ public class Maps {
 					}
 				}
 			}
-			
+
 			for (int i = 1; i < tempMap.getMap().length; i += 2) {
-				for (int j = 0; j <= tempMap.getMap()[0].length; j += tempMap.getMap()[0].length-1) {
+				for (int j = 0; j <= tempMap.getMap()[0].length; j += tempMap.getMap()[0].length - 1) {
 					for (int k = 1; k < tempMap.getMap()[0][0].length; k += 2) { // z
 						defaultBorder.setLocation(new Location(mapName, new Coordinate(i, j, k, true)));
 						tempMap.getMap()[i][j][k] = (Place) Item.clone(defaultBorder);
@@ -141,30 +142,30 @@ public class Maps {
 				}
 			}
 		}
-		
+
 		if (obj.has("default-ground")) {
 			defaultGround = (Side) Item.loadItem(obj.getJSONObject("default-ground"));
-			
+
 			for (int i = 1; i < tempMap.getMap().length; i += 2) { // x
 				for (int j = 1; j < tempMap.getMap()[0].length; j += 2) { // y
-						defaultGround.setLocation(new Location(mapName, new Coordinate(i, j, 0, true)));
-						tempMap.getMap()[i][j][0] = (Place) Item.clone(defaultGround);
+					defaultGround.setLocation(new Location(mapName, new Coordinate(i, j, 0, true)));
+					tempMap.getMap()[i][j][0] = (Place) Item.clone(defaultGround);
 				}
 			}
 		}
-		
+
 		if (obj.has("default-top")) {
 			defaultTop = (Side) Item.loadItem(obj.getJSONObject("default-top"));
 			int zee = tempMap.getMap()[0][0].length - 1;
-			
+
 			for (int i = 1; i < tempMap.getMap().length; i += 2) { // x
 				for (int j = 1; j < tempMap.getMap()[0].length; j += 2) { // y
-						defaultGround.setLocation(new Location(mapName, new Coordinate(i, j, zee, true)));
-						tempMap.getMap()[i][j][zee] = (Place) Item.clone(defaultTop);
+					defaultTop.setLocation(new Location(mapName, new Coordinate(i, j, zee, true)));
+					tempMap.getMap()[i][j][zee] = (Place) Item.clone(defaultTop);
 				}
 			}
 		}
-		
+
 		if (obj.has("default-room")) {
 			defaultRoom = (Room) Item.loadItem(obj.getJSONObject("default-room"));
 			for (int i = 1; i < tempMap.getMap().length; i += 2) { // x
@@ -185,6 +186,30 @@ public class Maps {
 			Place p = (Place) Item.loadItem(jPlaces.getJSONObject(i));
 			p.setLocation(aLocation);
 			tempMap.set(p, coords);
+		}
+
+		for (int i = 1; i < tempMap.getMap().length; i += 2) { // x
+			for (int j = 1; j < tempMap.getMap()[0].length; j += 2) { // y
+				for (int k = 1; k < tempMap.getMap()[0][0].length; k += 2) { // z
+					Coordinate coord = new Coordinate(i, j, k, true);
+					Room currRoom = tempMap.getRoom(coord);
+					if (currRoom != null) {
+
+						for (char c : Map.LETTER_AXES) {
+							Room r = tempMap.getNextRoom(c, coord);
+							if (r != null) {
+								Side s = tempMap.getSideBetween(currRoom, r);
+								if (s != null && s.getName().equals(defaultSideV.getName())) {
+									Coordinate cd = coord.add(Map.DIRECTIONS.get(c).multiply(0.5));
+									Opening o = (Opening) Item.clone(Preset.get("opening"));
+									o.setLocation(new Location(mapName, cd));
+									tempMap.set(o, cd);
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 
 		mapList.add(tempMap);
