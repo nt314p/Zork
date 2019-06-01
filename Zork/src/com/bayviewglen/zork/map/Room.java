@@ -13,6 +13,7 @@ public class Room extends Place {
 	// private Inventory roomCharacters = new Inventory();
 
 	private boolean isDeathRoom;
+	private static final int MAX_LINE_LENGTH;
 
 	/**
 	 * Create a room described "description". Initially, it has no exits.
@@ -133,7 +134,6 @@ public class Room extends Place {
 
 			}
 		}
-
 		return ret;
 	}
 

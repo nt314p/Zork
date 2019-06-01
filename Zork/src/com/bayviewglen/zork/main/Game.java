@@ -54,6 +54,7 @@ public class Game {
 		Game.initializeGame(filePath);
 		// MapDisplay.display("Space Station");
 		print(intro());
+		displayTurn();
 		while (isPlaying) {
 			Character.moveAll();
 			try {
@@ -65,8 +66,8 @@ public class Game {
 				isPlaying = false;
 			}
 
-//			System.out.println(player.checkRoomDeath());
-//			System.out.println(player.checkInventoryDeath());
+			System.out.println(player.checkRoomDeath());
+			System.out.println(player.checkInventoryDeath());
 			
 			gameWon = player.checkGameWon();
 			if(gameWon) {
@@ -74,10 +75,9 @@ public class Game {
 				setGameOver(false);
 			}
 
-//			if (!gameOver)
-//				System.out.println(displayTurn());
-//			else {
-			if (gameOver) {
+			if (!gameOver)
+				System.out.println(displayTurn());
+			else {
 				if (isPlaying || Parser.playAgain()) {
 					Game.initializeGame(filePath);
 					gameOver = false;
@@ -254,7 +254,7 @@ public class Game {
 
 		String ret = displayStatistics();
 
-		ret += "\nLOCATION:";
+		ret += "\n\nLOCATION:";
 		ret += "\n---------";
 		ret += "\n" + roomDesc + "\n" + displayExits() + "\n";
 		return ret;
@@ -347,6 +347,7 @@ public class Game {
 
 	public static String outro() {
 		String result = "";
+		Music.play(ROCKET);
 		result += "Press 'enter' to continue." + PROMPT_ENTER;
 		result += "Congrats, you made it to the escape pod!" + PROMPT_ENTER;
 		result += "You can now steer your way back to Earth and live again!" + PROMPT_ENTER;
@@ -432,20 +433,16 @@ public class Game {
 				System.out.print(s.substring(0, s.indexOf(PROMPT_START_GAME)));
 				System.out.println(Parser.startGame());
 				continue;
-			}
-
-			if (s.indexOf(ROCKET) != -1) {
+			} else if (s.indexOf(ROCKET) != -1) {
 				System.out.print(s.substring(0, s.indexOf(ROCKET)));
 				Music.play(ROCKET);
-			}
-
-			if (s.indexOf("SlidePuzzle.play()") != -1) {
+			} else if (s.indexOf("SlidePuzzle.play()") != -1) {
 				boolean gameWon = SlidePuzzle.play();
 				if (gameWon)
 					MapDisplay.display(player.getLocation().getMap().getName());
-			}
-
-			System.out.print(s);
+			} else 
+				System.out.print(s);
+			
 			Parser.pressAnyKey();
 		}
 	}

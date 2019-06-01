@@ -227,7 +227,7 @@ public class Inventory {
 			result += String.format("%-15s%s\n", part1, part2);
 			usedItems.add(j);
 		}
-		result += String.format("%-15s%.2f%s", "Total Weight:", getTotalWeight(), " kg");
+		result += String.format("%-14s%.2f%s", "Total Weight:", getTotalWeight(), " kg");
 		return result;
 	}
 

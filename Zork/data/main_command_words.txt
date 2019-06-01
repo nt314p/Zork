@@ -34,6 +34,6 @@ fall:Trip on the ground
 breathe:Always remember to breathe
 jump:Jump into the air with a chance of winning the game
 pray:Pray to the Gods for good luck
-hi:Say hello
-swear:crap,Nick Tong,freedom,Try not to use this feature
+hi:hello,sup,hey,Say hello
+swear:crap,Nick Tong,dammit,Try not to use this feature
 smell:scent,Smell the aura in the room
